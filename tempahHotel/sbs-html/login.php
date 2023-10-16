@@ -9,7 +9,7 @@ if (isset($_GET["cmdlogin"])) {
     include 'conn.php';
 
     //Define SQL Statements for comparison
-    $sql = "SELECT * FROM `tblstudent` WHERE stud_Name='$username' AND stud_pwd='$password'";
+    $sql = "SELECT * FROM `tblstudent` WHERE stud_username='$username' AND stud_pwd='$password'";
 
     //Execute SQL Statement
     $res = mysqli_query($con, $sql);

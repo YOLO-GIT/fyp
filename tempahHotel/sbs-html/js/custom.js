@@ -129,4 +129,19 @@ function getURL() { window.location.href; } var protocol = location.protocol; $.
         });
     });
 
+// Custom JScript
+function openForm() {
+    document.getElementById("myForm").style.display = "block";
+}
+
+function closeForm() {
+    document.getElementById("myForm").style.display = "none";
+}
+
+function resetForm() {
+    // Assuming your form has an id attribute set to 'myForm'
+    history.replaceState(null, '', window.location.pathname);
+    window.location.reload();
+}
+
 

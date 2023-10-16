@@ -153,12 +153,6 @@
      background-color: #fff;
      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
 }
-.book-info {
-     padding: 20px;
-}
-.book-info h2 {
-     margin-top: 0;
-}
 .card_book{
      /* max-width: 1040px; */
      border: solid 5px rgb(203, 195, 227);
@@ -180,4 +174,65 @@
 .bold-text {
      font-weight: bold;
      font-family: 'Poppins', sans-serif;
+}
+
+/* Open Form/Search Function Button */
+
+.form-popup {
+  display: none;
+  /* position: fixed; */
+  border: 6px solid #f1f1f1;
+}
+
+/* Add styles to the form container */
+.form-container-popup {
+  width: 100%;
+  padding: 10px;
+  background: linear-gradient(to top, #cc208e 0%, #6713d2 100%);
+
+}
+
+/* Add a red background color to the cancel button */
+.form-container-popup .cancel {
+  background-color: red;
+}
+
+/* Add some hover effects to buttons */
+.form-container-popup .btn:hover, .open-button:hover {
+  opacity: 5;
+}
+
+.open-button-popup {
+  background: linear-gradient(-225deg, #65379B 0%, #886AEA 53%, #6457C6 100%);
+  color: white;
+  border: solid 5px white;
+  margin: auto 10px;
+  border-radius: 25px;
+  padding: 16px 20px;
+  cursor: pointer;
+  opacity: 0.8;
+  width: 280px;
+  transition: width 2s;
+}
+
+.open-button-popup:hover {
+  background: linear-gradient(-225deg, #65379B 0%, #886AEA 53%, #6457C6 100%);
+  color: white;
+  border: solid 5px white;
+  margin: auto 10px;
+  border-radius: 25px;
+  padding: 16px 20px;
+  cursor: pointer;
+  opacity: 0.8;
+  width: 500px;
+}
+
+.style_card{
+  background: linear-gradient(-225deg, #65379B 0%, #886AEA 53%, #6457C6 100%);
+}
+
+.style_card h4{
+     text-align: center;
+     color: #fff;
+     font-weight: bold;
 }
