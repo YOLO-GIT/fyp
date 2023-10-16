@@ -72,6 +72,53 @@ function showTeacher(){
     });
 }
 
+function teacherUpdate(id){
+  $.ajax({
+        url:"../adminView/editTeacherForm.php",
+        method:"post",
+        data:{record:id},
+        success:function(data){
+            $('.allContent-section').html(data);
+        }
+    });
+}
+
+//update variation after submit
+function updateTeacher(){
+    var v_id = $('#v_id').val();
+    var qty = $('#qty').val();
+    var fd = new FormData();
+    fd.append('v_id', v_id);
+    fd.append('qty', qty);
+   
+    $.ajax({
+      url:'../controller/updateTeacherController.php',
+      method:'post',
+      data:fd,
+      processData: false,
+      contentType: false,
+      success: function(data){
+        alert('Update Success.');
+        $('form').trigger('reset');
+        showBorrowed();
+      }
+    });
+}
+
+//delete category data
+function teacherDelete(id){
+    $.ajax({
+        url:"../controller/teacherDeleteController.php",
+        method:"post",
+        data:{record:id},
+        success:function(data){
+            alert('Category Successfully deleted');
+            $('form').trigger('reset');
+            showBooks();
+        }
+    });
+}
+
 function showOrders(){
     $.ajax({
         url:"./adminView/viewAllOrders.php",

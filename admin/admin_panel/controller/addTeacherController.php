@@ -6,7 +6,8 @@ if (isset($_GET["cmdadd"])) {
     $fname = $_GET["txtfname"];
     $lname = $_GET["txtlname"];
     $uname = $_GET["txtuname"];
-    $password = $_GET["txtpwd"];
+    // SHA the password: 
+    $password = hash('sha512', $_GET["txtpwd"]);
 
     $clean_name = $fname . " " . $lname; // Replaced "&nbsp;" with a space
     $clean_name = strip_tags($clean_name); // Remove any remaining tags
@@ -19,7 +20,7 @@ if (isset($_GET["cmdadd"])) {
 
     $icnum = substr($ic, 8, 4);
 
-    $id = $jantina . $icnum;
+    $id = "T" . $jantina . $icnum;
 
     // CHeck if the content already exist:
     // CHECKING START

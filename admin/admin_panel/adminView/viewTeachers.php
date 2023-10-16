@@ -67,8 +67,10 @@
                         <tr>
                             <th class="text-center">No.</th>
                             <th class="text-center">ID</th>
-                            <th class="text-center">Nama </th>
+                            <th class="text-center">Nama</th>
                             <th class="text-center">Tarikh semasa</th>
+                            <th class="text-center">Edit</th>
+                            <th class="text-center">Delete</th>
                         </tr>
                     </thead>
                     <!-- PHP -->
@@ -89,6 +91,8 @@
                                     <td><?= $row["teachers_ID"] ?></td>
                                     <td><?= $row["teachers_Name"] ?></td>
                                     <td><?= $row["date_teachers"] ?></td>
+                                    <td><button class="btn btn-primary" style="height:40px" onclick="bookUpdate('<?= $row['book_ID'] ?>')">Edit</button></td>
+                                    <td><button class="btn btn-danger" style="height:40px" onclick="bookDelete('<?= $row['book_ID'] ?>')">Delete</button></td>
                                 </tr>
                             <?php
                                 $count = $count + 1;
@@ -112,6 +116,8 @@
                                     <td><?= $row["teachers_ID"] ?></td>
                                     <td><?= $row["teachers_Name"] ?></td>
                                     <td><?= $row["date_teachers"] ?></td>
+                                    <td><button class="btn btn-primary" style="height:40px" onclick="teacherUpdate('<?= $row['teachers_ID'] ?>')">Edit</button></td>
+                                    <td><button class="btn btn-danger" style="height:40px" onclick="teacherDelete('<?= $row['teachers_ID'] ?>')">Delete</button></td>
                                 </tr>
                     <?php
                                 $count = $count + 1;

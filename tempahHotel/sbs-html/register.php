@@ -1,15 +1,20 @@
 <?php // Sekiranya button submit diklik
 
+//Create Connection to the database
+include 'conn.php';
+
 // isset = is setted to ?
 if (isset($_GET["cmdregister"])) {
     // receive submitted value
     $ic = $_GET["txtic"];
     $fname = $_GET["txtfnama"];
     $lname = $_GET["txtlnama"];
+    $uname = $_GET["txtuname"];
     $kelas = $_GET["txtkelas"];
     $password = hash("sha512", $_GET["txtpwd"]);
 
-    $clean_name = $fname . "&nbsp;" . $lname;
+    $clean_name = $fname . " " . $lname; // Replaced "&nbsp;" with a space
+    $clean_name = strip_tags($clean_name); // Remove any remaining tags
 
     $email = "user@gmail.com";
 
@@ -21,26 +26,51 @@ if (isset($_GET["cmdregister"])) {
 
     $icnum = substr($ic, 8, 4);
 
-    $id = $jantina . $icnum;
+    $id = "S" . $jantina . $icnum;
 
-    //Create Connection to the database
-    include 'conn.php';
+    // CHeck if the content already exist:
+    // CHECKING START
 
-    // SQL Login For Student
-    $sql_login = "INSERT INTO `tblstudent`(`stud_ID`, `stud_Name`, `stud_Class`, `email`, `stud_pwd`, `date`) 
-    VALUES ('$id','$clean_name','$kelas','$email','$password',NOW())";
+    //USERNAME
+    $check_username_query = "SELECT * FROM tblstudent WHERE stud_username='$uname'";
+    $check_username = mysqli_query($con, $check_username_query);
+    //PASSWORD
+    $check_password_query = "SELECT * FROM tblstudent WHERE stud_pwd='$password'";
+    $check_password = mysqli_query($con, $check_password_query);
 
-    //Execute SQL Login Statement
-    $res = mysqli_query($con, $sql_login);
+    // CHECKING END
 
-    //Close Con
-    mysqli_close($con);
+    if (mysqli_num_rows($check_username) > 0) {
+        // Validation if the content is same
+        echo "<script>alert('This username already has been used.');</script>";
+        // Close the DB to ensure it will not updated.
+        mysqli_close($con);
+        // Sending back to the Teacher Panel.
+        echo "<script>window.location.href='register.php';</script>";
+    } elseif (mysqli_num_rows($check_password) > 0) {
+        // Validation if the content is same
+        echo "<script>alert('This password already has been used.');</script>";
+        // Close the DB to ensure it will not updated.
+        mysqli_close($con);
+        // Sending back to the Teacher Panel.
+        echo "<script>window.location.href='register.php';</script>";
+    } else {
+        // SQL Login For Student
+        $sql_login = "INSERT INTO `tblstudent`(`stud_ID`, `stud_Name`, `stud_username`, `stud_Class`, `email`, `stud_pwd`, `date`) 
+        VALUES ('$id','$clean_name','$uname','$kelas','$email','$password',NOW())";
 
-    //Prompt to the user.
-    echo "<script>alert('Your registration is successful. Please proceed to the login page');</script>";
+        //Execute SQL Login Statement
+        $res = mysqli_query($con, $sql_login);
 
-    //Redirect to page ---> Login.php
-    echo "<script>window.location.href='login.php';</script>";
+        //Close Con
+        mysqli_close($con);
+
+        //Prompt to the user.
+        echo "<script>alert('Your registration is successful. Please proceed to the login page');</script>";
+
+        //Redirect to page ---> Login.php
+        echo "<script>window.location.href='login.php';</script>";
+    }
 }
 ?>
 
@@ -99,19 +129,23 @@ if (isset($_GET["cmdregister"])) {
                         <div class="row">
                             <!-- IC -->
                             <div class="col-md-12">
-                                <input class="contactus" placeholder="IC Number*" type="text" name="txtic">
+                                <input class="contactus" placeholder="IC Number*" type="text" name="txtic" required maxlength="12" pattern=".{12,}>
                             </div>
                             <!-- NAMA PERTAMA -->
-                            <div class="col-md-6">
-                                <input class="contactus" placeholder="Nama*" type="text" name="txtfnama">
+                            <div class=" col-md-6">
+                                <input class="contactus" placeholder="Nama Depan Anda: Ahmad (Maksimum 10 Perkataan)" type="text" name="txtfnama" required maxlength="10">
                             </div>
                             <!-- NAMA KEDUA -->
                             <div class="col-md-6">
-                                <input class="contactus" placeholder="Nama*" type="text" name="txtlnama">
+                                <input class="contactus" placeholder="Nama Belakang Anda: Aziz (Maksimum 10 Perkataan)" type="text" name="txtlnama" required maxlength="10">
+                            </div>
+                            <!-- NAMA SAMARAN -->
+                            <div class="col-md-6">
+                                <input class="contactus" placeholder="Username anda (Maksimum 10 Perkataan)" type="text" name="txtunama" required maxlength="10">
                             </div>
                             <!-- KELAS -->
                             <div class="col-md-6">
-                                <input class="contactus" placeholder="Kelas*" type="text" name="txtkelas">
+                                <input class="contactus" placeholder="Kelas*" type="text" name="txtkelas" required>
                             </div>
                             <!-- EMAIL -->
                             <div class="col-md-6">
@@ -119,10 +153,10 @@ if (isset($_GET["cmdregister"])) {
                             </div>
                             <!-- PASSWORD -->
                             <div class="col-md-12">
-                                <input class="contactus" placeholder="Password*" type="password" name="txtpwd">
+                                <input class="contactus" placeholder="Password (Maksimum 8 nombor)*" type="password" name="txtpwd" required maxlength="8" pattern=".{8,}">
                             </div>
                             <!-- SUBMIT -->
-                            <div class="col-md-12">
+                            <div class=" col-md-12">
                                 <button class="send_btn1" name="cmdregister">Register</button>
                             </div>
                         </div>
