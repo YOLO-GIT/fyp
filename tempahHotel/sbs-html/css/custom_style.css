@@ -1,0 +1,183 @@
+/** start custom CSS **/
+
+/** Start Custom Login CSS **/
+
+ .custom-background {
+     background: linear-gradient(101.8deg, rgb(28, 28, 224) -0.2%, rgb(153, 68, 230) 55.2%, rgb(235, 18, 180) 84.4%);
+     border-radius: 25px;
+     /* Change this color to your preferred background color */
+}
+
+.custom-background h3 {
+     color: white;
+}
+
+.custom-background a:link {
+     color: green;
+}
+
+.custom-background a:visited {
+     color: white;
+}
+
+.custom-background a:hover {
+     color: red;
+}
+
+.contact1 {
+     background: linear-gradient(101.8deg, rgb(28, 28, 224) -0.2%, rgb(153, 68, 230) 55.2%, rgb(235, 18, 180) 84.4%);
+     padding-bottom: 467px;
+     padding-top: 88px;
+}
+
+.main_form_login {
+     width: 100%;
+}
+
+.main_form_login .contactus {
+     padding: 0px 10px;
+     margin-bottom: 20px;
+     width: 100%;
+     height: 50px;
+     background: #fff;
+     color: #501f14;
+     font-size: 17px;
+     font-weight: normal;
+     border-radius: 11px;
+     border: inherit;
+     box-shadow: 0px 0px 2px 0 #f34b52d4;
+}
+
+.main_form_login .send_btn1 {
+     font-size: 18px;
+     transition: ease-in all 0.5s;
+     text-align: center;
+     background-color: #3e0bce;
+     text-transform: uppercase;
+     color: #fff;
+     /* max-width: 193px; */
+     width: 30%;
+     display: block;
+     margin-left: 401px;
+     margin-top: 10px !important;
+     font-weight: 600;
+     height: 53px;
+     border-radius: 10px;
+     padding: 13px 0;
+     box-shadow: 1px 3px 9px 3px black;
+}
+
+.main_form .send_btn1:hover {
+     background: #8A2BE2;
+     color: #fff;
+     transition: ease-in all 0.5s;
+}
+
+.new_title {
+     padding-bottom: 60px;
+}
+
+.new_title h2 {
+     font-size: 45px;
+     color: whitesmoke;
+     line-height: 60px;
+     font-weight: bold;
+     padding: 0;
+     display: inline-block;
+}
+/** End Custom Login CSS **/
+
+/** Start Custom Register CSS **/
+
+.main_form_reg {
+     width: 100%;
+}
+
+.main_form_reg .contactus {
+     padding: 0px 10px;
+     margin-bottom: 20px;
+     width: 100%;
+     height: 50px;
+     background: #fff;
+     color: #501f14;
+     font-size: 17px;
+     font-weight: normal;
+     border-radius: 11px;
+     border: inherit;
+     box-shadow: 0px 0px 2px 0 #f34b52d4;
+}
+.main_form_reg .send_btn1 {
+     font-size: 18px;
+     transition: ease-in all 0.5s;
+     text-align: center;
+     background-color: #3e0bce;
+     text-transform: uppercase;
+     color: #fff;
+     /* max-width: 193px; */
+     width: 30%;
+     display: block;
+     margin-left: 401px;
+     margin-top: 10px !important;
+     font-weight: 600;
+     height: 53px;
+     border-radius: 10px;
+     padding: 13px 0;
+     box-shadow: 1px 3px 9px 3px black;
+}
+
+.main_form_reg .send_btn1:hover {
+     background: #8A2BE2;
+     color: #fff;
+     transition: ease-in all 0.5s;
+}
+
+/** End Custom Register CSS **/
+
+/* Start Custom Booking CSS */
+#header_book {
+     background: radial-gradient(circle at 10% 20%, rgb(236, 158, 248) 0%, rgb(131, 83, 241) 90.1%);
+     color: #fff;
+     text-align: center;
+     padding: 20px;
+}
+#header_book h1 {
+     margin: 0;
+     font-family: 'Poppins', sans-serif;
+     font-weight: bold;
+     font-style: italic;
+}
+.container_book {
+     max-width: 800px;
+     margin: 20px auto;
+     padding: 20px;
+     background-color: #fff;
+     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+.book-info {
+     padding: 20px;
+}
+.book-info h2 {
+     margin-top: 0;
+}
+.card_book{
+     /* max-width: 1040px; */
+     border: solid 5px rgb(203, 195, 227);
+     border-radius: 15px;
+     background-color: azure;
+}
+
+.card_book img{
+     margin-left: 15px;
+     margin-top: 65px;
+}
+
+.card_book h2{
+     text-align: center;
+     text-decoration: underline;
+     font-weight: bold;
+}
+
+.bold-text {
+     font-weight: bold;
+     font-family: 'Poppins', sans-serif;
+}
