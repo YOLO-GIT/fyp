@@ -8,7 +8,8 @@ if (isset($_GET["cmdadd"])) {
     $uname = $_GET["txtuname"];
     $password = $_GET["txtpwd"];
 
-    $clean_name = $fname . "&nbsp;" . $lname;
+    $clean_name = $fname . " " . $lname; // Replaced "&nbsp;" with a space
+    $clean_name = strip_tags($clean_name); // Remove any remaining tags
 
     if (intval(substr($ic, 11, 1)) % 2 == 1) {
         $jantina = "J";
@@ -20,16 +21,33 @@ if (isset($_GET["cmdadd"])) {
 
     $id = $jantina . $icnum;
 
+    // CHeck if the content already exist:
+    // CHECKING START
+
+    //USERNAME
     $check_username_query = "SELECT * FROM tblteachers WHERE teachers_username='$uname'";
     $check_username = mysqli_query($conn, $check_username_query);
-
+    //PASSWORD
     $check_password_query = "SELECT * FROM tblteachers WHERE teachers_Password='$password'";
     $check_password = mysqli_query($conn, $check_password_query);
 
+    // CHECKING END
+
+
     if (mysqli_num_rows($check_username) > 0) {
-        echo "<script>alert('This username already has been used.'); window.location.href = window.location.href;</script>";
+        // Validation if the content is same
+        echo "<script>alert('This username already has been used.');</script>";
+        // Close the DB to ensure it will not updated.
+        mysqli_close($conn);
+        // Sending back to the Teacher Panel.
+        echo "<script>window.location.href='../adminView/viewTeachers.php';</script>";
     } elseif (mysqli_num_rows($check_password) > 0) {
-        echo "<script>alert('This password already has been used.'); window.location.href = window.location.href;</script>";
+        // Validation if the content is same
+        echo "<script>alert('This password already has been used.');</script>";
+        // Close the DB to ensure it will not updated.
+        mysqli_close($conn);
+        // Sending back to the Teacher Panel.
+        echo "<script>window.location.href='../adminView/viewTeachers.php';</script>";
     } else {
         $sql = "INSERT INTO `tblteachers`(`teachers_ID`, `teachers_Name`, `teachers_username`, `teachers_Password`, `date_teachers`) 
         VALUES ('$id','$clean_name','$uname','$password',NOW())";

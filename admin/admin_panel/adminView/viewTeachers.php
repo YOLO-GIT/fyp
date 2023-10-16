@@ -183,32 +183,32 @@
                     </div>
                     <div class="modal-body">
                         <form enctype='multipart/form-data' action="../controller/addTeacherController.php" method="get">
-                            <form action="" method="get" name="frmnewteacher">
-                                <div class="form-group">
-                                    <label for="IC">IC:</label>
-                                    <input type="number" name="txtIC" placeholder="Enter IC" required maxlength="12">
-                                </div>
-                                <div class="form-group">
-                                    <label for="First Name">Nama Depan:</label>
-                                    <input type="text" name="txtfname" placeholder="Masukkan Nama Depan: Mohd" required maxlength="10">
-                                </div>
-                                <div class="form-group">
-                                    <label for="Last Name">Nama Belakang:</label>
-                                    <input type="text" name="txtlname" placeholder="Masukkan Nama Belakang Selepas 'bin': Yahya" required maxlength="10">
-                                </div>
-                                <div class="form-group">
-                                    <label for="Username">Username:</label>
-                                    <input type="text" name="txtuname" placeholder="user123" required maxlength="10">
-                                </div>
-                                <div class="form-group">
-                                    <label for="Password">Passwords:</label>
-                                    <input type="password" name="txtpwd" id="myInputPWD" placeholder="Masukkan katalaluan anda: Maksima 8 nombor sahaja" required maxlength="8">
-                                </div>
-                                <input type="checkbox" onclick="myFunction()">&nbsp;&nbsp;Show Password
-                                <div class="modal-footer">
-                                    <button type="submit" name="cmdadd" class="btn btn-secondary">Add Teacher</button>
-                                </div>
-                            </form>
+
+                            <div class="form-group">
+                                <label for="IC">IC:</label>
+                                <input type="number" name="txtIC" placeholder="Enter IC" required maxlength="12">
+                            </div>
+                            <div class="form-group">
+                                <label for="First Name">Nama Depan:</label>
+                                <input type="text" name="txtfname" placeholder="Masukkan Nama Depan: Mohd" required maxlength="10">
+                            </div>
+                            <div class="form-group">
+                                <label for="Last Name">Nama Belakang:</label>
+                                <input type="text" name="txtlname" placeholder="Masukkan Nama Belakang Selepas 'bin': Yahya" required maxlength="10">
+                            </div>
+                            <div class="form-group">
+                                <label for="Username">Username:</label>
+                                <input type="text" name="txtuname" placeholder="user123" required maxlength="10">
+                            </div>
+                            <div class="form-group">
+                                <label for="Password">Passwords:</label>
+                                <input type="password" name="txtpwd" id="myInputPWD" placeholder="Masukkan katalaluan anda: Maksima 8 nombor sahaja" required pattern=".{8,}" maxlength="8">
+                            </div>
+                            <input type="checkbox" onclick="myFunction()">&nbsp;&nbsp;Show Password
+                            <div class="modal-footer">
+                                <button type="submit" name="cmdadd" class="btn btn-secondary">Add Teacher</button>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
