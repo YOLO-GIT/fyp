@@ -30,7 +30,7 @@ include 'conn.php';
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1">
     <!-- site metas -->
-    <title>sbs</title>
+    <title>Library Pro | Buku</title>
     <meta name="keywords" content="">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -54,9 +54,9 @@ include 'conn.php';
 
 <body class="main-layout inner_page">
     <!-- loader  -->
-    <!-- <div class="loader_bg">
+    <div class="loader_bg">
         <div class="loader"><img src="images/loading.gif" alt="#" /></div>
-    </div> -->
+    </div>
     <!-- end loader -->
     <!-- header -->
     <div class="header">
@@ -100,8 +100,7 @@ include 'conn.php';
                 </div>
                 <div class="col-md-2">
                     <ul class="email text_align_right">
-                        <li class="d_none"><a href="Javascript:void(0)"><i class="fa fa-user" aria-hidden="true"></i></a></li>
-                        <li class="d_none"> <a href="Javascript:void(0)"><i class="fa fa-search" style="cursor: pointer;" aria-hidden="true"></i></a> </li>
+                        <li class="d_none"><a href="login.php"><i class="fa fa-user" aria-hidden="true"></i></a></li>
                     </ul>
                 </div>
             </div>
@@ -117,145 +116,132 @@ include 'conn.php';
         <button class="open-button-popup" onclick="openForm()">Carian Judul Buku</button>
     </header>
 
-
-
-    <!-- Start Student Search -->
+    <!-- Start Book Search -->
     <div class="form-popup" id="myForm">
-        <form action="" class="form-container-popup">
-            <div class="col-md-12">
-                <div class="card mt-4">
-                    <div class="card-header style_card">
-                        <h4>Judul Buku</h4>
-                    </div>
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-md-8">
-                                <form action="" method="GET">
-                                    <div class="input-group mb-3">
-                                        <input type="text" name="search" required value="<?php if (isset($_GET['search'])) {
-                                                                                                echo $_GET['search'];
-                                                                                            } ?>" class="form-control" placeholder="Search data">
-                                    </div>
-                                    <br><button type="submit" class="btn btn-primary" style="color: white;">Search</button>
-                                    <br><br><button type="button" class="btn cancel" onclick="closeForm()">Close</button>
-                                    <br><br><button type="button" class="btn refresh" onclick="resetForm()">Refresh Page</button>
-                                </form>
-                            </div>
+        <div class="col-md-12">
+            <div class="card mt-4">
+                <div class="card-header style_card">
+                    <h4>Judul Buku</h4>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <form action="" method="GET">
+                                <!-- Search Bar -->
+                                <div class="input-group mb-3 search_bar">
+                                    <input type="text" name="search" value="<?php if (isset($_GET['search'])) {
+                                                                                echo $_GET['search'];
+                                                                            } ?>" class="form-control" placeholder="Search data">
+                                </div>
+                                <!-- Button -->
+                                <br><button type="submit" class="btn btn-primary">Search</button>
+                                <br><br><button type="button" class="btn btn-secondary cancel" onclick="closeForm()">Close</button>
+                                <br><br><button type="button" class="btn btn-secondary refresh" onclick="resetForm()">Refresh Page</button>
+                            </form>
                         </div>
                     </div>
                 </div>
             </div>
-        </form>
+        </div>
     </div>
-    <!-- End Student Search -->
+    <!-- End Book Search -->
 
+    <!-- Booking -->
     <div class="container_book">
 
+        <form action="" method="GET">
+            <!-- Sorting Function -->
+            <div class="input-group mb-3">
+                <select name="sort_alphabet" class="form-control">
+                    <option value="">-- Select Option --</option>
+                    <option value="a-z" <?php if (isset($_GET['sort_alphabet']) && $_GET['sort_alphabet'] == "a-z") {
+                                            echo "selected";
+                                        } ?>>A-Z (Ascending Order)</option>
+                    <option value="z-a" <?php if (isset($_GET['sort_alphabet']) && $_GET['sort_alphabet'] == "z-a") {
+                                            echo "selected";
+                                        } ?>>Z-A (Descending Order)</option>
+                </select>
+                <button type="submit" class="btn btn-primary">
+                    Sort
+                </button>
+            </div>
+        </form>
+
         <?php
-        if (isset($_GET['search'])) {
+        $filtervalues = isset($_GET['search']) ? $_GET['search'] : '';
 
-            $filtervalues = $_GET['search'];
-            $query = "SELECT * FROM tblbook WHERE `book_title` LIKE '%$filtervalues%'";
-            $result = $con->query($query);
-            $count = 1;
+        $sort_option = "";
+        if (isset($_GET['sort_alphabet'])) {
+            if ($_GET['sort_alphabet'] === "a-z") { // Use === for strict comparison
+                $sort_option = "ASC";
+            } elseif ($_GET['sort_alphabet'] === "z-a") { // Use === for strict comparison
+                $sort_option = "DESC";
+            }
+        }
 
-            if ($result->num_rows > 0) {
-                while ($row = $result->fetch_assoc()) {
+        $query = "SELECT * FROM tblbook ";
+        if (!empty($filtervalues)) {
+            $query .= "WHERE `book_title` LIKE '%$filtervalues%' ";
+        }
+
+        if (!empty($sort_option)) {
+            $query .= "ORDER BY book_title $sort_option";
+        }
+
+        $result = $con->query($query);
+
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
         ?>
-                    <div class="card_book mb-3">
-                        <div class="row g-0">
-                            <div class="col-md-4">
-                                <img src="images/loading.gif">
-                            </div>
-                            <div class="col-md-8">
-                                <div class="card-body">
-                                    <h2 class="card-title">Tajuk Buku:&nbsp;&nbsp;<?= $row["book_title"] ?></h2>
-                                    <table>
-                                        <tr>
-                                            <td class="bold-text">Pengarang:&nbsp;&nbsp;<?= $row["book_author"] ?></td>
-                                        </tr>
-                                        <tr>
-                                            <td class="bold-text">No. ISBN:&nbsp;&nbsp;<?= $row["book_ISBN"] ?></td>
-                                        </tr>
-                                        <tr>
-                                            <td class="bold-text">Pengeluar:&nbsp;&nbsp;<?= $row["publisher"] ?></td>
-                                        </tr>
-                                        <tr>
-                                            <td class="bold-text">No. Dewey:&nbsp;&nbsp;<?= $row["book_dewey"] ?></td>
-                                        </tr>
-                                        <tr>
-                                            <td class="bold-text">Kategori:&nbsp;&nbsp;<?= $row["book_category"] ?></td>
-                                        </tr>
-                                        <tr>
-                                            <td class="bold-text">Sinopsis Buku:&nbsp;&nbsp;<?= $row["book_desc"] ?></td>
-                                        </tr>
-                                        <tr>
-                                            <td><br><br><a href="#" class="btn btn-primary">Booking</a>&nbsp;&nbsp;<a href="#" class="btn btn-primary">Borrowing</a></td>
-                                        </tr>
-                                    </table>
-                                </div>
+                <div class="card_book mb-3">
+                    <!-- rest of the code remains unchanged -->
+                    <div class="row g-0">
+                        <div class="col-md-4">
+                            <img src="images/loading.gif">
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <h2 class="card-title">Tajuk Buku:&nbsp;&nbsp;<?= $row["book_title"] ?></h2>
+                                <table>
+                                    <tr>
+                                        <td class="bold-text">Pengarang:&nbsp;&nbsp;<?= $row["book_author"] ?></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="bold-text">No. ISBN:&nbsp;&nbsp;<?= $row["book_ISBN"] ?></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="bold-text">Pengeluar:&nbsp;&nbsp;<?= $row["publisher"] ?></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="bold-text">No. Dewey:&nbsp;&nbsp;<?= $row["book_dewey"] ?></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="bold-text">Kategori:&nbsp;&nbsp;<?= $row["book_category"] ?></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="bold-text">Sinopsis Buku:&nbsp;&nbsp;<?= $row["book_desc"] ?></td>
+                                    </tr>
+                                    <tr>
+                                        <td><br><br><a href="#" class="btn btn-primary">Booking</a>&nbsp;&nbsp;<a href="#" class="btn btn-primary">Borrowing</a></td>
+                                    </tr>
+                                </table>
                             </div>
                         </div>
                     </div>
-                <?php
-                }
-            } else {
-                ?>
-                <?php
+                    <!-- ... -->
+                </div>
+            <?php
             }
         } else {
-            $sql = "SELECT * from tblbook";
-            $result = $con->query($sql);
-            $count = 1;
-            if ($result->num_rows > 0) {
-                while ($row = $result->fetch_assoc()) {
-                ?>
-                    <tr>
-                        <div class="card_book mb-3">
-                            <div class="row g-0">
-                                <div class="col-md-4">
-                                    <img src="images/loading.gif">
-                                </div>
-                                <div class="col-md-8">
-                                    <div class="card-body">
-                                        <h2 class="card-title">Tajuk Buku:&nbsp;&nbsp;<?= $row["book_title"] ?></h2>
-                                        <table>
-                                            <tr>
-                                                <td class="bold-text">Pengarang:&nbsp;&nbsp;<?= $row["book_author"] ?></td>
-                                            </tr>
-                                            <tr>
-                                                <td class="bold-text">No. ISBN:&nbsp;&nbsp;<?= $row["book_ISBN"] ?></td>
-                                            </tr>
-                                            <tr>
-                                                <td class="bold-text">Pengeluar:&nbsp;&nbsp;<?= $row["publisher"] ?></td>
-                                            </tr>
-                                            <tr>
-                                                <td class="bold-text">No. Dewey:&nbsp;&nbsp;<?= $row["book_dewey"] ?></td>
-                                            </tr>
-                                            <tr>
-                                                <td class="bold-text">Kategori:&nbsp;&nbsp;<?= $row["book_category"] ?></td>
-                                            </tr>
-                                            <tr>
-                                                <td class="bold-text">Sinopsis Buku:&nbsp;&nbsp;<?= $row["book_desc"] ?></td>
-                                            </tr>
-                                            <tr>
-                                                <td><br><br><a href="#" class="btn btn-primary">Booking</a>&nbsp;&nbsp;<a href="#" class="btn btn-primary">Borrowing</a></td>
-                                            </tr>
-                                        </table>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </tr>
+            ?>
+            <tr>
+                <td>Record Tidak Wujud</td>
+            </tr>
         <?php
-
-                }
-            }
         }
         ?>
         <!-- PHP Ends -->
     </div>
-
     <!-- Booking End -->
 
     <!--  footer -->

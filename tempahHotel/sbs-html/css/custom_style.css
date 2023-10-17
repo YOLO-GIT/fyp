@@ -55,6 +55,7 @@
      background-color: #3e0bce;
      text-transform: uppercase;
      color: #fff;
+     cursor: pointer;
      /* max-width: 193px; */
      width: 30%;
      display: block;
@@ -67,7 +68,7 @@
      box-shadow: 1px 3px 9px 3px black;
 }
 
-.main_form .send_btn1:hover {
+.main_form_login .send_btn1:hover {
      background: #8A2BE2;
      color: #fff;
      transition: ease-in all 0.5s;
@@ -89,8 +90,31 @@
 
 /** Start Custom Register CSS **/
 
-.main_form_reg {
-     width: 100%;
+.register_body{
+     background: linear-gradient(to top, #7028e4 0%, #e5b2ca 100%);
+     padding-bottom: 467px;
+     padding-top: 88px;
+}
+
+.custom-background-reg{
+     background: linear-gradient(101.8deg, rgb(28, 28, 224) -0.2%, rgb(153, 68, 230) 55.2%, rgb(235, 18, 180) 84.4%);
+     border-radius: 25px;
+}
+
+.custom-background-reg h3 {
+     color: white;
+}
+
+.custom-background-reg a:link {
+     color: green;
+}
+
+.custom-background-reg a:visited {
+     color: white;
+}
+
+.custom-background-reg a:hover {
+     color: red;
 }
 
 .main_form_reg .contactus {
@@ -131,9 +155,30 @@
      transition: ease-in all 0.5s;
 }
 
+.copyright-custom{
+     /* margin-top: 90px; */
+     padding-bottom: 25px;
+     background: #8A2BE2
+}
+
+.copyright-custom p {
+     color: #fff;
+     font-size: 17 px;
+     line-height: 22px;
+     text-align: center;
+     padding-top: 25px;
+     font-weight: 400;
+     font-weight: normal;
+}
+
+
 /** End Custom Register CSS **/
 
 /* Start Custom Booking CSS */
+
+.inner_page{
+     background: linear-gradient(to top, #cd9cf2 0%, #f6f3ff 100%);
+}
 #header_book {
      background: radial-gradient(circle at 10% 20%, rgb(236, 158, 248) 0%, rgb(131, 83, 241) 90.1%);
      color: #fff;
@@ -182,23 +227,18 @@
   display: none;
   /* position: fixed; */
   border: 6px solid #f1f1f1;
-}
-
-/* Add styles to the form container */
-.form-container-popup {
   width: 100%;
   padding: 10px;
   background: linear-gradient(to top, #cc208e 0%, #6713d2 100%);
-
 }
 
 /* Add a red background color to the cancel button */
-.form-container-popup .cancel {
+.form-popup .cancel {
   background-color: red;
 }
 
 /* Add some hover effects to buttons */
-.form-container-popup .btn:hover, .open-button:hover {
+.form-popup .btn:hover, .open-button:hover {
   opacity: 5;
 }
 
@@ -235,4 +275,8 @@
      text-align: center;
      color: #fff;
      font-weight: bold;
+}
+
+.search_bar{
+     border: solid black 5px;
 }

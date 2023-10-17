@@ -69,7 +69,56 @@ if (isset($_GET["cmdlogin"])) {
         <div class="loader"><img src="images/loading.gif" alt="#" /></div>
     </div>
     <!-- end loader -->
-
+    <!-- header -->
+    <div class="header">
+        <div class="container-fluid">
+            <div class="row d_flex">
+                <div class=" col-md-2 col-sm-3 col logo_section">
+                    <div class="full">
+                        <div class="center-desk">
+                            <div class="logo">
+                                <!-- Logo -->
+                                <a href="index.html"><img src="" alt="#" /></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-8 col-sm-12">
+                    <nav class="navigation navbar navbar-expand-md navbar-dark ">
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse" id="navbarsExample04">
+                            <ul class="navbar-nav mr-auto">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="index.html">Home</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="booking.php">Booking</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="skating.html">Clear Session</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="shop.html">Advance Search</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="about.html">About Us</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </nav>
+                </div>
+                <div class="col-md-2">
+                    <ul class="email text_align_right">
+                        <li class="d_none"><a href="login.php"><i class="fa fa-user" aria-hidden="true"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end header inner -->
+    <!-- end header -->
     <!-- Login -->
     <div class="contact1">
         <div class="col-md-12">
@@ -104,6 +153,18 @@ if (isset($_GET["cmdlogin"])) {
         </div>
     </div>
     <!-- End Login -->
+
+    <!--  footer -->
+    <div class="copyright-custom">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <p>© 2023 Hak Cipta Terpelihara.</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end footer -->
     <!-- Javascript files-->
     <script src="js/jquery.min.js"></script>
     <script src="js/bootstrap.bundle.min.js"></script>
