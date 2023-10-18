@@ -495,3 +495,33 @@ function myFunction() {
     x.type = "password";
   }
 }
+
+var isbn = document.querySelector('#isbn');
+
+isbn.addEventListener('keyup', function(e) {
+  if (
+    event.key !== 'Backspace' &&
+    (isbn.value.length === 3 ||
+      isbn.value.length === 7 ||
+      isbn.value.length === 11 ||
+      isbn.value.length === 15)
+  ) {
+    isbn.value += '-';
+  }
+});
+
+isbn.addEventListener('paste', function(e) {
+  e.preventDefault();
+  var pastedText = (e.originalEvent || e).clipboardData.getData('text/plain');
+  var modifiedText = pastedText
+    .replace(/[^0-9]/g, '') // Remove non-numeric characters
+    .slice(0, 13) // Limit to 13 characters
+    .replace(/(\d{3})(\d{1,3})?(\d{1,3})?(\d{1,4})?/, function(match, p1, p2, p3, p4) {
+      // Add hyphens at appropriate positions
+      var parts = [p1, p2, p3, p4].filter(Boolean);
+      return parts.join('-');
+    });
+  isbn.value = modifiedText;
+});
+
+// End Custom JScript

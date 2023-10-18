@@ -11,8 +11,11 @@
         $categories = $_GET["cbokategori"];
         $desc = $_GET["txtdescription"];
 
-        $sql = "INSERT INTO `tblbook`(`book_ID`, `book_title`, `book_author`, `book_ISBN`, `publisher`, `book_dewey`, `book_category`, `book_desc`) 
-        VALUES ('$bookID','$title','$author','$ISBN','$publisher','$dewey','$categories','$desc')";
+        //Timezone
+        date_default_timezone_set("Asia/Kuala_Lumpur");
+
+        $sql = "INSERT INTO `tblbook`(`book_ID`, `book_title`, `book_author`, `book_ISBN`, `publisher`, `book_dewey`, `book_category`, `book_desc`, `book_added`) 
+        VALUES ('$bookID','$title','$author','$ISBN','$publisher','$dewey','$categories','$desc', NOW())";
 
         $insert = mysqli_query($conn, $sql);
         mysqli_close($conn);

@@ -168,25 +168,30 @@ include 'conn.php';
         </form>
 
         <?php
+        //Search
         $filtervalues = isset($_GET['search']) ? $_GET['search'] : '';
-
-        $sort_option = "";
-        if (isset($_GET['sort_alphabet'])) {
-            if ($_GET['sort_alphabet'] === "a-z") { // Use === for strict comparison
-                $sort_option = "ASC";
-            } elseif ($_GET['sort_alphabet'] === "z-a") { // Use === for strict comparison
-                $sort_option = "DESC";
-            }
-        }
+        //Paging Results
+        $resultsPerPage = isset($_GET['result_count']) ? $_GET['result_count'] : 5;
+        //Sorting
+        $sort_option = isset($_GET['sort_alphabet']) ? $_GET['sort_alphabet'] : '';
 
         $query = "SELECT * FROM tblbook ";
+
         if (!empty($filtervalues)) {
             $query .= "WHERE `book_title` LIKE '%$filtervalues%' ";
         }
 
         if (!empty($sort_option)) {
-            $query .= "ORDER BY book_title $sort_option";
+            $query .= "ORDER BY `book_title`";
+
+            if ($sort_option === "a-z") {
+                $query .= " ASC";
+            } elseif ($sort_option === "z-a") {
+                $query .= " DESC";
+            }
         }
+
+        $query .= " LIMIT $resultsPerPage";
 
         $result = $con->query($query);
 
@@ -241,6 +246,29 @@ include 'conn.php';
         }
         ?>
         <!-- PHP Ends -->
+
+        <!-- PHP Ends -->
+        <form action="" method="GET">
+            <!-- Result Show Start -->
+            <div class="input-group mb-3">
+                <select name="result_count" class="form-control">
+                    <option value="">-- Select Result Count --</option>
+                    <option value="1" <?php if (isset($_GET['result_count']) && $_GET['result_count'] == "1") {
+                                            echo "selected";
+                                        } ?>>1</option>
+                    <option value="2" <?php if (isset($_GET['result_count']) && $_GET['result_count'] == "2") {
+                                            echo "selected";
+                                        } ?>>2</option>
+                    <option value="3" <?php if (isset($_GET['result_count']) && $_GET['result_count'] == "3") {
+                                            echo "selected";
+                                        } ?>>3</option>
+                </select>
+                <button type="submit" class="btn btn-primary">
+                    Show Results
+                </button>
+            </div>
+            <!-- Result Show End -->
+        </form>
     </div>
     <!-- Booking End -->
 

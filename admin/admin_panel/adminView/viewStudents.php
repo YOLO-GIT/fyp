@@ -23,110 +23,107 @@
 
   ?>
 
-  <div id="main-content" class="container allContent-section py-4">
+  <div id="main-content" class="container allContent-section">
 
 
     <!-- Students -->
     <h2>Student</h2>
-    <div class="container">
-      <div class="row">
+    <div class="row">
 
-        <!-- Button Search -->
-        <button class="open-button-popup" onclick="openForm()">Search Button</button>
+      <!-- Button Search -->
+      <button class="open-button-popup" onclick="openForm()">Search Button</button>
 
-        <!-- Start Student Search -->
-        <div class="form-popup" id="myForm">
-          <form action="" class="form-container-popup">
-            <div class="col-md-12">
-              <div class="card mt-4">
-                <div class="card-header">
-                  <h4 style="color: white;">Search Students</h4>
-                </div>
-                <div class="card-body">
-                  <div class="row">
-                    <div class="col-md-5">
-                      <form action="" method="GET">
-                        <div class="input-group mb-3">
-                          <input type="text" name="search" required value="<?php if (isset($_GET['search'])) {
-                                                                              echo $_GET['search'];
-                                                                            } ?>" class="form-control" placeholder="Search data">
-                        </div>
-                        <br><button type="submit" class="btn btn-primary" style="color: white;">Search</button>
-                        <br><br><button type="button" class="btn cancel" onclick="closeForm()">Close</button>
-                        <br><br><button type="button" class="btn refresh" onclick="resetForm()">Refresh Page</button>
-                      </form>
-                    </div>
+      <!-- Start Student Search -->
+      <div class="form-popup" id="myForm">
+        <form action="" class="form-container-popup">
+          <div class="col-md-12">
+            <div class="card mt-4">
+              <div class="card-header">
+                <h4 style="color: white;">Search Students</h4>
+              </div>
+              <div class="card-body">
+                <div class="row">
+                  <div class="col-md-5">
+                    <form action="" method="GET">
+                      <div class="input-group mb-3">
+                        <input type="text" name="search" required value="<?php if (isset($_GET['search'])) {
+                                                                            echo $_GET['search'];
+                                                                          } ?>" class="form-control" placeholder="Search data">
+                      </div>
+                      <br><button type="submit" class="btn btn-primary" style="color: white;">Search</button>
+                      <br><br><button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+                      <br><br><button type="button" class="btn refresh" onclick="resetForm()">Refresh Page</button>
+                    </form>
                   </div>
                 </div>
               </div>
             </div>
-          </form>
-        </div>
-        <!-- End Student Search -->
+          </div>
+        </form>
+      </div>
+      <!-- End Student Search -->
 
-        <table class="table">
-          <thead>
-            <tr>
-              <th class="text-center">No.</th>
-              <th class="text-center">ID</th>
-              <th class="text-center">Name </th>
-              <th class="text-center">Class</th>
-              <th class="text-center">Joining Date</th>
-            </tr>
-          </thead>
-          <?php
-          include_once "../config/dbconnect.php";
+      <table class="table">
+        <thead>
+          <tr>
+            <th class="text-center">No.</th>
+            <th class="text-center">ID</th>
+            <th class="text-center">Name </th>
+            <th class="text-center">Class</th>
+            <th class="text-center">Joining Date</th>
+          </tr>
+        </thead>
+        <?php
+        include_once "../config/dbconnect.php";
 
-          if (isset($_GET['search'])) {
-            $filtervalues = $_GET['search'];
-            $query = "SELECT * FROM tblstudent WHERE stud_Name LIKE '%$filtervalues%'";
-            $result = $conn->query($query);
-            $count = 1;
+        if (isset($_GET['search'])) {
+          $filtervalues = $_GET['search'];
+          $query = "SELECT * FROM tblstudent WHERE stud_Name LIKE '%$filtervalues%'";
+          $result = $conn->query($query);
+          $count = 1;
 
-            if ($result->num_rows > 0) {
-              while ($row = $result->fetch_assoc()) {
-          ?>
-                <tr>
-                  <td><?= $count ?></td>
-                  <td><?= $row["stud_ID"] ?></td>
-                  <td><?= $row["stud_Name"] ?></td>
-                  <td><?= $row["stud_Class"] ?></td>
-                  <td><?= $row["date"] ?></td>
-                </tr>
-              <?php
-                $count = $count + 1;
-              }
-            } else {
-              ?>
+          if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+        ?>
               <tr>
-                <td colspan="5">No Record Found</td>
+                <td><?= $count ?></td>
+                <td><?= $row["stud_ID"] ?></td>
+                <td><?= $row["stud_Name"] ?></td>
+                <td><?= $row["stud_Class"] ?></td>
+                <td><?= $row["date"] ?></td>
               </tr>
-              <?php
+            <?php
+              $count = $count + 1;
             }
           } else {
-            $sql = "SELECT * from tblstudent";
-            $result = $conn->query($sql);
-            $count = 1;
-            if ($result->num_rows > 0) {
-              while ($row = $result->fetch_assoc()) {
-              ?>
-                <tr>
-                  <td><?= $count ?></td>
-                  <td><?= $row["stud_ID"] ?></td>
-                  <td><?= $row["stud_Name"] ?></td>
-                  <td><?= $row["stud_Class"] ?></td>
-                  <td><?= $row["date"] ?></td>
-                </tr>
-          <?php
-                $count = $count + 1;
-              }
+            ?>
+            <tr>
+              <td colspan="5">No Record Found</td>
+            </tr>
+            <?php
+          }
+        } else {
+          $sql = "SELECT * from tblstudent";
+          $result = $conn->query($sql);
+          $count = 1;
+          if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+            ?>
+              <tr>
+                <td><?= $count ?></td>
+                <td><?= $row["stud_ID"] ?></td>
+                <td><?= $row["stud_Name"] ?></td>
+                <td><?= $row["stud_Class"] ?></td>
+                <td><?= $row["date"] ?></td>
+              </tr>
+        <?php
+              $count = $count + 1;
             }
           }
-          ?>
-        </table>
-      </div>
+        }
+        ?>
+      </table>
     </div>
-
   </div>
 
 

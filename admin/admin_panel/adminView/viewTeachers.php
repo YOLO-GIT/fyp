@@ -23,111 +23,109 @@
 
     ?>
 
-    <div id="main-content" class="container allContent-section py-4">
+    <div id="main-content" class="container allContent-section">
 
         <h2>Teachers</h2>
-        <div class="container">
-            <div class="row">
-                <!-- Button Search -->
-                <button class="open-button-popup" onclick="openForm()">Search Button</button>
+        <div class="row">
+            <!-- Button Search -->
+            <button class="open-button-popup" onclick="openForm()">Search Button</button>
 
-                <!-- Start Teacher Search -->
-                <div class="form-popup" id="myForm">
-                    <form action="" class="form-container-popup">
-                        <div class="col-md-12">
-                            <div class="card mt-4">
-                                <div class="card-header">
-                                    <h4 style="color: white;">Search Students</h4>
-                                </div>
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="col-md-5">
-                                            <form action="" method="GET">
-                                                <div class="input-group mb-3">
-                                                    <input type="text" name="search" required value="<?php if (isset($_GET['search'])) {
-                                                                                                            echo $_GET['search'];
-                                                                                                        } ?>" class="form-control" placeholder="Search data">
-                                                </div>
-                                                <br><button type="submit" class="btn btn-primary" style="color: white;">Search</button>
-                                                <br><br><button type="button" class="btn cancel" onclick="closeForm()">Close</button>
-                                                <br><br><button type="button" class="btn refresh" onclick="resetForm()">Refresh Page</button>
-                                            </form>
-                                        </div>
+            <!-- Start Teacher Search -->
+            <div class="form-popup" id="myForm">
+                <form action="" class="form-container-popup">
+                    <div class="col-md-12">
+                        <div class="card mt-4">
+                            <div class="card-header">
+                                <h4 style="color: white;">Search Students</h4>
+                            </div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-5">
+                                        <form action="" method="GET">
+                                            <div class="input-group mb-3">
+                                                <input type="text" name="search" required value="<?php if (isset($_GET['search'])) {
+                                                                                                        echo $_GET['search'];
+                                                                                                    } ?>" class="form-control" placeholder="Search data">
+                                            </div>
+                                            <br><button type="submit" class="btn btn-primary" style="color: white;">Search</button>
+                                            <br><br><button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+                                            <br><br><button type="button" class="btn refresh" onclick="resetForm()">Refresh Page</button>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </form>
-                </div>
-                <!-- End Teacher Search -->
+                    </div>
+                </form>
+            </div>
+            <!-- End Teacher Search -->
 
-                <!-- Teachers -->
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th class="text-center">No.</th>
-                            <th class="text-center">ID</th>
-                            <th class="text-center">Nama</th>
-                            <th class="text-center">Tarikh semasa</th>
-                            <th class="text-center">Edit</th>
-                            <th class="text-center">Delete</th>
-                        </tr>
-                    </thead>
-                    <!-- PHP -->
-                    <?php
-                    include_once "../config/dbconnect.php";
+            <!-- Teachers -->
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th class="text-center">No.</th>
+                        <th class="text-center">ID</th>
+                        <th class="text-center">Nama</th>
+                        <th class="text-center">Tarikh semasa</th>
+                        <th class="text-center">Edit</th>
+                        <th class="text-center">Delete</th>
+                    </tr>
+                </thead>
+                <!-- PHP -->
+                <?php
+                include_once "../config/dbconnect.php";
 
-                    if (isset($_GET['search'])) {
-                        $filtervalues = $_GET['search'];
-                        $query = "SELECT * FROM tblteachers WHERE `teachers_Name` LIKE '%$filtervalues%'";
-                        $result = $conn->query($query);
-                        $count = 1;
+                if (isset($_GET['search'])) {
+                    $filtervalues = $_GET['search'];
+                    $query = "SELECT * FROM tblteachers WHERE `teachers_Name` LIKE '%$filtervalues%'";
+                    $result = $conn->query($query);
+                    $count = 1;
 
-                        if ($result->num_rows > 0) {
-                            while ($row = $result->fetch_assoc()) {
-                    ?>
-                                <tr>
-                                    <td><?= $count ?></td>
-                                    <td><?= $row["teachers_ID"] ?></td>
-                                    <td><?= $row["teachers_Name"] ?></td>
-                                    <td><?= $row["date_teachers"] ?></td>
-                                    <td><button class="btn btn-primary" style="height:40px" onclick="bookUpdate('<?= $row['book_ID'] ?>')">Edit</button></td>
-                                    <td><button class="btn btn-danger" style="height:40px" onclick="bookDelete('<?= $row['book_ID'] ?>')">Delete</button></td>
-                                </tr>
-                            <?php
-                                $count = $count + 1;
-                            }
-                        } else {
-                            ?>
+                    if ($result->num_rows > 0) {
+                        while ($row = $result->fetch_assoc()) {
+                ?>
                             <tr>
-                                <td colspan="5">No Record Found</td>
+                                <td><?= $count ?></td>
+                                <td><?= $row["teachers_ID"] ?></td>
+                                <td><?= $row["teachers_Name"] ?></td>
+                                <td><?= $row["date_teachers"] ?></td>
+                                <td><button class="btn btn-primary" style="height:40px" onclick="bookUpdate('<?= $row['book_ID'] ?>')">Edit</button></td>
+                                <td><button class="btn btn-danger" style="height:40px" onclick="bookDelete('<?= $row['book_ID'] ?>')">Delete</button></td>
                             </tr>
-                            <?php
+                        <?php
+                            $count = $count + 1;
                         }
                     } else {
-                        $sql = "SELECT * from tblteachers";
-                        $result = $conn->query($sql);
-                        $count = 1;
-                        if ($result->num_rows > 0) {
-                            while ($row = $result->fetch_assoc()) {
-                            ?>
-                                <tr>
-                                    <td><?= $count ?></td>
-                                    <td><?= $row["teachers_ID"] ?></td>
-                                    <td><?= $row["teachers_Name"] ?></td>
-                                    <td><?= $row["date_teachers"] ?></td>
-                                    <td><button class="btn btn-primary" style="height:40px" onclick="teacherUpdate('<?= $row['teachers_ID'] ?>')">Edit</button></td>
-                                    <td><button class="btn btn-danger" style="height:40px" onclick="teacherDelete('<?= $row['teachers_ID'] ?>')">Delete</button></td>
-                                </tr>
-                    <?php
-                                $count = $count + 1;
-                            }
+                        ?>
+                        <tr>
+                            <td colspan="5">No Record Found</td>
+                        </tr>
+                        <?php
+                    }
+                } else {
+                    $sql = "SELECT * from tblteachers";
+                    $result = $conn->query($sql);
+                    $count = 1;
+                    if ($result->num_rows > 0) {
+                        while ($row = $result->fetch_assoc()) {
+                        ?>
+                            <tr>
+                                <td><?= $count ?></td>
+                                <td><?= $row["teachers_ID"] ?></td>
+                                <td><?= $row["teachers_Name"] ?></td>
+                                <td><?= $row["date_teachers"] ?></td>
+                                <td><button class="btn btn-primary" style="height:40px" onclick="teacherUpdate('<?= $row['teachers_ID'] ?>')">Edit</button></td>
+                                <td><button class="btn btn-danger" style="height:40px" onclick="teacherDelete('<?= $row['teachers_ID'] ?>')">Delete</button></td>
+                            </tr>
+                <?php
+                            $count = $count + 1;
                         }
                     }
-                    ?>
-                    <!-- PHP Ends -->
-                </table>
-            </div>
+                }
+                ?>
+                <!-- PHP Ends -->
+            </table>
         </div>
 
 
@@ -141,49 +139,9 @@
         <div class="modal fade" id="myModal" role="dialog">
             <div class="modal-dialog">
 
-                <!-- CSS -->
-                <style>
-                    .container {
-                        margin: 20px auto;
-                        padding: 20px;
-                        background-color: #fff;
-                        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-                    }
-
-                    .form-group {
-                        margin-top: 20px;
-                    }
-
-                    .form-group label {
-                        display: block;
-                        font-weight: bold;
-                    }
-
-                    .form-group input {
-                        width: 100%;
-                        padding: 10px;
-                        margin-top: 5px;
-                        border: 1px solid #ccc;
-                        border-radius: 3px;
-                        font-size: 16px;
-                    }
-
-                    .form-group button {
-                        margin-top: 20px;
-                        padding: 10px 20px;
-                        background-color: #007BFF;
-                        color: #fff;
-                        border: none;
-                        border-radius: 3px;
-                        cursor: pointer;
-                        font-size: 18px;
-                    }
-                </style>
-                <!-- CSS -->
-
                 <!-- Modal content-->
                 <div class="modal-content">
-                    <div class="modal-header">
+                    <div class="modal-header" style="background-color: bisque;">
                         <h4 class="modal-title">Teacher Details</h4>
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
                     </div>
@@ -192,27 +150,27 @@
 
                             <div class="form-group">
                                 <label for="IC">IC:</label>
-                                <input type="number" name="txtIC" placeholder="Enter IC" required maxlength="12">
+                                <input type="number" name="txtIC" class="form-control" placeholder="Enter IC" required maxlength="12">
                             </div>
                             <div class="form-group">
                                 <label for="First Name">Nama Depan:</label>
-                                <input type="text" name="txtfname" placeholder="Masukkan Nama Depan: Mohd" required maxlength="10">
+                                <input type="text" name="txtfname" class="form-control" placeholder="Masukkan Nama Depan: Mohd" required maxlength="10">
                             </div>
                             <div class="form-group">
                                 <label for="Last Name">Nama Belakang:</label>
-                                <input type="text" name="txtlname" placeholder="Masukkan Nama Belakang Selepas 'bin': Yahya" required maxlength="10">
+                                <input type="text" name="txtlname" class="form-control" placeholder="Masukkan Nama Belakang Selepas 'bin': Yahya" required maxlength="10">
                             </div>
                             <div class="form-group">
                                 <label for="Username">Username:</label>
-                                <input type="text" name="txtuname" placeholder="user123" required maxlength="10">
+                                <input type="text" name="txtuname" class="form-control" placeholder="user123" required maxlength="10">
                             </div>
                             <div class="form-group">
                                 <label for="Password">Passwords:</label>
-                                <input type="password" name="txtpwd" id="myInputPWD" placeholder="Masukkan katalaluan anda: Maksima 8 nombor sahaja" required pattern=".{8,}" maxlength="8">
+                                <input type="password" name="txtpwd" class="form-control" id="myInputPWD" placeholder="Masukkan katalaluan anda: Maksima 8 nombor sahaja" required pattern=".{8,}" maxlength="8">
                             </div>
                             <input type="checkbox" onclick="myFunction()">&nbsp;&nbsp;Show Password
                             <div class="modal-footer">
-                                <button type="submit" name="cmdadd" class="btn btn-secondary">Add Teacher</button>
+                                <button type="submit" name="cmdadd" class="btn btn-primary">Add Teacher</button>
                             </div>
                         </form>
                     </div>
