@@ -409,7 +409,7 @@ ul.email li i {
 }
 
 .slider_main {
-     padding-top: 6%;
+     padding-top: 2%;
 }
 
 .relative {
@@ -1012,7 +1012,7 @@ ul.social_icon li a:hover {
 
 .inner_page .header {
      box-shadow: 0 0 10px rgb(138,43,226);
-     margin-bottom: 10px;
+     margin-bottom:10px;
      position: inherit;
 }
 

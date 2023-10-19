@@ -78,7 +78,7 @@ if (isset($_GET["cmdlogin"])) {
                         <div class="center-desk">
                             <div class="logo">
                                 <!-- Logo -->
-                                <a href="index.html"><img src="" alt="#" /></a>
+                                <a href="index.php"><img src="images/logo.png" alt="#" /></a>
                             </div>
                         </div>
                     </div>

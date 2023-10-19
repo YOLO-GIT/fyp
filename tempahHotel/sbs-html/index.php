@@ -39,12 +39,12 @@
     <div class="header">
         <div class="container-fluid">
             <div class="row d_flex">
-                <div class=" col-md-2 col-sm-3 col logo_section">
+                <div class=" col-md-2 col-sm-2 col logo_section">
                     <div class="full">
                         <div class="center-desk">
                             <div class="logo">
                                 <!-- Logo -->
-                                <a href="index.html"><img src="" alt="#" /></a>
+                                <a href="index.php"><img src="images/logo.png" alt="#" /></a>
                             </div>
                         </div>
                     </div>
