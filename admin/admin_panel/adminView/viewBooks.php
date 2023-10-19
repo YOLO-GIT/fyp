@@ -128,7 +128,7 @@
             <tr>
               <td><?= $count ?></td>
               <td><?= $row["book_ID"] ?></td>
-              <td><?= $row["book_title"] ?></td>
+              <td class="book-title"><?= $row["book_title"] ?></td>
               <td><?= $row["book_author"] ?></td>
               <td><?= $row["publisher"] ?></td>
               <td><?= $row["book_ISBN"] ?></td>
@@ -167,50 +167,53 @@
               <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
             <div class="modal-body">
-              <form enctype='multipart/form-data' action="../controller/addBookController.php" method="get">
-                <form action="" method="get" name="frmnewbook">
-                  <div class="form-group">
-                    <label for="id">No. Perolehan:</label>
-                    <input type="text" name="txtnoperolehan" class="form-control" placeholder="No. Perolehan" maxlength="5" required>
-                  </div>
-                  <div class="form-group">
-                    <label for="title">Nama Buku:</label>
-                    <input type="text" name="txttitle" class="form-control" placeholder="Judul Buku" required>
-                  </div>
-                  <div class="form-group">
-                    <label for="author">Pengarang:</label>
-                    <input type="text" name="txtauthor" class="form-control" placeholder="Pengarang" required>
-                  </div>
-                  <div class="form-group">
-                    <label for="category">ISBN/ISSN:</label>
-                    <input type="text" name="txtISBN" id="isbn" class="form-control" placeholder="ISBN/ISSN" maxlength="17" required>
-                  </div>
-                  <div class="form-group">
-                    <label for="description">Nama Penerbit:</label>
-                    <input name="txtpublisher" type="text" class="form-control" placeholder="Penerbit" required></textarea>
-                  </div>
-                  <div class="form-group">
-                    <label for="dewey">Dewey:</label>
-                    <input type="text" name="txtdewey" class="form-control" placeholder="Dewey Buku" maxlength="12" required>
-                  </div>
-                  <div class="form-group">
-                    <label for="category">Kategori:</label>
-                    <select name="cbokategori" class="form-control" required>
-                      <option value="">Sila Pilih Kategori</option>
-                      <option value="Action">Action</option>
-                      <option value="History">History</option>
-                      <option value="Fiction">Fiction</option>
-                      <option value="Science">Science</option>
-                    </select>
-                  </div>
-                  <div class="form-group">
-                    <label for="description">Sinopsis Buku:</label>
-                    <textarea name="txtdescription" class="form-control" placeholder="Sinopsis" required></textarea>
-                  </div>
-                  <div class="modal-footer">
-                    <button type="submit" name="cmdadd" class="btn btn-primary">Simpan</button>
-                  </div>
-                </form>
+              <form enctype='multipart/form-data' action="../controller/addBookController.php" method="post">
+                <div class="form-group">
+                  <label for="id">No. Perolehan:</label>
+                  <input type="text" name="txtnoperolehan" class="form-control" placeholder="No. Perolehan" maxlength="5" required>
+                </div>
+                <div class="form-group">
+                  <label for="title">Nama Buku:</label>
+                  <input type="text" name="txttitle" class="form-control" placeholder="Judul Buku" required>
+                </div>
+                <div class="form-group">
+                  <label for="author">Pengarang:</label>
+                  <input type="text" name="txtauthor" class="form-control" placeholder="Pengarang" required>
+                </div>
+                <div class="form-group">
+                  <label for="category">ISBN/ISSN:</label>
+                  <input type="text" name="txtISBN" id="isbn" class="form-control" placeholder="ISBN/ISSN" maxlength="17" required>
+                </div>
+                <div class="form-group">
+                  <label for="description">Nama Penerbit:</label>
+                  <input name="txtpublisher" type="text" class="form-control" placeholder="Penerbit" required></textarea>
+                </div>
+                <div class="form-group">
+                  <label for="dewey">Dewey:</label>
+                  <input type="text" name="txtdewey" class="form-control" placeholder="Dewey Buku" maxlength="12" required>
+                </div>
+                <div class="form-group">
+                  <label for="category">Kategori:</label>
+                  <select name="cbokategori" class="form-control" required>
+                    <option value="">Sila Pilih Kategori</option>
+                    <option value="Action">Action</option>
+                    <option value="History">History</option>
+                    <option value="Fiction">Fiction</option>
+                    <option value="Science">Science</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="description">Sinopsis Buku:</label>
+                  <textarea name="txtdescription" class="form-control" placeholder="Sinopsis" required></textarea>
+                </div>
+                <div class="form-group">
+                  <label for="image">Sila Pilih Gambar</label>
+                  <input class="form-control" type="file" name="my_image" accept="image/x-png,image/gif,image/jpeg">
+                </div>
+                <div class="modal-footer">
+                  <button type="submit" name="cmdadd" class="btn btn-primary">Simpan</button>
+                </div>
+              </form>
             </div>
           </div>
         </div>

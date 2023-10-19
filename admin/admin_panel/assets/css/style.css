@@ -264,5 +264,11 @@
 /* Popup Ends */
 
 
+.book-title {
+    max-width: 150px; /* Adjust the maximum width as per your requirement */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
 
 /* End Custom CSS */

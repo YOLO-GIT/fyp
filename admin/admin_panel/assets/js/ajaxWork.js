@@ -307,9 +307,11 @@ function bookUpdate(id){
 function updateBook(){
     var v_id = $('#v_id').val();
     var qty = $('#qty').val();
+    var gmbr = $('#gmbr')[0].files[0]; // Get the file object
     var fd = new FormData();
     fd.append('v_id', v_id);
     fd.append('qty', qty);
+    fd.append('gmbr', gmbr);
    
     $.ajax({
       url:'../controller/updateBookController.php',

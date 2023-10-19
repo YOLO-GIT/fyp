@@ -1,33 +1,42 @@
-   <?php
-    include_once "../config/dbconnect.php";
+<?php
+include_once "../config/dbconnect.php";
 
-    if (isset($_GET["cmdadd"])) {
-        $bookID = $_GET["txtnoperolehan"];
-        $title = $_GET["txttitle"];
-        $author = $_GET["txtauthor"];
-        $ISBN = $_GET["txtISBN"];
-        $publisher = $_GET["txtpublisher"];
-        $dewey = $_GET["txtdewey"];
-        $categories = $_GET["cbokategori"];
-        $desc = $_GET["txtdescription"];
+if (isset($_POST["cmdadd"])) {
+    $bookID = $_POST["txtnoperolehan"];
+    $title = $_POST["txttitle"];
+    $author = $_POST["txtauthor"];
+    $ISBN = $_POST["txtISBN"];
+    $publisher = $_POST["txtpublisher"];
+    $dewey = $_POST["txtdewey"];
+    $categories = $_POST["cbokategori"];
+    $desc = $_POST["txtdescription"];
 
-        //Timezone
-        date_default_timezone_set("Asia/Kuala_Lumpur");
+    $name = $_FILES['my_image']['name'];
+    $temp = $_FILES['my_image']['tmp_name'];
 
-        $sql = "INSERT INTO `tblbook`(`book_ID`, `book_title`, `book_author`, `book_ISBN`, `publisher`, `book_dewey`, `book_category`, `book_desc`, `book_added`) 
-        VALUES ('$bookID','$title','$author','$ISBN','$publisher','$dewey','$categories','$desc', NOW())";
+    $location = "./uploads/";
+    $image = $location . $name;
 
-        $insert = mysqli_query($conn, $sql);
-        mysqli_close($conn);
+    $target_dir = "uploads/";
+    $finalImage = $target_dir . $name;
 
-        if (!$insert) {
-            echo mysqli_error($conn);
-        } else {
-            //Prompt to the user.
-            echo "<script>alert('Your book registration is successful. Please proceed to the home page');</script>";
+    move_uploaded_file($temp, $finalImage);
+    //Timezone
+    date_default_timezone_set("Asia/Kuala_Lumpur");
 
-            //Redirect to page ---> Login.php
-            echo "<script>window.location.href='../index.php';</script>";
-        }
+    $sql = "INSERT INTO `tblbook`(`book_ID`, `book_title`, `book_author`, `book_ISBN`, `publisher`, `book_dewey`, `book_category`, `book_desc`, `book_added`, `book_image`) 
+        VALUES ('$bookID','$title','$author','$ISBN','$publisher','$dewey','$categories','$desc', NOW(), '$finalImage')";
+
+    $insert = mysqli_query($conn, $sql);
+    mysqli_close($conn);
+
+    if (!$insert) {
+        echo mysqli_error($conn);
+    } else {
+        //Prompt to the user.
+        echo "<script>alert('Your book registration is successful. Please proceed to the home page');</script>";
+
+        //Redirect to page ---> Login.php
+        echo "<script>window.location.href='../index.php';</script>";
     }
-    ?>
+}

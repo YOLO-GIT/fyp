@@ -18,13 +18,18 @@
                     <input type="text" class="form-control" id="qty" value="<?= $row1['book_title'] ?>" required>
                 </div>
                 <div class="form-group">
+                    <label for="image">Mengemaskini Gambar</label>
+                    <input class="form-control" type="file" id="gmbr" name="my_image" accept="image/x-png,image/gif,image/jpeg" value="<?= $row1['book_image'] ?>">
+                </div>
+                <div class="form-group">
                     <button type="submit" style="height:40px" class="btn btn-primary">Simpan</button>
                 </div>
-        <?php
+            </form>
+    <?php
         }
     }
-        ?>
-            </form>
+    ?>
+    </form>
 
 
 </div>

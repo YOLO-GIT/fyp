@@ -1,22 +1,5 @@
 <?php
 include 'conn.php';
-// Fetch using isbn
-// if (isset($_GET["book_ISBN"])) {
-//     $isbn = $_GET["book_ISBN"];
-//     include 'conn.php';
-//     $sql = "SELECT * FROM tblbook WHERE book_ISBN = '$isbn'";
-//     $result = $con->query($sql);
-
-//     if ($result->num_rows > 0) {
-//         $book = $result->fetch_assoc();
-//     } else {
-//         echo "Book not found.";
-//     }
-// } else {
-//     echo "ISBN parameter is missing.";
-// }
-
-// mysqli_close($con);
 ?>
 
 <!DOCTYPE html>
@@ -198,15 +181,15 @@ include 'conn.php';
         if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
         ?>
-                <div class="card_book mb-3">
+                <div class="card_book mb-2">
                     <!-- rest of the code remains unchanged -->
                     <div class="row g-0">
-                        <div class="col-md-4">
-                            <img src="images/loading.gif">
+                        <div class="col-md-3">
+                            <img src="../../admin/admin_panel/controller/<?= $row['book_image']?>">
                         </div>
                         <div class="col-md-8">
                             <div class="card-body">
-                                <h2 class="card-title">Tajuk Buku:&nbsp;&nbsp;<?= $row["book_title"] ?></h2>
+                                <h2 class="card-title"><?= $row["book_title"] ?></h2>
                                 <table>
                                     <tr>
                                         <td class="bold-text">Pengarang:&nbsp;&nbsp;<?= $row["book_author"] ?></td>
@@ -235,6 +218,7 @@ include 'conn.php';
                     </div>
                     <!-- ... -->
                 </div>
+
             <?php
             }
         } else {
