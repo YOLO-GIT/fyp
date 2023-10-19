@@ -135,7 +135,7 @@ include 'conn.php';
         <form action="" method="GET">
             <!-- Sorting Function -->
             <div class="input-group mb-3">
-                <select name="sort_alphabet" class="form-control">
+                <select name="sort_alphabet" class="form-control" required>
                     <option value="">-- Select Option --</option>
                     <option value="a-z" <?php if (isset($_GET['sort_alphabet']) && $_GET['sort_alphabet'] == "a-z") {
                                             echo "selected";
@@ -237,15 +237,15 @@ include 'conn.php';
             <div class="input-group mb-3">
                 <select name="result_count" class="form-control">
                     <option value="">-- Select Result Count --</option>
-                    <option value="1" <?php if (isset($_GET['result_count']) && $_GET['result_count'] == "1") {
+                    <option value="5" <?php if (isset($_GET['result_count']) && $_GET['result_count'] == "5") {
                                             echo "selected";
-                                        } ?>>1</option>
-                    <option value="2" <?php if (isset($_GET['result_count']) && $_GET['result_count'] == "2") {
+                                        } ?>>5</option>
+                    <option value="10" <?php if (isset($_GET['result_count']) && $_GET['result_count'] == "10") {
                                             echo "selected";
-                                        } ?>>2</option>
-                    <option value="3" <?php if (isset($_GET['result_count']) && $_GET['result_count'] == "3") {
+                                        } ?>>10</option>
+                    <option value="15" <?php if (isset($_GET['result_count']) && $_GET['result_count'] == "15") {
                                             echo "selected";
-                                        } ?>>3</option>
+                                        } ?>>15</option>
                 </select>
                 <button type="submit" class="btn btn-primary">
                     Show Results

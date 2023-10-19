@@ -9,7 +9,7 @@ if (isset($_GET["cmdregister"])) {
     $ic = $_GET["txtic"];
     $fname = $_GET["txtfnama"];
     $lname = $_GET["txtlnama"];
-    $uname = $_GET["txtuname"];
+    $uname = $_GET["txtunama"];
     $kelas = $_GET["txtkelas"];
     $password = hash("sha512", $_GET["txtpwd"]);
 

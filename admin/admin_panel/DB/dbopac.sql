@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 17, 2023 at 11:48 AM
+-- Generation Time: Oct 19, 2023 at 05:11 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -29,24 +29,27 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `tblbook` (
   `book_ID` int(25) NOT NULL,
-  `book_title` varchar(35) NOT NULL,
+  `book_title` varchar(255) NOT NULL,
   `book_author` varchar(25) NOT NULL,
-  `book_ISBN` int(35) NOT NULL,
+  `book_ISBN` varchar(35) NOT NULL,
   `publisher` varchar(25) NOT NULL,
   `book_dewey` varchar(25) NOT NULL,
   `book_category` varchar(25) NOT NULL,
   `book_desc` varchar(255) NOT NULL,
-  `book_added` datetime DEFAULT NULL
+  `book_added` datetime DEFAULT NULL,
+  `book_image` varchar(255) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `tblbook`
 --
 
-INSERT INTO `tblbook` (`book_ID`, `book_title`, `book_author`, `book_ISBN`, `publisher`, `book_dewey`, `book_category`, `book_desc`, `book_added`) VALUES
-(7573, 'Cina Muslim & Hubungannya dengan Al', 'Yusuf Liu Baojun', 2147483647, 'CM Diverse Sdn Bhd', '30569', 'History', '-', NULL),
-(3, 'Sang Dugong', 'Azim', 123456789, 'SMOBookstore', '123', 'History', 'Cerita Sang Kancil Dan Bu', NULL),
-(7358, 'Puteri Gunung ', 'Raja Zuraidah', 2147483647, 'Dewan Bahasa Dan Pustaka', '123', 'Fiction', 'Mengisahkan berkaitan Put', NULL);
+INSERT INTO `tblbook` (`book_ID`, `book_title`, `book_author`, `book_ISBN`, `publisher`, `book_dewey`, `book_category`, `book_desc`, `book_added`, `book_image`) VALUES
+(7573, 'Cina Muslimin', 'Yusuf Liu Baojun', '2147483647', 'CM Diverse Sdn Bhd', '30569', 'History', '-', NULL, 'uploads/default_book.jpg'),
+(3, 'Sang Dugong', 'Azim', '123456789', 'SMOBookstore', '123', 'History', 'Cerita Sang Kancil Dan Bu', NULL, 'uploads/default_book.jpg'),
+(7358, 'Puteri Gunung ', 'Raja Zuraidah', '2147483647', 'Dewan Bahasa Dan Pustaka', '123', 'Fiction', 'Mengisahkan berkaitan Put', NULL, 'uploads/default_book.jpg'),
+(7578, 'Tunas Super: Certot #3: Antologi Cerita Kontot: Ayahku Superhero', 'Kumpulan Penulis', '2147483647', 'CM Diverse Sdn Bhd', '899.23 STO', 'Fiction', 'Antologi Cerita Certot', '2023-10-18 22:36:03', 'uploads/Certot_3-Ayahku_Superhero.jpg'),
+(7581, 'Clash Of Crowns', 'Farhan Hakimi', '978-967-411-759-7', 'PTS Publishing House Sdn ', '899.23 FAR', 'Action', 'fdgdfgf', '2023-10-19 17:10:01', 'uploads/clash_of_the_crown_CO_correction.jpg');
 
 -- --------------------------------------------------------
 
