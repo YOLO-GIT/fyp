@@ -146,27 +146,32 @@
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
                     </div>
                     <div class="modal-body">
-                        <form enctype='multipart/form-data' action="../controller/addTeacherController.php" method="get">
+                        <form enctype='multipart/form-data' class="login_form" name="frmaddteacher" action="../controller/addTeacherController.php" method="get" onsubmit="return validated()">
 
                             <div class="form-group">
                                 <label for="IC">IC:</label>
-                                <input type="number" name="txtIC" class="form-control" placeholder="Enter IC" required maxlength="12">
+                                <div id="ic_error" class="form-control">Tolong Isi IC anda</div>
+                                <input type="number" name="txtIC" class="form-control" placeholder="Enter IC" maxlength="12">
                             </div>
                             <div class="form-group">
                                 <label for="First Name">Nama Depan:</label>
-                                <input type="text" name="txtfname" class="form-control" placeholder="Masukkan Nama Depan: Mohd" required maxlength="10">
+                                <div id="fname_error" class="form-control">Tolong Isi Bahagian ini</div>
+                                <input type="text" name="txtfname" class="form-control" placeholder="Masukkan Nama Depan: Mohd" maxlength="10">
                             </div>
                             <div class="form-group">
                                 <label for="Last Name">Nama Belakang:</label>
-                                <input type="text" name="txtlname" class="form-control" placeholder="Masukkan Nama Belakang Selepas 'bin': Yahya" required maxlength="10">
+                                <div id="lname_error" class="form-control">Tolong Isi Bahagian ini</div>
+                                <input type="text" name="txtlname" class="form-control" placeholder="Masukkan Nama Belakang Selepas 'bin': Yahya" maxlength="10">
                             </div>
                             <div class="form-group">
                                 <label for="Username">Username:</label>
-                                <input type="text" name="txtuname" class="form-control" placeholder="user123" required maxlength="10">
+                                <div id="uname_error" class="form-control">Tolong Isi Username anda</div>
+                                <input type="text" name="txtuname" class="form-control" placeholder="user123" maxlength="10">
                             </div>
                             <div class="form-group">
                                 <label for="Password">Passwords:</label>
-                                <input type="password" name="txtpwd" class="form-control" id="myInputPWD" placeholder="Masukkan katalaluan anda: Maksima 8 nombor sahaja" required pattern=".{8,}" maxlength="8">
+                                <div id="pwd_error" class="form-control">Tolong Isi Password anda</div>
+                                <input type="password" name="txtpwd" class="form-control" id="myInputPWD" placeholder="Masukkan katalaluan anda: Maksima 9 nombor sahaja" pattern=".{9,}" maxlength="9">
                             </div>
                             <input type="checkbox" onclick="myFunction()">&nbsp;&nbsp;Show Password
                             <div class="modal-footer">
@@ -180,7 +185,7 @@
         <!-- Add Teachers Ends -->
     </div>
 
-
+    <script type="text/javascript" src="../assets/js/custom_script.js"></script>
     <script type="text/javascript" src="../assets/js/ajaxWork.js"></script>
     <script type="text/javascript" src="../assets/js/script.js"></script>
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>

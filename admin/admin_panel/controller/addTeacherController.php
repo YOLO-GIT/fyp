@@ -1,4 +1,5 @@
 <?php
+
 include_once "../config/dbconnect.php";
 
 if (isset($_GET["cmdadd"])) {
@@ -25,6 +26,10 @@ if (isset($_GET["cmdadd"])) {
     // CHeck if the content already exist:
     // CHECKING START
 
+    //IC
+    $check_ic_query = "SELECT * FROM tblteachers WHERE teachers_ID='$id'";
+    $check_ic = mysqli_query($conn, $check_ic_query);
+
     //USERNAME
     $check_username_query = "SELECT * FROM tblteachers WHERE teachers_username='$uname'";
     $check_username = mysqli_query($conn, $check_username_query);
@@ -34,8 +39,14 @@ if (isset($_GET["cmdadd"])) {
 
     // CHECKING END
 
-
-    if (mysqli_num_rows($check_username) > 0) {
+    if (mysqli_num_rows($check_ic) > 0) {
+        // Validation if the content is same
+        echo "<script>alert('Cannot use the same IC.');</script>";
+        // Close the DB to ensure it will not updated.
+        mysqli_close($conn);
+        // Sending back to the Teacher Panel.
+        echo "<script>window.location.href='../adminView/viewTeachers.php';</script>";
+    } elseif (mysqli_num_rows($check_username) > 0) {
         // Validation if the content is same
         echo "<script>alert('This username already has been used.');</script>";
         // Close the DB to ensure it will not updated.

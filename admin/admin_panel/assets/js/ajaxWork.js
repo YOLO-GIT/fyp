@@ -45,7 +45,7 @@ function showStudent(){
 
 function showTeacher(){
     $.ajax({
-        url:"./adminView/viewTeachers.php",
+        url:"../adminView/viewTeachers.php",
         method:"post",
         data:{record:1},
         success:function(data){
@@ -94,7 +94,7 @@ function teacherDelete(id){
         method:"post",
         data:{record:id},
         success:function(data){
-            alert('Category Successfully deleted');
+            alert('Teacher deleted');
             $('form').trigger('reset');
             showTeacher();
         }
@@ -309,5 +309,8 @@ isbn.addEventListener('paste', function(e) {
     });
   isbn.value = modifiedText;
 });
+
+//Validtion Code For Inputs
+
 
 // End Custom JScript
