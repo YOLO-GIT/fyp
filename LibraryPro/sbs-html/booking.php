@@ -108,18 +108,18 @@ include 'conn.php';
                 </div>
                 <div class="card-body">
                     <div class="row">
-                        <div class="col-md-6">
+                        <div class="col-md-12">
                             <form action="" method="GET">
                                 <!-- Search Bar -->
-                                <div class="input-group mb-3 search_bar">
+                                <div class="search_bar">
                                     <input type="text" name="search" value="<?php if (isset($_GET['search'])) {
                                                                                 echo $_GET['search'];
                                                                             } ?>" class="form-control" placeholder="Search data">
                                 </div>
                                 <!-- Button -->
                                 <br><button type="submit" class="btn btn-primary">Search</button>
-                                <br><br><button type="button" class="btn btn-secondary cancel" onclick="closeForm()">Close</button>
-                                <br><br><button type="button" class="btn btn-secondary refresh" onclick="resetForm()">Refresh Page</button>
+                                <button type="button" class="btn btn-secondary cancel" onclick="closeForm()">Close</button>
+                                <button type="button" class="btn btn-secondary refresh" onclick="resetForm()">Refresh Page</button>
                             </form>
                         </div>
                     </div>
@@ -185,7 +185,7 @@ include 'conn.php';
                     <!-- rest of the code remains unchanged -->
                     <div class="row g-0">
                         <div class="col-md-3">
-                            <img src="../../admin/admin_panel/controller/<?= $row['book_image']?>">
+                            <img src="../../admin/admin_panel/controller/<?= $row['book_image'] ?>">
                         </div>
                         <div class="col-md-8">
                             <div class="card-body">

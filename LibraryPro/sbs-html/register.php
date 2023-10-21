@@ -180,22 +180,27 @@ if (isset($_GET["cmdregister"])) {
                         <div class="row">
                             <!-- IC -->
                             <div class="col-md-12">
-                                <input class="contactus" placeholder="IC Number*" type="text" name="txtic" required maxlength="12" pattern=".{12,}">
+                                <label class="custom_label_reg">Nombor IC</label>
+                                <input class="contactus" placeholder="IC Number*" type="number" name="txtic" required maxlength="12" pattern=".{12,}">
                             </div>
                             <!-- NAMA PERTAMA -->
                             <div class=" col-md-6">
+                                <label class="custom_label_reg">Nama Depan Anda:</label>
                                 <input class="contactus" placeholder="Nama Depan Anda: Ahmad (Maksimum 10 Perkataan)" type="text" name="txtfnama" required maxlength="10">
                             </div>
                             <!-- NAMA KEDUA -->
                             <div class="col-md-6">
+                                <label class="custom_label_reg">Nama Belakang Anda:</label>
                                 <input class="contactus" placeholder="Nama Belakang Anda: Aziz (Maksimum 10 Perkataan)" type="text" name="txtlnama" required maxlength="10">
                             </div>
                             <!-- NAMA SAMARAN -->
                             <div class="col-md-6">
+                                <label class="custom_label_reg">Username Anda:</label>
                                 <input class="contactus" placeholder="Username anda (Maksimum 10 Perkataan)" type="text" name="txtunama" required maxlength="10">
                             </div>
                             <!-- KELAS -->
                             <div class="col-md-6">
+                                <label class="custom_label_reg">Kelas Anda:</label>
                                 <input class="contactus" placeholder="Kelas*" type="text" name="txtkelas" required>
                             </div>
                             <!-- EMAIL -->
@@ -204,7 +209,9 @@ if (isset($_GET["cmdregister"])) {
                             </div>
                             <!-- PASSWORD -->
                             <div class="col-md-12">
-                                <input class="contactus" placeholder="Password (Maksimum 8 nombor)*" type="password" name="txtpwd" required maxlength="8" pattern=".{8,}">
+                                <label class="custom_label_reg">Password Anda:</label>
+                                <input class="contactus" placeholder="Password (Maksimum 8 nombor)*" type="password" name="txtpwd" id="myInputPWD" required maxlength="8" pattern=".{8,}">
+                                <input type="checkbox" onclick="myFunction()">&nbsp;&nbsp;<label class="show_style">Show Password</label>
                             </div>
                             <!-- SUBMIT -->
                             <div class=" col-md-12">

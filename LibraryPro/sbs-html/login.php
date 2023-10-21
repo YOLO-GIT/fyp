@@ -132,10 +132,13 @@ if (isset($_GET["cmdlogin"])) {
                     <form id="request" class="main_form_login" action="" method="get">
                         <br><br>
                         <div class="col-md-12">
-                            <input class="contactus" placeholder="Name*" type="text" name="txtname" maxlength="10">
+                            <label class="custom_label_login">Username Anda:</label>
+                            <input class="contactus" placeholder="Username*" type="text" name="txtname" maxlength="10">
                         </div>
                         <div class="col-md-12">
-                            <input class="contactus" placeholder="Password*" type="password" name="txtpwd">
+                            <label class="custom_label_login">Password Anda:</label>
+                            <input class="contactus" placeholder="Password*" type="password" name="txtpwd" id="myInputPWD">
+                            <input type="checkbox" onclick="myFunction()">&nbsp;&nbsp;<label class="show_style">Show Password</label>
                         </div>
                         <div class="col-md-12">
                             <input type="submit" class="send_btn1" name="cmdlogin" value="Login">
