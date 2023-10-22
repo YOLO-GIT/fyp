@@ -296,3 +296,14 @@
 .search_bar{
      border: solid black 5px;
 }
+
+.pagination{
+     text-align: center;
+}
+
+.pagination a{
+   padding:8px 16px;
+   border:10px solid #ccc;
+   color:black;
+   font-weight:bold;
+}
