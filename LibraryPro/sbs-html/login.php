@@ -1,5 +1,8 @@
 <?php // Sekiranya button submit diklik
 
+// Start the session
+session_start();
+
 // isset = is setted to ?
 if (isset($_GET["cmdlogin"])) {
     $username = $_GET["txtname"];
@@ -8,22 +11,31 @@ if (isset($_GET["cmdlogin"])) {
     //Create Connection to the database
     include 'conn.php';
 
-    //Define SQL Statements for comparison
+    // Check if the content already exist:
+    // CHECKING START
+
+    // Define SQL Statement for comparison
     $sql = "SELECT * FROM `tblstudent` WHERE stud_username='$username' AND stud_pwd='$password'";
 
-    //Execute SQL Statement
+    // Execute SQL Statement
     $res = mysqli_query($con, $sql);
 
-    //Check returning value dalam $res or validation
+    // Check returning value in $res for validation
     if (mysqli_num_rows($res) > 0) {
-        //Redirecting
+        $student = mysqli_fetch_assoc($res);
+        // Create a session with a name IDStud
+        session_start();
+        $_SESSION["IDStud"] = $student["stud_ID"];
+        // Inform to the user
+        echo "<script>alert('Login Success');</script>";
+        // Redirect to index.php
         echo "<script>window.location.href='index.php';</script>";
+        exit;
     } else {
-
-        echo "error";
+        echo "<script>alert('Invalid username or password');</script>";
     }
 
-    //Close Con
+    // Close Connection
     mysqli_close($con);
 }
 

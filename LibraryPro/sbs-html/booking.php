@@ -1,5 +1,13 @@
 <?php
 include 'conn.php';
+
+session_start();
+
+// Check if session "idcust" dah wujud atau belum
+if (!$_SESSION["IDStud"]) {
+    echo "<script>alert('Please Login First');</script>";
+    echo "<script>window.location.href='login.php?room=$room_new';</script>";
+}
 ?>
 
 <!DOCTYPE html>

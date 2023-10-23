@@ -31,6 +31,9 @@ if (isset($_GET["cmdregister"])) {
     // CHeck if the content already exist:
     // CHECKING START
 
+    //IC
+    $check_ic_query = "SELECT * FROM tblstudent WHERE stud_ID='$id'";
+    $check_ic = mysqli_query($con, $check_ic_query);
     //USERNAME
     $check_username_query = "SELECT * FROM tblstudent WHERE stud_username='$uname'";
     $check_username = mysqli_query($con, $check_username_query);
@@ -40,7 +43,14 @@ if (isset($_GET["cmdregister"])) {
 
     // CHECKING END
 
-    if (mysqli_num_rows($check_username) > 0) {
+    if (mysqli_num_rows($check_ic) > 0) {
+        // Validation if the content is same
+        echo "<script>alert('Cannot use the same IC.');</script>";
+        // Close the DB to ensure it will not updated.
+        mysqli_close($con);
+        // Sending back to the Teacher Panel.
+        echo "<script>window.location.href='register.php';</script>";
+    } elseif (mysqli_num_rows($check_username) > 0) {
         // Validation if the content is same
         echo "<script>alert('This username already has been used.');</script>";
         // Close the DB to ensure it will not updated.
@@ -175,33 +185,38 @@ if (isset($_GET["cmdregister"])) {
         <div class="container">
             <div class="row custom-background-reg">
                 <div class="col-md-12">
-                    <form name="frmregisteration" class="main_form_reg" action="" method="get">
+                    <form name="frmregisteration" class="main_form_reg" action="" method="get" onsubmit="return validated()">
                         <br><br>
                         <div class="row">
                             <!-- IC -->
                             <div class="col-md-12">
                                 <label class="custom_label_reg">Nombor IC</label>
-                                <input class="contactus" placeholder="IC Number*" type="number" name="txtic" required maxlength="12" pattern=".{12,}">
+                                <div id="ic_error" class="form-control">Tolong Isi IC anda</div>
+                                <input class="contactus" placeholder="IC Number*" type="number" name="txtic" maxlength="12" pattern=".{12,}">
                             </div>
                             <!-- NAMA PERTAMA -->
                             <div class=" col-md-6">
                                 <label class="custom_label_reg">Nama Depan Anda:</label>
-                                <input class="contactus" placeholder="Nama Depan Anda: Ahmad (Maksimum 10 Perkataan)" type="text" name="txtfnama" required maxlength="10">
+                                <div id="fname_error" class="form-control">Tolong Isi Bahagian ini</div>
+                                <input class="contactus" placeholder="Nama Depan Anda: Ahmad (Maksimum 10 Perkataan)" type="text" name="txtfnama" maxlength="10">
                             </div>
                             <!-- NAMA KEDUA -->
                             <div class="col-md-6">
                                 <label class="custom_label_reg">Nama Belakang Anda:</label>
-                                <input class="contactus" placeholder="Nama Belakang Anda: Aziz (Maksimum 10 Perkataan)" type="text" name="txtlnama" required maxlength="10">
+                                <div id="lname_error" class="form-control">Tolong Isi Bahagian ini</div>
+                                <input class="contactus" placeholder="Nama Belakang Anda: Aziz (Maksimum 10 Perkataan)" type="text" name="txtlnama" maxlength="10">
                             </div>
                             <!-- NAMA SAMARAN -->
                             <div class="col-md-6">
                                 <label class="custom_label_reg">Username Anda:</label>
-                                <input class="contactus" placeholder="Username anda (Maksimum 10 Perkataan)" type="text" name="txtunama" required maxlength="10">
+                                <div id="uname_error" class="form-control">Tolong Isi Bahagian ini</div>
+                                <input class="contactus" placeholder="Username anda (Maksimum 10 Perkataan)" type="text" name="txtunama" maxlength="10">
                             </div>
                             <!-- KELAS -->
                             <div class="col-md-6">
                                 <label class="custom_label_reg">Kelas Anda:</label>
-                                <input class="contactus" placeholder="Kelas*" type="text" name="txtkelas" required>
+                                <div id="kelas_error" class="form-control">Tolong Isi Kelas Anda</div>
+                                <input class="contactus" placeholder="Kelas*" type="text" name="txtkelas">
                             </div>
                             <!-- EMAIL -->
                             <div class="col-md-6">
@@ -210,7 +225,8 @@ if (isset($_GET["cmdregister"])) {
                             <!-- PASSWORD -->
                             <div class="col-md-12">
                                 <label class="custom_label_reg">Password Anda:</label>
-                                <input class="contactus" placeholder="Password (Maksimum 8 nombor)*" type="password" name="txtpwd" id="myInputPWD" required maxlength="8" pattern=".{8,}">
+                                <div id="pwd_error" class="form-control">Tolong Isi Password Anda</div>
+                                <input class="contactus" placeholder="Password (Maksimum 8 nombor)*" type="password" name="txtpwd" id="myInputPWD" maxlength="8" pattern=".{8,}">
                                 <input type="checkbox" onclick="myFunction()">&nbsp;&nbsp;<label class="show_style">Show Password</label>
                             </div>
                             <!-- SUBMIT -->

@@ -29,7 +29,6 @@ if (isset($_GET["cmdadd"])) {
     //IC
     $check_ic_query = "SELECT * FROM tblteachers WHERE teachers_ID='$id'";
     $check_ic = mysqli_query($conn, $check_ic_query);
-
     //USERNAME
     $check_username_query = "SELECT * FROM tblteachers WHERE teachers_username='$uname'";
     $check_username = mysqli_query($conn, $check_username_query);
