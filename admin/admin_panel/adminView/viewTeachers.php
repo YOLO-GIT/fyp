@@ -9,6 +9,7 @@
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="../assets/css/style.css">
+        <link rel="stylesheet" href="../assets/css/custom_validation_Teacher.css">
         </link>
     </head>
 </head>
@@ -171,7 +172,7 @@
                             <div class="form-group">
                                 <label for="Password">Passwords:</label>
                                 <div id="pwd_error" class="form-control">Tolong Isi Password anda</div>
-                                <input type="password" name="txtpwd" class="form-control" id="myInputPWD" placeholder="Masukkan katalaluan anda: Maksima 9 nombor sahaja" pattern=".{9,}" maxlength="9">
+                                <input type="password" name="txtpwd" class="form-control" id="myInputPWD" placeholder="Masukkan katalaluan anda: Maksima 9 nombor/perkataan sahaja" pattern=".{9,}" maxlength="9">
                             </div>
                             <input type="checkbox" onclick="myFunction()">&nbsp;&nbsp;Show Password
                             <div class="modal-footer">
@@ -185,7 +186,7 @@
         <!-- Add Teachers Ends -->
     </div>
 
-    <script type="text/javascript" src="../assets/js/custom_script.js"></script>
+    <script type="text/javascript" src="../assets/js/custom_script_Teacher.js"></script>
     <script type="text/javascript" src="../assets/js/ajaxWork.js"></script>
     <script type="text/javascript" src="../assets/js/script.js"></script>
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>

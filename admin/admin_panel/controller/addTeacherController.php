@@ -23,7 +23,7 @@ if (isset($_GET["cmdadd"])) {
 
     $id = "T" . $jantina . $icnum;
 
-    // CHeck if the content already exist:
+    // Check if the content already exist:
     // CHECKING START
 
     //IC

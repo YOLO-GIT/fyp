@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/custom_validation_Books.css">
     </link>
   </head>
 </head>
@@ -167,30 +168,36 @@
               <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
             <div class="modal-body">
-              <form enctype='multipart/form-data' action="../controller/addBookController.php" method="post">
-                <div class="form-group">
+              <form enctype='multipart/form-data' name="frmAddBooks" class="adding_section" action="../controller/addBookController.php" method="post" onsubmit="return validated()">
+                <div class=" form-group">
                   <label for="id">No. Perolehan:</label>
-                  <input type="text" name="txtnoperolehan" class="form-control" placeholder="No. Perolehan" maxlength="5" required>
+                  <div id="perolehan_error" class="form-control">Tolong Isi Nombor Perolehan</div>
+                  <input type="text" name="txtnoperolehan" class="form-control" placeholder="No. Perolehan" maxlength="5">
                 </div>
                 <div class="form-group">
                   <label for="title">Nama Buku:</label>
-                  <input type="text" name="txttitle" class="form-control" placeholder="Judul Buku" required>
+                  <div id="judul_error" class="form-control">Tolong Isi Judul</div>
+                  <input type="text" name="txttitle" class="form-control" placeholder="Judul Buku" maxlength="25">
                 </div>
                 <div class="form-group">
                   <label for="author">Pengarang:</label>
-                  <input type="text" name="txtauthor" class="form-control" placeholder="Pengarang" required>
+                  <div id="pengarang_error" class="form-control">Tolong Isi Pengarang</div>
+                  <input type="text" name="txtauthor" class="form-control" placeholder="Pengarang" maxlength="25">
                 </div>
                 <div class="form-group">
                   <label for="category">ISBN/ISSN:</label>
-                  <input type="text" name="txtISBN" id="isbn" class="form-control" placeholder="ISBN/ISSN" maxlength="17" required>
+                  <div id="isbn_error" class="form-control">Tolong Isi ISBN/ISSN</div>
+                  <input type="text" name="txtISBN" id="isbn" class="form-control" placeholder="ISBN/ISSN" maxlength="17">
                 </div>
                 <div class="form-group">
                   <label for="description">Nama Penerbit:</label>
-                  <input name="txtpublisher" type="text" class="form-control" placeholder="Penerbit" required></textarea>
+                  <div id="penerbit_error" class="form-control">Tolong Isi Nama Penerbit</div>
+                  <input name="txtpublisher" type="text" class="form-control" placeholder="Penerbit" maxlength="25">
                 </div>
                 <div class="form-group">
                   <label for="dewey">Dewey:</label>
-                  <input type="text" name="txtdewey" class="form-control" placeholder="Dewey Buku" maxlength="12" required>
+                  <div id="dewey_error" class="form-control">Tolong Isi Dewey</div>
+                  <input type="text" name="txtdewey" class="form-control" placeholder="Dewey Buku" maxlength="12">
                 </div>
                 <div class="form-group">
                   <label for="category">Kategori:</label>
@@ -204,11 +211,12 @@
                 </div>
                 <div class="form-group">
                   <label for="description">Sinopsis Buku:</label>
-                  <textarea name="txtdescription" class="form-control" placeholder="Sinopsis" required></textarea>
+                  <div id="sinopsis_error" class="form-control">Tolong Isi Sinopsis</div>
+                  <textarea name="txtdescription" class="form-control" placeholder="Sinopsis"></textarea>
                 </div>
                 <div class="form-group">
                   <label for="image">Sila Pilih Gambar</label>
-                  <input class="form-control" type="file" name="my_image" accept="image/x-png,image/gif,image/jpeg">
+                  <input class="form-control" type="file" name="my_image" accept="image/x-png,image/gif,image/jpeg" required>
                 </div>
                 <div class="modal-footer">
                   <button type="submit" name="cmdadd" class="btn btn-primary">Simpan</button>
@@ -222,6 +230,7 @@
     </div>
 
 
+    <script type="text/javascript" src="../assets/js/custom_script_Book.js"></script>
     <script type="text/javascript" src="../assets/js/ajaxWork.js"></script>
     <script type="text/javascript" src="../assets/js/script.js"></script>
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>

@@ -1,0 +1,18 @@
+.adding_section #perolehan_error,
+.adding_section #judul_error,
+.adding_section #pengarang_error,
+.adding_section #isbn_error,
+.adding_section #penerbit_error,
+.adding_section #dewey_error,
+.adding_section #sinopsis_error{
+	margin-top: 5px;
+	/* width: 345px; */
+	font-size: 18px;
+	color: #C62828;
+	background: rgba(255,0,0,0.1);
+	text-align: center;
+	padding: 5px 8px;
+	border-radius: 3px;
+	border: 1px solid #EF9A9A;
+	display: none;
+}
