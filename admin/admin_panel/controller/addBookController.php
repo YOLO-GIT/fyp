@@ -34,9 +34,9 @@ if (isset($_POST["cmdadd"])) {
         echo mysqli_error($conn);
     } else {
         //Prompt to the user.
-        echo "<script>alert('Your book registration is successful. Please proceed to the home page');</script>";
+        echo "<script>alert('Your book registration is successful.');</script>";
 
         //Redirect to page ---> Login.php
-        echo "<script>window.location.href='../index.php';</script>";
+        echo "<script>window.location.href='../adminView/viewBooks.php';</script>";
     }
 }

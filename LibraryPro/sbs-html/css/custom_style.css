@@ -303,7 +303,18 @@
 
 .pagination a{
    padding:8px 16px;
-   border:10px solid #ccc;
+   /* border:10px solid #ccc; */
    color:black;
+   font-weight:bold;
+}
+
+.pagination a:hover{
+     color: #3e0bce;
+}
+
+.pagination span{
+   padding:8px 16px;
+   /* border:10px solid #ccc; */
+   color:gray;
    font-weight:bold;
 }

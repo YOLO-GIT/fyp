@@ -197,11 +197,11 @@ function updateBook(){
 //delete category data
 function bookDelete(id){
     $.ajax({
-        url:"../controller/bookDeleteController.php",
+        url:"./controller/bookDeleteController.php",
         method:"post",
         data:{record:id},
         success:function(data){
-            alert('Category Successfully deleted');
+            alert('Book Successfully deleted');
             $('form').trigger('reset');
             showBooks();
         }

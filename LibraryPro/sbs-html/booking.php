@@ -174,8 +174,15 @@ include 'conn.php';
             }
         }
 
-        $query .= " LIMIT $resultsPerPage";
+        // Pagination logic
+        $page = isset($_GET['page']) ? $_GET['page'] : 1;
+        $start = ($page - 1) * $resultsPerPage;
 
+        $queryCount = "SELECT COUNT(*) as total FROM tblbook";
+        $totalResult = $con->query($queryCount)->fetch_assoc()['total'];
+        $totalPages = ceil($totalResult / $resultsPerPage);
+
+        $query .= " LIMIT $start, $resultsPerPage";
         $result = $con->query($query);
 
         if ($result->num_rows > 0) {
@@ -253,6 +260,25 @@ include 'conn.php';
             </div>
             <!-- Result Show End -->
         </form>
+
+        <?php
+        // Display pagination links
+        echo '<div class="pagination">';
+        for (
+            $i = 1;
+            $i <= $totalPages;
+            $i++
+        ) {
+            if (
+                $i == $page
+            ) {
+                echo "<span>$i</span>";
+            } else {
+                echo "<a href='?page=$i'>$i</a>";
+            }
+        }
+        echo '</div>';
+        ?>
     </div>
     <!-- Booking End -->
 
