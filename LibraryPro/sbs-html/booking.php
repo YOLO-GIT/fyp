@@ -58,7 +58,7 @@ if (!$_SESSION["IDStud"]) {
                         <div class="center-desk">
                             <div class="logo">
                                 <!-- Logo -->
-                                <a href="index.php"><img src="images/logo.png" alt="#" /></a>
+                                <a href="index.php"><img src="images/new_logo.png" alt="#" /></a>
                             </div>
                         </div>
                     </div>
@@ -71,19 +71,19 @@ if (!$_SESSION["IDStud"]) {
                         <div class="collapse navbar-collapse" id="navbarsExample04">
                             <ul class="navbar-nav mr-auto">
                                 <li class="nav-item">
-                                    <a class="nav-link" href="index.php">Home</a>
+                                    <a class="nav-link" href="index.html"><i class="fa fa-home"></i> Home</a>
                                 </li>
                                 <li class="nav-item active">
-                                    <a class="nav-link" href="#">Booking</a>
+                                    <a class="nav-link" href="booking.php"><i class="fa fa-search"></i> Carian</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="#">Clear Session</a>
+                                    <a class="nav-link" href="#"><i class="fa fa-search-plus"></i> Carian Terperinci</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="#">Advance Search</a>
+                                    <a class="nav-link" href="#"><i class="fa fa-universal-access"></i> Berkaitan Kami</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="#">About Us</a>
+                                    <a class="nav-link" href="#"><i class="fa fa-sign-out"></i> Logout</a>
                                 </li>
                             </ul>
                         </div>
