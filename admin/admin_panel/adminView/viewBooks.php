@@ -103,6 +103,8 @@
         $filtervalues = isset($_GET['search']) ? $_GET['search'] : '';
         // Sorting
         $sort_option = isset($_GET['sort_alphabet']) ? $_GET['sort_alphabet'] : '';
+        //Result Page
+        $resultPage = 5;
 
         // Searching Function PHP
         $query = "SELECT * FROM tblbook ";
@@ -119,6 +121,15 @@
           }
         }
 
+        // Pagination logic
+        $page = isset($_GET['page']) ? $_GET['page'] : 1;
+        $start = ($page - 1) * $resultPage;
+
+        $queryCount = "SELECT COUNT(*) as total FROM tblbook";
+        $totalResult = $conn->query($queryCount)->fetch_assoc()['total'];
+        $totalPages = ceil($totalResult / $resultPage);
+
+        $query .= " LIMIT $start, $resultPage";
         $result = $conn->query($query);
         $count = 1;
 
@@ -153,8 +164,27 @@
         <!-- PHP Ends -->
       </table>
 
+      <?php
+      // Display pagination links
+      echo '<div class="pagination">';
+      for (
+        $i = 1;
+        $i <= $totalPages;
+        $i++
+      ) {
+        if (
+          $i == $page
+        ) {
+          echo "<span>$i</span>";
+        } else {
+          echo "<a href='?page=$i'>$i</a>";
+        }
+      }
+      echo '</div>';
+      ?>
+
       <!-- Trigger the modal with a button -->
-      <button type="button" class="btn btn-secondary" style="height:40px" data-toggle="modal" data-target="#myModal">
+      <button type="button" class="btn btn-secondary custom_btn" style="height:40px;" data-toggle="modal" data-target="#myModal">
         Tambahan Buku
       </button>
 

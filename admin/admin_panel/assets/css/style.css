@@ -261,6 +261,10 @@
   width: 280px;
 }
 
+.custom_btn{
+  margin-left: auto;
+}
+
 /* Popup Ends */
 
 .book-title {
@@ -269,4 +273,26 @@
     text-overflow: ellipsis;
     white-space: nowrap;
 }
+
+/* Pagination Custom */
+
+.pagination a{
+   padding:8px 16px;
+   /* border:10px solid #ccc; */
+   color:black;
+   font-weight:bold;
+}
+
+.pagination a:hover{
+     color: #3e0bce;
+}
+
+.pagination span{
+   padding:8px 16px;
+   /* border:10px solid #ccc; */
+   color:gray;
+   font-weight:bold;
+}
+
+/* End Paagination */
 /* End Custom CSS */

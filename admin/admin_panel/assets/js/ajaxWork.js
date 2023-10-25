@@ -68,9 +68,11 @@ function teacherUpdate(id){
 //update variation after submit
 function updateTeacher(){
     var v_id = $('#v_id').val();
+    var ic = $('#ic').val();
     var qty = $('#qty').val();
     var fd = new FormData();
     fd.append('v_id', v_id);
+    fd.append('ic', ic);
     fd.append('qty', qty);
    
     $.ajax({

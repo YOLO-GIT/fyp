@@ -77,52 +77,38 @@
                 <?php
                 include_once "../config/dbconnect.php";
 
-                if (isset($_GET['search'])) {
-                    $filtervalues = $_GET['search'];
-                    $query = "SELECT * FROM tblteachers WHERE `teachers_Name` LIKE '%$filtervalues%'";
-                    $result = $conn->query($query);
-                    $count = 1;
+                // Search
+                $filtervalues = isset($_GET['search']) ? $_GET['search'] : '';
 
-                    if ($result->num_rows > 0) {
-                        while ($row = $result->fetch_assoc()) {
+                // Searching Function PHP
+                $query = "SELECT * FROM tblteachers ";
+                if (!empty($filtervalues)) {
+                    $query .= "WHERE `teachers_Name` LIKE '%$filtervalues%' ";
+                }
+
+                $result = $conn->query($query);
+                $count = 1;
+
+                if ($result->num_rows > 0) {
+                    while ($row = $result->fetch_assoc()) {
                 ?>
-                            <tr>
-                                <td><?= $count ?></td>
-                                <td><?= $row["teachers_ID"] ?></td>
-                                <td><?= $row["teachers_Name"] ?></td>
-                                <td><?= $row["date_teachers"] ?></td>
-                                <td><button class="btn btn-primary" style="height:40px" onclick="bookUpdate('<?= $row['book_ID'] ?>')">Edit</button></td>
-                                <td><button class="btn btn-danger" style="height:40px" onclick="bookDelete('<?= $row['book_ID'] ?>')">Delete</button></td>
-                            </tr>
-                        <?php
-                            $count = $count + 1;
-                        }
-                    } else {
-                        ?>
                         <tr>
-                            <td colspan="5">No Record Found</td>
+                            <td><?= $count ?></td>
+                            <td><?= $row["teachers_ID"] ?></td>
+                            <td><?= $row["teachers_Name"] ?></td>
+                            <td><?= $row["date_teachers"] ?></td>
+                            <td><button class="btn btn-primary" style="height:40px" onclick="teacherUpdate('<?= $row['teachers_ID'] ?>')">Edit</button></td>
+                            <td><button class="btn btn-danger" style="height:40px" onclick="teacherDelete('<?= $row['teachers_ID'] ?>')">Delete</button></td>
                         </tr>
-                        <?php
+                    <?php
+                        $count = $count + 1;
                     }
                 } else {
-                    $sql = "SELECT * from tblteachers";
-                    $result = $conn->query($sql);
-                    $count = 1;
-                    if ($result->num_rows > 0) {
-                        while ($row = $result->fetch_assoc()) {
-                        ?>
-                            <tr>
-                                <td><?= $count ?></td>
-                                <td><?= $row["teachers_ID"] ?></td>
-                                <td><?= $row["teachers_Name"] ?></td>
-                                <td><?= $row["date_teachers"] ?></td>
-                                <td><button class="btn btn-primary" style="height:40px" onclick="teacherUpdate('<?= $row['teachers_ID'] ?>')">Edit</button></td>
-                                <td><button class="btn btn-danger" style="height:40px" onclick="teacherDelete('<?= $row['teachers_ID'] ?>')">Delete</button></td>
-                            </tr>
+                    ?>
+                    <tr>
+                        <td colspan="5">No Record Found</td>
+                    </tr>
                 <?php
-                            $count = $count + 1;
-                        }
-                    }
                 }
                 ?>
                 <!-- PHP Ends -->
