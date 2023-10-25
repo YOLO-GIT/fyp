@@ -1,6 +1,8 @@
-<div class="container p-5">
+<div class="container p-2">
 
     <h4>Edit Variation Detail</h4>
+    <br>
+    <button class="btn btn-primary"><a href="../adminView/viewBooks.php" style="color: #fff;">Kembali Semula</a></button>
     <?php
     include_once "../config/dbconnect.php";
     $ID = $_POST['record'];
@@ -16,6 +18,14 @@
                 <div class="form-group">
                     <label for="qty">Mengemaskini Tajuk Buku:</label>
                     <input type="text" class="form-control" id="qty" value="<?= $row1['book_title'] ?>" required>
+                </div>
+                <div class="form-group">
+                    <label for="author">Mengemaskini Pengarang:</label>
+                    <input type="text" class="form-control" id="author" value="<?= $row1['book_author'] ?>" required>
+                </div>
+                <div class="form-group">
+                    <label for="publish">Mengemaskini Penerbit:</label>
+                    <input type="text" class="form-control" id="publish" value="<?= $row1['publisher'] ?>" required>
                 </div>
                 <div class="form-group">
                     <label for="image">Mengemaskini Gambar</label>

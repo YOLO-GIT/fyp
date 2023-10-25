@@ -25,7 +25,6 @@
 
   <div id="main-content" class="container allContent-section">
 
-
     <!-- Students -->
     <h2>Student</h2>
     <div class="row">
@@ -66,7 +65,6 @@
       <table class="table">
         <thead>
           <tr>
-            <th class="text-center">No.</th>
             <th class="text-center">ID</th>
             <th class="text-center">Name </th>
             <th class="text-center">Class</th>
@@ -76,53 +74,67 @@
         <?php
         include_once "../config/dbconnect.php";
 
-        if (isset($_GET['search'])) {
-          $filtervalues = $_GET['search'];
-          $query = "SELECT * FROM tblstudent WHERE stud_Name LIKE '%$filtervalues%'";
-          $result = $conn->query($query);
-          $count = 1;
+        // Search
+        $filtervalues = isset($_GET['search']) ? $_GET['search'] : '';
+        //Result Page
+        $resultPage = 5;
 
-          if ($result->num_rows > 0) {
-            while ($row = $result->fetch_assoc()) {
+        // Searching Function PHP
+        $query = "SELECT * FROM tblstudent ";
+        if (!empty($filtervalues)) {
+          $query .= "WHERE `stud_Name` LIKE '%$filtervalues%' ";
+        }
+
+        // Pagination logic
+        $page = isset($_GET['page']) ? $_GET['page'] : 1;
+        $start = ($page - 1) * $resultPage;
+
+        $queryCount = "SELECT COUNT(*) as total FROM tblteachers";
+        $totalResult = $conn->query($queryCount)->fetch_assoc()['total'];
+        $totalPages = ceil($totalResult / $resultPage);
+
+        $query .= " LIMIT $start, $resultPage";
+
+        $result = $conn->query($query);
+
+        if ($result->num_rows > 0) {
+          while ($row = $result->fetch_assoc()) {
         ?>
-              <tr>
-                <td><?= $count ?></td>
-                <td><?= $row["stud_ID"] ?></td>
-                <td><?= $row["stud_Name"] ?></td>
-                <td><?= $row["stud_Class"] ?></td>
-                <td><?= $row["date"] ?></td>
-              </tr>
-            <?php
-              $count = $count + 1;
-            }
-          } else {
-            ?>
             <tr>
-              <td colspan="5">No Record Found</td>
+              <td><?= $row["stud_ID"] ?></td>
+              <td><?= $row["stud_Name"] ?></td>
+              <td><?= $row["stud_Class"] ?></td>
+              <td><?= $row["date"] ?></td>
             </tr>
-            <?php
+          <?php
           }
         } else {
-          $sql = "SELECT * from tblstudent";
-          $result = $conn->query($sql);
-          $count = 1;
-          if ($result->num_rows > 0) {
-            while ($row = $result->fetch_assoc()) {
-            ?>
-              <tr>
-                <td><?= $count ?></td>
-                <td><?= $row["stud_ID"] ?></td>
-                <td><?= $row["stud_Name"] ?></td>
-                <td><?= $row["stud_Class"] ?></td>
-                <td><?= $row["date"] ?></td>
-              </tr>
+          ?>
+          <tr>
+            <td colspan="5">No Record Found</td>
+          </tr>
         <?php
-              $count = $count + 1;
-            }
-          }
         }
         ?>
       </table>
+      <?php
+      // Display pagination links
+      echo '<div class="pagination">';
+      for (
+        $i = 1;
+        $i <= $totalPages;
+        $i++
+      ) {
+        if (
+          $i == $page
+        ) {
+          echo "<span>$i</span>";
+        } else {
+          echo "<a href='?page=$i'>$i</a>";
+        }
+      }
+      echo '</div>';
+      ?>
     </div>
   </div>
 

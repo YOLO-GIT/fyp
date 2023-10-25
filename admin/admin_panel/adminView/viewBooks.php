@@ -83,7 +83,6 @@
       <table class="table table-hover">
         <thead>
           <tr>
-            <th class="text-center">No.</th>
             <th class="text-center">No. Perolehan</th>
             <th class="text-center">Judul Buku</th>
             <th class="text-center">Pengarang</th>
@@ -131,14 +130,12 @@
 
         $query .= " LIMIT $start, $resultPage";
         $result = $conn->query($query);
-        $count = 1;
 
         if ($result->num_rows > 0) {
           while ($row = $result->fetch_assoc()) {
         ?>
             <!-- rest of the row code remains unchanged -->
             <tr>
-              <td><?= $count ?></td>
               <td><?= $row["book_ID"] ?></td>
               <td class="book-title"><?= $row["book_title"] ?></td>
               <td><?= $row["book_author"] ?></td>
@@ -151,7 +148,6 @@
             </tr>
             <!-- ... -->
           <?php
-            $count++;
           }
         } else {
           ?>

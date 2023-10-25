@@ -65,7 +65,6 @@
             <table class="table">
                 <thead>
                     <tr>
-                        <th class="text-center">No.</th>
                         <th class="text-center">ID</th>
                         <th class="text-center">Nama</th>
                         <th class="text-center">Username</th>
@@ -99,13 +98,11 @@
                 $query .= " LIMIT $start, $resultPage";
 
                 $result = $conn->query($query);
-                $count = 1;
 
                 if ($result->num_rows > 0) {
                     while ($row = $result->fetch_assoc()) {
                 ?>
                         <tr>
-                            <td><?= $count ?></td>
                             <td><?= $row["teachers_ID"] ?></td>
                             <td><?= $row["teachers_Name"] ?></td>
                             <td><?= $row["teachers_username"] ?></td>
@@ -115,7 +112,6 @@
                             </td>
                         </tr>
                     <?php
-                        $count = $count + 1;
                     }
                 } else {
                     ?>
