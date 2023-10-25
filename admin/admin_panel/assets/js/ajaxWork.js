@@ -45,7 +45,7 @@ function showStudent(){
 
 function showTeacher(){
     $.ajax({
-        url:"../adminView/viewTeachers.php",
+        url:"./adminView/viewTeachers.php",
         method:"post",
         data:{record:1},
         success:function(data){
@@ -70,10 +70,12 @@ function updateTeacher(){
     var v_id = $('#v_id').val();
     var ic = $('#ic').val();
     var qty = $('#qty').val();
+    var uname = $('#uname').val();
     var fd = new FormData();
     fd.append('v_id', v_id);
     fd.append('ic', ic);
     fd.append('qty', qty);
+    fd.append('uname', uname);
    
     $.ajax({
       url:'../controller/updateTeacherController.php',

@@ -68,9 +68,9 @@
                         <th class="text-center">No.</th>
                         <th class="text-center">ID</th>
                         <th class="text-center">Nama</th>
+                        <th class="text-center">Username</th>
                         <th class="text-center">Tarikh semasa</th>
-                        <th class="text-center">Edit</th>
-                        <th class="text-center">Delete</th>
+                        <th class="text-center">Aksi</th>
                     </tr>
                 </thead>
                 <!-- PHP -->
@@ -79,12 +79,24 @@
 
                 // Search
                 $filtervalues = isset($_GET['search']) ? $_GET['search'] : '';
+                //Result Page
+                $resultPage = 5;
 
                 // Searching Function PHP
                 $query = "SELECT * FROM tblteachers ";
                 if (!empty($filtervalues)) {
                     $query .= "WHERE `teachers_Name` LIKE '%$filtervalues%' ";
                 }
+
+                // Pagination logic
+                $page = isset($_GET['page']) ? $_GET['page'] : 1;
+                $start = ($page - 1) * $resultPage;
+
+                $queryCount = "SELECT COUNT(*) as total FROM tblteachers";
+                $totalResult = $conn->query($queryCount)->fetch_assoc()['total'];
+                $totalPages = ceil($totalResult / $resultPage);
+
+                $query .= " LIMIT $start, $resultPage";
 
                 $result = $conn->query($query);
                 $count = 1;
@@ -96,9 +108,11 @@
                             <td><?= $count ?></td>
                             <td><?= $row["teachers_ID"] ?></td>
                             <td><?= $row["teachers_Name"] ?></td>
+                            <td><?= $row["teachers_username"] ?></td>
                             <td><?= $row["date_teachers"] ?></td>
-                            <td><button class="btn btn-primary" style="height:40px" onclick="teacherUpdate('<?= $row['teachers_ID'] ?>')">Edit</button></td>
-                            <td><button class="btn btn-danger" style="height:40px" onclick="teacherDelete('<?= $row['teachers_ID'] ?>')">Delete</button></td>
+                            <td><button class="btn btn-primary" style="height:40px" onclick="teacherUpdate('<?= $row['teachers_ID'] ?>')">Edit</button>
+                                <button class="btn btn-danger" style="height:40px" onclick="teacherDelete('<?= $row['teachers_ID'] ?>')">Delete</button>
+                            </td>
                         </tr>
                     <?php
                         $count = $count + 1;
@@ -111,16 +125,32 @@
                 <?php
                 }
                 ?>
-                <!-- PHP Ends -->
             </table>
+            <?php
+            // Display pagination links
+            echo '<div class="pagination">';
+            for (
+                $i = 1;
+                $i <= $totalPages;
+                $i++
+            ) {
+                if (
+                    $i == $page
+                ) {
+                    echo "<span>$i</span>";
+                } else {
+                    echo "<a href='?page=$i'>$i</a>";
+                }
+            }
+            echo '</div>';
+            ?>
+
+            <!-- Trigger the modal with a button -->
+            <button type="button" class="btn btn-secondary custom_btn" style="height:40px" data-toggle="modal" data-target="#myModal">
+                Add Teachers
+            </button>
+            <!-- PHP Ends -->
         </div>
-
-
-        <!-- Trigger the modal with a button -->
-        <button type="button" class="btn btn-secondary" style="height:40px" data-toggle="modal" data-target="#myModal">
-            Add Teachers
-        </button>
-
 
         <!-- Add Teachers Starts -->
         <div class="modal fade" id="myModal" role="dialog">

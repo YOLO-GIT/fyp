@@ -15,11 +15,15 @@
                 <input type="text" class="form-control" id="v_id" value="<?= $row1['teachers_ID'] ?>" hidden>
                 <div class="form-group">
                     <label for="v_id">Mengemaskini ID:</label>
-                    <input type="text" class="form-control" id="ic" required>
+                    <input type="text" class="form-control" id="ic" value="<?= $row1['teachers_ID'] ?>" required>
                 </div>
                 <div class="form-group">
                     <label for="qty">Mengemaskini Nama:</label>
                     <input type="text" class="form-control" id="qty" value="<?= $row1['teachers_Name'] ?>" required>
+                </div>
+                <div class="form-group">
+                    <label for="v_id">Mengemaskini Username:</label>
+                    <input type="text" class="form-control" id="uname" value="<?= $row1['teachers_username'] ?>" required>
                 </div>
                 <div class="form-group">
                     <button type="submit" style="height:40px" class="btn btn-primary">Simpan</button>
