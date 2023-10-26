@@ -1,11 +1,13 @@
 <?php
+    session_start();
+
     if (isset($_GET["cmdlogin"])){
         $username = $_GET["txtusername"];
         $password = $_GET["txtpassword"];
         
         include 'conn.php';
 
-        $sql = "SELECT * FROM tbllogin
+        $sql = "SELECT * FROM users
                 WHERE username = '$username'
                 AND password = '$password'";
                 
@@ -15,14 +17,12 @@
         // check if value exist
         if (mysqli_num_rows($res) > 0){
             $cust = mysqli_fetch_assoc($res);
-            $_SESSION["idcust"] = $cust["idcustomer"];
+            $_SESSION["idcust"] = $cust["name"];
+            header("Location: index.php");
         } else {
             echo "<script>alert('Login failed')</script>";
         }
-
-        
         mysqli_close($conn);
-        header("Location: index.php");
     }
 ?>
 
@@ -87,7 +87,7 @@
                 <input type="text" name="txtusername" placeholder="Username" required>
             </div>
             <div class="form-group">
-                <input type="password" name="password" placeholder="Password" required>
+                <input type="password" name="txtpassword" placeholder="Password" required>
             </div>
             <div class="form-group">
                 <button type="submit" name="cmdlogin" >Login</button>

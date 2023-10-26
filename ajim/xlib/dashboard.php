@@ -3,8 +3,8 @@
     $bookcount = 1;
     
     include 'conn.php';
-    $sqlcust = "SELECT * FROM tblcustomer ORDER BY id DESC;";
-    $sqlbook = "SELECT * FROM tblbook ORDER BY id DESC;";
+    $sqlcust = "SELECT * FROM users ORDER BY userid DESC;";
+    $sqlbook = "SELECT * FROM tblbook ORDER BY book_ID DESC;";
     
     $rescustomer = mysqli_query($conn, $sqlcust);
     $resbook = mysqli_query($conn, $sqlbook);     
@@ -83,9 +83,8 @@
             <tr>
                 <th>No</th>
                 <th>Name</th>
+                <th>Username</th>
                 <th>Password</th>
-                <th>Ic Number</th>
-                <th>Gender</th>
                 <th>Edit</th>
                 <th>Delete</th>
             </tr>
@@ -97,14 +96,13 @@
                 <tr>
                     <td><?php echo $count; ?></td>
                     <td><?php echo $row["name"]; ?></td>
+                    <td><?php echo $row["username"]; ?></td>
                     <td><?php echo $row["password"]; ?></td>
-                    <td><?php echo $row["icnum"]; ?></td>
-                    <td><?php echo $row["gender"]; ?></td>
                     <td>
-                        <a href="edituser.php?id=<?php echo $row["id"]; ?>">Edit</a>
+                        <a href="edituser.php?id=<?php echo $row["userid"]; ?>">Edit</a>
                     </td>
                     <td>
-                        <a href="delete.php?id=<?php echo $row["id"]; ?>">Delete</a>
+                        <a href="delete.php?id=<?php echo $row["userid"]; ?>">Delete</a>
                     </td>
                 </tr>
                 <?php $count++;
@@ -118,10 +116,10 @@
                 <th>No</th>
                 <th>Title</th>
                 <th>Author</th>
-                <th>Category</th>
+                <th>Genre</th>
                 <th>Description</th>
                 <th>ISBN</th>
-                <th>Published Year</th>
+                <th>Publisher</th>
                 <th>Availability</th>
                 <th>Edit</th>
                 <th>Delete</th>
@@ -133,18 +131,18 @@
             ?>
                 <tr>
                     <td><?php echo $bookcount; ?></td>
-                    <td><?php echo $row["title"]; ?></td>
-                    <td><?php echo $row["author"]; ?></td>
-                    <td><?php echo $row["category"]; ?></td>
-                    <td><?php echo $row["descr"]; ?></td>
-                    <td><?php echo $row["isbn"]; ?></td>
-                    <td><?php echo $row["pyear"]; ?></td>
-                    <td><?php echo $row["availability"]; ?></td>
+                    <td><?php echo $row["book_title"]; ?></td>
+                    <td><?php echo $row["book_author"]; ?></td>
+                    <td><?php echo $row["genre"]; ?></td>
+                    <td><?php echo $row["description"]; ?></td>
+                    <td><?php echo $row["book_ISBN"]; ?></td>
+                    <td><?php echo $row["publisher"]; ?></td>
+                    <td><?php echo $row["stock_availability"]; ?></td>
                     <td>
-                        <a href="editbook.php?id=<?php echo $row["id"]; ?>">Edit</a>
+                        <a href="editbook.php?id=<?php echo $row["book_ID"]; ?>">Edit</a>
                     </td>
                     <td>
-                        <a href="delete.php?id=<?php echo $row["id"]; ?>&type=book">Delete</a>
+                        <a href="delete.php?id=<?php echo $row["book_ID"]; ?>&type=book">Delete</a>
                     </td>
                 </tr>
                 <?php $bookcount++;

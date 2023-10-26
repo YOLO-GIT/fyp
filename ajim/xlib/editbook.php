@@ -5,24 +5,32 @@
         $id = $_GET["txtid"];
         $title = $_GET["txttitle"];
         $author = $_GET["txtauthor"];
-        $category = $_GET["txtcategory"];
-        $desc = $_GET["txtdescription"];
+        $genre = $_GET["txtgenre"];
+        $descr = $_GET["txtdescription"];
         $isbn = $_GET["txtisbn"];
-        $published = $_GET["txtpublishyear"];
+        $publisher = $_GET["txtpublisher"];
         $available = $_GET["txtavailability"];
 
-        $sql = "UPDATE tblbook SET title='$title', author='$author', category='$category', descr='$desc', isbn='$isbn', pyear='$published', availability='$available' WHERE id='$id'";
+        $sql = "UPDATE tblbook 
+        SET book_title='$title', 
+        book_author='$author', 
+        genre='$genre', 
+        description='$descr', 
+        book_isbn='$isbn', 
+        publisher='$publisher', 
+        stock_availability='$available' 
+        WHERE book_id='$id'";
 
         mysqli_query($conn, $sql);
         mysqli_close($conn);
         header("Location: dashboard.php");
     }
-    // Fetch the data for the edit form
+
     elseif (isset($_GET["id"])) {
         $id = $_GET["id"];
 
         // Fetch data from tblbook based on the ID
-        $sql = "SELECT * FROM tblbook WHERE id='$id'";
+        $sql = "SELECT * FROM tblbook WHERE book_id='$id'";
         $result = mysqli_query($conn, $sql);
         $row = mysqli_fetch_assoc($result);
 
@@ -91,38 +99,38 @@
         <h1>Edit Book</h1>
     </header>
     <div class="container">
-        <form action="" method="post" name="frmeditbook">
+        <form action="" method="get" name="frmeditbook">
             <div class="form-group">
-                <label for="txtid">ID:</label>
-                <input type="text" name="txtid" value="<?php echo $row['id']; ?>" readonly>
+                <label for="">ID:</label>
+                <input type="text" name="txtid" value="<?php echo $row['book_ID']; ?>" readonly>
             </div>
             <div class="form-group">
-                <label for="txttitle">Title:</label>
-                <input type="text" name="txttitle" placeholder="Enter book title" value="<?php echo $row['title']; ?>" required>
+                <label for="">Title:</label>
+                <input type="text" name="txttitle" placeholder="Enter book title" value="<?php echo $row['book_title']; ?>" required>
             </div>
             <div class="form-group">
-                <label for="txtauthor">Author:</label>
-                <input type="text" name="txtauthor" placeholder="Enter author name" value="<?php echo $row['author']; ?>" required>
+                <label for="">Author:</label>
+                <input type="text" name="txtauthor" placeholder="Enter author name" value="<?php echo $row['book_author']; ?>" required>
             </div>
             <div class="form-group">
-                <label for="txtcategory">Category:</label>
-                <input type="text" name="txtcategory" placeholder="Enter book category" value="<?php echo $row['category']; ?>" required>
+                <label for="">Genre:</label>
+                <input type="text" name="txtgenre" placeholder="Enter book genre" value="<?php echo $row['genre']; ?>" required>
             </div>
             <div class="form-group">
-                <label for="txtdescription">Description:</label>
-                <textarea name="txtdescription" rows="4" placeholder="Enter book description" required><?php echo $row['descr']; ?></textarea>
+                <label for="">Description:</label>
+                <textarea name="txtdescription" rows="4" placeholder="Enter book description" required><?php echo $row['description']; ?></textarea>
             </div>
             <div class="form-group">
-                <label for="txtisbn">ISBN:</label>
-                <input type="text" name="txtisbn" placeholder="Enter book ISBN" value="<?php echo $row['isbn']; ?>" required>
+                <label for="">ISBN:</label>
+                <input type="text" name="txtisbn" placeholder="Enter book ISBN" value="<?php echo $row['book_ISBN']; ?>" required>
             </div>
             <div class="form-group">
-                <label for="txtpublishyear">Published Year:</label>
-                <input type="number" name="txtpublishyear" placeholder="Enter published year" value="<?php echo $row['pyear']; ?>" required>
+                <label for="">Publisher:</label>
+                <input type="text" name="txtpublisher" placeholder="Publisher" value="<?php echo $row['publisher']; ?>" required>
             </div>
             <div class="form-group">
-                <label for="txtavailability">Availability:</label>
-                <input type="number" name="txtavailability" placeholder="Enter availability count" value="<?php echo $row['availability']; ?>" required>
+                <label for="">Availability:</label>
+                <input type="number" name="txtavailability" placeholder="Enter availability count" value="<?php echo $row['stock_availability']; ?>" required>
             </div>
             <div class="form-group">
                 <button type="submit" name="cmdedit">Save Changes</button>

@@ -4,21 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User Profile</title>
+    <link rel="stylesheet" href="styles.css">
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f5f5f5;
-            margin: 0;
-            padding: 0;
-        }
-        .container {
-            max-width: 800px;
-            margin: 20px auto;
-            padding: 20px;
-            background-color: #fff;
-            border: 1px solid #ccc;
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-        }
         h1 {
             margin-top: 0;
         }
@@ -32,10 +19,8 @@
         <h1>User Profile</h1>
         <?php
         include 'conn.php';
-
-        $user_id = 0;
-
-        $sql = "SELECT * FROM tblcustomer WHERE id = '$user_id'";
+        $user_id = $_SESSION['idcust'];
+        $sql = "SELECT * FROM users WHERE id = '$user_id'";
         $result = mysqli_query($conn, $sql);
 
         if (mysqli_num_rows($result) > 0) {

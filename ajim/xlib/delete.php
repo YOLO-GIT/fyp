@@ -5,9 +5,9 @@
     $type = $_GET["type"];
 
     if ($type == "book"){
-        $sql = "DELETE FROM tblbook WHERE id=$id";
+        $sql = "DELETE FROM tblbook WHERE book_id=$id";
     } else {
-        $sql = "DELETE FROM tblcustomer WHERE id=$id";
+        $sql = "DELETE FROM users WHERE book_id=$id";
     }
     
     $result = mysqli_query($conn, $sql);

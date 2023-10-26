@@ -19,7 +19,7 @@
         include 'conn.php';
 
         // Update data in tblcustomer
-        $sqlcustomer = "UPDATE tblcustomer SET name='$name', password='$password', icnum='$ic', gender='$gender' WHERE id='$id'";
+        $sqlcustomer = "UPDATE users SET name='$name', password='$password', icnum='$ic', gender='$gender' WHERE id='$id'";
         mysqli_query($conn, $sqlcustomer);
 
         // Update data in tbllogin

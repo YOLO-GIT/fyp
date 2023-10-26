@@ -71,7 +71,7 @@ if (!$_SESSION["IDStud"]) {
                         <div class="collapse navbar-collapse" id="navbarsExample04">
                             <ul class="navbar-nav mr-auto">
                                 <li class="nav-item">
-                                    <a class="nav-link" href="index.html"><i class="fa fa-home"></i> Home</a>
+                                    <a class="nav-link" href="index.php"><i class="fa fa-home"></i> Home</a>
                                 </li>
                                 <li class="nav-item active">
                                     <a class="nav-link" href="booking.php"><i class="fa fa-search"></i> Carian</a>
