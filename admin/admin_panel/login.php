@@ -4,15 +4,14 @@ session_start();
 // isset = is setted to ?
 if (isset($_GET["cmdlogin"])) {
     $username = $_GET["txtusername"];
-    $pwd = $_GET["txtpwd"];
+    $pwd = hash("sha512", $_GET["txtpwd"]);
 
     // Create Connection to the database
     include "./config/dbconnect.php";
 
     // Define SQL Statements for comparison
-    $sql = "SELECT * FROM `tbllibrarians` WHERE librarians_name='$username' AND librarians_password='$pwd'";
+    $sql = "SELECT * FROM `tbllibrarians` WHERE librarians_uname='$username' AND librarians_password='$pwd'";
 
-    echo $sql;
     // Execute SQL Statement
     $res = mysqli_query($conn, $sql);
 
@@ -76,7 +75,7 @@ if (isset($_GET["cmdlogin"])) {
             <div class="col-md-12">
                 <div class="bottompage">
                     <h3>Not Register?</h3>
-                    <p>Click<a href="register.php"> here for registeration</a></p>
+                    <p>Click<a href="./register.php"> here for registeration</a></p>
                 </div>
             </div>
         </div>

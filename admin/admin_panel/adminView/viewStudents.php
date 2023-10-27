@@ -72,7 +72,6 @@
           </tr>
         </thead>
         <?php
-        include_once "../config/dbconnect.php";
 
         // Search
         $filtervalues = isset($_GET['search']) ? $_GET['search'] : '';
