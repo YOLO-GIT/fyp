@@ -41,7 +41,7 @@ if (!$_SESSION["valid"]) {
                         <div class="tab-content">
                             <div class="tab-pane fade active show" id="account-general">
                                 <div class="card-body media align-items-center">
-                                    <img src="#" alt="#" class="d-block ui-w-80">
+                                    <img src="profile.png" alt="#" class="d-block ui-w-80">
                                 </div>
                                 <hr class="border-light m-0">
                                 <div class="card-body">
