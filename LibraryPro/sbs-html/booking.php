@@ -120,9 +120,9 @@ if (!$_SESSION["IDStud"]) {
                             <form action="" method="GET">
                                 <!-- Search Bar -->
                                 <div class="search_bar">
-                                    <input type="text" name="search" value="<?php if (isset($_GET['search'])) {
-                                                                                echo $_GET['search'];
-                                                                            } ?>" class="form-control" placeholder="Search data">
+                                    <input type="text" name="search" required value="<?php if (isset($_GET['search'])) {
+                                                                                            echo $_GET['search'];
+                                                                                        } ?>" class="form-control" placeholder="Search data">
                                 </div>
                                 <!-- Button -->
                                 <br><button type="submit" class="btn btn-primary">Search</button>
@@ -224,10 +224,10 @@ if (!$_SESSION["IDStud"]) {
                                     <tr>
                                         <td class="bold-text">Sinopsis Buku:&nbsp;&nbsp;<?= $row["book_desc"] ?></td>
                                     </tr>
-                                    <tr>
-                                        <td><br><br><a href="#" class="btn btn-primary">Booking</a>&nbsp;&nbsp;<a href="#" class="btn btn-primary">Borrowing</a></td>
-                                    </tr>
                                 </table>
+                                <div class="text-right">
+                                    <br><br><a href="#" class="btn btn-primary">Pilih Buku</a>
+                                </div>
                             </div>
                         </div>
                     </div>

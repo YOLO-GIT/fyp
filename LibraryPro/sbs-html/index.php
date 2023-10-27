@@ -1,3 +1,17 @@
+<?php
+// Start the session
+session_start();
+
+// Check if session "idcust" dah wujud atau belum
+if (isset($_SESSION["IDStud"])) {
+    $log = "Logout";
+    $func_todo = "logout.php";
+} else {
+    $log = "Login";
+    $func_todo = "login.php";
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -69,7 +83,7 @@
                                     <a class="nav-link" href="#"><i class="fa fa-universal-access"></i> Berkaitan Kami</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="#"><i class="fa fa-sign-out"></i> Logout</a>
+                                    <a class="nav-link" href="<?= $func_todo ?>"><i class="fa fa-sign-out"></i> <?= $log ?></a>
                                 </li>
                             </ul>
                         </div>
@@ -77,7 +91,7 @@
                 </div>
                 <div class="col-md-2">
                     <ul class="email text_align_right">
-                        <li class="d_none"><a href="login.php"><i class="fa fa-user" aria-hidden="true"></i></a></li>
+                        <li class="d_none"><a href="profile.php"><i class="fa fa-user" aria-hidden="true"></i></a></li>
                     </ul>
                 </div>
             </div>
