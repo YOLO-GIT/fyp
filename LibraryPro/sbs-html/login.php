@@ -24,7 +24,6 @@ if (isset($_GET["cmdlogin"])) {
     if (mysqli_num_rows($res) > 0) {
         $student = mysqli_fetch_assoc($res);
         // Create a session with a name IDStud
-        session_start();
         $_SESSION["IDStud"] = $student["stud_ID"];
         // Inform to the user
         echo "<script>alert('Login Success');</script>";
@@ -115,7 +114,7 @@ if (isset($_GET["cmdlogin"])) {
                                     <a class="nav-link" href="#"><i class="fa fa-universal-access"></i> Berkaitan Kami</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="#"><i class="fa fa-sign-out"></i> Logout</a>
+                                    <a class="nav-link" href="login.php"><i class="fa fa-sign-out"></i> Login</a>
                                 </li>
                             </ul>
                         </div>
@@ -123,7 +122,7 @@ if (isset($_GET["cmdlogin"])) {
                 </div>
                 <div class="col-md-2">
                     <ul class="email text_align_right">
-                        <li class="d_none"><a href="login.php"><i class="fa fa-user" aria-hidden="true"></i></a></li>
+                        <li class="d_none"><a href="profile.php"><i class="fa fa-user" aria-hidden="true"></i></a></li>
                     </ul>
                 </div>
             </div>

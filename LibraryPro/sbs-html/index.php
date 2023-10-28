@@ -215,8 +215,8 @@ if (isset($_SESSION["IDStud"])) {
                     <div class="class_box text_align_center">
                         <i><img src="images/class1.png" alt="#" /></i>
                         <h3>Pembacaan</h3>
-                        <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered
-                            alterationThere are many variations </p>
+                        <p>Menyediakan penggunaan bagi generasi masa kini dan masa depan suatu koleksi sumber perpustakaan
+                            di peringkat kebangsaan. </p>
                     </div>
                 </div>
                 <div class="col-md-4 margi_bottom">
@@ -451,7 +451,7 @@ if (isset($_SESSION["IDStud"])) {
                 <div class="container">
                     <div class="row">
                         <div class="col-md-12">
-                            <p>© 2023 All Rights Reserved. Design by <a href="https://html.design/"> Free html Templates</a>
+                            <p>© 2023 PERPUSTAKAAN SMK TOK DOR</a>
                             </p>
                         </div>
                     </div>

@@ -4,9 +4,14 @@ include 'conn.php';
 session_start();
 
 // Check if session "idcust" dah wujud atau belum
-if (!$_SESSION["IDStud"]) {
+if (isset($_SESSION["IDStud"])) {
+    $log = "Logout";
+    $func_todo = "logout.php";
+} else {
+    $log = "Login";
+    $func_todo = "login.php";
     echo "<script>alert('Please Login First');</script>";
-    echo "<script>window.location.href='login.php?room=$room_new';</script>";
+    echo "<script>window.location.href='login.php';</script>";
 }
 ?>
 
@@ -83,7 +88,7 @@ if (!$_SESSION["IDStud"]) {
                                     <a class="nav-link" href="#"><i class="fa fa-universal-access"></i> Berkaitan Kami</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="#"><i class="fa fa-sign-out"></i> Logout</a>
+                                    <a class="nav-link" href="<?= $func_todo ?>"><i class="fa fa-sign-out"></i> <?= $log ?></a>
                                 </li>
                             </ul>
                         </div>
@@ -272,24 +277,29 @@ if (!$_SESSION["IDStud"]) {
         <?php
         // Display pagination links
         echo '<div class="pagination">';
-        for (
-            $i = 1;
-            $i <= $totalPages;
-            $i++
-        ) {
-            if (
-                $i == $page
-            ) {
+        for ($i = 1; $i <= $totalPages; $i++) {
+            if ($i == $page) {
                 echo "<span>$i</span>";
             } else {
-                echo "<a href='?page=$i'>$i</a>";
+                $params = "page=$i";
+                if (isset($_GET['result_count'])) {
+                    $params .= "&result_count=" . $_GET['result_count'];
+                }
+                if (isset($_GET['sort_alphabet'])) {
+                    $params .= "&sort_alphabet=" . $_GET['sort_alphabet'];
+                }
+                echo "<a href='?$params'>$i</a>";
             }
         }
         echo '</div>';
+
         ?>
     </div>
     <!-- Booking End -->
 
+    <?php
+    mysqli_close($con);
+    ?>
     <!--  footer -->
     <footer>
         <div class="footer">
