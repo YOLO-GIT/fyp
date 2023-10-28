@@ -1,0 +1,44 @@
+.display_page{
+    background: linear-gradient(to top, #cd9cf2 0%, #f6f3ff 100%);
+}
+.display_page .header {
+     box-shadow: 0 0 10px rgb(138,43,226);
+     background: #fff;
+     margin-bottom:10px;
+     position: inherit;
+}
+
+.display_page .about {
+     margin-top: 80px;
+}
+
+.display_page .class {
+     padding-top: 80px;
+     padding-bottom: 0;
+}
+
+.book-description{
+    background-color: #fff;
+    border: solid 3px black;
+    border-radius: 5px;
+    box-shadow: 0px 10px 13px -7px #000000;
+}
+
+.card_book_display{
+    /* max-width: 1040px; */
+    border: solid 3px rgb(203, 195, 227);
+    border-radius: 15px;
+    box-shadow: 0px 10px 13px -7px rgb(203, 195, 227);
+    /* background-color: azure; */
+}
+.card_book_display img{
+    margin-left: 15px;
+    margin-top: 65px;
+    box-shadow: 0px 10px 13px -7px #000000;
+}
+
+.card_book_display h2{
+    text-align: center;
+    text-decoration: underline;
+    font-weight: bold;
+}

@@ -13,6 +13,22 @@ if (isset($_SESSION["IDStud"])) {
     echo "<script>alert('Please Login First');</script>";
     echo "<script>window.location.href='login.php';</script>";
 }
+
+if (isset($_GET['book_ID'])) {
+    $book_ID = $_GET['book_ID'];
+
+    // Include your database connection
+    // Fetch the book details based on the $book_ID
+    // Display the book details
+    // Example query: SELECT * FROM books WHERE book_ID = $book_ID
+    // Example code to display details:
+    // echo "Book ID: " . $book['book_ID'];
+    // echo "Book Title: " . $book['book_title'];
+    // echo "Book Author: " . $book['book_author'];
+    // ... (display other book details)
+} else {
+    echo "No book selected.";
+}
 ?>
 
 <!DOCTYPE html>
@@ -36,6 +52,7 @@ if (isset($_SESSION["IDStud"])) {
     <link rel="stylesheet" href="css/style.css">
     <!-- custom style css -->
     <link rel="stylesheet" href="css/custom_style.css">
+    <link rel="stylesheet" href="css/display_book.css">
     <!-- Responsive-->
     <link rel="stylesheet" href="css/responsive.css">
     <!-- fevicon -->
@@ -46,9 +63,10 @@ if (isset($_SESSION["IDStud"])) {
       <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
 </head>
+
 <!-- body -->
 
-<body class="main-layout inner_page">
+<body class="main-layout display_page">
     <!-- loader  -->
     <div class="loader_bg">
         <div class="loader"><img src="images/loading.gif" alt="#" /></div>
@@ -78,7 +96,7 @@ if (isset($_SESSION["IDStud"])) {
                                 <li class="nav-item">
                                     <a class="nav-link" href="index.php"><i class="fa fa-home"></i> Home</a>
                                 </li>
-                                <li class="nav-item active">
+                                <li class="nav-item">
                                     <a class="nav-link" href="booking.php"><i class="fa fa-search"></i> Carian</a>
                                 </li>
                                 <li class="nav-item">
@@ -104,136 +122,44 @@ if (isset($_SESSION["IDStud"])) {
     </div>
     <!-- end header inner -->
 
-    <!-- Booking Start -->
-    <header id="header_book">
-        <h1>Buku-Buku</h1>
-        <br>
-        <!-- Button Search -->
-        <button class="open-button-popup" onclick="openForm()">Carian Judul Buku</button>
-    </header>
-
-    <!-- Start Book Search -->
-    <div class="form-popup" id="myForm">
-        <div class="col-md-12">
-            <div class="card mt-4">
-                <div class="card-header style_card">
-                    <h4>Judul Buku</h4>
-                </div>
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <form action="" method="GET">
-                                <!-- Search Bar -->
-                                <div class="search_bar">
-                                    <input type="text" name="search" required value="<?php if (isset($_GET['search'])) {
-                                                                                            echo $_GET['search'];
-                                                                                        } ?>" class="form-control" placeholder="Search data">
-                                </div>
-                                <!-- Button -->
-                                <br><button type="submit" class="btn btn-primary">Search</button>
-                                <button type="button" class="btn btn-secondary cancel" onclick="closeForm()">Close</button>
-                                <button type="button" class="btn btn-secondary refresh" onclick="resetForm()">Refresh Page</button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- End Book Search -->
-
-    <!-- Booking -->
     <div class="container_book">
-
-        <form action="" method="GET">
-            <!-- Sorting Function -->
-            <div class="input-group mb-3">
-                <select name="sort_alphabet" class="form-control" required>
-                    <option value="">-- Select Option --</option>
-                    <option value="a-z" <?php if (isset($_GET['sort_alphabet']) && $_GET['sort_alphabet'] == "a-z") {
-                                            echo "selected";
-                                        } ?>>A-Z (Ascending Order)</option>
-                    <option value="z-a" <?php if (isset($_GET['sort_alphabet']) && $_GET['sort_alphabet'] == "z-a") {
-                                            echo "selected";
-                                        } ?>>Z-A (Descending Order)</option>
-                </select>
-                <button type="submit" class="btn btn-primary">
-                    Sort
-                </button>
-            </div>
-        </form>
-
         <?php
-        //Search
-        $filtervalues = isset($_GET['search']) ? $_GET['search'] : '';
-        //Paging Results
-        $resultsPerPage = isset($_GET['result_count']) ? $_GET['result_count'] : 5;
-        //Sorting
-        $sort_option = isset($_GET['sort_alphabet']) ? $_GET['sort_alphabet'] : '';
-
-        $query = "SELECT * FROM tblbook ";
-
-        if (!empty($filtervalues)) {
-            $query .= "WHERE `book_title` LIKE '%$filtervalues%' ";
-        }
-
-        if (!empty($sort_option)) {
-            $query .= "ORDER BY `book_title`";
-
-            if ($sort_option === "a-z") {
-                $query .= " ASC";
-            } elseif ($sort_option === "z-a") {
-                $query .= " DESC";
-            }
-        }
-
-        // Pagination logic
-        $page = isset($_GET['page']) ? $_GET['page'] : 1;
-        $start = ($page - 1) * $resultsPerPage;
-
-        $queryCount = "SELECT COUNT(*) as total FROM tblbook";
-        $totalResult = $con->query($queryCount)->fetch_assoc()['total'];
-        $totalPages = ceil($totalResult / $resultsPerPage);
-
-        $query .= " LIMIT $start, $resultsPerPage";
+        $query = "SELECT * FROM tblbook WHERE book_ID = $book_ID";
         $result = $con->query($query);
-
         if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
         ?>
-                <div class="card_book mb-3">
+                <!-- Pilihan Buku Start -->
+                <div class="card_book_display mb-3">
                     <!-- rest of the code remains unchanged -->
-                    <div class="row g-0">
-                        <div class="col-md-3 mb-3">
+                    <div class="row">
+                        <div class="col-md-4">
                             <img src="../../admin/admin_panel/controller/<?= $row['book_image'] ?>">
                         </div>
                         <div class="col-md-8">
                             <div class="card-body">
                                 <h2 class="card-title"><?= $row["book_title"] ?></h2>
-                                <table>
-                                    <tr>
-                                        <td class="bold-text">Pengarang:&nbsp;&nbsp;<?= $row["book_author"] ?></td>
-                                    </tr>
-                                    <tr>
-                                        <!-- <td class="bold-text">No. ISBN:&nbsp;&nbsp;<?= $row["book_ISBN"] ?></td> -->
-                                    </tr>
-                                    <tr>
-                                        <td class="bold-text">Penerbit:&nbsp;&nbsp;<?= $row["publisher"] ?></td>
-                                    </tr>
-                                    <tr>
-                                        <!-- <td class="bold-text">No. Dewey:&nbsp;&nbsp;<?= $row["book_dewey"] ?></td> -->
-                                    </tr>
-                                    <tr>
-                                        <td class="bold-text">Kategori:&nbsp;&nbsp;<?= $row["book_category"] ?></td>
-                                    </tr>
-                                    <tr>
-                                        <!-- <td class="bold-text">Sinopsis Buku:&nbsp;&nbsp;<?= $row["book_desc"] ?></td> -->
-                                    </tr>
-                                </table>
+                                <p class="bold-text">Pengarang:&nbsp;&nbsp;<?= $row["book_author"] ?></p>
+                                <br>
+                                <p class="bold-text">No. ISBN:&nbsp;&nbsp;<?= $row["book_ISBN"] ?></p>
+                                <br>
+                                <p class="bold-text">Penerbit:&nbsp;&nbsp;<?= $row["publisher"] ?></p>
+                                <br>
+                                <p class="bold-text">No. Dewey:&nbsp;&nbsp;<?= $row["book_dewey"] ?></p>
+                                <br>
+                                <p class="bold-text">Kategori:&nbsp;&nbsp;<?= $row["book_category"] ?></p>
+                                <br>
+                                <p class="bold-text">Sinopsis Buku:</p>
+                                <div class="book-description">
+                                    <p><?= $row["book_desc"] ?></p>
+                                </div>
                             </div>
-                        </div>
-                        <div class="ml-auto mr-5 mb-3">
-                            <a href="display_book.php?book_ID=<?= $row['book_ID'] ?>" class="btn btn-primary">Pilih Buku</a>
+                            <br>
+                            <div class="text-right mr-3 mb-3">
+                                <a href="#" class="btn btn-primary">Booking</a>
+                                &nbsp;
+                                <a href="booking.php" class="btn btn-primary">Kembali Semula</a>
+                            </div>
                         </div>
                     </div>
                     <!-- ... -->
@@ -248,53 +174,9 @@ if (isset($_SESSION["IDStud"])) {
         <?php
         }
         ?>
-        <!-- PHP Ends -->
-
-        <!-- PHP Ends -->
-        <form action="" method="GET">
-            <!-- Result Show Start -->
-            <div class="input-group mb-3">
-                <select name="result_count" class="form-control">
-                    <option value="">-- Select Result Count --</option>
-                    <option value="5" <?php if (isset($_GET['result_count']) && $_GET['result_count'] == "5") {
-                                            echo "selected";
-                                        } ?>>5</option>
-                    <option value="10" <?php if (isset($_GET['result_count']) && $_GET['result_count'] == "10") {
-                                            echo "selected";
-                                        } ?>>10</option>
-                    <option value="15" <?php if (isset($_GET['result_count']) && $_GET['result_count'] == "15") {
-                                            echo "selected";
-                                        } ?>>15</option>
-                </select>
-                <button type="submit" class="btn btn-primary">
-                    Show Results
-                </button>
-            </div>
-            <!-- Result Show End -->
-        </form>
-
-        <?php
-        // Display pagination links
-        echo '<div class="pagination">';
-        for ($i = 1; $i <= $totalPages; $i++) {
-            if ($i == $page) {
-                echo "<span>$i</span>";
-            } else {
-                $params = "page=$i";
-                if (isset($_GET['result_count'])) {
-                    $params .= "&result_count=" . $_GET['result_count'];
-                }
-                if (isset($_GET['sort_alphabet'])) {
-                    $params .= "&sort_alphabet=" . $_GET['sort_alphabet'];
-                }
-                echo "<a href='?$params'>$i</a>";
-            }
-        }
-        echo '</div>';
-
-        ?>
+        <!-- Pilihan Buku End -->
     </div>
-    <!-- Booking End -->
+
 
     <?php
     mysqli_close($con);
