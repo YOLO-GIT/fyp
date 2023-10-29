@@ -196,58 +196,63 @@
             <div class="modal-body">
               <form enctype='multipart/form-data' name="frmAddBooks" class="adding_section" action="../controller/addBookController.php" method="post" onsubmit="return validated()">
                 <div class=" form-group">
-                  <label for="id">No. Perolehan:</label>
+                  <label for="id">No. Perolehan:*</label>
                   <div id="perolehan_error" class="form-control">Tolong Isi Nombor Perolehan</div>
                   <input type="text" name="txtnoperolehan" class="form-control" placeholder="No. Perolehan" maxlength="5">
                 </div>
                 <div class="form-group">
-                  <label for="title">Nama Buku:</label>
+                  <label for="title">Nama Buku:*</label>
                   <div id="judul_error" class="form-control">Tolong Isi Judul</div>
                   <input type="text" name="txttitle" class="form-control" placeholder="Judul Buku" maxlength="25">
                 </div>
                 <div class="form-group">
-                  <label for="author">Pengarang:</label>
+                  <label for="author">Pengarang:*</label>
                   <div id="pengarang_error" class="form-control">Tolong Isi Pengarang</div>
                   <input type="text" name="txtauthor" class="form-control" placeholder="Pengarang" maxlength="25">
                 </div>
                 <div class="form-group">
-                  <label for="category">ISBN/ISSN:</label>
+                  <label for="category">ISBN/ISSN:*</label>
                   <div id="isbn_error" class="form-control">Tolong Isi ISBN/ISSN</div>
                   <input type="text" name="txtISBN" id="isbn" class="form-control" placeholder="ISBN/ISSN" maxlength="17">
                 </div>
                 <div class="form-group">
-                  <label for="description">Nama Penerbit:</label>
+                  <label for="description">Nama Penerbit:*</label>
                   <div id="penerbit_error" class="form-control">Tolong Isi Nama Penerbit</div>
                   <input name="txtpublisher" type="text" class="form-control" placeholder="Penerbit" maxlength="25">
                 </div>
                 <div class="form-group">
-                  <label for="dewey">Dewey:</label>
+                  <label for="dewey">Dewey:*</label>
                   <div id="dewey_error" class="form-control">Tolong Isi Dewey</div>
                   <input type="text" name="txtdewey" class="form-control" placeholder="Dewey Buku" maxlength="12">
                 </div>
                 <div class="form-group">
-                  <label for="category">Kategori:</label>
-                  <select name="cbokategori" class="form-control" id="categorySelect" onchange="showInput(this)" required>
+                  <label for="category">Kategori:*</label>
+                  <select name="cbokategori" class="form-control" id="categorySelect" required>
                     <option value="">Sila Pilih Kategori</option>
                     <option value="Action">Action</option>
                     <option value="History">History</option>
                     <option value="Fiction">Fiction</option>
                     <option value="Science">Science</option>
                     <option value="Other">Other</option>
-                    <input type="text" name="otherCategory" id="otherCategoryInput" class="form-control" style="display: none;" placeholder="Sila Letak Kategori Anda" required>
                   </select>
                 </div>
                 <div class="form-group">
-                  <label for="description">Diskripsi Buku:</label>
+                  <label for="description">Diskripsi Buku:*</label>
                   <div id="sinopsis_error" class="form-control">Tolong Isi</div>
                   <textarea name="txtdescription" class="form-control" placeholder="Sinopsis"></textarea>
                 </div>
                 <div class="form-group">
-                  <label for="language">Bahasa Buku:</label>
-                  <input type="text" name="txtlanguage" class="form-control" placeholder="Bahasa Buku" required maxlength="12">
+                  <label for="language">Bahasa Buku:*</label>
+                  <select name="cbolanguage" class="form-control" required>
+                    <option value="">Sila Pilih </option>
+                    <option value="Bahasa Melayu">Bahasa Melayu</option>
+                    <option value="Bahasa Inggeris">Bahasa Inggeris</option>
+                    <option value="Bahasa Cina">Bahasa Cina</option>
+                    <option value="Bahasa Tamil">Bahasa Tamil</option>
+                  </select>
                 </div>
                 <div class="form-group">
-                  <label for="category">Illustrasi Buku:</label>
+                  <label for="ocategory">Illustrasi Buku:*</label>
                   <select name="cboillustrasi" class="form-control" required>
                     <option value="">Sila Pilih </option>
                     <option value="Ya">Ya</option>
@@ -256,22 +261,26 @@
                 </div>
                 <div class="form-group">
                   <label for="matter1">Tajuk Perkara 1:</label>
-                  <input type="text" name="txtmatter1" class="form-control" placeholder="Tajuk Perkara 1" required maxlength="12">
+                  <input type="text" name="txtmatter1" class="form-control" placeholder="Tajuk Perkara 1">
                 </div>
                 <div class="form-group">
                   <label for="matter2">Tajuk Perkara 2:</label>
-                  <input type="text" name="txtmatter2" class="form-control" placeholder="Tajuk Perkara 2" required maxlength="12">
+                  <input type="text" name="txtmatter2" class="form-control" placeholder="Tajuk Perkara 2">
                 </div>
                 <div class="form-group">
                   <label for="matter3">Tajuk Perkara 3:</label>
-                  <input type="text" name="txtmatter3" class="form-control" placeholder="Tajuk Perkara 3" required maxlength="12">
+                  <input type="text" name="txtmatter3" class="form-control" placeholder="Tajuk Perkara 3">
                 </div>
                 <div class="form-group">
-                  <label for="status">Status Buku:</label>
-                  <input type="text" name="txtstatus" class="form-control" placeholder="Status Buku" required maxlength="12">
+                  <label for="status">Status Buku:*</label>
+                  <select name="cboistatus" class="form-control" required>
+                    <option value="">Sila Pilih </option>
+                    <option value="Ada">Ya</option>
+                    <option value="Tiada">Tiada</option>
+                  </select>
                 </div>
                 <div class="form-group">
-                  <label for="image">Sila Pilih Gambar</label>
+                  <label for="image">Sila Pilih Gambar*</label>
                   <input class="form-control" type="file" name="my_image" accept="image/x-png,image/gif,image/jpeg" required>
                 </div>
                 <div class="modal-footer">

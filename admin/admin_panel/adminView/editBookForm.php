@@ -20,6 +20,10 @@
                     <input type="text" class="form-control" id="qty" value="<?= $row1['book_title'] ?>" required>
                 </div>
                 <div class="form-group">
+                    <label for="qty">Mengemaskini ISBN:</label>
+                    <input type="text" class="form-control" id="isbn" value="<?= $row1['book_ISBN'] ?>" required>
+                </div>
+                <div class="form-group">
                     <label for="author">Mengemaskini Pengarang:</label>
                     <input type="text" class="form-control" id="author" value="<?= $row1['book_author'] ?>" required>
                 </div>

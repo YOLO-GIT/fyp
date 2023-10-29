@@ -139,19 +139,53 @@ if (isset($_GET['book_ID'])) {
                         <div class="col-md-8">
                             <div class="card-body">
                                 <h2 class="card-title"><?= $row["book_title"] ?></h2>
-                                <p class="bold-text">Pengarang:&nbsp;&nbsp;<?= $row["book_author"] ?></p>
-                                <br>
-                                <p class="bold-text">No. ISBN:&nbsp;&nbsp;<?= $row["book_ISBN"] ?></p>
-                                <br>
-                                <p class="bold-text">Penerbit:&nbsp;&nbsp;<?= $row["publisher"] ?></p>
-                                <br>
-                                <p class="bold-text">No. Dewey:&nbsp;&nbsp;<?= $row["book_dewey"] ?></p>
-                                <br>
-                                <p class="bold-text">Kategori:&nbsp;&nbsp;<?= $row["book_category"] ?></p>
-                                <br>
-                                <p class="bold-text">Sinopsis Buku:</p>
-                                <div class="book-description">
+                                <p class="bold-text">Pengarang:&nbsp;&nbsp;</p>
+                                <div class="alert alert-primary">
+                                    <p><?= $row["book_author"] ?></p>
+                                </div>
+                                <p class="bold-text">No. ISBN:&nbsp;&nbsp;</p>
+                                <div class="alert alert-primary">
+                                    <p><?= $row["book_ISBN"] ?></p>
+                                </div>
+                                <p class="bold-text">Penerbit:&nbsp;&nbsp;</p>
+                                <div class="alert alert-primary">
+                                    <p><?= $row["publisher"] ?></p>
+                                </div>
+                                <p class="bold-text">No. Dewey:&nbsp;&nbsp;</p>
+                                <div class="alert alert-primary">
+                                    <p><?= $row["book_dewey"] ?></p>
+                                </div>
+                                <p class="bold-text">Kategori:&nbsp;&nbsp;</p>
+                                <div class="alert alert-primary">
+                                    <p><?= $row["book_category"] ?></p>
+                                </div>
+                                <p class="bold-text">Diskripsi:&nbsp;&nbsp;</p>
+                                <div class="alert alert-primary">
                                     <p><?= $row["book_desc"] ?></p>
+                                </div>
+                                <p class="bold-text">Bahasa Digunakan:&nbsp;&nbsp;</p>
+                                <div class="alert alert-primary">
+                                    <p><?= $row["book_language"] ?></p>
+                                </div>
+                                <p class="bold-text">Illustrasi:&nbsp;&nbsp;</p>
+                                <div class="alert alert-primary">
+                                    <p><?= $row["book_illustration"] ?></p>
+                                </div>
+                                <p class="bold-text">Tajuk Perkara 1:&nbsp;&nbsp;</p>
+                                <div class="alert alert-primary">
+                                    <p><?= $row["book_matter1"] ?></p>
+                                </div>
+                                <p class="bold-text">Tajuk Perkara 2:&nbsp;&nbsp;</p>
+                                <div class="alert alert-primary">
+                                    <p><?= $row["book_matter2"] ?></p>
+                                </div>
+                                <p class="bold-text">Tajuk Perkara 3:&nbsp;&nbsp;</p>
+                                <div class="alert alert-primary">
+                                    <p><?= $row["book_matter3"] ?></p>
+                                </div>
+                                <p class="bold-text">Status:&nbsp;&nbsp;</p>
+                                <div class="alert alert-primary">
+                                    <?= $row["book_status"] ?>
                                 </div>
                             </div>
                             <br>

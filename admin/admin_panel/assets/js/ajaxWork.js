@@ -176,12 +176,14 @@ function bookUpdate(id){
 function updateBook(){
     var v_id = $('#v_id').val();
     var qty = $('#qty').val();
+    var isbn = $('#isbn').val();
     var author = $('#author').val();
     var publish = $('#publish').val();
     var gmbr = $('#gmbr')[0].files[0]; // Get the file object
     var fd = new FormData();
     fd.append('v_id', v_id);
     fd.append('qty', qty);
+    fd.append('isbn', isbn)
     fd.append('author', author);
     fd.append('publish', publish);
     fd.append('gmbr', gmbr);

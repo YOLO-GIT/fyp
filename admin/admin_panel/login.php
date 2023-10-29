@@ -60,7 +60,7 @@ if (isset($_GET["cmdlogin"])) {
                 <form id="request" class="main_form" action="" method="get">
                     <div class="row">
                         <div class="col-md-12">
-                            <input class="custom_input" placeholder="Username*" type="text" name="txtusername" maxlength="10">
+                            <input class="custom_input" placeholder="Username*" type="text" name="txtusername" maxlength="10" autocomplete="off">
                         </div>
                         <div class="col-md-12">
                             <input class="custom_input" placeholder="Password*" type="password" name="txtpwd">

@@ -215,19 +215,19 @@ if (isset($_SESSION["IDStud"])) {
                                         <td class="bold-text">Pengarang:&nbsp;&nbsp;<?= $row["book_author"] ?></td>
                                     </tr>
                                     <tr>
-                                        <!-- <td class="bold-text">No. ISBN:&nbsp;&nbsp;<?= $row["book_ISBN"] ?></td> -->
+                                        <td class="bold-text">No. ISBN:&nbsp;&nbsp;<?= $row["book_ISBN"] ?></td>
                                     </tr>
                                     <tr>
                                         <td class="bold-text">Penerbit:&nbsp;&nbsp;<?= $row["publisher"] ?></td>
                                     </tr>
                                     <tr>
-                                        <!-- <td class="bold-text">No. Dewey:&nbsp;&nbsp;<?= $row["book_dewey"] ?></td> -->
+                                        <td class="bold-text">No. Dewey:&nbsp;&nbsp;<?= $row["book_dewey"] ?></td>
                                     </tr>
                                     <tr>
                                         <td class="bold-text">Kategori:&nbsp;&nbsp;<?= $row["book_category"] ?></td>
                                     </tr>
                                     <tr>
-                                        <!-- <td class="bold-text">Sinopsis Buku:&nbsp;&nbsp;<?= $row["book_desc"] ?></td> -->
+                                        <td class="bold-text">Sinopsis Buku:&nbsp;&nbsp;<?= $row["book_desc"] ?></td>
                                     </tr>
                                 </table>
                             </div>
