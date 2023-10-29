@@ -227,18 +227,48 @@
                 </div>
                 <div class="form-group">
                   <label for="category">Kategori:</label>
-                  <select name="cbokategori" class="form-control" required>
+                  <select name="cbokategori" class="form-control" id="categorySelect" onchange="showInput(this)" required>
                     <option value="">Sila Pilih Kategori</option>
                     <option value="Action">Action</option>
                     <option value="History">History</option>
                     <option value="Fiction">Fiction</option>
                     <option value="Science">Science</option>
+                    <option value="Other">Other</option>
+                    <input type="text" name="otherCategory" id="otherCategoryInput" class="form-control" style="display: none;" placeholder="Sila Letak Kategori Anda" required>
                   </select>
                 </div>
                 <div class="form-group">
-                  <label for="description">Sinopsis Buku:</label>
-                  <div id="sinopsis_error" class="form-control">Tolong Isi Sinopsis</div>
+                  <label for="description">Diskripsi Buku:</label>
+                  <div id="sinopsis_error" class="form-control">Tolong Isi</div>
                   <textarea name="txtdescription" class="form-control" placeholder="Sinopsis"></textarea>
+                </div>
+                <div class="form-group">
+                  <label for="language">Bahasa Buku:</label>
+                  <input type="text" name="txtlanguage" class="form-control" placeholder="Bahasa Buku" required maxlength="12">
+                </div>
+                <div class="form-group">
+                  <label for="category">Illustrasi Buku:</label>
+                  <select name="cboillustrasi" class="form-control" required>
+                    <option value="">Sila Pilih </option>
+                    <option value="Ya">Ya</option>
+                    <option value="Tidak">Tidak</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="matter1">Tajuk Perkara 1:</label>
+                  <input type="text" name="txtmatter1" class="form-control" placeholder="Tajuk Perkara 1" required maxlength="12">
+                </div>
+                <div class="form-group">
+                  <label for="matter2">Tajuk Perkara 2:</label>
+                  <input type="text" name="txtmatter2" class="form-control" placeholder="Tajuk Perkara 2" required maxlength="12">
+                </div>
+                <div class="form-group">
+                  <label for="matter3">Tajuk Perkara 3:</label>
+                  <input type="text" name="txtmatter3" class="form-control" placeholder="Tajuk Perkara 3" required maxlength="12">
+                </div>
+                <div class="form-group">
+                  <label for="status">Status Buku:</label>
+                  <input type="text" name="txtstatus" class="form-control" placeholder="Status Buku" required maxlength="12">
                 </div>
                 <div class="form-group">
                   <label for="image">Sila Pilih Gambar</label>

@@ -318,5 +318,13 @@ isbn.addEventListener('paste', function(e) {
 
 //Validtion Code For Inputs
 
-
+ function showInput(select) {
+        var selectedValue = select.value;
+        var otherCategoryInput = document.getElementById("otherCategoryInput");
+        if (selectedValue === "Other") {
+            otherCategoryInput.style.display = "block";
+        } else {
+            otherCategoryInput.style.display = "none";
+        }
+    }
 // End Custom JScript

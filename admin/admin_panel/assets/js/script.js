@@ -12,3 +12,4 @@ function closeNav() {
   document.getElementById("main-content").style.margin = "0 auto";
   document.getElementById("main").style.display="block";  
 }
+
