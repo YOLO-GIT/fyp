@@ -31,6 +31,8 @@ if (isset($_SESSION["IDStud"])) {
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <!-- style css -->
     <link rel="stylesheet" href="css/style.css">
+    <!-- custom css -->
+    <link rel="stylesheet" href="css/custom_style.css">
     <!-- Responsive-->
     <link rel="stylesheet" href="css/responsive.css">
     <!-- fevicon -->
@@ -77,7 +79,7 @@ if (isset($_SESSION["IDStud"])) {
                                     <a class="nav-link" href="booking.php"><i class="fa fa-search"></i> Carian</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="#"><i class="fa fa-search-plus"></i> Carian Terperinci</a>
+                                    <a class="nav-link" href="advance_booking.php"><i class="fa fa-search-plus"></i> Carian Terperinci</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="#"><i class="fa fa-universal-access"></i> Berkaitan Kami</a>
@@ -116,7 +118,7 @@ if (isset($_SESSION["IDStud"])) {
                                 <!-- first slide -->
                                 <div class="carousel-item active">
                                     <div class="carousel-caption relative">
-                                        <div class="row d_flex">
+                                        <div class="row d_flex mb-3">
                                             <div class="col-md-5">
                                                 <div class="board">
                                                     <i><img src="images/top_icon.png" alt="#" /></i>
@@ -184,14 +186,14 @@ if (isset($_SESSION["IDStud"])) {
                                 </div>
                             </div>
                             <!-- controls -->
-                            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                            <!-- <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
                                 <i class="fa fa-arrow-left" aria-hidden="true"></i>
                                 <span class="sr-only">Previous</span>
                             </a>
                             <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
                                 <i class="fa fa-arrow-right" aria-hidden="true"></i>
                                 <span class="sr-only">Next</span>
-                            </a>
+                            </a> -->
                         </div>
                     </div>
                 </div>
@@ -199,46 +201,103 @@ if (isset($_SESSION["IDStud"])) {
         </div>
     </div>
     <!-- end banner -->
+    <br>
+    <!-- Event Start -->
+    <div class="full_bg">
+        <div class="slider_main">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12">
+                        <!-- carousel code -->
+                        <div id="carouselForEvents" class="carousel slide">
+                            <ol class="carousel-indicators">
+                                <li data-target="#carouselForEvents" data-slide-to="0" class="active"></li>
+                                <li data-target="#carouselForEvents" data-slide-to="1"></li>
+                                <li data-target="#carouselForEvents" data-slide-to="2"></li>
+                            </ol>
+                            <div class="carousel-inner custom-carousel-inner">
+                                <!-- first slide -->
+                                <div class="carousel-item active">
+                                    <div class="carousel-caption relative">
+                                        <div class="row d-flex flex-row-reverse mb-3">
+                                            <div class="col-md-5">
+                                                <div class="board">
+                                                    <h3>
+                                                        Library<br> Pro<br> SMK Tok Dor
+                                                    </h3>
+                                                    <div class="link_btn">
+                                                        <a class="read_more" href="Javascript:void(0)">Read More <span></span></a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-7">
+                                                <div class="banner_img">
+                                                    <figure><img class="img_responsive" src="images/new_event1.jpg"></figure>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- second slide -->
+                                <div class="carousel-item">
+                                    <div class="carousel-caption relative">
+                                        <div class="row d-flex flex-row-reverse mb-3">
+                                            <div class="col-md-5">
+                                                <div class="board">
+                                                    <h3>
+                                                        Library<br> Pro<br> SMK Tok Dor
+                                                    </h3>
+                                                    <div class="link_btn">
+                                                        <a class="read_more" href="Javascript:void(0)">Read More <span></span></a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-7">
+                                                <div class="banner_img">
+                                                    <figure><img class="img_responsive" src="images/pic2.jpg"></figure>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- third slide-->
+                                <div class="carousel-item">
+                                    <div class="carousel-caption relative">
+                                        <div class="row d-flex flex-row-reverse mb-3">
+                                            <div class=" col-md-5">
+                                                <div class="board">
+                                                    <h3>
+                                                        Library<br> Pro<br> SMK Tok Dor
+                                                    </h3>
+                                                    <div class="link_btn">
+                                                        <a class="read_more" href="Javascript:void(0)">Read More <span></span></a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-7">
+                                                <div class="banner_img">
+                                                    <figure><img class="img_responsive" src="images/pic3.jpg"></figure>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- controls -->
 
-    <!-- our class -->
-    <div class="class">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="titlepage text_align_center">
-                        <h2>Library Pro</h2>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-4 margi_bottom">
-                    <div class="class_box text_align_center">
-                        <i><img src="images/class1.png" alt="#" /></i>
-                        <h3>Pembacaan</h3>
-                        <p>Menyediakan penggunaan bagi generasi masa kini dan masa depan suatu koleksi sumber perpustakaan
-                            di peringkat kebangsaan. </p>
-                    </div>
-                </div>
-                <div class="col-md-4 margi_bottom">
-                    <div class="class_box blue text_align_center">
-                        <i><img src="images/class2.png" alt="#" /></i>
-                        <h3>Pemahaman</h3>
-                        <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered
-                            alterationThere are many variations </p>
-                    </div>
-                </div>
-                <div class="col-md-4 margi_bottom">
-                    <div class="class_box text_align_center">
-                        <i><img src="images/class3.png" alt="#" /></i>
-                        <h3>Pembelajaran</h3>
-                        <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered
-                            alterationThere are many variations </p>
+                        </div>
+                        <a class="carousel-control-prev" href="#carouselForEvents" role="button" data-slide="prev">
+                            <i class="fa fa-arrow-left" aria-hidden="true" style="color: black;"></i>
+                        </a>
+                        <a class="carousel-control-next" href="#carouselForEvents" role="button" data-slide="next">
+                            <i class="fa fa-arrow-right" aria-hidden="true" style="color: black;"></i>
+                        </a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <!-- end our class -->
+    <!-- Event end -->
 
     <!-- testimonial -->
     <div class="testimonial">
