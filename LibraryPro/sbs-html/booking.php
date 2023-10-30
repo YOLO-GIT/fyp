@@ -229,6 +229,15 @@ if (isset($_SESSION["IDStud"])) {
                                     <tr>
                                         <td class="bold-text">Sinopsis Buku:&nbsp;&nbsp;<?= $row["book_desc"] ?></td>
                                     </tr>
+                                    <?php
+                                    $book_ID = $row['book_ID'];
+                                    $statusQuery = "SELECT bb.status FROM tblbooking bb JOIN tblbook b ON bb.book_ID = b.book_ID WHERE b.book_ID = $book_ID";
+                                    $statusResult = $con->query($statusQuery);
+                                    if ($statusResult->num_rows > 0) {
+                                        $statusData = $statusResult->fetch_assoc();
+                                        echo "<tr><td class='bold-text'>Status:&nbsp;&nbsp;" . $statusData['status'] . "</td></tr>";
+                                    }
+                                    ?>
                                 </table>
                             </div>
                         </div>
@@ -274,25 +283,29 @@ if (isset($_SESSION["IDStud"])) {
         </form>
 
         <?php
-        // Display pagination links
         echo '<div class="pagination">';
         for ($i = 1; $i <= $totalPages; $i++) {
             if ($i == $page) {
                 echo "<span>$i</span>";
             } else {
-                $params = "page=$i";
+                $params = array('page' => $i);
+
                 if (isset($_GET['result_count'])) {
-                    $params .= "&result_count=" . $_GET['result_count'];
+                    $params['result_count'] = $_GET['result_count'];
                 }
+
                 if (isset($_GET['sort_alphabet'])) {
-                    $params .= "&sort_alphabet=" . $_GET['sort_alphabet'];
+                    $params['sort_alphabet'] = $_GET['sort_alphabet'];
                 }
-                echo "<a href='?$params'>$i</a>";
+
+                $url = '?' . http_build_query($params);
+
+                echo "<a href='$url'>$i</a>";
             }
         }
         echo '</div>';
-
         ?>
+
     </div>
     <!-- Booking End -->
 

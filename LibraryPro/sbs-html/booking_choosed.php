@@ -119,82 +119,96 @@ if (isset($_GET['book_ID'])) {
     <!-- end header inner -->
 
     <div class="container_book">
-        <?php
-        // Retrieve the stud_ID and book_ID from the URL parameters
-        $stud_ID = $_GET['stud_ID'] ?? '';
-        $book_ID = $_GET['book_ID'] ?? '';
+        <form method="get" action="booking_sent.php">
+            <?php
+            // Retrieve the stud_ID and book_ID from the URL parameters
+            $stud_ID = $_GET['stud_ID'] ?? '';
+            $book_ID = $_GET['book_ID'] ?? '';
 
-        // Use prepared statements to prevent SQL injection
-        $studentQuery = "SELECT * FROM tblstudent WHERE stud_ID = ?";
-        $stmt = $con->prepare($studentQuery);
-        $stmt->bind_param("s", $stud_ID);
-        $stmt->execute();
-        $studentResult = $stmt->get_result();
-        $student = $studentResult->fetch_assoc();
-        $stmt->close();
+            // Use prepared statements to prevent SQL injection
+            $studentQuery = "SELECT * FROM tblstudent WHERE stud_ID = ?";
+            $stmt = $con->prepare($studentQuery);
+            $stmt->bind_param("s", $stud_ID);
+            $stmt->execute();
+            $studentResult = $stmt->get_result();
+            $student = $studentResult->fetch_assoc();
+            $stmt->close();
 
-        // Use prepared statements for the book query
-        $bookQuery = "SELECT * FROM tblbook WHERE book_ID = ?";
-        $stmt = $con->prepare($bookQuery);
-        $stmt->bind_param("s", $book_ID);
-        $stmt->execute();
-        $bookResult = $stmt->get_result();
-        if ($bookResult->num_rows > 0) {
-            $book = $bookResult->fetch_assoc();
+            // Use prepared statements for the book query
+            $bookQuery = "SELECT * FROM tblbook WHERE book_ID = ?";
+            $stmt = $con->prepare($bookQuery);
+            $stmt->bind_param("s", $book_ID);
+            $stmt->execute();
+            $bookResult = $stmt->get_result();
+            if ($bookResult->num_rows > 0) {
+                $book = $bookResult->fetch_assoc();
 
-            // Display student details
-            echo "<h2>Student Information</h2>";
-            echo "<p>ID: " . $student['stud_ID'] . "</p>";
-            echo "<p>Name: " . $student['stud_Name'] . "</p>";
-            // Display other student details...
+                // Display student details
+                echo "<h2>Student Information</h2>";
+                echo "<input name='txtstudID' value= $student[stud_ID] hidden>";
+                echo "<p>Name: " . $student['stud_Name'] . "</p>";
+                echo "<p>Kelas: " . $student['stud_Class'] . "</p>";
+                // Display other student details...
 
-            // Display book details
-            echo "<h2>Book Information</h2>";
-            // Display book details as before
-        ?>
-            <!-- Pilihan Buku Start -->
-            <div class="card_book_display mb-3">
-                <div class="row">
-                    <div class="col-md-4">
-                        <img src="../../admin/admin_panel/controller/<?= $book['book_image'] ?>">
-                    </div>
-                    <div class="col-md-8">
-                        <div class="card-body">
-                            <h2 class="card-title"><?= $book["book_title"] ?></h2>
-                            <p class="bold-text">Pengarang:&nbsp;&nbsp;</p>
-                            <div class="alert alert-primary">
-                                <p><?= $book["book_author"] ?></p>
-                            </div>
-                            <p class="bold-text">No. ISBN:&nbsp;&nbsp;</p>
-                            <div class="alert alert-primary">
-                                <p><?= $book["book_ISBN"] ?></p>
-                            </div>
-                            <p class="bold-text">Penerbit:&nbsp;&nbsp;</p>
-                            <div class="alert alert-primary">
-                                <p><?= $book["publisher"] ?></p>
-                            </div>
-                            <p class="bold-text">Masa Booking:&nbsp;&nbsp;</p>
-                            <div class="alert alert-primary">
-                                <input class="form-control" type="time" name="txtmasacekin">
-                            </div>
+                // Display book details
+                echo "<h2>Book Information</h2>";
+                // Display book details as before
+            ?>
+                <!-- Pilihan Buku Start -->
+                <div class="card_book_display mb-3">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <img src="../../admin/admin_panel/controller/<?= $book['book_image'] ?>">
                         </div>
-                        <br>
-                        <div class="text-right mr-3 mb-3">
-                            <a href="#" class="btn btn-primary">Simpan</a>
-                            &nbsp;
-                            <a href="display_book.php" class="btn btn-primary">Kembali Semula</a>
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <input name="txtbookID" value="<?= $book["book_ID"] ?>" hidden>
+                                <h2 class="card-title"><?= $book["book_title"] ?></h2>
+                                <p class="bold-text">Pengarang:&nbsp;&nbsp;</p>
+                                <div class="alert alert-primary">
+                                    <p><?= $book["book_author"] ?></p>
+                                </div>
+                                <p class="bold-text">No. ISBN:&nbsp;&nbsp;</p>
+                                <div class="alert alert-primary">
+                                    <p><?= $book["book_ISBN"] ?></p>
+                                </div>
+                                <p class="bold-text">Penerbit:&nbsp;&nbsp;</p>
+                                <div class="alert alert-primary">
+                                    <p><?= $book["publisher"] ?></p>
+                                </div>
+                                <p class="bold-text">Status:&nbsp;&nbsp;</p>
+                                <div class="alert alert-primary">
+                                    <p><?= $book["book_status"] ?></p>
+                                </div>
+                                <p class="bold-text">Masa Booking:&nbsp;&nbsp;</p>
+                                <div class="alert alert-primary">
+                                    <input class="form-control" type="time" name="masabooking">
+                                </div>
+                                <p class="bold-text">Tarikh Booking:&nbsp;&nbsp;</p>
+                                <div class="alert alert-primary">
+                                    <input class="form-control" type="date" name="dtbooking">
+                                </div>
+                            </div>
+                            <br>
+                            <div class="text-right mr-3 mb-3">
+                                <button type="submit" name="cmdbooking" class="btn btn-primary">Simpan</button>
+                                &nbsp;
+                                <a href="booking.php" class="btn btn-primary">Kembali Semula</a>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <!-- ... -->
-        <?php
-        } else {
-            echo "No book found.";
-        }
-        ?>
-        <!-- Pilihan Buku End -->
+                <!-- ... -->
+            <?php
+            } else {
+                echo "No book found.";
+            }
+            ?>
+            <!-- Pilihan Buku End -->
+        </form>
     </div>
+
+
 
 
 

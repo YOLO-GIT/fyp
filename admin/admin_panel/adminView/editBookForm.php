@@ -32,6 +32,14 @@
                     <input type="text" class="form-control" id="publish" value="<?= $row1['publisher'] ?>" required>
                 </div>
                 <div class="form-group">
+                    <label for="publish">Mengemaskini Dewey Buku:</label>
+                    <input type="text" class="form-control" id="dewey" value="<?= $row1['book_dewey'] ?>" required>
+                </div>
+                <div class="form-group">
+                    <label for="publish">Mengemaskini Diskripsi Buku:</label>
+                    <input type="text" class="form-control" id="desc" value="<?= $row1['book_desc'] ?>" required>
+                </div>
+                <div class="form-group">
                     <label for="image">Mengemaskini Gambar</label>
                     <input class="form-control" type="file" id="gmbr" name="my_image" accept="image/x-png,image/gif,image/jpeg" value="<?= $row1['book_image'] ?>">
                 </div>

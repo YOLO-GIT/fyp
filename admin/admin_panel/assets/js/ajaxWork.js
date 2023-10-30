@@ -179,6 +179,8 @@ function updateBook(){
     var isbn = $('#isbn').val();
     var author = $('#author').val();
     var publish = $('#publish').val();
+    var dewey = $('#dewey').val();
+    var desc = $('#desc').val();
     var gmbr = $('#gmbr')[0].files[0]; // Get the file object
     var fd = new FormData();
     fd.append('v_id', v_id);
@@ -186,6 +188,8 @@ function updateBook(){
     fd.append('isbn', isbn)
     fd.append('author', author);
     fd.append('publish', publish);
+    fd.append('dewey', dewey);
+    fd.append('desc', desc);
     fd.append('gmbr', gmbr);
    
     $.ajax({

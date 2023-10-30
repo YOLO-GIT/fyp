@@ -6,6 +6,8 @@ $qty = $_POST['qty'];
 $isbn = $_POST['isbn'];
 $author = $_POST['author'];
 $publish = $_POST['publish'];
+$dewey = $_POST['dewey'];
+$desc = $_POST['desc'];
 
 $name = $_FILES['gmbr']['name'];
 $temp = $_FILES['gmbr']['tmp_name'];
@@ -24,7 +26,9 @@ $updateTransaction = mysqli_query($conn, "UPDATE tblbook SET
         book_title = '$qty',
         book_ISBN = '$isbn',
         book_author = '$author',
-        publisher = '$publish'
+        publisher = '$publish',
+        book_dewey = '$dewey',
+        book_desc = '$desc'
         WHERE book_ID = '$v_id'");
 
 if (!$updateTransaction) {

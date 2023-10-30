@@ -11,20 +11,30 @@ if (isset($_GET["cmdlogin"])) {
     //Create Connection to the database
     include 'conn.php';
 
-    // Check if the content already exist:
-    // CHECKING START
-
     // Define SQL Statement for comparison
     $sql = "SELECT * FROM `tblstudent` WHERE stud_username='$username' AND stud_pwd='$password'";
+    // Define SQL Statement for comparison
+    $teacher_sql = "SELECT * FROM `tblteachers` WHERE teachers_username='$username' AND teachers_Password='$password'";
 
     // Execute SQL Statement
     $res = mysqli_query($con, $sql);
+    // Execute SQL Statement
+    $teacher_res = mysqli_query($con, $teacher_sql);
 
     // Check returning value in $res for validation
     if (mysqli_num_rows($res) > 0) {
         $student = mysqli_fetch_assoc($res);
         // Create a session with a name IDStud
         $_SESSION["IDStud"] = $student["stud_ID"];
+        // Inform to the user
+        echo "<script>alert('Login Success');</script>";
+        // Redirect to index.php
+        echo "<script>window.location.href='index.php';</script>";
+        exit;
+    } elseif (mysqli_num_rows($teacher_res) > 0) {
+        $teacher = mysqli_fetch_assoc($teacher_res);
+        // Create a session with a name IDStud
+        $_SESSION["IDTeachers"] = $teacher["teachers_ID"];
         // Inform to the user
         echo "<script>alert('Login Success');</script>";
         // Redirect to index.php
@@ -144,7 +154,7 @@ if (isset($_GET["cmdlogin"])) {
                         <br><br>
                         <div class="col-md-12">
                             <label class="custom_label_login">Username Anda:</label>
-                            <input class="contactus" placeholder="Username*" type="text" name="txtname" maxlength="10">
+                            <input class="contactus" placeholder="Username*" type="text" name="txtname" maxlength="12">
                         </div>
                         <div class="col-md-12">
                             <label class="custom_label_login">Password Anda:</label>

@@ -3,7 +3,7 @@
 session_start();
 
 // Check if session "idcust" dah wujud atau belum
-if (isset($_SESSION["IDStud"])) {
+if (isset($_SESSION["IDStud"]) || isset($_SESSION["IDTeachers"])) {
     $log = "Logout";
     $func_todo = "logout.php";
 } else {
