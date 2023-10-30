@@ -3,27 +3,21 @@ include 'conn.php';
 
 session_start();
 
-// Check if session "IDStud" already exists or not
+// Check if session "idcust" dah wujud atau belum
 if (isset($_SESSION["IDStud"])) {
     $log = "Logout";
     $func_todo = "logout.php";
-
-    // Fetch student details based on $_SESSION["IDStud"]
-    $stud_ID = $_SESSION["IDStud"];
-
-    // Use prepared statements to prevent SQL injection
-    $studentQuery = "SELECT * FROM tblstudent WHERE stud_ID = ?";
-    $stmt = $con->prepare($studentQuery);
-    $stmt->bind_param("s", $stud_ID);
-    $stmt->execute();
-    $result = $stmt->get_result();
-    $row1 = $result->fetch_assoc();
-    $stmt->close();
 } else {
     $log = "Login";
     $func_todo = "login.php";
     echo "<script>alert('Please Login First');</script>";
     echo "<script>window.location.href='login.php';</script>";
+}
+
+if (isset($_GET['stud_ID'])) {
+    $stud_ID = $_GET['stud_ID'];
+} else {
+    echo "Error";
 }
 
 if (isset($_GET['book_ID'])) {
@@ -32,7 +26,6 @@ if (isset($_GET['book_ID'])) {
     echo "No book selected.";
 }
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -127,92 +120,82 @@ if (isset($_GET['book_ID'])) {
 
     <div class="container_book">
         <?php
-        $query = "SELECT * FROM tblbook WHERE book_ID = $book_ID";
-        $result = $con->query($query);
-        if ($result->num_rows > 0) {
-            while ($row = $result->fetch_assoc()) {
+        // Retrieve the stud_ID and book_ID from the URL parameters
+        $stud_ID = $_GET['stud_ID'] ?? '';
+        $book_ID = $_GET['book_ID'] ?? '';
+
+        // Use prepared statements to prevent SQL injection
+        $studentQuery = "SELECT * FROM tblstudent WHERE stud_ID = ?";
+        $stmt = $con->prepare($studentQuery);
+        $stmt->bind_param("s", $stud_ID);
+        $stmt->execute();
+        $studentResult = $stmt->get_result();
+        $student = $studentResult->fetch_assoc();
+        $stmt->close();
+
+        // Use prepared statements for the book query
+        $bookQuery = "SELECT * FROM tblbook WHERE book_ID = ?";
+        $stmt = $con->prepare($bookQuery);
+        $stmt->bind_param("s", $book_ID);
+        $stmt->execute();
+        $bookResult = $stmt->get_result();
+        if ($bookResult->num_rows > 0) {
+            $book = $bookResult->fetch_assoc();
+
+            // Display student details
+            echo "<h2>Student Information</h2>";
+            echo "<p>ID: " . $student['stud_ID'] . "</p>";
+            echo "<p>Name: " . $student['stud_Name'] . "</p>";
+            // Display other student details...
+
+            // Display book details
+            echo "<h2>Book Information</h2>";
+            // Display book details as before
         ?>
-                <!-- Pilihan Buku Start -->
-                <div class="card_book_display mb-3">
-                    <!-- rest of the code remains unchanged -->
-                    <div class="row">
-                        <div class="col-md-4">
-                            <img src="../../admin/admin_panel/controller/<?= $row['book_image'] ?>">
+            <!-- Pilihan Buku Start -->
+            <div class="card_book_display mb-3">
+                <div class="row">
+                    <div class="col-md-4">
+                        <img src="../../admin/admin_panel/controller/<?= $book['book_image'] ?>">
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h2 class="card-title"><?= $book["book_title"] ?></h2>
+                            <p class="bold-text">Pengarang:&nbsp;&nbsp;</p>
+                            <div class="alert alert-primary">
+                                <p><?= $book["book_author"] ?></p>
+                            </div>
+                            <p class="bold-text">No. ISBN:&nbsp;&nbsp;</p>
+                            <div class="alert alert-primary">
+                                <p><?= $book["book_ISBN"] ?></p>
+                            </div>
+                            <p class="bold-text">Penerbit:&nbsp;&nbsp;</p>
+                            <div class="alert alert-primary">
+                                <p><?= $book["publisher"] ?></p>
+                            </div>
+                            <p class="bold-text">Masa Booking:&nbsp;&nbsp;</p>
+                            <div class="alert alert-primary">
+                                <input class="form-control" type="time" name="txtmasacekin">
+                            </div>
                         </div>
-                        <div class="col-md-8">
-                            <div class="card-body">
-                                <h2 class="card-title"><?= $row["book_title"] ?></h2>
-                                <p class="bold-text">Pengarang:&nbsp;&nbsp;</p>
-                                <div class="alert alert-primary">
-                                    <p><?= $row["book_author"] ?></p>
-                                </div>
-                                <p class="bold-text">No. ISBN:&nbsp;&nbsp;</p>
-                                <div class="alert alert-primary">
-                                    <p><?= $row["book_ISBN"] ?></p>
-                                </div>
-                                <p class="bold-text">Penerbit:&nbsp;&nbsp;</p>
-                                <div class="alert alert-primary">
-                                    <p><?= $row["publisher"] ?></p>
-                                </div>
-                                <p class="bold-text">No. Dewey:&nbsp;&nbsp;</p>
-                                <div class="alert alert-primary">
-                                    <p><?= $row["book_dewey"] ?></p>
-                                </div>
-                                <p class="bold-text">Kategori:&nbsp;&nbsp;</p>
-                                <div class="alert alert-primary">
-                                    <p><?= $row["book_category"] ?></p>
-                                </div>
-                                <p class="bold-text">Diskripsi:&nbsp;&nbsp;</p>
-                                <div class="alert alert-primary">
-                                    <p><?= $row["book_desc"] ?></p>
-                                </div>
-                                <p class="bold-text">Bahasa Digunakan:&nbsp;&nbsp;</p>
-                                <div class="alert alert-primary">
-                                    <p><?= $row["book_language"] ?></p>
-                                </div>
-                                <p class="bold-text">Illustrasi:&nbsp;&nbsp;</p>
-                                <div class="alert alert-primary">
-                                    <p><?= $row["book_illustration"] ?></p>
-                                </div>
-                                <p class="bold-text">Tajuk Perkara 1:&nbsp;&nbsp;</p>
-                                <div class="alert alert-primary">
-                                    <p><?= $row["book_matter1"] ?></p>
-                                </div>
-                                <p class="bold-text">Tajuk Perkara 2:&nbsp;&nbsp;</p>
-                                <div class="alert alert-primary">
-                                    <p><?= $row["book_matter2"] ?></p>
-                                </div>
-                                <p class="bold-text">Tajuk Perkara 3:&nbsp;&nbsp;</p>
-                                <div class="alert alert-primary">
-                                    <p><?= $row["book_matter3"] ?></p>
-                                </div>
-                                <p class="bold-text">Status:&nbsp;&nbsp;</p>
-                                <div class="alert alert-primary">
-                                    <?= $row["book_status"] ?>
-                                </div>
-                            </div>
-                            <br>
-                            <div class="text-right mr-3 mb-3">
-                                <a href="booking_choosed.php?book_ID=<?= $row['book_ID'] ?>&stud_ID=<?= $row1['stud_ID'] ?>" class="btn btn-primary">Booking</a>
-                                &nbsp;
-                                <a href="booking.php" class="btn btn-primary">Kembali Semula</a>
-                            </div>
+                        <br>
+                        <div class="text-right mr-3 mb-3">
+                            <a href="#" class="btn btn-primary">Simpan</a>
+                            &nbsp;
+                            <a href="display_book.php" class="btn btn-primary">Kembali Semula</a>
                         </div>
                     </div>
-                    <!-- ... -->
                 </div>
-            <?php
-            }
-        } else {
-            ?>
-            <tr>
-                <td>Record Tidak Wujud</td>
-            </tr>
+            </div>
+            <!-- ... -->
         <?php
+        } else {
+            echo "No book found.";
         }
         ?>
         <!-- Pilihan Buku End -->
     </div>
+
 
 
     <?php
