@@ -4,7 +4,7 @@ include 'conn.php';
 session_start();
 
 // Check if session "idcust" dah wujud atau belum
-if (isset($_SESSION["IDStud"])) {
+if (isset($_SESSION["IDStud"]) || isset($_SESSION["IDTeachers"])) {
     $log = "Logout";
     $func_todo = "logout.php";
 } else {
@@ -16,6 +16,8 @@ if (isset($_SESSION["IDStud"])) {
 
 if (isset($_GET['stud_ID'])) {
     $stud_ID = $_GET['stud_ID'];
+}elseif (isset($_GET['teachers_ID'])) {
+    $teachers_ID = $_GET['teachers_ID'];
 } else {
     echo "Error";
 }
@@ -96,7 +98,7 @@ if (isset($_GET['book_ID'])) {
                                     <a class="nav-link" href="booking.php"><i class="fa fa-search"></i> Carian</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="#"><i class="fa fa-search-plus"></i> Carian Terperinci</a>
+                                    <a class="nav-link" href="advance_booking.php"><i class="fa fa-search-plus"></i> Carian Terperinci</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="#"><i class="fa fa-universal-access"></i> Berkaitan Kami</a>
@@ -121,19 +123,41 @@ if (isset($_GET['book_ID'])) {
     <div class="container_book">
         <form method="get" action="booking_sent.php">
             <?php
-            // Retrieve the stud_ID and book_ID from the URL parameters
-            $stud_ID = $_GET['stud_ID'] ?? '';
+            // Retrieve the book_ID from the URL parameters
             $book_ID = $_GET['book_ID'] ?? '';
 
-            // Use prepared statements to prevent SQL injection
-            $studentQuery = "SELECT * FROM tblstudent WHERE stud_ID = ?";
-            $stmt = $con->prepare($studentQuery);
-            $stmt->bind_param("s", $stud_ID);
-            $stmt->execute();
-            $studentResult = $stmt->get_result();
-            $student = $studentResult->fetch_assoc();
-            $stmt->close();
+            if ($stud_ID = $_GET['stud_ID'] ?? '') {
+                // Use prepared statements to prevent SQL injection
+                $studentQuery = "SELECT * FROM tblstudent WHERE stud_ID = ?";
+                $stmt = $con->prepare($studentQuery);
+                $stmt->bind_param("s", $stud_ID);
+                $stmt->execute();
+                $studentResult = $stmt->get_result();
+                $student = $studentResult->fetch_assoc();
+                $stmt->close();
 
+                // Display student details
+                echo "<h2>Student Information</h2>";
+                echo "<input name='txtstudID' value= '" . $student['stud_ID'] . "' hidden>";
+                echo "<p>Name: " . $student['stud_Name'] . "</p>";
+                echo "<p>Kelas: " . $student['stud_Class'] . "</p>";
+                // Display other student details...
+            } elseif ($teachers_ID = $_GET['teachers_ID'] ?? '') {
+                // Use prepared statements for teachers to prevent SQL injection
+                $teachersQuery = "SELECT * FROM tblteachers WHERE teachers_ID = ?";
+                $stmt = $con->prepare($teachersQuery);
+                $stmt->bind_param("s", $teachers_ID);
+                $stmt->execute();
+                $teachersResult = $stmt->get_result();
+                $teachers = $teachersResult->fetch_assoc();
+                $stmt->close();
+
+                // Display teachers details
+                echo "<h2>Teachers Information</h2>";
+                echo "<input name='txtteachersID' value= '" . $teachers['teachers_ID'] . "' hidden>";
+                echo "<p>Name: " . $teachers['teachers_Name'] . "</p>";
+                // Display other teacher details...
+            }
             // Use prepared statements for the book query
             $bookQuery = "SELECT * FROM tblbook WHERE book_ID = ?";
             $stmt = $con->prepare($bookQuery);
@@ -142,13 +166,6 @@ if (isset($_GET['book_ID'])) {
             $bookResult = $stmt->get_result();
             if ($bookResult->num_rows > 0) {
                 $book = $bookResult->fetch_assoc();
-
-                // Display student details
-                echo "<h2>Student Information</h2>";
-                echo "<input name='txtstudID' value= $student[stud_ID] hidden>";
-                echo "<p>Name: " . $student['stud_Name'] . "</p>";
-                echo "<p>Kelas: " . $student['stud_Class'] . "</p>";
-                // Display other student details...
 
                 // Display book details
                 echo "<h2>Book Information</h2>";
@@ -207,10 +224,6 @@ if (isset($_GET['book_ID'])) {
             <!-- Pilihan Buku End -->
         </form>
     </div>
-
-
-
-
 
     <?php
     mysqli_close($con);

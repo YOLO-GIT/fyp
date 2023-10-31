@@ -4,7 +4,7 @@ include 'conn.php';
 session_start();
 
 // Check if session "idcust" dah wujud atau belum
-if (isset($_SESSION["IDStud"])) {
+if (isset($_SESSION["IDStud"]) || isset($_SESSION["IDTeachers"])) {
     $log = "Logout";
     $func_todo = "logout.php";
 } else {
@@ -82,7 +82,7 @@ if (isset($_SESSION["IDStud"])) {
                                     <a class="nav-link" href="booking.php"><i class="fa fa-search"></i> Carian</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="#"><i class="fa fa-search-plus"></i> Carian Terperinci</a>
+                                    <a class="nav-link" href="advance_booking.php"><i class="fa fa-search-plus"></i> Carian Terperinci</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="#"><i class="fa fa-universal-access"></i> Berkaitan Kami</a>

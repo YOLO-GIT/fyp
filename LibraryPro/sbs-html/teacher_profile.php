@@ -3,7 +3,7 @@ session_start();
 include 'conn.php';
 
 // Check if session "idcust" dah wujud atau belum
-if (!$_SESSION["IDStud"]) {
+if (!$_SESSION["IDTeachers"]) {
     echo "<script>alert('Please Login First');</script>";
     echo "<script>window.location.href='login.php';</script>";
 }
@@ -46,38 +46,34 @@ if (!$_SESSION["IDStud"]) {
                                 <hr class="border-light m-0">
                                 <div class="card-body">
                                     <?php
-                                    $stud_ID = $_SESSION["IDStud"]; // Fetch the ID of the logged-in student
-                                    $query = "SELECT * FROM tblstudent WHERE stud_ID = '$stud_ID'"; // Fetch data only for the logged-in student
+                                    $Teachers_ID = $_SESSION["IDTeachers"]; // Fetch the ID of the logged-in student
+                                    $query = "SELECT * FROM tblteachers WHERE teachers_ID = '$Teachers_ID'"; // Fetch data only for the logged-in student
                                     $result = $con->query($query);
                                     if ($result && $result->num_rows > 0) {
                                         $row = $result->fetch_assoc();
                                     ?>
                                         <div class="form-group">
                                             <label class="form-label">ID</label>
-                                            <input type="text" class="form-control mb-1" value="<?= $row['stud_ID'] ?>">
+                                            <input type="text" class="form-control mb-1" value="<?= $row['teachers_ID'] ?>">
                                         </div>
                                         <div class="form-group">
                                             <label class="form-label">Nama</label>
-                                            <input type="text" class="form-control" value="<?= $row['stud_Name'] ?>">
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="form-label">Kelas</label>
-                                            <input type="text" class="form-control mb-1" value="<?= $row['stud_Class'] ?>">
+                                            <input type="text" class="form-control" value="<?= $row['teachers_Name'] ?>">
                                         </div>
                                         <div class="form-group">
                                             <label class="form-label">Username</label>
-                                            <input type="text" class="form-control mb-1" value="<?= $row['stud_username'] ?>">
+                                            <input type="text" class="form-control mb-1" value="<?= $row['teachers_username'] ?>">
                                         </div>
                                         <div class="form-group">
                                             <label class="form-label">Date Join</label>
-                                            <input type="text" class="form-control mb-1" value="<?= $row['date'] ?>">
+                                            <input type="text" class="form-control mb-1" value="<?= $row['date_teachers'] ?>">
                                         </div>
                                         <div class="alert alert-success mt-3">
                                             Your data is safely stored here.<br>
                                         </div>
                                     <?php
                                     } else {
-                                        echo "No data found for this student.";
+                                        echo "No data found for this teacher.";
                                     }
                                     ?>
                                 </div>

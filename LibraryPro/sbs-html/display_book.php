@@ -3,25 +3,38 @@ include 'conn.php';
 
 session_start();
 
-// Check if session "IDStud" already exists or not
 if (isset($_SESSION["IDStud"])) {
     $log = "Logout";
     $func_todo = "logout.php";
 
-    // Fetch student details based on $_SESSION["IDStud"]
     $stud_ID = $_SESSION["IDStud"];
 
-    // Use prepared statements to prevent SQL injection
     $studentQuery = "SELECT * FROM tblstudent WHERE stud_ID = ?";
     $stmt = $con->prepare($studentQuery);
     $stmt->bind_param("s", $stud_ID);
     $stmt->execute();
     $result = $stmt->get_result();
     $row1 = $result->fetch_assoc();
+    $statement_res = "stud_ID=" . $row1['stud_ID'];
+    $stmt->close();
+} elseif (isset($_SESSION["IDTeachers"])) {
+    $log = "Logout";
+    $func_todo = "logout.php";
+
+    $teachers_ID = $_SESSION["IDTeachers"];
+
+    $teachersQuery = "SELECT * FROM tblteachers WHERE teachers_ID = ?";
+    $stmt = $con->prepare($teachersQuery);
+    $stmt->bind_param("s", $teachers_ID);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $row1 = $result->fetch_assoc();
+    $statement_res = "teachers_ID=" . $row1['teachers_ID'];
     $stmt->close();
 } else {
     $log = "Login";
     $func_todo = "login.php";
+    $statement_res = "";
     echo "<script>alert('Please Login First');</script>";
     echo "<script>window.location.href='login.php';</script>";
 }
@@ -109,7 +122,7 @@ if (isset($_GET['book_ID'])) {
                                     <a class="nav-link" href="#"><i class="fa fa-universal-access"></i> Berkaitan Kami</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="<?= $func_todo ?>"><i class="fa fa-sign-out"></i> <?= $log ?></a>
+                                    <a class="nav-link" href="<?= $func_todo ?>"><i class="fa fa-sign-out"></i><?= $log ?></a>
                                 </li>
                             </ul>
                         </div>
@@ -193,7 +206,7 @@ if (isset($_GET['book_ID'])) {
                             </div>
                             <br>
                             <div class="text-right mr-3 mb-3">
-                                <a href="booking_choosed.php?book_ID=<?= $row['book_ID'] ?>&stud_ID=<?= $row1['stud_ID'] ?>" class="btn btn-primary">Booking</a>
+                                <a href="booking_choosed.php?book_ID=<?= $row['book_ID'] ?>&<?= $statement_res ?>" class="btn btn-primary">Booking</a>
                                 &nbsp;
                                 <a href="booking.php" class="btn btn-primary">Kembali Semula</a>
                             </div>
