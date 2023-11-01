@@ -15,11 +15,15 @@ if (isset($_GET["cmdlogin"])) {
     $sql = "SELECT * FROM `tblstudent` WHERE stud_username='$username' AND stud_pwd='$password'";
     // Define SQL Statement for comparison
     $teacher_sql = "SELECT * FROM `tblteachers` WHERE teachers_username='$username' AND teachers_Password='$password'";
+    // Admin
+    $admin_sql = "SELECT * FROM `tbllibrarians` WHERE librarians_uname='$username' AND librarians_password='$password'";
 
     // Execute SQL Statement
     $res = mysqli_query($con, $sql);
     // Execute SQL Statement
     $teacher_res = mysqli_query($con, $teacher_sql);
+    // Execute SQL Statement
+    $admin_res = mysqli_query($con, $admin_sql);
 
     // Check returning value in $res for validation
     if (mysqli_num_rows($res) > 0) {
@@ -40,6 +44,13 @@ if (isset($_GET["cmdlogin"])) {
         // Redirect to index.php
         echo "<script>window.location.href='index.php';</script>";
         exit;
+    } elseif (mysqli_num_rows($admin_res) > 0) {
+        // Create a session with a name IDStud
+        $_SESSION["IDAdmin"] = $validate["librarians_ID"];
+        // Inform to the user
+        echo "<script>alert('Login Success');</script>";
+        // Redirect to index.php
+        echo "<script>window.location.href='../../admin/admin_panel/index.php';</script>";
     } else {
         echo "<script>alert('Invalid username or password');</script>";
     }

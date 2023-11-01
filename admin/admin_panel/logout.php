@@ -5,4 +5,4 @@ session_start();
 session_destroy();
 
 // redirect page to file "accomodation.php"
-echo "<script>window.location.href='./login.php';</script>";
+echo "<script>window.location.href='../../LibraryPro/sbs-html/index.php';</script>";
