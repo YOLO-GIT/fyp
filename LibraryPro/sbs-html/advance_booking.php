@@ -4,14 +4,39 @@ include 'conn.php';
 session_start();
 
 // Check if session "idcust" dah wujud atau belum
-if (isset($_SESSION["IDStud"]) || isset($_SESSION["IDTeachers"])) {
+if (isset($_SESSION["IDStud"])) {
     $log = "Logout";
     $func_todo = "logout.php";
+    $profile = "profile.php";
+    $stud_ID = $_SESSION["IDStud"];
+
+    $studentQuery = "SELECT * FROM tblstudent WHERE stud_ID = ?";
+    $stmt = $con->prepare($studentQuery);
+    $stmt->bind_param("s", $stud_ID);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $row1 = $result->fetch_assoc();
+    $statement_res = "Welcome Back, " . $row1['stud_Name'];
+    $stmt->close();
+} elseif (isset($_SESSION["IDTeachers"])) {
+    $log = "Logout";
+    $func_todo = "logout.php";
+    $profile = "teacher_profile.php";
+
+    $teachers_ID = $_SESSION["IDTeachers"];
+
+    $teachersQuery = "SELECT * FROM tblteachers WHERE teachers_ID = ?";
+    $stmt = $con->prepare($teachersQuery);
+    $stmt->bind_param("s", $teachers_ID);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $row1 = $result->fetch_assoc();
+    $statement_res = "Welcome Back, " . $row1['teachers_Name'];
+    $stmt->close();
 } else {
+    $statement_res = null;
     $log = "Login";
     $func_todo = "login.php";
-    echo "<script>alert('Please Login First');</script>";
-    echo "<script>window.location.href='login.php';</script>";
 }
 ?>
 
@@ -82,10 +107,13 @@ if (isset($_SESSION["IDStud"]) || isset($_SESSION["IDTeachers"])) {
                                     <a class="nav-link" href="booking.php"><i class="fa fa-search"></i> Carian</a>
                                 </li>
                                 <li class="nav-item active">
-                                    <a class="nav-link" href="#"><i class="fa fa-search-plus"></i> Carian Terperinci</a>
+                                    <a class="nav-link" href="advance_booking.php"><i class="fa fa-search-plus"></i> Carian Terperinci</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="#"><i class="fa fa-universal-access"></i> Berkaitan Kami</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="buku_saya.php"><i class="fa fa-universal-access"></i> Buku Saya</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="<?= $func_todo ?>"><i class="fa fa-sign-out"></i> <?= $log ?></a>
@@ -95,8 +123,8 @@ if (isset($_SESSION["IDStud"]) || isset($_SESSION["IDTeachers"])) {
                     </nav>
                 </div>
                 <div class="col-md-2">
-                    <ul class="email text_align_right">
-                        <li class="d_none"><a href="login.php"><i class="fa fa-user" aria-hidden="true"></i></a></li>
+                    <ul class="text_align_right">
+                        <li class="nav-item"><a href="<?= $profile ?>"><i class="fa fa-user" aria-hidden="true"></i></a>&nbsp;&nbsp;<?= $statement_res ?></li>
                     </ul>
                 </div>
             </div>

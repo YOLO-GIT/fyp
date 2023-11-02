@@ -1,22 +1,50 @@
 <?php
 include 'conn.php';
 
+//Timezone
+date_default_timezone_set("Asia/Kuala_Lumpur");
+
 session_start();
 
 // Check if session "idcust" dah wujud atau belum
-if (isset($_SESSION["IDStud"]) || isset($_SESSION["IDTeachers"])) {
+if (isset($_SESSION["IDStud"])) {
     $log = "Logout";
     $func_todo = "logout.php";
+    $profile = "profile.php";
+    $stud_ID = $_SESSION["IDStud"];
+
+    $studentQuery = "SELECT * FROM tblstudent WHERE stud_ID = ?";
+    $stmt = $con->prepare($studentQuery);
+    $stmt->bind_param("s", $stud_ID);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $row1 = $result->fetch_assoc();
+    $statement_res = "Welcome Back, " . $row1['stud_Name'];
+    $stmt->close();
+} elseif (isset($_SESSION["IDTeachers"])) {
+    $log = "Logout";
+    $func_todo = "logout.php";
+    $profile = "teacher_profile.php";
+
+    $teachers_ID = $_SESSION["IDTeachers"];
+
+    $teachersQuery = "SELECT * FROM tblteachers WHERE teachers_ID = ?";
+    $stmt = $con->prepare($teachersQuery);
+    $stmt->bind_param("s", $teachers_ID);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $row1 = $result->fetch_assoc();
+    $statement_res = "Welcome Back, " . $row1['teachers_Name'];
+    $stmt->close();
 } else {
+    $statement_res = null;
     $log = "Login";
     $func_todo = "login.php";
-    echo "<script>alert('Please Login First');</script>";
-    echo "<script>window.location.href='login.php';</script>";
 }
 
 if (isset($_GET['stud_ID'])) {
     $stud_ID = $_GET['stud_ID'];
-}elseif (isset($_GET['teachers_ID'])) {
+} elseif (isset($_GET['teachers_ID'])) {
     $teachers_ID = $_GET['teachers_ID'];
 } else {
     echo "Error";
@@ -104,6 +132,9 @@ if (isset($_GET['book_ID'])) {
                                     <a class="nav-link" href="#"><i class="fa fa-universal-access"></i> Berkaitan Kami</a>
                                 </li>
                                 <li class="nav-item">
+                                    <a class="nav-link" href="buku_saya.php"><i class="fa fa-universal-access"></i> Buku Saya</a>
+                                </li>
+                                <li class="nav-item">
                                     <a class="nav-link" href="<?= $func_todo ?>"><i class="fa fa-sign-out"></i> <?= $log ?></a>
                                 </li>
                             </ul>
@@ -111,8 +142,8 @@ if (isset($_GET['book_ID'])) {
                     </nav>
                 </div>
                 <div class="col-md-2">
-                    <ul class="email text_align_right">
-                        <li class="d_none"><a href="login.php"><i class="fa fa-user" aria-hidden="true"></i></a></li>
+                    <ul class="text_align_right">
+                        <li class="nav-item"><a href="<?= $profile ?>"><i class="fa fa-user" aria-hidden="true"></i></a>&nbsp;&nbsp;<?= $statement_res ?></li>
                     </ul>
                 </div>
             </div>
@@ -139,8 +170,12 @@ if (isset($_GET['book_ID'])) {
                 // Display student details
                 echo "<h2>Student Information</h2>";
                 echo "<input name='txtstudID' value= '" . $student['stud_ID'] . "' hidden>";
+                echo "<input name='txtstudName' value= '" . $student['stud_Name'] . "' hidden>";
+                echo "<div class='alert alert-primary'>";
+                echo "<p>Name: " . $student['stud_ID'] . "</p>";
                 echo "<p>Name: " . $student['stud_Name'] . "</p>";
                 echo "<p>Kelas: " . $student['stud_Class'] . "</p>";
+                echo "</div>";
                 // Display other student details...
             } elseif ($teachers_ID = $_GET['teachers_ID'] ?? '') {
                 // Use prepared statements for teachers to prevent SQL injection
@@ -155,7 +190,11 @@ if (isset($_GET['book_ID'])) {
                 // Display teachers details
                 echo "<h2>Teachers Information</h2>";
                 echo "<input name='txtteachersID' value= '" . $teachers['teachers_ID'] . "' hidden>";
+                echo "<input name='txtteachersName' value= '" . $teachers['teachers_Name'] . "' hidden>";
+                echo "<div class='alert alert-primary'>";
+                echo "<p>Name: " . $teachers['teachers_ID'] . "</p>";
                 echo "<p>Name: " . $teachers['teachers_Name'] . "</p>";
+                echo "</div>";
                 // Display other teacher details...
             }
             // Use prepared statements for the book query
@@ -180,6 +219,7 @@ if (isset($_GET['book_ID'])) {
                         <div class="col-md-8">
                             <div class="card-body">
                                 <input name="txtbookID" value="<?= $book["book_ID"] ?>" hidden>
+                                <input name="txtbookName" value="<?= $book["book_title"] ?>" hidden>
                                 <h2 class="card-title"><?= $book["book_title"] ?></h2>
                                 <p class="bold-text">Pengarang:&nbsp;&nbsp;</p>
                                 <div class="alert alert-primary">
@@ -199,7 +239,7 @@ if (isset($_GET['book_ID'])) {
                                 </div>
                                 <p class="bold-text">Masa Booking:&nbsp;&nbsp;</p>
                                 <div class="alert alert-primary">
-                                    <input class="form-control" type="time" name="masabooking">
+                                    <input class="form-control" type="text" name="masabooking" value="<?php echo date("h:i:s a") ?>">
                                 </div>
                                 <p class="bold-text">Tarikh Booking:&nbsp;&nbsp;</p>
                                 <div class="alert alert-primary">

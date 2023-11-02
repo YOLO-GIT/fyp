@@ -10,9 +10,9 @@ if (isset($_SESSION["IDStud"]) || isset($_SESSION["IDTeachers"])) {
 }
 
 if (isset($_GET["cmdbooking"])) {
-    $stud_ID = $_GET["txtstudID"];
-    $teachers_ID = $_GET["txtteachersID"];
-    $book_ID = $_GET["txtbookID"];
+    $stud_ID = $_GET["txtstudName"];
+    $teachers_ID = $_GET["txtteachersName"];
+    $book_ID = $_GET["txtbookName"];
     $masa_booking = $_GET["masabooking"];
     $tarikh_booking = $_GET["dtbooking"];
 }
@@ -36,11 +36,11 @@ $new_status = "isBooking";
 
 $idbooking = $tahun . $total;
 
-$check_id_query = "SELECT * FROM tblbooking WHERE book_ID='$book_ID'";
+$check_id_query = "SELECT * FROM tblbooking WHERE book_title='$book_ID'";
 $check_id = mysqli_query($con, $check_id_query);
-$check_stud_query = "SELECT * FROM tblbooking WHERE stud_ID='$stud_ID'";
+$check_stud_query = "SELECT * FROM tblbooking WHERE stud_Name='$stud_ID'";
 $check_stud = mysqli_query($con, $check_stud_query);
-$check_teacher_query = "SELECT * FROM tblbooking WHERE teachers_ID='$teachers_ID'";
+$check_teacher_query = "SELECT * FROM tblbooking WHERE teachers_Name='$teachers_ID'";
 $check_teacher = mysqli_query($con, $check_teacher_query);
 
 if (mysqli_num_rows($check_id) > 0) {
@@ -65,13 +65,14 @@ if (mysqli_num_rows($check_id) > 0) {
     // Sending back to the Teacher Panel.
     echo "<script>window.location.href='booking.php';</script>";
 } else {
-    $sql = "INSERT INTO `tblbooking`(`booking_ID`, `book_ID`, `stud_ID`, `teachers_ID`, `date_booked`, `time_booked`, `status`) 
+    $sql = "INSERT INTO `tblbooking`(`booking_ID`, `book_title`, `stud_Name`, `teachers_Name`, `date_booked`, `time_booked`, `status`) 
     VALUES ('$idbooking','$book_ID','$stud_ID','$teachers_ID','$tarikh_booking','$masa_booking','$new_status')";
 
     mysqli_query($con, $sql);
 
+    $_SESSION['booking_ID'] = $idbooking;
     echo "<script>alert('Anda Telah berjaya Booking');</script>";
-    echo "<script>window.location.href='booking.php';</script>";
+    echo "<script>window.location.href='buku_saya.php';</script>";
 }
 
 mysqli_close($con);
