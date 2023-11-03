@@ -8,6 +8,7 @@ if (isset($_SESSION["IDStud"])) {
     $log = "Logout";
     $func_todo = "logout.php";
     $profile = "profile.php";
+
     $stud_ID = $_SESSION["IDStud"];
 
     $studentQuery = "SELECT * FROM tblstudent WHERE stud_ID = ?";
@@ -37,17 +38,9 @@ if (isset($_SESSION["IDStud"])) {
     $statement_res = null;
     $log = "Login";
     $func_todo = "login.php";
+    echo "<script>alert('Sila Login Dahulu.');</script>";
+    echo "<script>window.location.href='login.php';</script>";
 }
-
-if (isset($_SESSION['booking_ID'])) {
-    $booking_ID = $_SESSION['booking_ID'];
-    // Use $booking_ID to display the booking data
-} else {
-    // Handle the case when the booking ID is not set in the session
-    echo "<script>alert('Sila Booking Buku Dahulu');</script>";
-    echo "<script>window.location.href='index.php';</script>";
-}
-
 ?>
 
 
@@ -147,7 +140,13 @@ if (isset($_SESSION['booking_ID'])) {
 
     <div class="container_book">
         <?php
-        $query = "SELECT * FROM tblbooking WHERE booking_ID = $booking_ID";
+        if (isset($_SESSION["IDStud"])) {
+            $query = "SELECT * FROM tblbooking WHERE user_ID = '$stud_ID'";
+        } elseif (isset($_SESSION["IDTeachers"]))
+            $query = "SELECT * FROM tblbooking WHERE user_ID = '$teachers_ID'";
+        else {
+            echo "nOT eXISTED";
+        }
         $result = $con->query($query);
         if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
@@ -164,8 +163,7 @@ if (isset($_SESSION['booking_ID'])) {
                                 <h2 class="card-title"><?= $row["book_title"] ?></h2>
                                 <p class="bold-text">Nama:&nbsp;&nbsp;</p>
                                 <div class="alert alert-primary">
-                                    <p><?= $row["stud_Name"] ?></p>
-                                    <p><?= $row["teachers_Name"] ?></p>
+                                    <p><?= $row["user_Name"] ?></p>
                                 </div>
                                 <p class="bold-text">Tarikh:&nbsp;&nbsp;</p>
                                 <div class="alert alert-primary">

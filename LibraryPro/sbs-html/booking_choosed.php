@@ -169,8 +169,8 @@ if (isset($_GET['book_ID'])) {
 
                 // Display student details
                 echo "<h2>Student Information</h2>";
-                echo "<input name='txtstudID' value= '" . $student['stud_ID'] . "' hidden>";
-                echo "<input name='txtstudName' value= '" . $student['stud_Name'] . "' hidden>";
+                echo "<input name='txtuserID' value= '" . $student['stud_ID'] . "' hidden>";
+                echo "<input name='txtuserName' value= '" . $student['stud_Name'] . "' hidden>";
                 echo "<div class='alert alert-primary'>";
                 echo "<p>Name: " . $student['stud_ID'] . "</p>";
                 echo "<p>Name: " . $student['stud_Name'] . "</p>";
@@ -189,8 +189,8 @@ if (isset($_GET['book_ID'])) {
 
                 // Display teachers details
                 echo "<h2>Teachers Information</h2>";
-                echo "<input name='txtteachersID' value= '" . $teachers['teachers_ID'] . "' hidden>";
-                echo "<input name='txtteachersName' value= '" . $teachers['teachers_Name'] . "' hidden>";
+                echo "<input name='txtuserID' value= '" . $teachers['teachers_ID'] . "' hidden>";
+                echo "<input name='txtuserName' value= '" . $teachers['teachers_Name'] . "' hidden>";
                 echo "<div class='alert alert-primary'>";
                 echo "<p>Name: " . $teachers['teachers_ID'] . "</p>";
                 echo "<p>Name: " . $teachers['teachers_Name'] . "</p>";

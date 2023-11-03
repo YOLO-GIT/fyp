@@ -10,8 +10,8 @@ if (isset($_SESSION["IDStud"]) || isset($_SESSION["IDTeachers"])) {
 }
 
 if (isset($_GET["cmdbooking"])) {
-    $stud_ID = $_GET["txtstudName"];
-    $teachers_ID = $_GET["txtteachersName"];
+    $user_Name = $_GET["txtuserName"];
+    $user_ID = $_GET["txtuserID"];
     $book_ID = $_GET["txtbookName"];
     $masa_booking = $_GET["masabooking"];
     $tarikh_booking = $_GET["dtbooking"];
@@ -36,12 +36,15 @@ $new_status = "isBooking";
 
 $idbooking = $tahun . $total;
 
+// TO CHECK BOOK ID START
 $check_id_query = "SELECT * FROM tblbooking WHERE book_title='$book_ID'";
 $check_id = mysqli_query($con, $check_id_query);
-$check_stud_query = "SELECT * FROM tblbooking WHERE stud_Name='$stud_ID'";
-$check_stud = mysqli_query($con, $check_stud_query);
-$check_teacher_query = "SELECT * FROM tblbooking WHERE teachers_Name='$teachers_ID'";
-$check_teacher = mysqli_query($con, $check_teacher_query);
+// TO CHECK BOOK ID END
+
+// TO CHECK STUDENT ID START
+$check_user_query = "SELECT * FROM tblbooking WHERE user_ID='$user_ID'";
+$check_user = mysqli_query($con, $check_user_query);
+// TO CHECK STUDENT ID END
 
 if (mysqli_num_rows($check_id) > 0) {
     // Validation if the content is same
@@ -50,14 +53,7 @@ if (mysqli_num_rows($check_id) > 0) {
     mysqli_close($con);
     // Sending back to the Teacher Panel.
     echo "<script>window.location.href='booking.php';</script>";
-} elseif (mysqli_num_rows($check_stud) > 0) {
-    // Validation if the content is same
-    echo "<script>alert('Anda hanya boleh booking buku sekali sahaja');</script>";
-    // Close the DB to ensure it will not updated.
-    mysqli_close($con);
-    // Sending back to the Teacher Panel.
-    echo "<script>window.location.href='booking.php';</script>";
-} elseif (mysqli_num_rows($check_teacher)) {
+} elseif (mysqli_num_rows($check_user) > 0) {
     // Validation if the content is same
     echo "<script>alert('Anda hanya boleh booking buku sekali sahaja');</script>";
     // Close the DB to ensure it will not updated.
@@ -65,8 +61,8 @@ if (mysqli_num_rows($check_id) > 0) {
     // Sending back to the Teacher Panel.
     echo "<script>window.location.href='booking.php';</script>";
 } else {
-    $sql = "INSERT INTO `tblbooking`(`booking_ID`, `book_title`, `stud_Name`, `teachers_Name`, `date_booked`, `time_booked`, `status`) 
-    VALUES ('$idbooking','$book_ID','$stud_ID','$teachers_ID','$tarikh_booking','$masa_booking','$new_status')";
+    $sql = "INSERT INTO `tblbooking`(`booking_ID`, `book_title`, `user_Name`, `user_ID`, `date_booked`, `time_booked`, `status`) 
+    VALUES ('$idbooking','$book_ID','$user_Name','$user_ID','$tarikh_booking', '$masa_booking','$new_status')";
 
     mysqli_query($con, $sql);
 

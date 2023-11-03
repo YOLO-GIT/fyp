@@ -40,6 +40,7 @@ if (isset($_SESSION["IDStud"])) {
     $log = "Login";
     $func_todo = "login.php";
 }
+
 ?>
 
 <!DOCTYPE html>

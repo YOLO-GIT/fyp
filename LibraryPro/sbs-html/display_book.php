@@ -16,7 +16,9 @@ if (isset($_SESSION["IDStud"])) {
     $stmt->execute();
     $result = $stmt->get_result();
     $row1 = $result->fetch_assoc();
+    $statement_sent = 'stud_ID=' . $row1['stud_ID'];
     $statement_res = "Welcome Back, " . $row1['stud_Name'];
+
     $stmt->close();
 } elseif (isset($_SESSION["IDTeachers"])) {
     $log = "Logout";
@@ -31,6 +33,7 @@ if (isset($_SESSION["IDStud"])) {
     $stmt->execute();
     $result = $stmt->get_result();
     $row1 = $result->fetch_assoc();
+    $statement_sent = 'teachers_ID=' . $row1['teachers_ID'];
     $statement_res = "Welcome Back, " . $row1['teachers_Name'];
     $stmt->close();
 } else {
@@ -209,7 +212,7 @@ if (isset($_GET['book_ID'])) {
                             </div>
                             <br>
                             <div class="text-right mr-3 mb-3">
-                                <a href="booking_choosed.php?book_ID=<?= $row['book_ID'] ?>&<?= $statement_res ?>" class="btn btn-primary">Booking</a>
+                                <a href="booking_choosed.php?book_ID=<?= $row['book_ID'] ?>&<?= $statement_sent ?>" class="btn btn-primary">Booking</a>
                                 &nbsp;
                                 <a href="booking.php" class="btn btn-primary">Kembali Semula</a>
                             </div>

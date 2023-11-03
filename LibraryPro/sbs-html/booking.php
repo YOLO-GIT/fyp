@@ -37,6 +37,8 @@ if (isset($_SESSION["IDStud"])) {
     $statement_res = null;
     $log = "Login";
     $func_todo = "login.php";
+    echo "<script>alert('Sila Login Dahulu.');</script>";
+    echo "<script>window.location.href='login.php';</script>";
 }
 ?>
 
@@ -170,7 +172,7 @@ if (isset($_SESSION["IDStud"])) {
     </div>
     <!-- End Book Search -->
 
-    <!-- Booking -->
+    <!-- Booking Start -->
     <div class="container_book">
 
         <form action="" method="GET">
@@ -191,6 +193,7 @@ if (isset($_SESSION["IDStud"])) {
             </div>
         </form>
 
+        <!-- PHP Start -->
         <?php
         //Search
         $filtervalues = isset($_GET['search']) ? $_GET['search'] : '';
@@ -258,15 +261,21 @@ if (isset($_SESSION["IDStud"])) {
                                         <td class="bold-text">Sinopsis Buku:&nbsp;&nbsp;<?= $row["book_desc"] ?></td>
                                     </tr>
                                     <?php
-                                    // $book_title = $row['book_title'];
-                                    // $statusQuery = "SELECT bb.status FROM tblbooking bb JOIN tblbook b ON bb.book_title = b.book_title WHERE b.book_title = $book_title";
-                                    // $statusResult = $con->query($statusQuery);
-                                    // if ($statusResult->num_rows > 0) {
-                                    //     $statusData = $statusResult->fetch_assoc();
-                                    //     echo "<tr><td class='bold-text'>Status:&nbsp;&nbsp;" . $statusData['status'] . "</td></tr>";
-                                    // } else {
-                                    //     echo null;
-                                    // }
+                                    $book_title = $row['book_title'];
+                                    $statusQuery = "SELECT bb.status FROM tblbooking bb JOIN tblbook b ON bb.book_title = b.book_title WHERE b.book_title = ?";
+                                    $stmt = $con->prepare($statusQuery);
+                                    $stmt->bind_param("s", $book_title);
+                                    $stmt->execute();
+                                    $statusResult = $stmt->get_result();
+
+                                    if ($statusResult->num_rows > 0) {
+                                        $statusData = $statusResult->fetch_assoc();
+                                        echo "<tr><td class='bold-text'>Status:&nbsp;&nbsp;" . $statusData['status'] . "</td></tr>";
+                                    } else {
+                                        echo null;
+                                    }
+
+                                    $stmt->close();
                                     ?>
                                 </table>
                             </div>
@@ -289,7 +298,7 @@ if (isset($_SESSION["IDStud"])) {
         ?>
         <!-- PHP Ends -->
 
-        <!-- PHP Ends -->
+        <!-- Result Start -->
         <form action="" method="GET">
             <!-- Result Show Start -->
             <div class="input-group mb-3">
@@ -311,7 +320,9 @@ if (isset($_SESSION["IDStud"])) {
             </div>
             <!-- Result Show End -->
         </form>
+        <!-- Result End -->
 
+        <!-- Pagination Start -->
         <?php
         echo '<div class="pagination">';
         for ($i = 1; $i <= $totalPages; $i++) {
@@ -335,6 +346,7 @@ if (isset($_SESSION["IDStud"])) {
         }
         echo '</div>';
         ?>
+        <!-- Pagination End -->
 
     </div>
     <!-- Booking End -->
