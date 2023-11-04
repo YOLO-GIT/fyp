@@ -115,7 +115,7 @@ if (isset($_SESSION["IDStud"])) {
                                     <a class="nav-link" href="#"><i class="fa fa-universal-access"></i> Berkaitan Kami</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="buku_saya.php"><i class="fa fa-universal-access"></i> Buku Saya</a>
+                                    <a class="nav-link" href="buku_saya.php"><i class="fa fa-book"></i> Buku Saya</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="<?= $func_todo ?>"><i class="fa fa-sign-out"></i> <?= $log ?></a>

@@ -129,10 +129,13 @@ if (isset($_GET["cmdlogin"])) {
                                     <a class="nav-link" href="booking.php"><i class="fa fa-search"></i> Carian</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="#"><i class="fa fa-search-plus"></i> Carian Terperinci</a>
+                                    <a class="nav-link" href="advance_booking.php"><i class="fa fa-search-plus"></i> Carian Terperinci</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="#"><i class="fa fa-universal-access"></i> Berkaitan Kami</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="buku_saya.php"><i class="fa fa-book"></i> Buku Saya</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="login.php"><i class="fa fa-sign-out"></i> Login</a>
@@ -183,7 +186,7 @@ if (isset($_GET["cmdlogin"])) {
                         <h3>Click <a href="register.php">here for registration</a></h3>
                         <h3>Click <a href="logout.php">here for logout</a></h3>
                         <h3>Forgot Password?
-                            <a href="forgotpwd.php" onclick="return confirm('Adakah betul anda tidak ingat katalaluan anda?');">
+                            <a href="./forgot_pwd/forgotpwd.php" onclick="return confirm('Adakah betul anda tidak ingat katalaluan anda?');">
                                 Click Here
                             </a>
                         </h3>

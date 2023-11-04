@@ -78,11 +78,11 @@ if (isset($_GET["cmdregister"])) {
         $verificationCode = bin2hex(random_bytes(3));
 
         // Store the verification code in the database
-        $sql_login = "INSERT INTO `tblstudent`(`stud_ID`, `stud_Name`, `stud_username`, `stud_Class`, `email`, `stud_pwd`, `date`, `verification_code`) 
+        $sql_register = "INSERT INTO `tblstudent`(`stud_ID`, `stud_Name`, `stud_username`, `stud_Class`, `email`, `stud_pwd`, `date`, `verification_code`) 
         VALUES ('$id','$clean_name','$uname','$kelas','$email','$password',NOW(), '$verificationCode')";
 
         //Execute SQL Login Statement
-        $res = mysqli_query($con, $sql_login);
+        mysqli_query($con, $sql_register);
 
         //Create instance of phpmailer
         $mail = new PHPMailer(true);
