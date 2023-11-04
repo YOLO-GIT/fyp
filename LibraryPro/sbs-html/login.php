@@ -182,6 +182,11 @@ if (isset($_GET["cmdlogin"])) {
                         <h3>Not Register?</h3>
                         <h3>Click <a href="register.php">here for registration</a></h3>
                         <h3>Click <a href="logout.php">here for logout</a></h3>
+                        <h3>Forgot Password?
+                            <a href="forgotpwd.php" onclick="return confirm('Adakah betul anda tidak ingat katalaluan anda?');">
+                                Click Here
+                            </a>
+                        </h3>
                     </div>
                 </div>
             </div>

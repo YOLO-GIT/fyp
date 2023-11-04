@@ -1,6 +1,6 @@
 <?php
 session_start();
-include 'conn.php';
+include '../conn.php';
 
 // Check if session "idcust" dah wujud atau belum
 if (!$_SESSION["IDStud"]) {
@@ -15,7 +15,7 @@ if (!$_SESSION["IDStud"]) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User | Profile</title>
-    <link rel="stylesheet" href="profile_style.css">
+    <link rel="stylesheet" href="./profile_style.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 
@@ -41,7 +41,7 @@ if (!$_SESSION["IDStud"]) {
                         <div class="tab-content">
                             <div class="tab-pane fade active show" id="account-general">
                                 <div class="card-body media align-items-center">
-                                    <img src="profile.png" alt="#" class="d-block ui-w-80">
+                                    <img src="./profile.png" alt="#" class="d-block ui-w-80">
                                 </div>
                                 <hr class="border-light m-0">
                                 <div class="card-body">
@@ -69,7 +69,7 @@ if (!$_SESSION["IDStud"]) {
                                             <input type="text" class="form-control mb-1" value="<?= $row['stud_username'] ?>">
                                         </div>
                                         <div class="form-group">
-                                            <label class="form-label">Date Join</label>
+                                            <label class="form-label">Tarikh Masuk</label>
                                             <input type="text" class="form-control mb-1" value="<?= $row['date'] ?>">
                                         </div>
                                         <div class="alert alert-success mt-3">
@@ -81,23 +81,24 @@ if (!$_SESSION["IDStud"]) {
                                     }
                                     ?>
                                 </div>
-
-
                             </div>
                             <div class="tab-pane fade" id="account-change-password">
                                 <div class="card-body pb-2">
-                                    <div class="form-group">
-                                        <label class="form-label">Current password</label>
-                                        <input type="password" class="form-control">
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="form-label">New password</label>
-                                        <input type="password" class="form-control">
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="form-label">Repeat new password</label>
-                                        <input type="password" class="form-control">
-                                    </div>
+                                    <form method="get" action="change_pwd_stud.php">
+                                        <div class="form-group">
+                                            <label class="form-label">Katalaluan Kini</label>
+                                            <input type="password" class="form-control" name="current_password" required maxlength="9">
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="form-label">Katalaluan Baharu</label>
+                                            <input type="password" class="form-control" name="new_password" required maxlength="9">
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="form-label">Ulang Katalaluan Baharu</label>
+                                            <input type="password" class="form-control" name="repeat_new_password" required maxlength="9">
+                                        </div>
+                                        <button class="btn btn-primary" name="cmdchange" onclick="return confirm('Adakah anda pasti untuk mengemaskini katalaluan anda?');">Simpan</button>
+                                    </form>
                                 </div>
                             </div>
                             <div class="tab-pane fade" id="account-info">
@@ -258,7 +259,7 @@ if (!$_SESSION["IDStud"]) {
                 </div>
             </div>
             <div class="text-left mt-3">
-                <button type="button" class="btn btn-primary"><a href="index.php" style="color:#fff;">Return to Home Page</a></button>
+                <button type="button" class="btn btn-primary"><a href="../index.php" style="color:#fff;">Return to Home Page</a></button>
             </div>
         </div>
     </section>

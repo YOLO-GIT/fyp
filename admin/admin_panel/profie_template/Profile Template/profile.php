@@ -1,12 +1,5 @@
 <?php
-session_start();
 include "../../config/dbconnect.php";
-
-// Check if session "idcust" dah wujud atau belum
-if (!$_SESSION["valid"]) {
-    echo "<script>alert('Please Login First');</script>";
-    echo "<script>window.location.href='../../login.php';</script>";
-}
 ?>
 <!DOCTYPE html>
 <html lang="en">

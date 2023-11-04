@@ -1,6 +1,6 @@
 <?php
 session_start();
-include 'conn.php';
+include '../conn.php';
 
 // Check if session "idcust" dah wujud atau belum
 if (!$_SESSION["IDTeachers"]) {
@@ -41,7 +41,7 @@ if (!$_SESSION["IDTeachers"]) {
                         <div class="tab-content">
                             <div class="tab-pane fade active show" id="account-general">
                                 <div class="card-body media align-items-center">
-                                    <img src="profile.png" alt="#" class="d-block ui-w-80">
+                                    <img src="./profile.png" alt="#" class="d-block ui-w-80">
                                 </div>
                                 <hr class="border-light m-0">
                                 <div class="card-body">
@@ -65,7 +65,7 @@ if (!$_SESSION["IDTeachers"]) {
                                             <input type="text" class="form-control mb-1" value="<?= $row['teachers_username'] ?>">
                                         </div>
                                         <div class="form-group">
-                                            <label class="form-label">Date Join</label>
+                                            <label class="form-label">Tarikh Masuk</label>
                                             <input type="text" class="form-control mb-1" value="<?= $row['date_teachers'] ?>">
                                         </div>
                                         <div class="alert alert-success mt-3">
@@ -83,15 +83,15 @@ if (!$_SESSION["IDTeachers"]) {
                             <div class="tab-pane fade" id="account-change-password">
                                 <div class="card-body pb-2">
                                     <div class="form-group">
-                                        <label class="form-label">Current password</label>
+                                        <label class="form-label">Katalaluan Kini</label>
                                         <input type="password" class="form-control">
                                     </div>
                                     <div class="form-group">
-                                        <label class="form-label">New password</label>
+                                        <label class="form-label">Katalaluan Baharu</label>
                                         <input type="password" class="form-control">
                                     </div>
                                     <div class="form-group">
-                                        <label class="form-label">Repeat new password</label>
+                                        <label class="form-label">Ulang Katalaluan Baharu</label>
                                         <input type="password" class="form-control">
                                     </div>
                                 </div>
@@ -254,7 +254,7 @@ if (!$_SESSION["IDTeachers"]) {
                 </div>
             </div>
             <div class="text-left mt-3">
-                <button type="button" class="btn btn-primary"><a href="index.php" style="color:#fff;">Return to Home Page</a></button>
+                <button type="button" class="btn btn-primary"><a href="../index.php" style="color:#fff;">Return to Home Page</a></button>
             </div>
         </div>
     </section>

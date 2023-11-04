@@ -103,9 +103,9 @@ function teacherDelete(id){
     });
 }
 
-function showOrders(){
+function showBooking(){
     $.ajax({
-        url:"./adminView/viewAllOrders.php",
+        url:"./adminView/viewBooking.php",
         method:"post",
         data:{record:1},
         success:function(data){
@@ -148,9 +148,9 @@ function updateVariations1(){
 }
 
 //delete variation data
-function variationDelete1(id){
+function bookingDelete(id){
     $.ajax({
-        url:"./controller/deleteVariationController1.php",
+        url:"../controller/deleteBookingController.php",
         method:"post",
         data:{record:id},
         success:function(data){
