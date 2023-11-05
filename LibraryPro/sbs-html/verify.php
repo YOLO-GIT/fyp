@@ -9,6 +9,9 @@ if (isset($_POST["cmdverify"])) {
     // Retrieve the stored verification code from the database
     $sql = "SELECT * FROM tblstudent WHERE verification_code = '$inputVerificationCode'";
     $result = mysqli_query($con, $sql);
+    // Retrieve the stored verification code from the database
+    $teachers_sql = "SELECT * FROM tblteachers WHERE verification_code = '$inputVerificationCode'";
+    $teacher_result = mysqli_query($con, $teachers_sql);
 
     if (mysqli_num_rows($result) > 0) {
         // Update the user's account as verified
@@ -17,6 +20,19 @@ if (isset($_POST["cmdverify"])) {
         $updateSql = "UPDATE tblstudent SET is_verified = 1 WHERE stud_ID = '$userId'";
 
         if (mysqli_query($con, $updateSql)) {
+            echo "Account verified successfully!";
+            //Redirect to page ---> Login.php
+            echo "<script>window.location.href='login.php';</script>";
+        } else {
+            echo "Error updating record: " . mysqli_error($con);
+        }
+    } elseif (mysqli_num_rows($teacher_result) > 0) {
+        // Update the user's account as verified
+        $row = mysqli_fetch_assoc($teacher_result);
+        $userId = $row['teachers_ID'];
+        $TeacherupdateSql = "UPDATE tblteachers SET is_verified = 1 WHERE teachers_ID = '$userId'";
+
+        if (mysqli_query($con, $TeacherupdateSql)) {
             echo "Account verified successfully!";
             //Redirect to page ---> Login.php
             echo "<script>window.location.href='login.php';</script>";

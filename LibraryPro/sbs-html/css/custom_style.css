@@ -192,9 +192,9 @@
 
 /* Start Custom Booking CSS */
 
-.inner_page{
-     background: linear-gradient(to top, #cd9cf2 0%, #f6f3ff 100%);
-}
+/* .inner_page{
+     background: linear-gradient(to top, #cd9cf2 0%, #f6f3ff 100%);  Auto Sakit otak 
+} */
 #header_book {
      background: radial-gradient(circle at 10% 20%, rgb(236, 158, 248) 0%, rgb(131, 83, 241) 90.1%);
      color: #fff;

@@ -141,18 +141,8 @@ if (isset($_SESSION["IDStud"]) || isset($_SESSION["IDTeachers"])) {
                                 <div id="uname_error" class="form-control">Tolong Isi Bahagian ini</div>
                                 <input class="contactus" placeholder="Username anda (Maksimum 10 Perkataan)" type="text" name="txtunama" maxlength="10">
                             </div>
-                            <!-- KELAS -->
-                            <div class="col-md-6">
-                                <label class="custom_label_reg">Kelas Anda:</label>
-                                <div id="kelas_error" class="form-control">Tolong Isi Kelas Anda</div>
-                                <input class="contactus" placeholder="Kelas*" type="text" name="txtkelas">
-                            </div>
-                            <!-- EMAIL -->
-                            <div class="col-md-6">
-                                <input class="contactus" value="user@gmail.com" type="text" name="txtEmail" disabled hidden>
-                            </div>
                             <!-- PASSWORD -->
-                            <div class="col-md-12">
+                            <div class="col-md-6">
                                 <label class="custom_label_reg">Password Anda:</label>
                                 <div id="pwd_error" class="form-control">Tolong Isi Password Anda</div>
                                 <input class="contactus" placeholder="Password (Maksimum 8 nombor)*" type="password" name="txtpwd" id="myInputPWD" maxlength="8" pattern=".{8,}">
@@ -160,7 +150,7 @@ if (isset($_SESSION["IDStud"]) || isset($_SESSION["IDTeachers"])) {
                             </div>
                             <!-- SUBMIT -->
                             <div class=" col-md-12">
-                                <button class="send_btn1" name="cmdregister">Register</button>
+                                <button class="send_btn1" name="cmdteacherregister">Register</button>
                             </div>
                         </div>
                     </form>
@@ -170,7 +160,7 @@ if (isset($_SESSION["IDStud"]) || isset($_SESSION["IDTeachers"])) {
                         <h3>Already Register?</h3>
                         <h3>Click <a href="login.php">here for login</a></h3>
                         <h3>Click <a href="logout.php">here for logout</a></h3>
-                        <h3>Click <a href="teacher_register.php">here for Teacher</a></h3>
+                        <h3>Click <a href="register.php">here for Student</a></h3>
                     </div>
                 </div>
             </div>
