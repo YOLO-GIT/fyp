@@ -16,6 +16,8 @@
     <a href="../adminView/viewBooks.php" onclick="showBooks()"><i class="fa fa-th-large"></i> Books</a>
     <a href="#productsizes" onclick="showBorrowed()"><i class="fa fa-th-list"></i> Borrowed</a>
     <a href="../adminView/viewBooking.php" onclick="showBooking()"><i class="fa fa-list"></i> Booking</a>
+    <a href="../adminView/viewBooking.php" onclick=""><i class="fa fa-list"></i> Event</a>
+    <a href="../adminView/viewBooking.php" onclick=""><i class="fa fa-list"></i> Add Staff</a>
 
 
 </div>
