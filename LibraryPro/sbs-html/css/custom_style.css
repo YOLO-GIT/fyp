@@ -2,7 +2,7 @@
 
 /** Start Custom Login CSS **/
 
- .custom-background {
+.custom-background {
      background: linear-gradient(101.8deg, rgb(28, 28, 224) -0.2%, rgb(153, 68, 230) 55.2%, rgb(235, 18, 180) 84.4%);
      border-radius: 25px;
      /* Change this color to your preferred background color */
@@ -193,7 +193,7 @@
 /* Start Custom Booking CSS */
 
 /* .inner_page{
-     background: linear-gradient(to top, #cd9cf2 0%, #f6f3ff 100%);  Auto Sakit otak 
+     background: linear-gradient(to top, #cd9cf2 0%, #f6f3ff 100%);  
 } */
 #header_book {
      background: radial-gradient(circle at 10% 20%, rgb(236, 158, 248) 0%, rgb(131, 83, 241) 90.1%);
@@ -213,6 +213,7 @@
      padding: 20px;
      background-color: #fff;
      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+     
 }
 .card_book{
      /* max-width: 1040px; */

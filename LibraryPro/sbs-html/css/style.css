@@ -51,8 +51,8 @@ body {
     transform-origin: 0 0;
     width: 133.33%;
     height: 100vh; /* Set the height to 100% of the viewport height */
+    background: radial-gradient(circle at 10% 20%, rgba(216, 241, 230, 0.46) 0.1%, rgba(233, 226, 226, 0.28) 90.1%);
 }
-
 
 a {
      color: #1f1f1f;
@@ -338,12 +338,13 @@ button {
 /*-- header --*/
 
 .header {
-width: 100%;
-background:#fff0;
-height: 107px;
-padding: 27px 30px;
-position: absolute;
-z-index: 999;
+     width: 100%;
+     background:#fff;
+     height: 107px;
+     padding: 27px 30px;
+     position: absolute;
+     z-index: 999;
+     box-shadow: 0px 0px 8px 0 #f34b52d4;
 }
 
 .navigation.navbar {
