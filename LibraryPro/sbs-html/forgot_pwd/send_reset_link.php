@@ -65,7 +65,8 @@ if (isset($_POST["cmdreset"])) {
 
                 //Finally send email
                 if ($mail->send()) {
-                    echo "Email Sent..!";
+                    echo "<script>alert('Email Sent..!')</script>";
+                    echo "<script>window.location.href='reset_password.php?token=$resetToken';</script>";
                 } else {
                     echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
                 }
@@ -118,7 +119,8 @@ if (isset($_POST["cmdreset"])) {
 
                 //Finally send email
                 if ($mail->send()) {
-                    echo "Email Sent..!";
+                    echo "<script>alert('Email Sent..!')</script>";
+                    echo "<script>window.location.href='reset_password.php?token=$resetToken';</script>";
                 } else {
                     echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
                 }

@@ -28,6 +28,7 @@ if (isset($_POST['token'])) {
                 $update_stud_password = "UPDATE tblstudent SET stud_pwd = '$newPassword', reset_token = NULL WHERE reset_token = '$token'";
                 if (mysqli_query($con, $update_stud_password)) {
                     echo "Password has been updated successfully.";
+                    echo "<script>window.location.href='../sbs-html/index.php';</script>";
                 } else {
                     echo "Failed to update the password. Please try again later.";
                 }
@@ -47,6 +48,7 @@ if (isset($_POST['token'])) {
                 $update_teachers_password = "UPDATE tblteachers SET teachers_Password = '$newPassword', reset_token = NULL WHERE reset_token = '$token'";
                 if (mysqli_query($con, $update_teachers_password)) {
                     echo "Password has been updated successfully.";
+                    echo "<script>window.location.href='../sbs-html/index.php';</script>";
                 } else {
                     echo "Failed to update the password. Please try again later.";
                 }
