@@ -149,13 +149,13 @@ if (isset($_SESSION["IDStud"]) || isset($_SESSION["IDTeachers"])) {
                             </div>
                             <!-- EMAIL -->
                             <div class="col-md-6">
-                                <input class="contactus" value="user@gmail.com" type="text" name="txtEmail" disabled hidden>
+                                <input class="contactus" value="ahmadsufi345@gmail.com" type="text" name="txtEmail" disabled hidden>
                             </div>
                             <!-- PASSWORD -->
                             <div class="col-md-12">
                                 <label class="custom_label_reg">Password Anda:</label>
                                 <div id="pwd_error" class="form-control">Tolong Isi Password Anda</div>
-                                <input class="contactus" placeholder="Password (Maksimum 8 nombor)*" type="password" name="txtpwd" id="myInputPWD" maxlength="8" pattern=".{8,}">
+                                <input class="contactus" placeholder="Password (Maksimum 9 nombor/perkataan)*" type="password" name="txtpwd" id="myInputPWD" maxlength="9" pattern=".{9,}">
                                 <input type="checkbox" onclick="myFunction()">&nbsp;&nbsp;<label class="show_style">Show Password</label>
                             </div>
                             <!-- SUBMIT -->

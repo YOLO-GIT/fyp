@@ -108,11 +108,15 @@
                         </div>
                         <div class="col-md-12">
                             <label for="new_password" class="custom_label_login">Enter a new password:</label>
-                            <input class="contactus" type="password" id="new_password" name="new_password" required>
+                            <div id="pwd_error" class="form-control">Tolong Isi Password Anda Dengan Betul</div>
+                            <input class="contactus" type="password" id="new_password" name="new_password" id="myInputPWD" maxlength="9" pattern=".{9,}">
+                            <input type="checkbox" onclick="myFunction()">&nbsp;&nbsp;<label class="show_style">Show Password</label>
                         </div>
                         <div class="col-md-12">
                             <label for="confirm_password" class="custom_label_login">Confirm the new password:</label>
-                            <input class="contactus" type="password" id="confirm_password" name="confirm_password" required>
+                            <div id="pwd_error" class="form-control">Tolong Isi Password Anda</div>
+                            <input class="contactus" type="password" id="confirm_password" name="confirm_password" id="myInputPWD" maxlength="9" pattern=".{9,}">
+                            <input type="checkbox" onclick="myFunction()">&nbsp;&nbsp;<label class="show_style">Show Password</label>
                         </div>
                         <div class="col-md-12">
                             <input class="btn btn-primary" type="submit" value="Reset Password" name="cmdupdate">
