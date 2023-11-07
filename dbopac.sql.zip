@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 01, 2023 at 05:55 PM
+-- Generation Time: Nov 07, 2023 at 12:51 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -72,9 +72,9 @@ INSERT INTO `tblbook` (`book_ID`, `book_title`, `book_author`, `book_ISBN`, `pub
 
 CREATE TABLE `tblbooking` (
   `booking_ID` varchar(25) NOT NULL,
-  `book_ID` int(35) NOT NULL,
-  `stud_ID` varchar(25) NOT NULL,
-  `teachers_ID` varchar(35) NOT NULL,
+  `book_title` varchar(255) NOT NULL,
+  `user_Name` varchar(25) NOT NULL,
+  `user_ID` varchar(25) NOT NULL,
   `date_booked` date DEFAULT NULL,
   `time_booked` time DEFAULT NULL,
   `status` varchar(25) NOT NULL
@@ -84,9 +84,10 @@ CREATE TABLE `tblbooking` (
 -- Dumping data for table `tblbooking`
 --
 
-INSERT INTO `tblbooking` (`booking_ID`, `book_ID`, `stud_ID`, `teachers_ID`, `date_booked`, `time_booked`, `status`) VALUES
-('230001', 7583, 'SJ0427', '0', '2023-10-30', '22:52:00', 'isBooking'),
-('230002', 7575, '', 'TJ0525', '2023-10-31', '15:15:00', 'isBooking');
+INSERT INTO `tblbooking` (`booking_ID`, `book_title`, `user_Name`, `user_ID`, `date_booked`, `time_booked`, `status`) VALUES
+('230002', 'Ilmu Keusahawanan Agrikultur', 'Ahmad Aziz', 'SJ0435', '2023-11-07', '05:53:42', 'isBooking'),
+('230001', 'Super Storymorie Certot#2 Sukan', 'Ahmad Aziz', 'SJ0435', '2023-11-07', '05:53:12', 'isBooking'),
+('230003', 'Membuat Baja Kompos', 'Ahmad Aziz', 'SJ0435', '2023-11-07', '05:54:02', 'isBooking');
 
 -- --------------------------------------------------------
 
@@ -137,17 +138,28 @@ CREATE TABLE `tbllibrarians` (
   `librarians_ID` varchar(25) NOT NULL,
   `librarians_name` varchar(25) NOT NULL,
   `librarians_uname` varchar(25) NOT NULL,
-  `librarians_password` varchar(255) NOT NULL,
-  `status_approved` varchar(25) NOT NULL,
-  `status_declined` varchar(35) NOT NULL
+  `librarians_password` varchar(255) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `tbllibrarians`
 --
 
-INSERT INTO `tbllibrarians` (`librarians_ID`, `librarians_name`, `librarians_uname`, `librarians_password`, `status_approved`, `status_declined`) VALUES
-('A0525J', 'Ahmad Sufi', 'sufi123', '3c9909afec25354d551dae21590bb26e38d53f2173b8d3dc3eee4c047e7ab1c1eb8b85103e3be7ba613b31bb5c9c36214dc9f14a42fd7a2fdb84856bca5c44c2', '[value-5]', '[value-6]');
+INSERT INTO `tbllibrarians` (`librarians_ID`, `librarians_name`, `librarians_uname`, `librarians_password`) VALUES
+('A0525J', 'Ahmad Sufi', 'sufi123', '3c9909afec25354d551dae21590bb26e38d53f2173b8d3dc3eee4c047e7ab1c1eb8b85103e3be7ba613b31bb5c9c36214dc9f14a42fd7a2fdb84856bca5c44c2');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tblprofile`
+--
+
+CREATE TABLE `tblprofile` (
+  `user_id` varchar(25) NOT NULL,
+  `bio` varchar(50) NOT NULL,
+  `birthday` varchar(10) NOT NULL,
+  `negeri` varchar(25) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -185,20 +197,28 @@ CREATE TABLE `tblstudent` (
   `stud_Class` varchar(25) NOT NULL,
   `email` varchar(25) NOT NULL,
   `stud_pwd` varchar(255) NOT NULL,
-  `date` date DEFAULT NULL
+  `date` date DEFAULT NULL,
+  `verification_code` varchar(100) NOT NULL,
+  `is_verified` tinyint(1) DEFAULT 0,
+  `reset_token` varchar(25) NOT NULL,
+  `book_count` int(25) NOT NULL DEFAULT 0
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `tblstudent`
 --
 
-INSERT INTO `tblstudent` (`stud_ID`, `stud_Name`, `stud_username`, `stud_Class`, `email`, `stud_pwd`, `date`) VALUES
-('1', 'Sufi', '', 'Al - Arabi', '', '', NULL),
-('525', 'Sufi', '', '5 Al - Arabi', 'user@gmail.com', '3c9909afec', NULL),
-('0527', 'Sufi', '', '4 Al - Arabi', 'user@gmail.com', '3627909a29', NULL),
-('J0525', 'Sufi', '', '3 Al - Arabi', 'user@gmail.com', '3627909a29c31381a071ec27f7c9ca97726182aed29a7ddd2e54353322cfb30abb9e3a6df2ac2c20fe23436311d678564d0c8d305930575f60e2d3d048184d79', NULL),
-('B0522', 'Sufi&nbsp;Danial', '', '3 ABU', '', '3627909a29c31381a071ec27f7c9ca97726182aed29a7ddd2e54353322cfb30abb9e3a6df2ac2c20fe23436311d678564d0c8d305930575f60e2d3d048184d79', '2023-10-15'),
-('SJ0427', 'Mohd Saufi', 'Saufi123', '5 Al - Arabi', 'user@gmail.com', '62fdedc52cbd4e7fe96212b6c87610b70bc3e9c3106f3e559edb1d455d6b1505d40dd5ef9ecfc1ecb06f62ee73b5c9ff34d8d6a0f3d388bc3bc01d9480dbe9cc', '2023-10-19');
+INSERT INTO `tblstudent` (`stud_ID`, `stud_Name`, `stud_username`, `stud_Class`, `email`, `stud_pwd`, `date`, `verification_code`, `is_verified`, `reset_token`, `book_count`) VALUES
+('1', 'Sufi', '', 'Al - Arabi', '', '', NULL, '', 0, '', 0),
+('525', 'Sufi', '', '5 Al - Arabi', 'user@gmail.com', '3c9909afec', NULL, '', 0, '', 0),
+('0527', 'Sufi', '', '4 Al - Arabi', 'user@gmail.com', '3627909a29', NULL, '', 0, '', 0),
+('J0525', 'Sufi', '', '3 Al - Arabi', 'user@gmail.com', '3627909a29c31381a071ec27f7c9ca97726182aed29a7ddd2e54353322cfb30abb9e3a6df2ac2c20fe23436311d678564d0c8d305930575f60e2d3d048184d79', NULL, '', 0, '', 0),
+('B0522', 'Sufi&nbsp;Danial', '', '3 ABU', '', '3627909a29c31381a071ec27f7c9ca97726182aed29a7ddd2e54353322cfb30abb9e3a6df2ac2c20fe23436311d678564d0c8d305930575f60e2d3d048184d79', '2023-10-15', '', 0, '', 0),
+('SJ0435', 'Ahmad Aziz', 'Sufi123', '5 Al - Arabi', 'ahmadsufi345@gmail.com', 'd9f7dfaf83ff1753bdd85e9cd77d18c876040a6f60f04b8330e76fdd198882612fd7439a2419e320395eea18406ccfadb65c7bc069cf8d94e9336a5813dfadcc', '2023-11-04', '4591ba', 1, '', 4),
+('SJ0417', 'Ahmad Aziz', 'Sufi1234', '5 Al - Arabi', 'ahmadsufi345@gmail.com', '7e5b9a6029b64c52cd6a6ad186653195b70cfb7770b6d71c3eb4ddf16f1e270f6852ee9c61d9a7f07f897459fcf2d68b0c2e6ad4ebc0a8f38efd72382e471176', '2023-11-04', 'aa0943', 1, '', 0),
+('SB0522', 'Mohd Saufi', 'Saufi125', '5 Al - Arabi', 'ahmadsufi345@gmail.com', '591f110c5f0e1bdce3ce99ee4d25a60959f343e90d120e4d473e3ccae5811d5d07cd991a64b6f18ef670b772d48adbb9c08206bb99e621b60046b3921b204b77', '2023-11-04', '478b98', 1, '', 0),
+('SJ0455', 'Ahmad Nasik', 'Nasik123', '3 Al - Arabi', 'ahmadsufi345@gmail.com', '15e62c3a41b7c6e3aa01d53ea6fe3db11427947991e70634b0480b1d48c8331839ec136cf7a28833b60dc9588f160ac57a299a72d271c58d52991bc6e9301d4b', '2023-11-04', '30b230', 1, '', 0),
+('SJ0467', 'Mohd Saufi', 'Saufi1235', '5 Al - Arabi', 'ahmadsufi345@gmail.com', '60919c8c5deb1bd7fd88002210b3317ea7157017385c1056b2d7e1d9936406bff0fc0bbf0a5690e73a10742e7e6b7f03cf8dc44b7eee0d777853dd92ea832b62', '2023-11-04', 'a32636', 1, '', 0);
 
 -- --------------------------------------------------------
 
@@ -211,22 +231,20 @@ CREATE TABLE `tblteachers` (
   `teachers_Name` varchar(35) NOT NULL,
   `teachers_username` varchar(25) NOT NULL,
   `teachers_Password` varchar(255) NOT NULL,
-  `date_teachers` date DEFAULT NULL
+  `email` varchar(25) NOT NULL,
+  `date_teachers` date DEFAULT NULL,
+  `verification_code` varchar(100) NOT NULL,
+  `is_verified` tinyint(1) NOT NULL,
+  `reset_token` varchar(25) NOT NULL,
+  `book_count` int(25) NOT NULL DEFAULT 0
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `tblteachers`
 --
 
-INSERT INTO `tblteachers` (`teachers_ID`, `teachers_Name`, `teachers_username`, `teachers_Password`, `date_teachers`) VALUES
-('T0537J', 'Azim Gaza', 'Azimi_Danial', '123', NULL),
-('T0426B', 'Sufi Danial', 'Sufi_Danial', '12345', '2023-10-14'),
-('T0525J', 'Abdul Aziz', 'Aziz_Abdul', '12345', '2023-10-15'),
-('T0526B', 'Aliya Natasha', 'Natasha_Aliya', '12345678', '2023-10-15'),
-('T0522B', 'Aliya Abdul', 'Abdul_Aliya', '234432', '2023-10-16'),
-('T0527J', 'Sufi Aziz', 'Aziz_Sus', '9', '2023-10-16'),
-('T0467J', 'Aliya Jaafar', 'Jaafar_Aliya', '62', '2023-10-19'),
-('TJ0525', 'Sufi Aziz', 'YOLO_6', '0e97db0d5595f33911ec654a23df874848958378d4ebdbe0153b644061b7374b4cad6b5f25f8ef1b6845dce99e79bdcc930e530b35da4960fa1d0e4bdfe720c0', '2023-10-31');
+INSERT INTO `tblteachers` (`teachers_ID`, `teachers_Name`, `teachers_username`, `teachers_Password`, `email`, `date_teachers`, `verification_code`, `is_verified`, `reset_token`, `book_count`) VALUES
+('TJ0525', 'Mohd Saufi', 'Saufi123', 'd9e6762dd1c8eaf6d61b3c6192fc408d4d6d5f1176d0c29169bc24e71c3f274ad27fcd5811b313d681f7e55ec02d73d499c95455b6b5bb503acf574fba8ffe85', 'ahmadsufi345@gmail.com', '2023-11-06', '2aa822', 1, '', 0);
 
 -- --------------------------------------------------------
 
@@ -311,6 +329,12 @@ ALTER TABLE `tblheadstaff`
 --
 ALTER TABLE `tbllibrarians`
   ADD PRIMARY KEY (`librarians_ID`);
+
+--
+-- Indexes for table `tblprofile`
+--
+ALTER TABLE `tblprofile`
+  ADD PRIMARY KEY (`user_id`);
 
 --
 -- Indexes for table `tblreport`

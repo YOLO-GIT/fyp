@@ -81,8 +81,15 @@ if (isset($_GET["cmdregister"])) {
         $sql_register = "INSERT INTO `tblstudent`(`stud_ID`, `stud_Name`, `stud_username`, `stud_Class`, `email`, `stud_pwd`, `date`, `verification_code`) 
         VALUES ('$id','$clean_name','$uname','$kelas','$email','$password',NOW(), '$verificationCode')";
 
+        // Store the verification code in the database
+        $sql_profile = "INSERT INTO `tblprofile`(`user_ID`) 
+        VALUES ('$id')";
+
         //Execute SQL Login Statement
         mysqli_query($con, $sql_register);
+
+        //Execute SQL Login Statement
+        mysqli_query($con, $sql_profile);
 
         //Create instance of phpmailer
         $mail = new PHPMailer(true);
@@ -199,8 +206,15 @@ if (isset($_GET["cmdregister"])) {
         $sql_register_teachers = "INSERT INTO `tblteachers`(`teachers_ID`, `teachers_Name`, `teachers_username`, `teachers_Password`, `email`, `date_teachers`, `verification_code`) 
         VALUES ('$teachers_id','$teachers_clean_name','$uname','$password','$email',NOW(),'$verificationCode')";
 
+        // Store the verification code in the database
+        $sql_profile = "INSERT INTO `tblprofile`(`user_ID`) 
+        VALUES ('$id')";
+
         //Execute SQL Login Statement
         mysqli_query($con, $sql_register_teachers);
+
+        //Execute SQL Login Statement
+        mysqli_query($con, $sql_profile);
 
         //Create instance of phpmailer
         $mail = new PHPMailer(true);

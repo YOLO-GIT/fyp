@@ -118,7 +118,7 @@
       </table>
       <?php
       // Display pagination links
-      echo '<div class="pagination">';
+      echo '<div class="pagination mb-5">';
       for (
         $i = 1;
         $i <= $totalPages;

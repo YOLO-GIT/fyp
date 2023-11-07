@@ -53,7 +53,7 @@ if (mysqli_num_rows($check_id) > 0) {
     mysqli_close($con);
     // Sending back to the Teacher Panel.
     echo "<script>window.location.href='booking.php';</script>";
-} elseif (mysqli_num_rows($check_user) > 0) {
+} elseif (mysqli_num_rows($check_user) >= 3) {
     // Validation if the content is same
     echo "<script>alert('Anda hanya boleh booking buku sekali sahaja');</script>";
     // Close the DB to ensure it will not updated.
@@ -66,7 +66,22 @@ if (mysqli_num_rows($check_id) > 0) {
 
     mysqli_query($con, $sql);
 
-    $_SESSION['booking_ID'] = $idbooking;
+    // Fetch the current count from the database
+    $get_count_sql = "SELECT `book_count` FROM `tblstudent` WHERE `stud_ID` = '$user_ID'";
+    $result_count = mysqli_query($con, $get_count_sql);
+
+    if ($result_count) {
+        $row = $result_count->fetch_assoc();
+        $count = $row['book_count']; // Fetch the current count from the database
+
+        // Increment the count
+        $count++;
+
+        $count_sql = "UPDATE `tblstudent` SET `book_count`='$count' WHERE `stud_ID` = '$user_ID'";
+        // Execute the query
+        mysqli_query($con, $count_sql);
+    }
+
     echo "<script>alert('Anda Telah berjaya Booking');</script>";
     echo "<script>window.location.href='buku_saya.php';</script>";
 }

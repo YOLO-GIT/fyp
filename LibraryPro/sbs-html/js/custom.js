@@ -144,6 +144,7 @@ function resetForm() {
     window.location.reload();
 }
 
+// View Password
 function myFunction() {
   var x = document.getElementById("myInputPWD");
   if (x.type === "password") {
@@ -283,6 +284,30 @@ function pwd_Verify() {
 }
 // End Verify
 // End Validation
+
+// Start Clock
+function startTime() {
+  const today = new Date();
+  let h = today.getHours();
+  let m = today.getMinutes();
+  let s = today.getSeconds();
+  let ampm = h >= 12 ? 'PM' : 'AM'; // Set AM or PM based on the current hour
+
+  // Convert to 12-hour format
+  h = h % 12;
+  h = h ? h : 12; // If the hour is 0, it should be 12
+
+  m = checkTime(m);
+  s = checkTime(s);
+  document.getElementById('clock').innerHTML =  h + ":" + m + ":" + s + " " + ampm;
+  setTimeout(startTime, 1000);
+}
+
+function checkTime(i) {
+  if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
+  return i;
+}
+// End Clock
 
 // End Custom JavaScript
 

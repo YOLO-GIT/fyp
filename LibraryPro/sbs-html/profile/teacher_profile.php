@@ -54,7 +54,7 @@ if (!$_SESSION["IDTeachers"]) {
                                     ?>
                                         <div class="form-group">
                                             <label class="form-label">ID</label>
-                                            <input type="text" class="form-control mb-1" value="<?= $row['teachers_ID'] ?>">
+                                            <input type="text" class="form-control mb-1" value="<?= $row['teachers_ID'] ?>" readonly>
                                         </div>
                                         <div class="form-group">
                                             <label class="form-label">Nama</label>
@@ -67,6 +67,10 @@ if (!$_SESSION["IDTeachers"]) {
                                         <div class="form-group">
                                             <label class="form-label">Tarikh Masuk</label>
                                             <input type="text" class="form-control mb-1" value="<?= $row['date_teachers'] ?>">
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="form-label">Booking Count:</label>
+                                            <input type="text" class="form-control mb-1" value="<?= $row['book_count'] ?>" readonly>
                                         </div>
                                         <div class="alert alert-success mt-3">
                                             Your data is safely stored here.<br>

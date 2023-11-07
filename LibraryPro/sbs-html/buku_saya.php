@@ -7,7 +7,7 @@ session_start();
 if (isset($_SESSION["IDStud"])) {
     $log = "Logout";
     $func_todo = "logout.php";
-    $profile = "profile.php";
+    $profile = "profile/profile.php";
 
     $stud_ID = $_SESSION["IDStud"];
 
@@ -22,7 +22,7 @@ if (isset($_SESSION["IDStud"])) {
 } elseif (isset($_SESSION["IDTeachers"])) {
     $log = "Logout";
     $func_todo = "logout.php";
-    $profile = "teacher_profile.php";
+    $profile = "profile/teacher_profile.php";
 
     $teachers_ID = $_SESSION["IDTeachers"];
 
@@ -155,10 +155,7 @@ if (isset($_SESSION["IDStud"])) {
                 <div class="card_book_display mb-3">
                     <!-- rest of the code remains unchanged -->
                     <div class="row">
-                        <!-- <div class="col-md-4">
-                            <img src="../../admin/admin_panel/controller/<?= $row['book_image'] ?>">
-                        </div> -->
-                        <div class="col-md-8">
+                        <div class="col-md-12">
                             <div class="card-body">
                                 <h2 class="card-title"><?= $row["book_title"] ?></h2>
                                 <p class="bold-text">Nama:&nbsp;&nbsp;</p>
@@ -175,9 +172,7 @@ if (isset($_SESSION["IDStud"])) {
                                 </div>
                             </div>
                             <br>
-                            <div class="text-right mr-3 mb-3">
-                                <a href="booking.php" class="btn btn-primary">Kembali Semula</a>
-                            </div>
+
                         </div>
                     </div>
                     <!-- ... -->
@@ -192,6 +187,9 @@ if (isset($_SESSION["IDStud"])) {
         <?php
         }
         ?>
+        <div class="text-right mr-3 mb-3">
+            <a href="booking.php" class="btn btn-primary">Kembali Semula</a>
+        </div>
         <!-- Pilihan Buku End -->
     </div>
 

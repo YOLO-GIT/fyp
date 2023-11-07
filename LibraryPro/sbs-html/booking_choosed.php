@@ -10,7 +10,7 @@ session_start();
 if (isset($_SESSION["IDStud"])) {
     $log = "Logout";
     $func_todo = "logout.php";
-    $profile = "profile.php";
+    $profile = "profile/profile.php";
     $stud_ID = $_SESSION["IDStud"];
 
     $studentQuery = "SELECT * FROM tblstudent WHERE stud_ID = ?";
@@ -24,7 +24,7 @@ if (isset($_SESSION["IDStud"])) {
 } elseif (isset($_SESSION["IDTeachers"])) {
     $log = "Logout";
     $func_todo = "logout.php";
-    $profile = "teacher_profile.php";
+    $profile = "profile/teacher_profile.php";
 
     $teachers_ID = $_SESSION["IDTeachers"];
 
@@ -92,7 +92,7 @@ if (isset($_GET['book_ID'])) {
 
 <!-- body -->
 
-<body class="main-layout display_page">
+<body class="main-layout display_page" onload="startTime()">
     <!-- loader  -->
     <div class="loader_bg">
         <div class="loader"><img src="images/loading.gif" alt="#" /></div>
@@ -153,6 +153,7 @@ if (isset($_GET['book_ID'])) {
 
     <div class="container_book">
         <form method="get" action="booking_sent.php">
+            <div id="clock" class="form-control bold-text text_align_center"></div>
             <?php
             // Retrieve the book_ID from the URL parameters
             $book_ID = $_GET['book_ID'] ?? '';

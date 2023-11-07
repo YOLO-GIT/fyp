@@ -7,7 +7,7 @@ session_start();
 if (isset($_SESSION["IDStud"])) {
     $log = "Logout";
     $func_todo = "logout.php";
-    $profile = "profile.php";
+    $profile = "profile/profile.php";
     $stud_ID = $_SESSION["IDStud"];
 
     $studentQuery = "SELECT * FROM tblstudent WHERE stud_ID = ?";
@@ -21,7 +21,7 @@ if (isset($_SESSION["IDStud"])) {
 } elseif (isset($_SESSION["IDTeachers"])) {
     $log = "Logout";
     $func_todo = "logout.php";
-    $profile = "teacher_profile.php";
+    $profile = "profile/teacher_profile.php";
 
     $teachers_ID = $_SESSION["IDTeachers"];
 
