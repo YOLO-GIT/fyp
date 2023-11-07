@@ -12,7 +12,7 @@ Feel free to explore the code and provide any feedback or suggestions for improv
 
 ## SPMP "Book Log" Update
 
-Don't forget to update the Software Project Management Plan (SPMP) "Book Log" via the following link: [SPMP "Book Log"](http://spmp.polibesut.edu.my). Keeping the SPMP up to date is crucial for effective project management and documentation.
+Don't forget to update the "Sistem Pengurusan Maklumat Politeknik" (SPMP) "Book Log" via the following link: [SPMP "Book Log"](http://spmp.polibesut.edu.my). Keeping the SPMP up to date is crucial for effective project management and documentation.
 
 ## License
 
