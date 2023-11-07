@@ -236,10 +236,11 @@
 .form-popup {
   display: none;
   /* position: fixed; */
-  border: 6px solid #f1f1f1;
+  border: 2px solid #fff;
+  border-radius: 5px;
   width: 100%;
   padding: 10px;
-  background: linear-gradient(to top, #cc208e 0%, #6713d2 100%);
+  background: linear-gradient(177.9deg, rgb(58, 62, 88) 3.6%, rgb(119, 127, 148) 105.8%);
 }
 
 /* Add a red background color to the cancel button */

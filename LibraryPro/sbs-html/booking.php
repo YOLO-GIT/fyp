@@ -69,6 +69,19 @@ if (isset($_SESSION["IDStud"])) {
     <link rel="icon" href="images/fevicon.png" type="image/gif" />
     <!-- Tweaks for older IEs-->
     <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
+    <style>
+        .form-control {
+            border-color: black;
+            border-width: 3px;
+            border-radius: 5px;
+            background: radial-gradient(circle at 18.7% 37.8%, rgb(250, 250, 250) 0%, rgb(225, 234, 238) 90%);
+            /* You can adjust this value to make the border thicker */
+        }
+
+        .card {
+            box-shadow: 0px 0px 6px 0 gainsboro;
+        }
+    </style>
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
@@ -154,15 +167,17 @@ if (isset($_SESSION["IDStud"])) {
                         <div class="col-md-12">
                             <form action="" method="GET">
                                 <!-- Search Bar -->
-                                <div class="search_bar">
+                                <div class="col-md-12 mb-3">
                                     <input type="text" name="search" required value="<?php if (isset($_GET['search'])) {
                                                                                             echo $_GET['search'];
                                                                                         } ?>" class="form-control" placeholder="Search data">
                                 </div>
                                 <!-- Button -->
-                                <br><button type="submit" class="btn btn-primary">Search</button>
-                                <button type="button" class="btn btn-secondary cancel" onclick="closeForm()">Close</button>
-                                <button type="button" class="btn btn-secondary refresh" onclick="resetForm()">Refresh Page</button>
+                                <div class="col-md-12 text_align_center">
+                                    <button type="submit" class="btn btn-primary">Buat Carian</button>
+                                    <button type="button" class="btn btn-secondary cancel" onclick="closeForm()">Tutup Carian</button>
+                                    <button type="button" class="btn btn-secondary refresh" onclick="resetForm()">Reset Carian</button>
+                                </div>
                             </form>
                         </div>
                     </div>
@@ -187,7 +202,7 @@ if (isset($_SESSION["IDStud"])) {
                                             echo "selected";
                                         } ?>>Z-A (Descending Order)</option>
                 </select>
-                <button type="submit" class="btn btn-primary">
+                <button type="submit" class="btn btn-primary ml-2">
                     Sort
                 </button>
             </div>
@@ -299,7 +314,7 @@ if (isset($_SESSION["IDStud"])) {
         <!-- PHP Ends -->
 
         <!-- Result Start -->
-        <form action="" method="GET">
+        <form action="" method="GET" class="mt-5">
             <!-- Result Show Start -->
             <div class="input-group mb-3">
                 <select name="result_count" class="form-control">
@@ -314,7 +329,7 @@ if (isset($_SESSION["IDStud"])) {
                                             echo "selected";
                                         } ?>>15</option>
                 </select>
-                <button type="submit" class="btn btn-primary">
+                <button type="submit" class="btn btn-primary ml-2">
                     Show Results
                 </button>
             </div>

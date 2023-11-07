@@ -69,6 +69,20 @@ if (isset($_SESSION["IDStud"])) {
     <link rel="icon" href="images/fevicon.png" type="image/gif" />
     <!-- Tweaks for older IEs-->
     <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
+    <style>
+        .form-control {
+            border-color: black;
+            border-width: 3px;
+            border-radius: 5px;
+            background: radial-gradient(circle at 18.7% 37.8%, rgb(250, 250, 250) 0%, rgb(225, 234, 238) 90%);
+            /* You can adjust this value to make the border thicker */
+        }
+
+        .card {
+            box-shadow: 0px 0px 6px 0 gainsboro;
+        }
+    </style>
+
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
@@ -150,60 +164,84 @@ if (isset($_SESSION["IDStud"])) {
                     <h4>Judul Buku</h4>
                 </div>
                 <div class="card-body">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <form action="" method="GET">
-                                <!-- Search Bar -->
-                                <div>
-                                    <input type="text" name="search" value="<?php if (isset($_GET['search'])) {
-                                                                                echo $_GET['search'];
-                                                                            } ?>" class="form-control col-md-12 mb-3" placeholder="Cari Judul">
-                                </div>
-                                <div>
-                                    <input type="text" name="penerbit" value="<?php if (isset($_GET['penerbit'])) {
-                                                                                    echo $_GET['penerbit'];
-                                                                                } ?>" class="form-control col-md-12 mb-3" placeholder="Cari Penerbit">
-                                </div>
-                                <div>
-                                    <input type="text" name="isbn" value="<?php if (isset($_GET['isbn'])) {
-                                                                                echo $_GET['isbn'];
-                                                                            } ?>" class="form-control col-md-12 mb-3" placeholder="Cari ISBN">
-                                </div>
-                                <!-- Category -->
-                                <select name="genre" class="form-control col-md-3">
+                    <form action="" method="GET">
+                        <div class="row">
+                            <!-- CARI JUDUL -->
+                            <div class="col-md-6 mb-3">
+                                <input type="text" name="search" value="<?php if (isset($_GET['search'])) {
+                                                                            echo $_GET['search'];
+                                                                        } ?>" class="form-control" placeholder="Cari Judul">
+                            </div>
+                            <!-- CARI PENERBIT -->
+                            <div class="col-md-6 mb-3">
+                                <input type="text" name="penerbit" value="<?php if (isset($_GET['penerbit'])) {
+                                                                                echo $_GET['penerbit'];
+                                                                            } ?>" class="form-control" placeholder="Cari Penerbit">
+                            </div>
+                            <!-- CARI ISBN -->
+                            <div class="col-md-12 mb-3">
+                                <input type="text" name="isbn" value="<?php if (isset($_GET['isbn'])) {
+                                                                            echo $_GET['isbn'];
+                                                                        } ?>" class="form-control" placeholder="Cari ISBN">
+                            </div>
+                            <!-- CARI KATEGORI -->
+                            <div class="col-md-6 mb-3">
+                                <select name="genre" class="form-control">
                                     <option value="">Cari Kategori</option>
                                     <option value="Fiction">Fiction</option>
                                     <option value="Science">Science</option>
                                     <option value="History">History</option>
                                     <option value="Action">Action</option>
                                 </select>
-                                <!-- Button -->
-                                <br><button type="submit" class="btn btn-primary">Buat Carian</button>
-                                <button type="button" class="btn btn-secondary cancel" onclick="closeForm()">Close</button>
-                                <button type="button" class="btn btn-secondary refresh" onclick="resetForm()">Refresh Page</button>
-                            </form>
-                        </div>
-                    </div>
+                            </div>
+                            <!-- CARI BAHASA -->
+                            <div class="col-md-6 mb-3">
+                                <select name="language" class="form-control">
+                                    <option value="">Cari Bahasa</option>
+                                    <option value="Bahasa Melayu">Bahasa Melayu</option>
+                                    <option value="Bahasa Inggeris">Bahasa Inggeris</option>
+                                    <option value="Bahasa Cina">Bahasa Cina</option>
+                                    <option value="Bahasa Tamil">Bahasa Tamil</option>
+                                </select>
+                            </div>
+                            <!-- CARI ILLUSTRASI -->
+                            <div class="col-md-12 mb-3">
+                                <select name="illustration" class="form-control">
+                                    <option value="">Buku Berilustrasi</option>
+                                    <option value="Ya">Ya</option>
+                                    <option value="Tidak">Tidak</option>
+                                </select>
+                            </div>
+                            <!-- SAVE BUTTON -->
+                            <div class="col-md-12 text_align_center">
+                                <button type="submit" class="btn btn-primary">Buat Carian</button>
+                                <button type="button" class="btn btn-secondary cancel" onclick="closeForm()">Tutup Carian</button>
+                                <button type="button" class="btn btn-secondary refresh" onclick="resetForm()">Reset Carian</button>
+                            </div>
+                    </form>
                 </div>
             </div>
         </div>
+    </div>
     </div>
     <!-- End Book Search -->
 
     <!-- Booking -->
     <div class="container_book">
         <?php
-        //Search
+        // Search
         $filtertitle = isset($_GET['search']) ? $_GET['search'] : '';
         $filtercategory = isset($_GET['genre']) ? $_GET['genre'] : '';
         $filterpublisher = isset($_GET['penerbit']) ? $_GET['penerbit'] : '';
         $filterisbn = isset($_GET['isbn']) ? $_GET['isbn'] : '';
+        $filterlanguage = isset($_GET['language']) ? $_GET['language'] : '';
+        $filterilustrasi = isset($_GET['illustration']) ? $_GET['illustration'] : '';
 
         // Base query
         $query = "SELECT * FROM tblbook";
 
         // Check for each filter and append to the query
-        if (!empty($filtertitle) || !empty($filtercategory) || !empty($filterpublisher) || !empty($filterisbn)) {
+        if (!empty($filtertitle) || !empty($filtercategory) || !empty($filterpublisher) || !empty($filterisbn) || !empty($filterlanguage) || !empty($filterilustrasi)) {
             $query .= " WHERE";
 
             if (!empty($filtertitle)) {
@@ -230,6 +268,20 @@ if (isset($_SESSION["IDStud"])) {
                 }
                 $query .= " `book_ISBN` LIKE '%$filterisbn%'";
             }
+
+            if (!empty($filterlanguage)) {
+                if (!empty($filtertitle) || !empty($filtercategory) || !empty($filterpublisher) || !empty($filterisbn)) {
+                    $query .= " AND";
+                }
+                $query .= " `book_language` = '$filterlanguage'";
+            }
+
+            if (!empty($filterilustrasi)) {
+                if (!empty($filtertitle) || !empty($filtercategory) || !empty($filterpublisher) || !empty($filterisbn) || !empty($filterlanguage)) {
+                    $query .= " AND";
+                }
+                $query .= " `book_illustration` = '$filterilustrasi'";
+            }
         }
 
         $result = $con->query($query);
@@ -251,20 +303,37 @@ if (isset($_SESSION["IDStud"])) {
                                         <td class="bold-text">Pengarang:&nbsp;&nbsp;<?= $row["book_author"] ?></td>
                                     </tr>
                                     <tr>
-                                        <!-- <td class="bold-text">No. ISBN:&nbsp;&nbsp;<?= $row["book_ISBN"] ?></td> -->
+                                        <td class="bold-text">No. ISBN:&nbsp;&nbsp;<?= $row["book_ISBN"] ?></td>
                                     </tr>
                                     <tr>
                                         <td class="bold-text">Penerbit:&nbsp;&nbsp;<?= $row["publisher"] ?></td>
                                     </tr>
                                     <tr>
-                                        <!-- <td class="bold-text">No. Dewey:&nbsp;&nbsp;<?= $row["book_dewey"] ?></td> -->
+                                        <td class="bold-text">No. Dewey:&nbsp;&nbsp;<?= $row["book_dewey"] ?></td>
                                     </tr>
                                     <tr>
                                         <td class="bold-text">Kategori:&nbsp;&nbsp;<?= $row["book_category"] ?></td>
                                     </tr>
                                     <tr>
-                                        <!-- <td class="bold-text">Sinopsis Buku:&nbsp;&nbsp;<?= $row["book_desc"] ?></td> -->
+                                        <td class="bold-text">Sinopsis Buku:&nbsp;&nbsp;<?= $row["book_desc"] ?></td>
                                     </tr>
+                                    <?php
+                                    $book_title = $row['book_title'];
+                                    $statusQuery = "SELECT bb.status FROM tblbooking bb JOIN tblbook b ON bb.book_title = b.book_title WHERE b.book_title = ?";
+                                    $stmt = $con->prepare($statusQuery);
+                                    $stmt->bind_param("s", $book_title);
+                                    $stmt->execute();
+                                    $statusResult = $stmt->get_result();
+
+                                    if ($statusResult->num_rows > 0) {
+                                        $statusData = $statusResult->fetch_assoc();
+                                        echo "<tr><td class='bold-text'>Status:&nbsp;&nbsp;" . $statusData['status'] . "</td></tr>";
+                                    } else {
+                                        echo null;
+                                    }
+
+                                    $stmt->close();
+                                    ?>
                                 </table>
                             </div>
                         </div>
