@@ -206,9 +206,23 @@ if (isset($_GET['book_ID'])) {
                                     <p><?= $row["book_matter3"] ?></p>
                                 </div>
                                 <p class="bold-text">Status:&nbsp;&nbsp;</p>
-                                <div class="alert alert-primary">
-                                    <?= $row["book_status"] ?>
-                                </div>
+                                <?php
+                                $book_title = $row['book_title'];
+                                $statusQuery = "SELECT bb.status FROM tblbooking bb JOIN tblbook b ON bb.book_title = b.book_title WHERE b.book_title = ?";
+                                $stmt = $con->prepare($statusQuery);
+                                $stmt->bind_param("s", $book_title);
+                                $stmt->execute();
+                                $statusResult = $stmt->get_result();
+
+                                if ($statusResult->num_rows > 0) {
+                                    $statusData = $statusResult->fetch_assoc();
+                                    echo "<div class='alert alert-warning'>Status:&nbsp;&nbsp;" . $statusData['status'] . "</div>";
+                                } else {
+                                    echo "<div class='alert alert-primary'>" . $row['book_status'] . "</div>";
+                                }
+
+                                $stmt->close();
+                                ?>
                             </div>
                             <br>
                             <div class="text-right mr-3 mb-3">
