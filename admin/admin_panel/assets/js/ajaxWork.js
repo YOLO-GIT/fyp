@@ -105,14 +105,14 @@ function teacherDelete(id){
 
 function showBooking(){
     $.ajax({
-        url:"./adminView/viewBooking.php",
-        method:"post",
-        data:{record:1},
-        success:function(data){
-            $('.allContent-section').html(data);
-        }
+      url:"./adminview/viewBooking.php",
+      method:"post",
+      data:{record:1},
+      success:function(data){
+        $('.allContent-section').html(data);
+      }
     });
-}
+  }
 
 function variationEditForm1(id){
   $.ajax({
@@ -268,6 +268,19 @@ function updateVariations(){
         showBorrowed();
       }
     });
+}
+
+function ChangeOrderStatus(id){
+    $.ajax({
+       url:"../controller/updateBookStatus.php",
+       method:"post",
+       data:{record:id},
+       success:function(data){
+           alert('Order Status updated successfully');
+           $('form').trigger('reset');
+           showBooking();
+       }
+   });
 }
 
 // Custom JScript
