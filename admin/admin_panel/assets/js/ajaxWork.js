@@ -105,7 +105,7 @@ function teacherDelete(id){
 
 function showBooking(){
     $.ajax({
-      url:"./adminview/viewBooking.php",
+      url:"viewBooking.php",
       method:"post",
       data:{record:1},
       success:function(data){
@@ -276,7 +276,7 @@ function ChangeOrderStatus(id){
        method:"post",
        data:{record:id},
        success:function(data){
-           alert('Order Status updated successfully');
+           alert('Status updated successfully');
            $('form').trigger('reset');
            showBooking();
        }
