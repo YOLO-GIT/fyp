@@ -1,7 +1,7 @@
 
 function showBooks(){  
     $.ajax({
-        url:"./adminView/viewBooks.php",
+        url:"viewBooks.php",
         method:"post",
         data:{record:1},
         success:function(data){
@@ -23,7 +23,7 @@ function showDashBoard(){
 
 function showBorrowed(){  
     $.ajax({
-        url:"./adminView/viewBorrowed.php",
+        url:"viewBorrowed.php",
         method:"post",
         data:{record:1},
         success:function(data){
@@ -34,7 +34,7 @@ function showBorrowed(){
 
 function showStudent(){
     $.ajax({
-        url:"./adminView/viewStudents.php",
+        url:"viewStudents.php",
         method:"get",
         data:{record:1},
         success:function(data){
@@ -45,7 +45,7 @@ function showStudent(){
 
 function showTeacher(){
     $.ajax({
-        url:"./adminView/viewTeachers.php",
+        url:"viewTeachers.php",
         method:"post",
         data:{record:1},
         success:function(data){
@@ -113,39 +113,6 @@ function showBooking(){
       }
     });
   }
-
-function variationEditForm1(id){
-  $.ajax({
-        url:"./adminView/editBookingForm.php",
-        method:"post",
-        data:{record:id},
-        success:function(data){
-            $('.allContent-section').html(data);
-        }
-    });
-}
-
-//update variation after submit
-function updateVariations1(){
-    var v_id = $('#v_id').val();
-    var qty = $('#qty').val();
-    var fd = new FormData();
-    fd.append('v_id', v_id);
-    fd.append('qty', qty);
-   
-    $.ajax({
-      url:'./controller/updateOrderStatus.php',
-      method:'post',
-      data:fd,
-      processData: false,
-      contentType: false,
-      success: function(data){
-        alert('Update Success.');
-        $('form').trigger('reset');
-        showBorrowed();
-      }
-    });
-}
 
 //delete variation data
 function bookingDelete(id){
@@ -217,56 +184,6 @@ function bookDelete(id){
             $('form').trigger('reset');
             showBooks();
         }
-    });
-}
-
-
-//delete variation data
-function variationDelete(id){
-    $.ajax({
-        url:"./controller/deleteVariationController.php",
-        method:"post",
-        data:{record:id},
-        success:function(data){
-            alert('Successfully deleted');
-            $('form').trigger('reset');
-            showBorrowed();
-        }
-    });
-}
-
-//edit variation data
-function variationEditForm(id){
-    $.ajax({
-        url:"./adminView/editBorrowedForm.php",
-        method:"post",
-        data:{record:id},
-        success:function(data){
-            $('.allContent-section').html(data);
-        }
-    });
-}
-
-
-//update variation after submit
-function updateVariations(){
-    var v_id = $('#v_id').val();
-    var qty = $('#qty').val();
-    var fd = new FormData();
-    fd.append('v_id', v_id);
-    fd.append('qty', qty);
-   
-    $.ajax({
-      url:'./controller/updateVariationController.php',
-      method:'post',
-      data:fd,
-      processData: false,
-      contentType: false,
-      success: function(data){
-        alert('Update Success.');
-        $('form').trigger('reset');
-        showBorrowed();
-      }
     });
 }
 

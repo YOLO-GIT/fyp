@@ -25,7 +25,7 @@
           <td><?= $row["stud_Name"] ?></td>
           <td><?= $row["book_title"] ?></td>
           <td><?= $row["transc_name"] ?></td>
-          <td><button class="btn btn-primary" style="height:40px" onclick="variationEditForm('<?= $row['transc_ID'] ?>')">Edit</button></td>
+          <!-- <td><button class="btn btn-primary" style="height:40px" onclick="variationEditForm('<?= $row['transc_ID'] ?>')">Edit</button></td> -->
           <td><button class="btn btn-danger" style="height:40px" onclick="variationDelete('<?= $row['transc_ID'] ?>')">Delete</button></td>
         </tr>
     <?php
