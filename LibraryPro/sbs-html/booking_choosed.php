@@ -18,8 +18,8 @@ if (isset($_SESSION["IDStud"])) {
     $stmt->bind_param("s", $stud_ID);
     $stmt->execute();
     $result = $stmt->get_result();
-    $row1 = $result->fetch_assoc();
-    $statement_res = "Welcome Back, " . $row1['stud_Name'];
+    $user = $result->fetch_assoc();
+    $statement_res = "Welcome Back, " . $user['stud_Name'];
     $stmt->close();
 } elseif (isset($_SESSION["IDTeachers"])) {
     $log = "Logout";
@@ -33,8 +33,8 @@ if (isset($_SESSION["IDStud"])) {
     $stmt->bind_param("s", $teachers_ID);
     $stmt->execute();
     $result = $stmt->get_result();
-    $row1 = $result->fetch_assoc();
-    $statement_res = "Welcome Back, " . $row1['teachers_Name'];
+    $user = $result->fetch_assoc();
+    $statement_res = "Welcome Back, " . $user['teachers_Name'];
     $stmt->close();
 } else {
     $statement_res = null;

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 07, 2023 at 12:51 PM
+-- Generation Time: Nov 10, 2023 at 10:57 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -51,7 +51,7 @@ CREATE TABLE `tblbook` (
 --
 
 INSERT INTO `tblbook` (`book_ID`, `book_title`, `book_author`, `book_ISBN`, `publisher`, `book_dewey`, `book_category`, `book_desc`, `book_language`, `book_illustration`, `book_matter1`, `book_matter2`, `book_matter3`, `book_status`, `book_added`, `book_image`) VALUES
-(7578, 'Super Storymorie Certot#2 Sukan', 'Kumpulan Penulis', '978-967-411-759-7', 'PTS Publishing House Sdn ', '899.23 STO', 'Fiction', 'Antologi Cerita Kontol', '', '', '', '', '', '', '2023-10-23 12:49:19', 'uploads/Certot_3-Ayahku_Superhero.jpg'),
+(7578, 'Super Storymorie Certot#2 Sukan', 'Kumpulan Penulis', '978-967-411-759-6', 'PTS Publishing House Sdn ', '899.23 STO', 'Fiction', 'Antologi Cerita Kontol', '', '', '', '', '', '', '2023-10-23 12:49:19', 'uploads/Certot_3-Ayahku_Superhero.jpg'),
 (7574, 'Ilmu Keusahawanan Agrikultur', 'Suriatiyah', '978-967-371-054-6', 'Synergy Media Sdn Bhd', '338.1 SUR', 'Science', 'Berkaitan Agrikultur', '', '', '', '', '', '', '2023-10-23 12:21:32', 'uploads/Watermark.jpg'),
 (7575, 'Membuat Baja Kompos', 'L. Murbandono HS', '978-967-371-076-8', 'Synergy Media Sdn Bhd', '631.875 MUR', 'Science', 'Siri Agro itu Pertanian', '', '', '', '', '', '', '2023-10-23 12:26:11', 'uploads/default_book.jpg'),
 (7576, 'Misteri Disebalik Gerakan Solat 5 Waktu', 'H. Muhammad Nasir, MA', '978-967-048-281-1', 'Pustaka Al-Ehsan', '297.283 MUH', 'History', 'Nikmati Lazatnya Solat', '', '', '', '', '', '', '2023-10-23 12:30:45', 'uploads/default_book.jpg'),
@@ -77,6 +77,7 @@ CREATE TABLE `tblbooking` (
   `user_ID` varchar(25) NOT NULL,
   `date_booked` date DEFAULT NULL,
   `time_booked` time DEFAULT NULL,
+  `status_ID` int(10) NOT NULL DEFAULT 0,
   `status` varchar(25) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -84,10 +85,8 @@ CREATE TABLE `tblbooking` (
 -- Dumping data for table `tblbooking`
 --
 
-INSERT INTO `tblbooking` (`booking_ID`, `book_title`, `user_Name`, `user_ID`, `date_booked`, `time_booked`, `status`) VALUES
-('230002', 'Ilmu Keusahawanan Agrikultur', 'Ahmad Aziz', 'SJ0435', '2023-11-07', '05:53:42', 'isBooking'),
-('230001', 'Super Storymorie Certot#2 Sukan', 'Ahmad Aziz', 'SJ0435', '2023-11-07', '05:53:12', 'isBooking'),
-('230003', 'Membuat Baja Kompos', 'Ahmad Aziz', 'SJ0435', '2023-11-07', '05:54:02', 'isBooking');
+INSERT INTO `tblbooking` (`booking_ID`, `book_title`, `user_Name`, `user_ID`, `date_booked`, `time_booked`, `status_ID`, `status`) VALUES
+('230001', 'Pocket Time', 'Ahmad Nasik', 'SJ0455', '2023-11-09', '12:51:41', 0, 'Booking');
 
 -- --------------------------------------------------------
 
@@ -217,7 +216,7 @@ INSERT INTO `tblstudent` (`stud_ID`, `stud_Name`, `stud_username`, `stud_Class`,
 ('SJ0435', 'Ahmad Aziz', 'Sufi123', '5 Al - Arabi', 'ahmadsufi345@gmail.com', 'd9f7dfaf83ff1753bdd85e9cd77d18c876040a6f60f04b8330e76fdd198882612fd7439a2419e320395eea18406ccfadb65c7bc069cf8d94e9336a5813dfadcc', '2023-11-04', '4591ba', 1, '', 4),
 ('SJ0417', 'Ahmad Aziz', 'Sufi1234', '5 Al - Arabi', 'ahmadsufi345@gmail.com', '7e5b9a6029b64c52cd6a6ad186653195b70cfb7770b6d71c3eb4ddf16f1e270f6852ee9c61d9a7f07f897459fcf2d68b0c2e6ad4ebc0a8f38efd72382e471176', '2023-11-04', 'aa0943', 1, '', 0),
 ('SB0522', 'Mohd Saufi', 'Saufi125', '5 Al - Arabi', 'ahmadsufi345@gmail.com', '591f110c5f0e1bdce3ce99ee4d25a60959f343e90d120e4d473e3ccae5811d5d07cd991a64b6f18ef670b772d48adbb9c08206bb99e621b60046b3921b204b77', '2023-11-04', '478b98', 1, '', 0),
-('SJ0455', 'Ahmad Nasik', 'Nasik123', '3 Al - Arabi', 'ahmadsufi345@gmail.com', '15e62c3a41b7c6e3aa01d53ea6fe3db11427947991e70634b0480b1d48c8331839ec136cf7a28833b60dc9588f160ac57a299a72d271c58d52991bc6e9301d4b', '2023-11-04', '30b230', 1, '', 0),
+('SJ0455', 'Ahmad Nasik', 'Nasik123', '3 Al - Arabi', 'ahmadsufi345@gmail.com', '15e62c3a41b7c6e3aa01d53ea6fe3db11427947991e70634b0480b1d48c8331839ec136cf7a28833b60dc9588f160ac57a299a72d271c58d52991bc6e9301d4b', '2023-11-04', '30b230', 1, '', 1),
 ('SJ0467', 'Mohd Saufi', 'Saufi1235', '5 Al - Arabi', 'ahmadsufi345@gmail.com', '60919c8c5deb1bd7fd88002210b3317ea7157017385c1056b2d7e1d9936406bff0fc0bbf0a5690e73a10742e7e6b7f03cf8dc44b7eee0d777853dd92ea832b62', '2023-11-04', 'a32636', 1, '', 0);
 
 -- --------------------------------------------------------

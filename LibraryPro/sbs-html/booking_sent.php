@@ -53,9 +53,9 @@ if (mysqli_num_rows($check_id) > 0) {
     mysqli_close($con);
     // Sending back to the Teacher Panel.
     echo "<script>window.location.href='booking.php';</script>";
-} elseif (mysqli_num_rows($check_user) >= 3) {
+} elseif (mysqli_num_rows($check_user) >= 5) {
     // Validation if the content is same
-    echo "<script>alert('Anda hanya boleh booking buku sekali sahaja');</script>";
+    echo "<script>alert('Anda hanya boleh booking buku lima kali sahaja');</script>";
     // Close the DB to ensure it will not updated.
     mysqli_close($con);
     // Sending back to the Teacher Panel.

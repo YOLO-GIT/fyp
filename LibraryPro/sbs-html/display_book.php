@@ -15,9 +15,9 @@ if (isset($_SESSION["IDStud"])) {
     $stmt->bind_param("s", $stud_ID);
     $stmt->execute();
     $result = $stmt->get_result();
-    $row1 = $result->fetch_assoc();
-    $statement_sent = 'stud_ID=' . $row1['stud_ID'];
-    $statement_res = "Welcome Back, " . $row1['stud_Name'];
+    $user = $result->fetch_assoc();
+    $statement_sent = 'stud_ID=' . $user['stud_ID'];
+    $statement_res = "Welcome Back, " . $user['stud_Name'];
 
     $stmt->close();
 } elseif (isset($_SESSION["IDTeachers"])) {
@@ -32,9 +32,9 @@ if (isset($_SESSION["IDStud"])) {
     $stmt->bind_param("s", $teachers_ID);
     $stmt->execute();
     $result = $stmt->get_result();
-    $row1 = $result->fetch_assoc();
-    $statement_sent = 'teachers_ID=' . $row1['teachers_ID'];
-    $statement_res = "Welcome Back, " . $row1['teachers_Name'];
+    $user = $result->fetch_assoc();
+    $statement_sent = 'teachers_ID=' . $user['teachers_ID'];
+    $statement_res = "Welcome Back, " . $user['teachers_Name'];
     $stmt->close();
 } else {
     $statement_res = null;
