@@ -12,7 +12,7 @@ function showBooks(){
 
 function showDashBoard(){  
     $.ajax({
-        url:"./index.php",
+        url:"index.php",
         method:"post",
         data:{record:1},
         success:function(data){
