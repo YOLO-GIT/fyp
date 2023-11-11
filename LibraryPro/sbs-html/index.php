@@ -133,10 +133,11 @@ if (isset($_SESSION["IDStud"])) {
             </div>
         </div>
     </div>
-    <!-- end header inner -->
     <!-- end header -->
+
     <!-- top -->
     <div class="full_bg">
+        
         <div class="slider_main">
             <div class="container-fluid">
                 <div class="row">
@@ -235,7 +236,7 @@ if (isset($_SESSION["IDStud"])) {
         </div>
     </div>
     <!-- end banner -->
-    <br>
+   
     <!-- Event Start -->
     <div class="full_bg">
         <div class="slider_main">
@@ -249,7 +250,7 @@ if (isset($_SESSION["IDStud"])) {
                                 <li data-target="#carouselForEvents" data-slide-to="1"></li>
                                 <li data-target="#carouselForEvents" data-slide-to="2"></li>
                             </ol>
-                            <div class="carousel-inner custom-carousel-inner">
+                            <div class="carousel-inner">
                                 <!-- first slide -->
                                 <div class="carousel-item active">
                                     <div class="carousel-caption relative">

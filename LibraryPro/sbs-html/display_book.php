@@ -144,6 +144,22 @@ if (isset($_GET['book_ID'])) {
     </div>
     <!-- end header inner -->
 
+    <!-- Breadcrumbs Start -->
+    <nav aria-label="breadcrumb">
+        <?php
+        $query = "SELECT * FROM tblbook WHERE book_ID = $book_ID";
+        $result = $con->query($query);
+        $book = $result->fetch_assoc()
+        ?>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="index.php">Home</a></li>
+            <li class="breadcrumb-item"><a href="booking.php">Carian</a></li>
+            <li class="breadcrumb-item active" aria-current="page"><?= $book["book_title"] ?></li>
+        </ol>
+    </nav>
+    <!-- Breadcrumbs Ends -->
+
+    <!-- Display Buku Starts -->
     <div class="container_book">
         <?php
         $query = "SELECT * FROM tblbook WHERE book_ID = $book_ID";
@@ -246,11 +262,8 @@ if (isset($_GET['book_ID'])) {
         ?>
         <!-- Pilihan Buku End -->
     </div>
+    <!-- Display Buku Ends -->
 
-
-    <?php
-    mysqli_close($con);
-    ?>
     <!--  footer -->
     <footer>
         <div class="footer">

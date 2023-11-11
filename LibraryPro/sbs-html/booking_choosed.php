@@ -151,6 +151,23 @@ if (isset($_GET['book_ID'])) {
     </div>
     <!-- end header inner -->
 
+    <!-- Breadcrumbs Start -->
+    <nav aria-label="breadcrumb">
+        <?php
+        $query = "SELECT * FROM tblbook WHERE book_ID = $book_ID";
+        $result = $con->query($query);
+        $book = $result->fetch_assoc()
+        ?>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="index.php">Home</a></li>
+            <li class="breadcrumb-item"><a href="booking.php">Carian</a></li>
+            <li class="breadcrumb-item" aria-current="page"><a href="display_book.php?book_ID=<?= $book_ID ?>"><?= $book["book_title"] ?></a></li>
+            <li class="breadcrumb-item active" aria-current="page">Pilihan Buku: <?= $book["book_title"] ?></li>
+        </ol>
+    </nav>
+    <!-- Breadcrumbs Ends -->
+
+    <!-- Pilihan Buku Start -->
     <div class="container_book">
         <form method="get" action="booking_sent.php">
             <div id="clock" class="form-control bold-text text_align_center"></div>
@@ -262,13 +279,15 @@ if (isset($_GET['book_ID'])) {
                 echo "No book found.";
             }
             ?>
-            <!-- Pilihan Buku End -->
+
         </form>
     </div>
+    <!-- Pilihan Buku End -->
 
     <?php
     mysqli_close($con);
     ?>
+
     <!--  footer -->
     <footer>
         <div class="footer">

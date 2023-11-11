@@ -63,25 +63,14 @@ if (isset($_SESSION["IDStud"])) {
     <link rel="stylesheet" href="css/style.css">
     <!-- custom style css -->
     <link rel="stylesheet" href="css/custom_style.css">
+    <!-- custom style css for booking -->
+    <link rel="stylesheet" href="css/custom_booking.css">
     <!-- Responsive-->
     <link rel="stylesheet" href="css/responsive.css">
     <!-- fevicon -->
     <link rel="icon" href="images/fevicon.png" type="image/gif" />
     <!-- Tweaks for older IEs-->
     <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
-    <style>
-        .form-control {
-            border-color: black;
-            border-width: 3px;
-            border-radius: 5px;
-            background: radial-gradient(circle at 18.7% 37.8%, rgb(250, 250, 250) 0%, rgb(225, 234, 238) 90%);
-            /* You can adjust this value to make the border thicker */
-        }
-
-        .card {
-            box-shadow: 0px 0px 6px 0 gainsboro;
-        }
-    </style>
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
@@ -187,9 +176,17 @@ if (isset($_SESSION["IDStud"])) {
     </div>
     <!-- End Book Search -->
 
+    <!-- Breadcrumbs Start -->
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="index.php">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Carian</li>
+        </ol>
+    </nav>
+    <!-- Breadcrumbs Ends -->
+
     <!-- Booking Start -->
     <div class="container_book">
-
         <form action="" method="GET">
             <!-- Sorting Function -->
             <div class="input-group mb-3">
@@ -362,13 +359,9 @@ if (isset($_SESSION["IDStud"])) {
         echo '</div>';
         ?>
         <!-- Pagination End -->
-
     </div>
     <!-- Booking End -->
 
-    <?php
-    mysqli_close($con);
-    ?>
     <!--  footer -->
     <footer>
         <div class="footer">
