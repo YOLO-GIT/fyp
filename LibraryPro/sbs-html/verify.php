@@ -9,11 +9,12 @@ if (isset($_POST["cmdverify"])) {
     // Retrieve the stored verification code from the database
     $sql = "SELECT * FROM tblstudent WHERE verification_code = '$inputVerificationCode'";
     $result = mysqli_query($con, $sql);
-    // Retrieve the stored verification code from the database
+
     $teachers_sql = "SELECT * FROM tblteachers WHERE verification_code = '$inputVerificationCode'";
     $teacher_result = mysqli_query($con, $teachers_sql);
 
     if (mysqli_num_rows($result) > 0) {
+
         // Update the user's account as verified
         $row = mysqli_fetch_assoc($result);
         $userId = $row['stud_ID'];
@@ -26,22 +27,32 @@ if (isset($_POST["cmdverify"])) {
         } else {
             echo "Error updating record: " . mysqli_error($con);
         }
+
+        // Assign the breadcrumbs
+        $link_register = "register.php";
+        $user_register = "Student Register";
     } elseif (mysqli_num_rows($teacher_result) > 0) {
-        // Update the user's account as verified
+
         $row = mysqli_fetch_assoc($teacher_result);
         $userId = $row['teachers_ID'];
         $TeacherupdateSql = "UPDATE tblteachers SET is_verified = 1 WHERE teachers_ID = '$userId'";
 
         if (mysqli_query($con, $TeacherupdateSql)) {
             echo "Account verified successfully!";
-            //Redirect to page ---> Login.php
+
             echo "<script>window.location.href='login.php';</script>";
         } else {
             echo "Error updating record: " . mysqli_error($con);
         }
+
+        // Assign the breadcrumbs
+        $link_register = "teacher_register.php";
+        $user_register = "Teacher Register";
     } else {
         echo "Invalid verification code. Please try again.";
     }
+
+    mysqli_close($con);
 }
 ?>
 <html>
@@ -56,7 +67,7 @@ if (isset($_POST["cmdverify"])) {
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1">
     <!-- site metas -->
-    <title>Login</title>
+    <title>Library Pro | Verification</title>
     <meta name="keywords" content="">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -136,7 +147,18 @@ if (isset($_POST["cmdverify"])) {
         </div>
     </div>
     <!-- end header inner -->
-    <!-- end header -->
+
+    <!-- Breadcrumbs Start -->
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="index.php">Home</a></li>
+            <li class="breadcrumb-item"><a href="login.php">Login</a></li>
+            <li class="breadcrumb-item"><a href="<?= $link_register ?>"><?= $user_register ?></a></li>
+            <li class="breadcrumb-item active" aria-current="page">Verification</li>
+        </ol>
+    </nav>
+    <!-- Breadcrumbs Ends -->
+
     <!-- Login -->
     <div class="contact1">
         <div class="col-md-12">

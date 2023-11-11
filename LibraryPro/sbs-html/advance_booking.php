@@ -69,20 +69,8 @@ if (isset($_SESSION["IDStud"])) {
     <link rel="icon" href="images/fevicon.png" type="image/gif" />
     <!-- Tweaks for older IEs-->
     <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
-    <style>
-        .form-control {
-            border-color: black;
-            border-width: 3px;
-            border-radius: 5px;
-            background: radial-gradient(circle at 18.7% 37.8%, rgb(250, 250, 250) 0%, rgb(225, 234, 238) 90%);
-            /* You can adjust this value to make the border thicker */
-        }
-
-        .card {
-            box-shadow: 0px 0px 6px 0 gainsboro;
-        }
-    </style>
-
+    <!-- custom style css for booking -->
+    <link rel="stylesheet" href="css/custom_booking.css">
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
@@ -225,6 +213,15 @@ if (isset($_SESSION["IDStud"])) {
     </div>
     </div>
     <!-- End Book Search -->
+
+    <!-- Breadcrumbs Start -->
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="index.php">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Carian</li>
+        </ol>
+    </nav>
+    <!-- Breadcrumbs Ends -->
 
     <!-- Booking -->
     <div class="container_book">

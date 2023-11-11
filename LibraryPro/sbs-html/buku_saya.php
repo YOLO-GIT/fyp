@@ -138,6 +138,16 @@ if (isset($_SESSION["IDStud"])) {
     </div>
     <!-- end header inner -->
 
+    <!-- Breadcrumbs Start -->
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="index.php">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Buku Saya</li>
+        </ol>
+    </nav>
+    <!-- Breadcrumbs Ends -->
+
+    <!-- Display Buku yang dibooking -->
     <div class="container_book">
         <?php
         if (isset($_SESSION["IDStud"])) {
@@ -190,9 +200,8 @@ if (isset($_SESSION["IDStud"])) {
         <div class="text-right mr-3 mb-3">
             <a href="booking.php" class="btn btn-primary">Kembali Semula</a>
         </div>
-        <!-- Pilihan Buku End -->
     </div>
-
+    <!-- Display Buku yang dibooking tamat -->
 
     <?php
     mysqli_close($con);
