@@ -1,5 +1,4 @@
 <?php
-// Assuming you have a database connection already established
 // Replace the connection details with your own
 include '../conn.php';
 
@@ -34,10 +33,10 @@ if (isset($_GET['cmdchange'])) {
         $sql = "UPDATE tblstudent SET stud_pwd = '$newPassword' WHERE stud_pwd = '$currentPassword'";
 
         if ($con->query($sql) === TRUE) {
-            echo "Password changed successfully";
+            echo "<script>alert('Katalaluan anda berjaya diubah.')</script>";
             echo "<script>window.location.href='./profile.php';</script>";
         } else {
-            echo "Error updating password: " . $conn->error;
+            echo "<script>alert('Katalaluan anda tidak berjaya diubah.')</script>" . $conn->error;
         }
     }
 }

@@ -32,11 +32,11 @@ if (!$_SESSION["IDStud"]) {
                             <a class="list-group-item list-group-item-action active" data-toggle="list" href="#account-general">General</a>
                             <a class="list-group-item list-group-item-action" data-toggle="list" href="#account-change-password">Change password</a>
                             <a class="list-group-item list-group-item-action" data-toggle="list" href="#account-info">Info</a>
-                            <!-- <a class="list-group-item list-group-item-action" data-toggle="list" href="#account-social-links">Social links</a>
-                            <a class="list-group-item list-group-item-action" data-toggle="list" href="#account-connections">Connections</a>
-                            <a class="list-group-item list-group-item-action" data-toggle="list" href="#account-notifications">Notifications</a> -->
+                            <a class="list-group-item list-group-item-action" data-toggle="list" href="#account-report">Report</a>
+                            <a class="list-group-item list-group-item-action" data-toggle="list" href="#account-terms">Terms & Conditions</a>
                         </div>
                     </div>
+                    <!-- GENERAL -->
                     <div class="col-md-9">
                         <div class="tab-content">
                             <div class="tab-pane fade active show" id="account-general">
@@ -44,48 +44,52 @@ if (!$_SESSION["IDStud"]) {
                                     <img src="./profile.png" alt="#" class="d-block ui-w-80">
                                 </div>
                                 <hr class="border-light m-0">
-                                <div class="card-body">
-                                    <?php
-                                    $stud_ID = $_SESSION["IDStud"]; // Fetch the ID of the logged-in student
-                                    $query = "SELECT * FROM tblstudent WHERE stud_ID = '$stud_ID'"; // Fetch data only for the logged-in student
-                                    $result = $con->query($query);
-                                    if ($result && $result->num_rows > 0) {
-                                        $row = $result->fetch_assoc();
-                                    ?>
-                                        <div class="form-group">
-                                            <label class="form-label">ID</label>
-                                            <input type="text" class="form-control mb-1" value="<?= $row['stud_ID'] ?>" readonly>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="form-label">Nama</label>
-                                            <input type="text" class="form-control" value="<?= $row['stud_Name'] ?>">
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="form-label">Kelas</label>
-                                            <input type="text" class="form-control mb-1" value="<?= $row['stud_Class'] ?>">
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="form-label">Username</label>
-                                            <input type="text" class="form-control mb-1" value="<?= $row['stud_username'] ?>">
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="form-label">Tarikh Masuk</label>
-                                            <input type="text" class="form-control mb-1" value="<?= $row['date'] ?>">
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="form-label">Booking Count:</label>
-                                            <input type="text" class="form-control mb-1" value="<?= $row['book_count'] ?>" readonly>
-                                        </div>
-                                        <div class="alert alert-success mt-3">
-                                            Your data is safely stored here.<br>
-                                        </div>
-                                    <?php
-                                    } else {
-                                        echo "No data found for this student.";
-                                    }
-                                    ?>
-                                </div>
+                                <form method="get" action="update_profile.php">
+                                    <div class="card-body">
+                                        <?php
+                                        $stud_ID = $_SESSION["IDStud"]; // Fetch the ID of the logged-in student
+                                        $query = "SELECT * FROM tblstudent WHERE stud_ID = '$stud_ID'"; // Fetch data only for the logged-in student
+                                        $result = $con->query($query);
+                                        if ($result && $result->num_rows > 0) {
+                                            $row = $result->fetch_assoc();
+                                        ?>
+                                            <div class="form-group">
+                                                <label class="form-label">ID</label>
+                                                <input type="text" class="form-control mb-1" name="txtID" value="<?= $row['stud_ID'] ?>" readonly>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="form-label">Nama</label>
+                                                <input type="text" class="form-control" name="txtname" value="<?= $row['stud_Name'] ?>">
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="form-label">Kelas</label>
+                                                <input type="text" class="form-control mb-1" name="txtkelas" value="<?= $row['stud_Class'] ?>">
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="form-label">Username</label>
+                                                <input type="text" class="form-control mb-1" name="txtusername" value="<?= $row['stud_username'] ?>">
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="form-label">Tarikh Masuk</label>
+                                                <input type="text" class="form-control mb-1" value="<?= $row['date'] ?>" readonly>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="form-label">Booking Count:</label>
+                                                <input type="text" class="form-control mb-1" value="<?= $row['book_count'] ?>" readonly>
+                                            </div>
+                                            <div class="alert alert-success mt-3">
+                                                Your data is safely stored here.<br>
+                                            </div>
+                                        <?php
+                                        } else {
+                                            echo "No data found for this student.";
+                                        }
+                                        ?>
+                                        <button class="btn btn-primary" name="cmdsave" onclick="return confirm('Adakah anda pasti untuk mengemaskini info anda?');">Simpan</button>
+                                    </div>
+                                </form>
                             </div>
+                            <!-- CHANGE PASSWORD -->
                             <div class="tab-pane fade" id="account-change-password">
                                 <div class="card-body pb-2">
                                     <form method="get" action="change_pwd_stud.php">
@@ -105,6 +109,7 @@ if (!$_SESSION["IDStud"]) {
                                     </form>
                                 </div>
                             </div>
+                            <!-- INFO -->
                             <div class="tab-pane fade" id="account-info">
                                 <div class="card-body pb-2">
                                     <?php
@@ -142,6 +147,27 @@ if (!$_SESSION["IDStud"]) {
                                     <?php
                                     }
                                     ?>
+                                </div>
+                            </div>
+                            <!-- REPORT -->
+                            <div class="tab-pane fade" id="account-report">
+                                <div class="card-body pb-2">
+                                    <form method="get" action="">
+                                        <button class="btn btn-primary" name="cmdprofile" onclick="return confirm('Adakah anda pasti untuk mengemaskini profil anda?');">Simpan</button>
+                                    </form>
+                                </div>
+                            </div>
+                            <!-- TERMS & CONDITION -->
+                            <div class="tab-pane fade" id="account-terms">
+                                <div class="card-body pb-2">
+                                    <label class="form-label form-control">Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia,
+                                        molestiae quas vel sint commodi repudiandae consequuntur voluptatum laborum
+                                        numquam blanditiis harum quisquam eius sed odit fugiat iusto fuga praesentium
+                                        optio, eaque rerum! Provident similique accusantium nemo autem. Veritatis
+                                        obcaecati tenetur iure eius earum ut molestias architecto voluptate aliquam
+                                        nihil, eveniet aliquid culpa officia aut! Impedit sit sunt quaerat, odit,
+                                        tenetur error, harum nesciunt ipsum debitis quas aliquid. Reprehenderit,
+                                    </label>
                                 </div>
                             </div>
                         </div>
