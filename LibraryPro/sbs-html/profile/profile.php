@@ -2,7 +2,7 @@
 session_start();
 include '../conn.php';
 
-// Check if session "idcust" dah wujud atau belum
+// Check if session dah wujud atau belum
 if (!$_SESSION["IDStud"]) {
     echo "<script>alert('Please Login First');</script>";
     echo "<script>window.location.href='login.php';</script>";
@@ -114,7 +114,7 @@ if (!$_SESSION["IDStud"]) {
                                 <div class="card-body pb-2">
                                     <?php
                                     $stud_ID = $_SESSION["IDStud"]; // Fetch the ID of the logged-in student
-                                    $query = "SELECT * FROM tblprofile WHERE user_ID = '$stud_ID'"; // Fetch data only for the logged-in student
+                                    $query = "SELECT * FROM tblstudent WHERE user_ID = '$stud_ID'"; // Fetch data only for the logged-in student
                                     $result = $con->query($query);
                                     if ($result && $result->num_rows > 0) {
                                         $row = $result->fetch_assoc();
@@ -152,9 +152,27 @@ if (!$_SESSION["IDStud"]) {
                             <!-- REPORT -->
                             <div class="tab-pane fade" id="account-report">
                                 <div class="card-body pb-2">
-                                    <form method="get" action="">
-                                        <button class="btn btn-primary" name="cmdprofile" onclick="return confirm('Adakah anda pasti untuk mengemaskini profil anda?');">Simpan</button>
-                                    </form>
+                                    <?php
+                                    $stud_ID = $_SESSION["IDStud"]; // Fetch the ID of the logged-in student
+                                    $query = "SELECT * FROM tblstudent WHERE user_ID = '$stud_ID'"; // Fetch data only for the logged-in student
+                                    $result = $con->query($query);
+                                    if ($result && $result->num_rows > 0) {
+                                        $row = $result->fetch_assoc();
+                                    ?>
+                                        <form method="get" action="user_profile.php">
+                                            <div class="form-group" hidden>
+                                                <label class="form-label">ID</label>
+                                                <input type="text" class="form-control" name="report_id" value="<?= $stud_ID ?>">
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="form-label">Apakah yang anda ingin laporkan?</label>
+                                                <input type="text" class="form-control" name="txtreport">
+                                            </div>
+                                            <button class="btn btn-primary" name="cmdreport">Simpan</button>
+                                        </form>
+                                    <?php
+                                    }
+                                    ?>
                                 </div>
                             </div>
                             <!-- TERMS & CONDITION -->
@@ -178,6 +196,10 @@ if (!$_SESSION["IDStud"]) {
                 <button type="button" class="btn btn-primary"><a href="../index.php" style="color:#fff;">Return to Home Page</a></button>
             </div>
         </div>
+
+        <?php
+        mysqli_close($con);
+        ?>
     </section>
 
     <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
