@@ -20,8 +20,10 @@ if (isset($_GET['cmdprofile'])) {
 
     if (mysqli_query($con, $sql_profile)) {
         echo "<script>alert('Profil anda sudah dikemaskini.')</script>";
+        echo "<script>window.location.href='./profile.php';</script>";
     } else {
         echo "<script>alert('Ada masalah semasa mengemaskini data anda.')</script>";
+        echo "<script>window.location.href='./profile.php';</script>";
     }
 }
 
@@ -35,8 +37,10 @@ if (isset($_GET['cmdreport'])) {
 
     if (mysqli_query($con, $sql_report)) {
         echo "<script>alert('Laporan anda sudah dihantar.')</script>";
+        echo "<script>window.location.href='./profile.php';</script>";
     } else {
         echo "<script>alert('Ada masalah semasa menghantar laporan anda.')</script>";
+        echo "<script>window.location.href='./profile.php';</script>";
     }
 }
 

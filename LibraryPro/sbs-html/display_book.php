@@ -260,7 +260,6 @@ if (isset($_GET['book_ID'])) {
         <?php
         }
         ?>
-        <!-- Pilihan Buku End -->
     </div>
     <!-- Display Buku Ends -->
 

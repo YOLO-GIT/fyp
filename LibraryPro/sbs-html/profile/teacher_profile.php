@@ -14,7 +14,7 @@ if (!$_SESSION["IDTeachers"]) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User | Profile</title>
+    <title>User | Teacher Profile</title>
     <link rel="stylesheet" href="profile_style.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
@@ -32,11 +32,12 @@ if (!$_SESSION["IDTeachers"]) {
                             <a class="list-group-item list-group-item-action active" data-toggle="list" href="#account-general">General</a>
                             <a class="list-group-item list-group-item-action" data-toggle="list" href="#account-change-password">Change password</a>
                             <a class="list-group-item list-group-item-action" data-toggle="list" href="#account-info">Info</a>
-                            <!-- <a class="list-group-item list-group-item-action" data-toggle="list" href="#account-social-links">Social links</a>
-                            <a class="list-group-item list-group-item-action" data-toggle="list" href="#account-connections">Connections</a>
-                            <a class="list-group-item list-group-item-action" data-toggle="list" href="#account-notifications">Notifications</a> -->
+                            <a class="list-group-item list-group-item-action" data-toggle="list" href="#account-report">Report</a>
+                            <a class="list-group-item list-group-item-action" data-toggle="list" href="#account-terms">Terms & Conditions</a>
                         </div>
                     </div>
+                    
+                    <!-- GENERAL -->
                     <div class="col-md-9">
                         <div class="tab-content">
                             <div class="tab-pane fade active show" id="account-general">
@@ -44,60 +45,65 @@ if (!$_SESSION["IDTeachers"]) {
                                     <img src="./profile.png" alt="#" class="d-block ui-w-80">
                                 </div>
                                 <hr class="border-light m-0">
-                                <div class="card-body">
-                                    <?php
-                                    $Teachers_ID = $_SESSION["IDTeachers"]; // Fetch the ID of the logged-in student
-                                    $query = "SELECT * FROM tblteachers WHERE teachers_ID = '$Teachers_ID'"; // Fetch data only for the logged-in student
-                                    $result = $con->query($query);
-                                    if ($result && $result->num_rows > 0) {
-                                        $row = $result->fetch_assoc();
-                                    ?>
-                                        <div class="form-group">
-                                            <label class="form-label">ID</label>
-                                            <input type="text" class="form-control mb-1" value="<?= $row['teachers_ID'] ?>" readonly>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="form-label">Nama</label>
-                                            <input type="text" class="form-control" value="<?= $row['teachers_Name'] ?>">
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="form-label">Username</label>
-                                            <input type="text" class="form-control mb-1" value="<?= $row['teachers_username'] ?>">
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="form-label">Tarikh Masuk</label>
-                                            <input type="text" class="form-control mb-1" value="<?= $row['date_teachers'] ?>">
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="form-label">Booking Count:</label>
-                                            <input type="text" class="form-control mb-1" value="<?= $row['book_count'] ?>" readonly>
-                                        </div>
-                                        <div class="alert alert-success mt-3">
-                                            Your data is safely stored here.<br>
-                                        </div>
-                                    <?php
-                                    } else {
-                                        echo "No data found for this teacher.";
-                                    }
-                                    ?>
-                                </div>
-
-
+                                <form method="get" action="update_profile.php">
+                                    <div class="card-body">
+                                        <?php
+                                        $Teachers_ID = $_SESSION["IDTeachers"]; // Fetch the ID of the logged-in student
+                                        $query = "SELECT * FROM tblteachers WHERE teachers_ID = '$Teachers_ID'"; // Fetch data only for the logged-in student
+                                        $result = $con->query($query);
+                                        if ($result && $result->num_rows > 0) {
+                                            $row = $result->fetch_assoc();
+                                        ?>
+                                            <div class="form-group">
+                                                <label class="form-label">ID</label>
+                                                <input type="text" class="form-control mb-1" name="txtTid" value="<?= $row['teachers_ID'] ?>" readonly>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="form-label">Nama</label>
+                                                <input type="text" class="form-control" name="txtTname" value="<?= $row['teachers_Name'] ?>">
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="form-label">Username</label>
+                                                <input type="text" class="form-control mb-1" name="txtTuname" value="<?= $row['teachers_username'] ?>">
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="form-label">Tarikh Masuk</label>
+                                                <input type="text" class="form-control mb-1" value="<?= $row['date_teachers'] ?>" readonly>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="form-label">Booking Count:</label>
+                                                <input type="text" class="form-control mb-1" value="<?= $row['book_count'] ?>" readonly>
+                                            </div>
+                                            <div class="alert alert-success mt-3">
+                                                Your data is safely stored here.<br>
+                                            </div>
+                                        <?php
+                                        } else {
+                                            echo "No data found for this teacher.";
+                                        }
+                                        ?>
+                                        <button class="btn btn-primary" name="cmdTsave" onclick="return confirm('Adakah anda pasti untuk mengemaskini info anda?');">Simpan</button>
+                                    </div>
+                                </form>
                             </div>
+                            <!-- CHANGE PASSWORD -->
                             <div class="tab-pane fade" id="account-change-password">
                                 <div class="card-body pb-2">
-                                    <div class="form-group">
-                                        <label class="form-label">Katalaluan Kini</label>
-                                        <input type="password" class="form-control">
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="form-label">Katalaluan Baharu</label>
-                                        <input type="password" class="form-control">
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="form-label">Ulang Katalaluan Baharu</label>
-                                        <input type="password" class="form-control">
-                                    </div>
+                                    <form method="get" action="change_pwd.php">
+                                        <div class="form-group">
+                                            <label class="form-label">Katalaluan Kini</label>
+                                            <input type="password" class="form-control" name="current_passwordT" required maxlength="9" placeholder="Sila letak katalaluan anda.">
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="form-label">Katalaluan Baharu</label>
+                                            <input type="password" class="form-control" name="new_passwordT" required maxlength="9" placeholder="Sila letak katalaluan baru anda.">
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="form-label">Ulang Katalaluan Baharu</label>
+                                            <input type="password" class="form-control" name="repeat_new_passwordT" required maxlength="9" placeholder="Sila letak semula katalaluan baru anda.">
+                                        </div>
+                                        <button class="btn btn-primary" name="cmdchangeT" onclick="return confirm('Adakah anda pasti untuk mengemaskini katalaluan anda?');">Simpan</button>
+                                    </form>
                                 </div>
                             </div>
                             <div class="tab-pane fade" id="account-info">
@@ -134,125 +140,6 @@ if (!$_SESSION["IDTeachers"]) {
                                     </div>
                                 </div>
                             </div>
-                            <!-- <div class="tab-pane fade" id="account-social-links">
-                                <div class="card-body pb-2">
-                                    <div class="form-group">
-                                        <label class="form-label">Twitter</label>
-                                        <input type="text" class="form-control" value="https://twitter.com/user">
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="form-label">Facebook</label>
-                                        <input type="text" class="form-control" value="https://www.facebook.com/user">
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="form-label">Google+</label>
-                                        <input type="text" class="form-control" value>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="form-label">LinkedIn</label>
-                                        <input type="text" class="form-control" value>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="form-label">Instagram</label>
-                                        <input type="text" class="form-control" value="https://www.instagram.com/user">
-                                    </div>
-                                </div>
-                            </div> -->
-                            <!-- <div class="tab-pane fade" id="account-connections">
-                                <div class="card-body">
-                                    <button type="button" class="btn btn-twitter">Connect to
-                                        <strong>Twitter</strong></button>
-                                </div>
-                                <hr class="border-light m-0">
-                                <div class="card-body">
-                                    <h5 class="mb-2">
-                                        <a href="javascript:void(0)" class="float-right text-muted text-tiny"><i class="ion ion-md-close"></i> Remove</a>
-                                        <i class="ion ion-logo-google text-google"></i>
-                                        You are connected to Google:
-                                    </h5>
-                                    <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="f9979498818e9c9595b994989095d79a9694">[email&#160;protected]</a>
-                                </div>
-                                <hr class="border-light m-0">
-                                <div class="card-body">
-                                    <button type="button" class="btn btn-facebook">Connect to
-                                        <strong>Facebook</strong></button>
-                                </div>
-                                <hr class="border-light m-0">
-                                <div class="card-body">
-                                    <button type="button" class="btn btn-instagram">Connect to
-                                        <strong>Instagram</strong></button>
-                                </div>
-                            </div> -->
-                            <!-- <div class="tab-pane fade" id="account-notifications">
-                                <div class="card-body pb-2">
-                                    <h6 class="mb-4">Activity</h6>
-                                    <div class="form-group">
-                                        <label class="switcher">
-                                            <input type="checkbox" class="switcher-input" checked>
-                                            <span class="switcher-indicator">
-                                                <span class="switcher-yes"></span>
-                                                <span class="switcher-no"></span>
-                                            </span>
-                                            <span class="switcher-label">Email me when someone comments on my article</span>
-                                        </label>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="switcher">
-                                            <input type="checkbox" class="switcher-input" checked>
-                                            <span class="switcher-indicator">
-                                                <span class="switcher-yes"></span>
-                                                <span class="switcher-no"></span>
-                                            </span>
-                                            <span class="switcher-label">Email me when someone answers on my forum
-                                                thread</span>
-                                        </label>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="switcher">
-                                            <input type="checkbox" class="switcher-input">
-                                            <span class="switcher-indicator">
-                                                <span class="switcher-yes"></span>
-                                                <span class="switcher-no"></span>
-                                            </span>
-                                            <span class="switcher-label">Email me when someone follows me</span>
-                                        </label>
-                                    </div>
-                                </div>
-                                <hr class="border-light m-0">
-                                <div class="card-body pb-2">
-                                    <h6 class="mb-4">Application</h6>
-                                    <div class="form-group">
-                                        <label class="switcher">
-                                            <input type="checkbox" class="switcher-input" checked>
-                                            <span class="switcher-indicator">
-                                                <span class="switcher-yes"></span>
-                                                <span class="switcher-no"></span>
-                                            </span>
-                                            <span class="switcher-label">News and announcements</span>
-                                        </label>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="switcher">
-                                            <input type="checkbox" class="switcher-input">
-                                            <span class="switcher-indicator">
-                                                <span class="switcher-yes"></span>
-                                                <span class="switcher-no"></span>
-                                            </span>
-                                            <span class="switcher-label">Weekly product updates</span>
-                                        </label>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="switcher">
-                                            <input type="checkbox" class="switcher-input" checked>
-                                            <span class="switcher-indicator">
-                                                <span class="switcher-yes"></span>
-                                                <span class="switcher-no"></span>
-                                            </span>
-                                            <span class="switcher-label">Weekly blog digest</span>
-                                        </label>
-                                    </div>
-                                </div>
-                            </div> -->
                         </div>
                     </div>
                 </div>

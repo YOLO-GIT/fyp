@@ -14,7 +14,7 @@ if (!$_SESSION["IDStud"]) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User | Profile</title>
+    <title>User | Student Profile</title>
     <link rel="stylesheet" href="./profile_style.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
@@ -36,9 +36,10 @@ if (!$_SESSION["IDStud"]) {
                             <a class="list-group-item list-group-item-action" data-toggle="list" href="#account-terms">Terms & Conditions</a>
                         </div>
                     </div>
-                    <!-- GENERAL -->
+
                     <div class="col-md-9">
                         <div class="tab-content">
+                            <!-- GENERAL -->
                             <div class="tab-pane fade active show" id="account-general">
                                 <div class="card-body media align-items-center">
                                     <img src="./profile.png" alt="#" class="d-block ui-w-80">
@@ -92,18 +93,18 @@ if (!$_SESSION["IDStud"]) {
                             <!-- CHANGE PASSWORD -->
                             <div class="tab-pane fade" id="account-change-password">
                                 <div class="card-body pb-2">
-                                    <form method="get" action="change_pwd_stud.php">
+                                    <form method="get" action="change_pwd.php">
                                         <div class="form-group">
                                             <label class="form-label">Katalaluan Kini</label>
-                                            <input type="password" class="form-control" name="current_password" required maxlength="9">
+                                            <input type="password" class="form-control" name="current_password" required maxlength="9" placeholder="Sila letak katalaluan anda.">
                                         </div>
                                         <div class="form-group">
                                             <label class="form-label">Katalaluan Baharu</label>
-                                            <input type="password" class="form-control" name="new_password" required maxlength="9">
+                                            <input type="password" class="form-control" name="new_password" required maxlength="9" placeholder="Sila letak katalaluan baru anda.">
                                         </div>
                                         <div class="form-group">
                                             <label class="form-label">Ulang Katalaluan Baharu</label>
-                                            <input type="password" class="form-control" name="repeat_new_password" required maxlength="9">
+                                            <input type="password" class="form-control" name="repeat_new_password" required maxlength="9" placeholder="Sila letak semula katalaluan baru anda.">
                                         </div>
                                         <button class="btn btn-primary" name="cmdchange" onclick="return confirm('Adakah anda pasti untuk mengemaskini katalaluan anda?');">Simpan</button>
                                     </form>
@@ -114,7 +115,7 @@ if (!$_SESSION["IDStud"]) {
                                 <div class="card-body pb-2">
                                     <?php
                                     $stud_ID = $_SESSION["IDStud"]; // Fetch the ID of the logged-in student
-                                    $query = "SELECT * FROM tblstudent WHERE user_ID = '$stud_ID'"; // Fetch data only for the logged-in student
+                                    $query = "SELECT * FROM tblstudent WHERE stud_ID = '$stud_ID'"; // Fetch data only for the logged-in student
                                     $result = $con->query($query);
                                     if ($result && $result->num_rows > 0) {
                                         $row = $result->fetch_assoc();
@@ -126,7 +127,7 @@ if (!$_SESSION["IDStud"]) {
                                             </div>
                                             <div class="form-group">
                                                 <label class="form-label">Bio</label>
-                                                <textarea class="form-control" rows="5" name="profile_bio" placeholder="Sila tulis bio anda. (50 patah perkataan sahaja)" maxlength="50">TEsting<?= $row['bio'] ?></textarea>
+                                                <textarea class="form-control" rows="5" name="profile_bio" placeholder="Sila tulis bio anda. (50 patah perkataan sahaja)" maxlength="50"><?= $row['bio'] ?></textarea>
                                             </div>
                                             <div class="form-group">
                                                 <label class="form-label">Tarikh Lahir</label>
@@ -154,7 +155,7 @@ if (!$_SESSION["IDStud"]) {
                                 <div class="card-body pb-2">
                                     <?php
                                     $stud_ID = $_SESSION["IDStud"]; // Fetch the ID of the logged-in student
-                                    $query = "SELECT * FROM tblstudent WHERE user_ID = '$stud_ID'"; // Fetch data only for the logged-in student
+                                    $query = "SELECT * FROM tblstudent WHERE stud_ID = '$stud_ID'"; // Fetch data only for the logged-in student
                                     $result = $con->query($query);
                                     if ($result && $result->num_rows > 0) {
                                         $row = $result->fetch_assoc();
@@ -166,7 +167,7 @@ if (!$_SESSION["IDStud"]) {
                                             </div>
                                             <div class="form-group">
                                                 <label class="form-label">Apakah yang anda ingin laporkan?</label>
-                                                <input type="text" class="form-control" name="txtreport">
+                                                <textarea class="form-control" rows="5" name="txtreport" placeholder="Sila tulis masalah yang anda hadapi." required></textarea>
                                             </div>
                                             <button class="btn btn-primary" name="cmdreport">Simpan</button>
                                         </form>
@@ -178,7 +179,11 @@ if (!$_SESSION["IDStud"]) {
                             <!-- TERMS & CONDITION -->
                             <div class="tab-pane fade" id="account-terms">
                                 <div class="card-body pb-2">
-                                    <label class="form-label form-control">Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia,
+                                    <div class="form-control">
+                                        <label class="alert alert-primary bold-text">Terma dan kondisi</label>
+                                    </div>
+                                    <label class="form-control">
+                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia,
                                         molestiae quas vel sint commodi repudiandae consequuntur voluptatum laborum
                                         numquam blanditiis harum quisquam eius sed odit fugiat iusto fuga praesentium
                                         optio, eaque rerum! Provident similique accusantium nemo autem. Veritatis
@@ -188,6 +193,7 @@ if (!$_SESSION["IDStud"]) {
                                     </label>
                                 </div>
                             </div>
+
                         </div>
                     </div>
                 </div>
@@ -196,10 +202,6 @@ if (!$_SESSION["IDStud"]) {
                 <button type="button" class="btn btn-primary"><a href="../index.php" style="color:#fff;">Return to Home Page</a></button>
             </div>
         </div>
-
-        <?php
-        mysqli_close($con);
-        ?>
     </section>
 
     <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
