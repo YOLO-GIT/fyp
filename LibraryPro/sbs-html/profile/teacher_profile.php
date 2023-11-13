@@ -36,10 +36,10 @@ if (!$_SESSION["IDTeachers"]) {
                             <a class="list-group-item list-group-item-action" data-toggle="list" href="#account-terms">Terms & Conditions</a>
                         </div>
                     </div>
-                    
-                    <!-- GENERAL -->
+
                     <div class="col-md-9">
                         <div class="tab-content">
+                            <!-- GENERAL -->
                             <div class="tab-pane fade active show" id="account-general">
                                 <div class="card-body media align-items-center">
                                     <img src="./profile.png" alt="#" class="d-block ui-w-80">
@@ -106,38 +106,87 @@ if (!$_SESSION["IDTeachers"]) {
                                     </form>
                                 </div>
                             </div>
+                            <!-- INFO -->
                             <div class="tab-pane fade" id="account-info">
                                 <div class="card-body pb-2">
-                                    <div class="form-group">
-                                        <label class="form-label">Bio</label>
-                                        <textarea class="form-control" rows="5">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris nunc arcu, dignissim sit amet sollicitudin iaculis, vehicula id urna. Sed luctus urna nunc. Donec fermentum, magna sit amet rutrum pretium, turpis dolor molestie diam, ut lacinia diam risus eleifend sapien. Curabitur ac nibh nulla. Maecenas nec augue placerat, viverra tellus non, pulvinar risus.</textarea>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="form-label">Birthday</label>
-                                        <input type="text" class="form-control" value="May 3, 1995">
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="form-label">Country</label>
-                                        <select class="custom-select">
-                                            <option>USA</option>
-                                            <option selected>Canada</option>
-                                            <option>UK</option>
-                                            <option>Germany</option>
-                                            <option>France</option>
-                                        </select>
-                                    </div>
+                                    <?php
+                                    $teachers_ID = $_SESSION["IDTeachers"]; // Fetch the ID of the logged-in student
+                                    $query = "SELECT * FROM tblteachers WHERE teachers_ID = '$teachers_ID'"; // Fetch data only for the logged-in student
+                                    $result = $con->query($query);
+                                    if ($result && $result->num_rows > 0) {
+                                        $row = $result->fetch_assoc();
+                                    ?>
+                                        <form method="get" action="user_profile.php">
+                                            <div class="form-group" hidden>
+                                                <label class="form-label">ID</label>
+                                                <input type="text" class="form-control" name="Tprofile_id" value="<?= $teachers_ID ?>">
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="form-label">Bio</label>
+                                                <textarea class="form-control" rows="5" name="Tprofile_bio" placeholder="Sila tulis bio anda. (50 patah perkataan sahaja)" maxlength="50"><?= $row['bio'] ?></textarea>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="form-label">Tarikh Lahir</label>
+                                                <input type="date" class="form-control" name="Tprofile_bday" value="<?= $row['birthday'] ?>">
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="form-label">Negeri</label>
+                                                <select class="custom-select" name="Tcbonegeri" value="<?= $row['negeri'] ?>">
+                                                    <option value="Kelantan">Kelantan</option>
+                                                    <option value="Terengganu" selected>Terengganu</option>
+                                                    <option value="Perak">Perak</option>
+                                                    <option value="Kuala Lumpur">Kuala Lumpur</option>
+                                                    <option value="Johor">Johor</option>
+                                                </select>
+                                            </div>
+                                            <button class="btn btn-primary" name="Tcmdprofile" onclick="return confirm('Adakah anda pasti untuk mengemaskini profil anda?');">Simpan</button>
+                                        </form>
+                                    <?php
+                                    }
+                                    ?>
                                 </div>
-                                <hr class="border-light m-0">
+                            </div>
+                            <!-- REPORT -->
+                            <div class="tab-pane fade" id="account-report">
                                 <div class="card-body pb-2">
-                                    <h6 class="mb-4">Contacts</h6>
-                                    <div class="form-group">
-                                        <label class="form-label">Phone</label>
-                                        <input type="text" class="form-control" value="+0 (123) 456 7891">
+                                    <?php
+                                    $teachers_ID = $_SESSION["IDTeachers"]; // Fetch the ID of the logged-in student
+                                    $query = "SELECT * FROM tblteachers WHERE teachers_ID = '$teachers_ID'"; // Fetch data only for the logged-in student
+                                    $result = $con->query($query);
+                                    if ($result && $result->num_rows > 0) {
+                                        $row = $result->fetch_assoc();
+                                    ?>
+                                        <form method="get" action="user_profile.php">
+                                            <div class="form-group" hidden>
+                                                <label class="form-label">ID</label>
+                                                <input type="text" class="form-control" name="Treport_id" value="<?= $teachers_ID ?>">
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="form-label">Apakah yang anda ingin laporkan?</label>
+                                                <textarea class="form-control" rows="5" name="Ttxtreport" placeholder="Sila tulis masalah yang anda hadapi." required></textarea>
+                                            </div>
+                                            <button class="btn btn-primary" name="Tcmdreport">Simpan</button>
+                                        </form>
+                                    <?php
+                                    }
+                                    ?>
+                                </div>
+                            </div>
+                            <!-- TERMS & CONDITION -->
+                            <div class="tab-pane fade" id="account-terms">
+                                <div class="card-body pb-2">
+                                    <div class="form-control">
+                                        <label class="alert alert-primary bold-text">Terma dan kondisi</label>
                                     </div>
-                                    <div class="form-group">
-                                        <label class="form-label">Website</label>
-                                        <input type="text" class="form-control" value>
-                                    </div>
+                                    <label class="form-control">
+                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia,
+                                        molestiae quas vel sint commodi repudiandae consequuntur voluptatum laborum
+                                        numquam blanditiis harum quisquam eius sed odit fugiat iusto fuga praesentium
+                                        optio, eaque rerum! Provident similique accusantium nemo autem. Veritatis
+                                        obcaecati tenetur iure eius earum ut molestias architecto voluptate aliquam
+                                        nihil, eveniet aliquid culpa officia aut! Impedit sit sunt quaerat, odit,
+                                        tenetur error, harum nesciunt ipsum debitis quas aliquid. Reprehenderit,
+                                    </label>
                                 </div>
                             </div>
                         </div>

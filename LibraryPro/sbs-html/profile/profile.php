@@ -193,7 +193,6 @@ if (!$_SESSION["IDStud"]) {
                                     </label>
                                 </div>
                             </div>
-
                         </div>
                     </div>
                 </div>
