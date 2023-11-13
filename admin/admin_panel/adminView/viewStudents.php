@@ -27,46 +27,27 @@ include_once "../config/dbconnect.php";
       <h2>Student</h2>
       <div class="row">
 
-        <!-- Button Search -->
-        <button class="open-button-popup" onclick="openForm()">Search Button</button>
-
-        <!-- Start Student Search -->
-        <div class="form-popup" id="myForm">
-          <form action="" class="form-container-popup">
-            <div class="col-md-12">
-              <div class="card mt-4">
-                <div class="card-header">
-                  <h4 style="color: white;">Search Students</h4>
-                </div>
-                <div class="card-body">
-                  <div class="row">
-                    <div class="col-md-5">
-                      <form action="" method="GET">
-                        <div class="input-group mb-3">
-                          <input type="text" name="search" required value="<?php if (isset($_GET['search'])) {
-                                                                              echo $_GET['search'];
-                                                                            } ?>" class="form-control" placeholder="Search data">
-                        </div>
-                        <br><button type="submit" class="btn btn-primary" style="color: white;">Search</button>
-                        <br><br><button type="button" class="btn cancel" onclick="closeForm()">Close</button>
-                        <br><br><button type="button" class="btn refresh" onclick="resetForm()">Refresh Page</button>
-                      </form>
-                    </div>
-                  </div>
-                </div>
-              </div>
+        <!-- SEARCHING -->
+        <div class="col-md-12 mb-3 mt-3">
+          <form action="" method="GET">
+            <div class="input-group mb-3">
+              <input type="text" name="search" required value="<?php if (isset($_GET['search'])) {
+                                                                  echo $_GET['search'];
+                                                                } ?>" class="form-control custom-form-control" placeholder="Cari Pelajar">
+              <button type="submit" class="btn btn-primary ml-2" style="color: white;">Search</button>
             </div>
           </form>
         </div>
-        <!-- End Student Search -->
+        <!-- SEACRHING END -->
 
         <table class="table">
           <thead>
             <tr>
               <th class="text-center">ID</th>
-              <th class="text-center">Name </th>
-              <th class="text-center">Class</th>
-              <th class="text-center">Joining Date</th>
+              <th class="text-center">Nama</th>
+              <th class="text-center">Kelas</th>
+              <th class="text-center">Tarikh Daftar</th>
+              <th class="text-center">Aksi</th>
             </tr>
           </thead>
           <?php
@@ -86,7 +67,7 @@ include_once "../config/dbconnect.php";
           $page = isset($_GET['page']) ? $_GET['page'] : 1;
           $start = ($page - 1) * $resultPage;
 
-          $queryCount = "SELECT COUNT(*) as total FROM tblteachers";
+          $queryCount = "SELECT COUNT(*) as total FROM tblstudent";
           $totalResult = $conn->query($queryCount)->fetch_assoc()['total'];
           $totalPages = ceil($totalResult / $resultPage);
 
@@ -102,6 +83,9 @@ include_once "../config/dbconnect.php";
                 <td><?= $row["stud_Name"] ?></td>
                 <td><?= $row["stud_Class"] ?></td>
                 <td><?= $row["date"] ?></td>
+                <td>
+                  <button class="btn btn-danger" style="height:40px" onclick="studentDelete('<?= $row['stud_ID'] ?>')">Tolak</button>
+                </td>
               </tr>
             <?php
             }

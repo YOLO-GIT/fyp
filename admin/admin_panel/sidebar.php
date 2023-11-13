@@ -23,7 +23,7 @@
 
     <!-- LIBRARY FUNCTION START -->
     <a class="dropdown-btn"><i class="fa fa-caret-down"></i> Book Proses</a>
-    <div class="dropdown-container"> 
+    <div class="dropdown-container">
         <a href="../adminView/viewBooking.php" onclick="showBooking()"><i class="fa fa-list"></i> Booking</a>
         <a href="#productsizes" onclick="showBorrowed()"><i class="fa fa-th-list"></i> Borrowed</a>
     </div>
@@ -32,6 +32,7 @@
     <!-- OTHERS -->
     <a href="../adminView/viewBooking.php" onclick=""><i class="fa fa-list"></i> Event</a>
     <a href="../adminView/viewBooking.php" onclick=""><i class="fa fa-list"></i> Add Staff</a>
+    <a href="../adminView/viewBooking.php" onclick=""><i class="fa fa-list"></i> Report</a>
 </div>
 
 <div id="main">

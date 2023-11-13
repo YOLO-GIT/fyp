@@ -237,7 +237,7 @@
 .form-container-popup {
   width: 300%;
   padding: 10px;
-  background-color: white;
+  /* background-color: white; */
 }
 
 /* Add a red background color to the cancel button */
@@ -251,7 +251,7 @@
 }
 
 .open-button-popup {
-  background-color: #3B3131;
+  background-color: gray;
   color: white;
   border: solid 5px black;
   border-radius: 25px;
@@ -263,6 +263,12 @@
 
 .custom_btn{
   margin-left: auto;
+}
+
+.custom-form-control{
+  border: solid 2px black;
+  border-radius: 5px;
+  box-shadow: 0px 10px 13px -7px #000000;
 }
 
 /* Popup Ends */

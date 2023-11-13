@@ -27,34 +27,15 @@ include_once "../config/dbconnect.php";
         <div class="container">
             <h2>Teachers</h2>
             <div class="row">
-                <!-- Button Search -->
-                <button class="open-button-popup" onclick="openForm()">Search Button</button>
 
                 <!-- Start Teacher Search -->
-                <div class="form-popup" id="myForm">
-                    <form action="" class="form-container-popup">
-                        <div class="col-md-12">
-                            <div class="card mt-4">
-                                <div class="card-header">
-                                    <h4 style="color: white;">Search Students</h4>
-                                </div>
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="col-md-5">
-                                            <form action="" method="GET">
-                                                <div class="input-group mb-3">
-                                                    <input type="text" name="search" required value="<?php if (isset($_GET['search'])) {
-                                                                                                            echo $_GET['search'];
-                                                                                                        } ?>" class="form-control" placeholder="Search data">
-                                                </div>
-                                                <br><button type="submit" class="btn btn-primary" style="color: white;">Search</button>
-                                                <br><br><button type="button" class="btn cancel" onclick="closeForm()">Close</button>
-                                                <br><br><button type="button" class="btn refresh" onclick="resetForm()">Refresh Page</button>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                <div class="col-md-12 mb-3 mt-3">
+                    <form action="" method="GET">
+                        <div class="input-group mb-3">
+                            <input type="text" name="search" required value="<?php if (isset($_GET['search'])) {
+                                                                                    echo $_GET['search'];
+                                                                                } ?>" class="form-control custom-form-control" placeholder="Cari guru">
+                            <button type="submit" class="btn btn-primary ml-2" style="color: white;">Cari</button>
                         </div>
                     </form>
                 </div>
@@ -67,7 +48,7 @@ include_once "../config/dbconnect.php";
                             <th class="text-center">ID</th>
                             <th class="text-center">Nama</th>
                             <th class="text-center">Username</th>
-                            <th class="text-center">Tarikh semasa</th>
+                            <th class="text-center">Tarikh daftar</th>
                             <th class="text-center">Aksi</th>
                         </tr>
                     </thead>
@@ -107,7 +88,7 @@ include_once "../config/dbconnect.php";
                                 <td><?= $row["teachers_username"] ?></td>
                                 <td><?= $row["date_teachers"] ?></td>
                                 <td><button class="btn btn-primary" style="height:40px" onclick="teacherUpdate('<?= $row['teachers_ID'] ?>')">Edit</button>
-                                    <button class="btn btn-danger" style="height:40px" onclick="teacherDelete('<?= $row['teachers_ID'] ?>')">Delete</button>
+                                    <button class="btn btn-danger" style="height:40px" onclick="teacherDelete('<?= $row['teachers_ID'] ?>')">Tolak</button>
                                 </td>
                             </tr>
                         <?php

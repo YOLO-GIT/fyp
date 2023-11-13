@@ -65,6 +65,19 @@ function teacherUpdate(id){
     });
 }
 
+function studentDelete(id){
+    $.ajax({
+        url:"../controller/studentDeleteController.php",
+        method:"post",
+        data:{record:id},
+        success:function(data){
+            alert('Teacher deleted');
+            $('form').trigger('reset');
+            showStudent();
+        }
+    });
+}
+
 //update variation after submit
 function updateTeacher(){
     var v_id = $('#v_id').val();

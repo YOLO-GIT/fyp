@@ -25,58 +25,40 @@ include_once "../config/dbconnect.php";
     include "../sidebar.php";
     ?>
     <div class="container">
-      <form action="">
-        <!-- Sorting Function -->
-        <div class="input-group mb-3">
-          <select name="sort_alphabet" class="form-control" required>
-            <option value="">-- Pilih Jenis Susunan --</option>
-            <option value="a-z" <?php if (isset($_GET['sort_alphabet']) && $_GET['sort_alphabet'] == "a-z") {
-                                  echo "selected";
-                                } ?>>A-Z (Ascending Order)</option>
-            <option value="z-a" <?php if (isset($_GET['sort_alphabet']) && $_GET['sort_alphabet'] == "z-a") {
-                                  echo "selected";
-                                } ?>>Z-A (Descending Order)</option>
-          </select>
-          <button type="submit" class="btn btn-primary">
-            Sort
-          </button>
-        </div>
-        <!-- Sorting Function Ends -->
-      </form>
 
       <h2>Senarai Buku</h2>
       <div class="row">
-        <!-- Button Search -->
-        <button class="open-button-popup" onclick="openForm()">Search Button</button>
-        <!-- Start Book Search -->
-        <div class="form-popup" id="myForm">
-          <form action="" class="form-container-popup">
-            <div class="col-md-12">
-              <div class="card mt-4">
-                <div class="card-header">
-                  <h4 style="color: white;">Search Books</h4>
-                </div>
-                <div class="card-body">
-                  <div class="row">
-                    <div class="col-md-5">
-                      <form action="" method="GET">
-                        <div class="input-group mb-3">
-                          <input type="text" name="search" required value="<?php if (isset($_GET['search'])) {
-                                                                              echo $_GET['search'];
-                                                                            } ?>" class="form-control" placeholder="Search data">
-                        </div>
-                        <br><button type="submit" class="btn btn-primary" style="color: white;">Search</button>
-                        <br><br><button type="button" class="btn btn-secondary cancel" onclick="closeForm()">Close</button>
-                        <br><br><button type="button" class="btn btn-secondary refresh" onclick="resetForm()">Refresh Page</button>
-                      </form>
-                    </div>
-                  </div>
-                </div>
-              </div>
+        <!-- Book Search -->
+        <div class="col-md-6 mb-3 mt-3">
+          <form action="" method="GET">
+            <div class="input-group mb-3">
+              <input type="text" name="search" value="<?php if (isset($_GET['search'])) {
+                                                        echo $_GET['search'];
+                                                      } ?>" class="form-control custom-form-control" placeholder="Carian Buku">
+              <button type="submit" class="btn btn-primary ml-2" style="color: white;">Cari</button>
             </div>
-          </form>
         </div>
         <!-- End Book Search -->
+
+        <!-- Sorting Start -->
+        <div class="col-md-6 mb-3 mt-3">
+          <div class="input-group mb-3">
+            <select name="sort_alphabet" class="form-control custom-form-control">
+              <option value="">-- Pilih Jenis Susunan --</option>
+              <option value="a-z" <?php if (isset($_GET['sort_alphabet']) && $_GET['sort_alphabet'] == "a-z") {
+                                    echo "selected";
+                                  } ?>>A-Z (Ascending Order)</option>
+              <option value="z-a" <?php if (isset($_GET['sort_alphabet']) && $_GET['sort_alphabet'] == "z-a") {
+                                    echo "selected";
+                                  } ?>>Z-A (Descending Order)</option>
+            </select>
+            <button type="submit" class="btn btn-primary ml-2">
+              Sort
+            </button>
+          </div>
+          </form>
+        </div>
+        <!-- Sorting End -->
 
         <!-- Books -->
         <table class="table table-hover">
@@ -166,12 +148,22 @@ include_once "../config/dbconnect.php";
           $i <= $totalPages;
           $i++
         ) {
-          if (
-            $i == $page
-          ) {
+          if ($i == $page) {
             echo "<span>$i</span>";
           } else {
-            echo "<a href='?page=$i'>$i</a>";
+            $params = array('page' => $i);
+
+            if (isset($_GET['result_count'])) {
+              $params['result_count'] = $_GET['result_count'];
+            }
+
+            if (isset($_GET['sort_alphabet'])) {
+              $params['sort_alphabet'] = $_GET['sort_alphabet'];
+            }
+
+            $url = '?' . http_build_query($params);
+
+            echo "<a href='$url'>$i</a>";
           }
         }
         echo '</div>';
