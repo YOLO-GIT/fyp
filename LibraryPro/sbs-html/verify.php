@@ -27,10 +27,6 @@ if (isset($_POST["cmdverify"])) {
         } else {
             echo "Error updating record: " . mysqli_error($con);
         }
-
-        // Assign the breadcrumbs
-        $link_register = "register.php";
-        $user_register = "Student Register";
     } elseif (mysqli_num_rows($teacher_result) > 0) {
 
         $row = mysqli_fetch_assoc($teacher_result);
@@ -44,16 +40,28 @@ if (isset($_POST["cmdverify"])) {
         } else {
             echo "Error updating record: " . mysqli_error($con);
         }
-
-        // Assign the breadcrumbs
-        $link_register = "teacher_register.php";
-        $user_register = "Teacher Register";
     } else {
         echo "Invalid verification code. Please try again.";
     }
 
     mysqli_close($con);
 }
+
+if (isset($_GET['stud'])) {
+    // Assign the breadcrumbs
+    $link_register = "register.php";
+    $user_register = "Student Register";
+} elseif (isset($_GET['teacher'])) {
+    // Assign the breadcrumbs
+    $link_register = "teacher_register.php";
+    $user_register = "Teacher Register";
+} else {
+    // Assign the breadcrumbs
+    $link_register = "register.php";
+    $user_register = "Default";
+}
+
+
 ?>
 <html>
 <!DOCTYPE html>

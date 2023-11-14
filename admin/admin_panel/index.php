@@ -1,3 +1,11 @@
+<?php
+session_start();
+
+if (!$_SESSION["IDAdmin"]) {
+    echo "<script>window.location.href='../../LibraryPro/sbs-html/login.php';</script>";
+}
+?>
+
 <!DOCTYPE html>
 <html>
 
@@ -145,26 +153,6 @@
         </div>
 
     </div>
-
-
-    <?php
-    // if (isset($_GET['category']) && $_GET['category'] == "success") {
-    //     echo '<script> alert("Category Successfully Added")</script>';
-    // } else if (isset($_GET['category']) && $_GET['category'] == "error") {
-    //     echo '<script> alert("Adding Unsuccess")</script>';
-    // }
-    // if (isset($_GET['size']) && $_GET['size'] == "success") {
-    //     echo '<script> alert("Size Successfully Added")</script>';
-    // } else if (isset($_GET['size']) && $_GET['size'] == "error") {
-    //     echo '<script> alert("Adding Unsuccess")</script>';
-    // }
-    // if (isset($_GET['variation']) && $_GET['variation'] == "success") {
-    //     echo '<script> alert("Variation Successfully Added")</script>';
-    // } else if (isset($_GET['variation']) && $_GET['variation'] == "error") {
-    //     echo '<script> alert("Adding Unsuccess")</script>';
-    // }
-    ?>
-
 
     <script type="text/javascript" src="./assets/js/ajaxWork.js"></script>
     <script type="text/javascript" src="./assets/js/script.js"></script>

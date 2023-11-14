@@ -139,8 +139,7 @@ include_once "../config/dbconnect.php";
                   ?>
                 </td>
                 <!-- ... rest of the HTML code ... -->
-
-                <td> <button class="btn btn-danger" style="height:40px" onclick="bookingDelete('<?= $row['booking_ID'] ?>')">Delete</button></td>
+                <td><button class="btn btn-danger" style="height:40px" onclick="bookingDelete('<?= $row['booking_ID'] ?>')">Delete</button></td>
               </tr>
               <!-- ... -->
             <?php

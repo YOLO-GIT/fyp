@@ -162,7 +162,6 @@ var uname = document.forms['frmregisteration']['txtunama'];
 var kelas = document.forms['frmregisteration']['txtkelas'];
 var pwd = document.forms['frmregisteration']['txtpwd'];
 
-
 var ic_error = document.getElementById('ic_error');
 var fname_error = document.getElementById('fname_error');
 var lname_error = document.getElementById('lname_error');

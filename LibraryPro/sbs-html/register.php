@@ -168,8 +168,8 @@ if (isset($_SESSION["IDStud"]) || isset($_SESSION["IDTeachers"])) {
                                 <input type="checkbox" onclick="myFunction()">&nbsp;&nbsp;<label class="show_style">Show Password</label>
                             </div>
                             <!-- SUBMIT -->
-                            <div class=" col-md-12">
-                                <button class="send_btn1" name="cmdregister">Register</button>
+                            <div class="col-md-12">
+                                <button type="submit" class="send_btn1" name="cmdregister">Register</button>
                             </div>
                         </div>
                     </form>

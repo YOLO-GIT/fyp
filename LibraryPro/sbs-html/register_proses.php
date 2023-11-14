@@ -127,7 +127,7 @@ if (isset($_GET["cmdregister"])) {
                 echo "<script>alert('Proceed to the verfiy page');</script>";
 
                 //Redirect to page ---> Verify.php
-                echo "<script>window.location.href='verify.php';</script>";
+                echo "<script>window.location.href='verify.php?stud';</script>";
             } else {
                 echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
             }
@@ -252,7 +252,7 @@ if (isset($_GET["cmdregister"])) {
                 echo "<script>alert('Proceed to the verfiy page');</script>";
 
                 //Redirect to page ---> Verify.php
-                echo "<script>window.location.href='verify.php';</script>";
+                echo "<script>window.location.href='verify.php?teacher';</script>";
             } else {
                 echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
             }

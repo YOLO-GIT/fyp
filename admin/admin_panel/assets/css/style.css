@@ -225,45 +225,7 @@
 
 /* Custom CSS */
 
-/* Popup Starts */
-
-/* The popup form - hidden by default */
-.form-popup {
-  display: none;
-  position: fixed;
-}
-
-/* Add styles to the form container */
-.form-container-popup {
-  width: 300%;
-  padding: 10px;
-  /* background-color: white; */
-}
-
-/* Add a red background color to the cancel button */
-.form-container-popup .cancel {
-  background-color: red;
-}
-
-/* Add some hover effects to buttons */
-.form-container-popup .btn:hover, .open-button:hover {
-  opacity: 1;
-}
-
-.open-button-popup {
-  background-color: gray;
-  color: white;
-  border: solid 5px black;
-  border-radius: 25px;
-  padding: 16px 20px;
-  cursor: pointer;
-  opacity: 0.8;
-  width: 280px;
-}
-
-.custom_btn{
-  margin-left: auto;
-}
+/* Custom Form-Control Starts */
 
 .custom-form-control{
   border: solid 2px black;
@@ -271,33 +233,31 @@
   box-shadow: 0px 10px 13px -7px #000000;
 }
 
-/* Popup Ends */
-
 .book-title {
-    max-width: 150px; /* Adjust the maximum width as per your requirement */
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+  max-width: 150px; /* Adjust the maximum width as per your requirement */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 /* Pagination Custom */
 
 .pagination a{
-   padding:8px 16px;
-   /* border:10px solid #ccc; */
-   color:black;
-   font-weight:bold;
+  padding:8px 16px;
+  /* border:10px solid #ccc; */
+  color:black;
+  font-weight:bold;
 }
 
 .pagination a:hover{
-     color: #3e0bce;
+  color: #3e0bce;
 }
 
 .pagination span{
-   padding:8px 16px;
-   /* border:10px solid #ccc; */
-   color:gray;
-   font-weight:bold;
+  padding:8px 16px;
+  /* border:10px solid #ccc; */
+  color:gray;
+  font-weight:bold;
 }
 /* End Paagination */
 /* End Custom CSS */

@@ -1,0 +1,14 @@
+.main_form_reg #newpwd_error,
+.main_form_reg #confirmpwd_error{
+	margin-top: 5px;
+	/* width: 345px; */
+	font-size: 18px;
+	color: #C62828;
+	background: rgba(255,0,0,0.1);
+     color: #fff;
+	text-align: center;
+	padding: 5px 8px;
+	border-radius: 3px;
+	border: 1px solid #EF9A9A;
+	display: none;
+}

@@ -37,7 +37,7 @@ if (isset($_GET["cmdlogin"])) {
         exit;
     } elseif (mysqli_num_rows($teacher_res) > 0) {
         $teacher = mysqli_fetch_assoc($teacher_res);
-        // Create a session with a name IDStud
+        // Create a session
         $_SESSION["IDTeachers"] = $teacher["teachers_ID"];
         // Inform to the user
         echo "<script>alert('Login Success');</script>";
@@ -45,7 +45,8 @@ if (isset($_GET["cmdlogin"])) {
         echo "<script>window.location.href='index.php';</script>";
         exit;
     } elseif (mysqli_num_rows($admin_res) > 0) {
-        // Create a session with a name IDStud
+        $validate = mysqli_fetch_assoc($admin_res);
+        // Create a session
         $_SESSION["IDAdmin"] = $validate["librarians_ID"];
         // Inform to the user
         echo "<script>alert('Login Success');</script>";
@@ -177,11 +178,11 @@ if (isset($_GET["cmdlogin"])) {
                         <br><br>
                         <div class="col-md-12">
                             <label class="custom_label_login">Username Anda:</label>
-                            <input class="contactus" placeholder="Username*" type="text" name="txtname" maxlength="12">
+                            <input class="contactus" placeholder="Username*" type="text" name="txtname" maxlength="12" required>
                         </div>
                         <div class="col-md-12">
                             <label class="custom_label_login">Password Anda:</label>
-                            <input class="contactus" placeholder="Password*" type="password" name="txtpwd" id="myInputPWD">
+                            <input class="contactus" placeholder="Password*" type="password" name="txtpwd" id="myInputPWD" required>
                             <input type="checkbox" onclick="myFunction()">&nbsp;&nbsp;<label class="show_style">Show Password</label>
                         </div>
                         <div class="col-md-12">

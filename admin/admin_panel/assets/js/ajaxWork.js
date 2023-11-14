@@ -21,17 +21,6 @@ function showDashBoard(){
     });
 }
 
-function showBorrowed(){  
-    $.ajax({
-        url:"viewBorrowed.php",
-        method:"post",
-        data:{record:1},
-        success:function(data){
-            $('.allContent-section').html(data);
-        }
-    });
-}
-
 function showStudent(){
     $.ajax({
         url:"viewStudents.php",
@@ -128,15 +117,20 @@ function showBooking(){
   }
 
 //delete variation data
-function bookingDelete(id){
+function bookingDelete(id) {
     $.ajax({
-        url:"../controller/deleteBookingController.php",
-        method:"post",
-        data:{record:id},
-        success:function(data){
-            alert('Successfully deleted');
-            $('form').trigger('reset');
-            showBorrowed();
+        url: "../controller/deleteBookingController.php",
+        method: "post",
+        data: { record: id },
+        success: function (data) {
+            if (data === "success") {
+                // Record deleted successfully
+                $('form').trigger('reset');
+                showBorrowed();
+            } else {
+                // Display error or informative message
+                alert(data);
+            }
         }
     });
 }
@@ -214,19 +208,19 @@ function ChangeOrderStatus(id){
 }
 
 // Custom JScript
-function openForm() {
-    document.getElementById("myForm").style.display = "block";
-}
+// function openForm() {
+//     document.getElementById("myForm").style.display = "block";
+// }
 
-function closeForm() {
-    document.getElementById("myForm").style.display = "none";
-}
+// function closeForm() {
+//     document.getElementById("myForm").style.display = "none";
+// }
 
-function resetForm() {
-    // Assuming your form has an id attribute set to 'myForm'
-    history.replaceState(null, '', window.location.pathname);
-    window.location.reload();
-}
+// function resetForm() {
+//     // Assuming your form has an id attribute set to 'myForm'
+//     history.replaceState(null, '', window.location.pathname);
+//     window.location.reload();
+// }
 
 function myFunction() {
   var x = document.getElementById("myInputPWD");

@@ -32,7 +32,7 @@ $num = mysqli_fetch_assoc($data);
 $total = (int)$num["total"];
 $total = sprintf("%04s", ++$total);
 
-$new_status = "isBooking";
+$new_status = "Booking";
 
 $idbooking = $tahun . $total;
 

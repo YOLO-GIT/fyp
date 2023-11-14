@@ -20,6 +20,7 @@
     <link rel="stylesheet" href="../css/style.css">
     <!-- custom style css -->
     <link rel="stylesheet" href="../css/custom_style.css">
+    <link rel="stylesheet" href="forgotpwd_style.css">
     <!-- Responsive-->
     <link rel="stylesheet" href="../css/responsive.css">
     <!-- fevicon -->
@@ -101,25 +102,25 @@
         <div class="container">
             <div class="row custom-background">
                 <div class="col-md-12">
-                    <form method="post" action="update_password.php" class="main_form_login">
+                    <form name="frmresetpwd" method="post" action="update_password.php" class="main_form_reg" onsubmit="return validated()">
                         <br><br>
                         <div class="col-md-12">
                             <input class="contactus" type="hidden" name="token" value="<?php echo $_GET['token']; ?>">
                         </div>
                         <div class="col-md-12">
                             <label for="new_password" class="custom_label_login">Enter a new password:</label>
-                            <div id="pwd_error" class="form-control">Tolong Isi Password Anda Dengan Betul</div>
-                            <input class="contactus" type="password" id="new_password" name="new_password" id="myInputPWD" maxlength="9" pattern=".{9,}">
+                            <div id="newpwd_error" class="form-control">Please enter your new Password first</div>
+                            <input class="contactus" type="password" name="new_password" id="myInputPWD" maxlength="9" pattern=".{9,}" placeholder="Maximum 9 numbers/words">
                             <input type="checkbox" onclick="myFunction()">&nbsp;&nbsp;<label class="show_style">Show Password</label>
                         </div>
                         <div class="col-md-12">
                             <label for="confirm_password" class="custom_label_login">Confirm the new password:</label>
-                            <div id="pwd_error" class="form-control">Tolong Isi Password Anda</div>
-                            <input class="contactus" type="password" id="confirm_password" name="confirm_password" id="myInputPWD" maxlength="9" pattern=".{9,}">
+                            <div id="confirmpwd_error" class="form-control">Please confirm your password</div>
+                            <input class="contactus" type="password" name="confirm_password" id="myInputPWD" maxlength="9" pattern=".{9,}" placeholder="Maximum 9 numbers/words">
                             <input type="checkbox" onclick="myFunction()">&nbsp;&nbsp;<label class="show_style">Show Password</label>
                         </div>
                         <div class="col-md-12">
-                            <input class="btn btn-primary" type="submit" value="Reset Password" name="cmdupdate">
+                            <button class="btn btn-primary" name="cmdupdate">Reset Password</button>
                         </div>
                     </form>
                 </div>
@@ -145,6 +146,7 @@
     <script src="../js/jquery-3.0.0.min.js"></script>
     <!-- sidebar -->
     <script src="../js/custom.js"></script>
+    <script src="custom_script.js"></script>
     <script>
         AOS.init();
     </script>
