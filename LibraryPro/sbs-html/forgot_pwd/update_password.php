@@ -26,7 +26,7 @@ if (isset($_POST['token'])) {
             // Close the DB to ensure it will not updated.
             mysqli_close($con);
             // Sending back to the Teacher Panel.
-            echo "<script>window.location.href='register.php';</script>";
+            echo "<script>window.location.href='../register.php';</script>";
         } else {
             // Proceed with the password update process
             if (isset($_POST['cmdupdate'])) {
