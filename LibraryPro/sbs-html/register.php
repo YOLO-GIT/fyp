@@ -130,41 +130,43 @@ if (isset($_SESSION["IDStud"]) || isset($_SESSION["IDTeachers"])) {
                             <div class="col-md-12">
                                 <label class="custom_label_reg">Nombor IC</label>
                                 <div id="ic_error" class="form-control">Tolong Isi IC anda</div>
-                                <input class="contactus" placeholder="IC Number*" type="number" name="txtic" maxlength="12" pattern=".{12,}">
+                                <input class="contactus" placeholder="IC Number*" type="number" name="txtic" maxlength="12" pattern=".{12,}" autocomplete="off">
                             </div>
                             <!-- NAMA PERTAMA -->
                             <div class=" col-md-6">
                                 <label class="custom_label_reg">Nama Depan Anda:</label>
                                 <div id="fname_error" class="form-control">Tolong Isi Bahagian ini</div>
-                                <input class="contactus" placeholder="Nama Depan Anda: Ahmad (Maksimum 10 Perkataan)" type="text" name="txtfnama" maxlength="10">
+                                <input class="contactus" placeholder="Nama Depan Anda: Ahmad (Maksimum 10 Perkataan)" type="text" name="txtfnama" maxlength="10" autocomplete="off">
                             </div>
                             <!-- NAMA KEDUA -->
                             <div class="col-md-6">
                                 <label class="custom_label_reg">Nama Belakang Anda:</label>
                                 <div id="lname_error" class="form-control">Tolong Isi Bahagian ini</div>
-                                <input class="contactus" placeholder="Nama Belakang Anda: Aziz (Maksimum 10 Perkataan)" type="text" name="txtlnama" maxlength="10">
+                                <input class="contactus" placeholder="Nama Belakang Anda: Aziz (Maksimum 10 Perkataan)" type="text" name="txtlnama" maxlength="10" autocomplete="off">
                             </div>
                             <!-- NAMA SAMARAN -->
                             <div class="col-md-6">
                                 <label class="custom_label_reg">Username Anda:</label>
                                 <div id="uname_error" class="form-control">Tolong Isi Bahagian ini</div>
-                                <input class="contactus" placeholder="Username anda (Maksimum 10 Perkataan)" type="text" name="txtunama" maxlength="10">
+                                <input class="contactus" placeholder="Username anda (Maksimum 10 Perkataan)" type="text" name="txtunama" maxlength="10" autocomplete="off">
                             </div>
                             <!-- KELAS -->
                             <div class="col-md-6">
                                 <label class="custom_label_reg">Kelas Anda:</label>
                                 <div id="kelas_error" class="form-control">Tolong Isi Kelas Anda</div>
-                                <input class="contactus" placeholder="Kelas*" type="text" name="txtkelas">
+                                <input class="contactus" placeholder="Kelas*" type="text" name="txtkelas" autocomplete="off">
                             </div>
                             <!-- EMAIL -->
-                            <div class="col-md-6">
-                                <input class="contactus" value="ahmadsufi345@gmail.com" type="text" name="txtEmail" disabled hidden>
+                            <div class="col-md-12">
+                                <label class="custom_label_reg">Email Anda:</label>
+                                <div id="email_error" class="form-control">Tolong Isi Email Anda</div>
+                                <input class="contactus" placeholder="Email*" type="text" name="txtEmail" autocomplete="off">
                             </div>
                             <!-- PASSWORD -->
                             <div class="col-md-12">
                                 <label class="custom_label_reg">Password Anda:</label>
                                 <div id="pwd_error" class="form-control">Tolong Isi Password Anda</div>
-                                <input class="contactus" placeholder="Password (Maksimum 9 nombor/perkataan)*" type="password" name="txtpwd" id="myInputPWD" maxlength="9" pattern=".{9,}">
+                                <input class="contactus" placeholder="Password (Maksimum 9 nombor/perkataan)*" type="password" name="txtpwd" id="myInputPWD" maxlength="9" pattern=".{9,}" autocomplete="off">
                                 <input type="checkbox" onclick="myFunction()">&nbsp;&nbsp;<label class="show_style">Show Password</label>
                             </div>
                             <!-- SUBMIT -->

@@ -181,7 +181,7 @@ if (isset($_GET['stud'])) {
                         <br><br>
                         <div class="col-md-12">
                             <label for="verification_code" class="custom_label_login">Verification Code:</label>
-                            <input class="contactus" type="text" id="verification_code" name="verification_code">
+                            <input class="contactus" type="text" id="verification_code" name="verification_code" autocomplete="off">
                         </div>
                         <div class="col-md-12">
                             <input class="btn btn-primary" type="submit" name="cmdverify" value="Verify">
