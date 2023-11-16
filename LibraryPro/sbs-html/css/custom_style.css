@@ -319,6 +319,7 @@
 .main_form_reg #lname_error,
 .main_form_reg #uname_error,
 .main_form_reg #kelas_error,
+.main_form_reg #email_error,
 .main_form_reg #pwd_error{
 	margin-top: 5px;
 	/* width: 345px; */

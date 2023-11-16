@@ -160,6 +160,7 @@ var fname = document.forms['frmregisteration']['txtfnama'];
 var lname = document.forms['frmregisteration']['txtlnama'];
 var uname = document.forms['frmregisteration']['txtunama'];
 var kelas = document.forms['frmregisteration']['txtkelas'];
+var email = document.forms['frmregisteration']['txtEmail'];
 var pwd = document.forms['frmregisteration']['txtpwd'];
 
 var ic_error = document.getElementById('ic_error');
@@ -167,6 +168,7 @@ var fname_error = document.getElementById('fname_error');
 var lname_error = document.getElementById('lname_error');
 var uname_error = document.getElementById('uname_error');
 var kelas_error = document.getElementById('kelas_error');
+var email_error = document.getElementById('email_error');
 var pwd_error = document.getElementById('pwd_error');
 
 ic.addEventListener('input', ic_Verify);
@@ -174,6 +176,7 @@ fname.addEventListener('input', fname_Verify);
 lname.addEventListener('input', lname_Verify);
 uname.addEventListener('input', uname_Verify);
 kelas.addEventListener('input', kelas_Verify);
+email.addEventListener('input', email_Verify);
 pwd.addEventListener('input', pwd_Verify);
 
 function validated() {
@@ -221,6 +224,15 @@ function validated() {
       return false;
   }
   // End Kelas Detection
+
+  // Start Email Detection
+  if (email.value.length == "" || email.value.length == null) {
+      email.style.border = "1px solid red";
+      email_error.style.display = "block";
+      email.focus();
+      return false;
+  }
+  // End Email Detection
 
   // Start Password Detection
   if (pwd.value.length < 8) {
@@ -270,6 +282,14 @@ function kelas_Verify() {
     if (kelas.value.length > 1) {
         kelas.style.border = "1px solid silver";
         kelas_error.style.display = "none";
+        return true;
+    }
+}
+
+function email_Verify() {
+    if (email.value.length > 1) {
+        email.style.border = "1px solid silver";
+        email_error.style.display = "none";
         return true;
     }
 }
