@@ -178,11 +178,11 @@ if (isset($_GET["cmdlogin"])) {
                         <br><br>
                         <div class="col-md-12">
                             <label class="custom_label_login">Username Anda:</label>
-                            <input class="contactus" placeholder="Username*" type="text" name="txtname" maxlength="12" required>
+                            <input class="contactus" placeholder="Username*" type="text" name="txtname" maxlength="12" required autocomplete="off">
                         </div>
                         <div class="col-md-12">
                             <label class="custom_label_login">Password Anda:</label>
-                            <input class="contactus" placeholder="Password*" type="password" name="txtpwd" id="myInputPWD" required>
+                            <input class="contactus" placeholder="Password*" type="password" name="txtpwd" id="myInputPWD" required autocomplete="off">
                             <input type="checkbox" onclick="myFunction()">&nbsp;&nbsp;<label class="show_style">Show Password</label>
                         </div>
                         <div class="col-md-12">

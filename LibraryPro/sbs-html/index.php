@@ -33,7 +33,7 @@ if (isset($_SESSION["IDStud"])) {
     $stmt->execute();
     $result = $stmt->get_result();
     $user = $result->fetch_assoc();
-    $statement_res = "Welcome Back, " . $user['teachers_Name'];
+    $statement_res = "Welcome Back, Cikgu " . $user['teachers_Name'];
     $stmt->close();
 } else {
     $statement_res = null;
