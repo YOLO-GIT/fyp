@@ -105,11 +105,7 @@
                         <br><br>
                         <div class="col-md-12">
                             <label for="email" class="custom_label_login">Enter your email address:</label>
-                            <input class="contactus" type="email" id="email" name="email" value="ahmadsufi345@gmail.com" required readonly><br><br>
-                        </div>
-                        <div class="col-md-12">
-                            <label for="email" class="custom_label_login">Enter your ID:</label>
-                            <input class="contactus" type="text" id="user_ID" name="user_ID" placeholder="Sila letak ID Anda" required><br><br>
+                            <input class="contactus" type="email" id="email" name="email" required autocomplete="off">
                         </div>
                         <div class="col-md-12">
                             <input class="btn btn-primary" type="submit" value="Submit" name="cmdreset">

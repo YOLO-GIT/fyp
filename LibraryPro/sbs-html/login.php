@@ -174,15 +174,15 @@ if (isset($_GET["cmdlogin"])) {
         <div class="container">
             <div class="row custom-background">
                 <div class="col-md-12">
-                    <form id="request" class="main_form_login" action="" method="get">
+                    <form name="frmlogin" class="main_form_login" action="" method="get">
                         <br><br>
-                        <div class="col-md-12">
+                        <div class=" col-md-12">
                             <label class="custom_label_login">Username Anda:</label>
-                            <input class="contactus" placeholder="Username*" type="text" name="txtname" maxlength="12" required autocomplete="off">
+                            <input class="contactus" placeholder="Username*" type="text" name="txtname" maxlength="10" autocomplete="off" required>
                         </div>
                         <div class="col-md-12">
                             <label class="custom_label_login">Password Anda:</label>
-                            <input class="contactus" placeholder="Password*" type="password" name="txtpwd" id="myInputPWD" required autocomplete="off">
+                            <input class="contactus" placeholder="Password*" type="password" name="txtpwd" id="myInputPWD" maxlength="9" autocomplete="off" required>
                             <input type="checkbox" onclick="myFunction()">&nbsp;&nbsp;<label class="show_style">Show Password</label>
                         </div>
                         <div class="col-md-12">
@@ -194,7 +194,6 @@ if (isset($_GET["cmdlogin"])) {
                     <div class="titlepage text_align_left">
                         <h3>Not Register?</h3>
                         <h3>Click <a href="register.php">here for registration</a></h3>
-                        <h3>Click <a href="logout.php">here for logout</a></h3>
                         <h3>Forgot Password?
                             <a href="./forgot_pwd/forgotpwd.php" onclick="return confirm('Adakah betul anda tidak ingat katalaluan anda?');">
                                 Click Here

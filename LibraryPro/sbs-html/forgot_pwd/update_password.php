@@ -5,10 +5,6 @@ include '../conn.php';
 if (isset($_POST['token'])) {
     $token = $_POST['token'];
 
-    // Check if the token is valid and has not expired
-    // Perform a database query to check if the token exists and has not expired
-    // Verify that the token matches the one stored in the user's record
-
     // Example query (replace with your own database query)
     $check_stud_token = "SELECT * FROM tblstudent WHERE reset_token = '$token'";
     $result = mysqli_query($con, $check_stud_token);
@@ -17,34 +13,30 @@ if (isset($_POST['token'])) {
     $result_teachers = mysqli_query($con, $check_teachers_token);
 
     if (mysqli_num_rows($result) > 0) {
-        //PASSWORD
-        $check_password_query = "SELECT * FROM tblstudent WHERE stud_pwd='$password'";
-        $check_password = mysqli_query($con, $check_password_query);
-        if (mysqli_num_rows($check_password) > 0) {
-            // Validation if the content is same
-            echo "<script>alert('This password already has been used.');</script>";
-            // Close the DB to ensure it will not updated.
-            mysqli_close($con);
-            // Sending back to the Teacher Panel.
-            echo "<script>window.location.href='../register.php';</script>";
-        } else {
-            // Proceed with the password update process
-            if (isset($_POST['cmdupdate'])) {
-                $newPassword = hash("sha512", $_POST['new_password']);
-                $confirmPassword = hash("sha512", $_POST['confirm_password']);
-
-                // Verify that the new password and the confirmed password match
-                if ($newPassword === $confirmPassword) {
-
+        // Proceed with the password update process
+        if (isset($_POST['cmdupdate'])) {
+            $newPassword = hash("sha512", $_POST['new_password']);
+            $confirmPassword = hash("sha512", $_POST['confirm_password']);
+            //PASSWORD
+            $check_password_query = "SELECT * FROM tblstudent WHERE stud_pwd='$newPassword'";
+            $check_password = mysqli_query($con, $check_password_query);
+            if (mysqli_num_rows($check_password) > 0) {
+                // Validation if the content is same
+                echo "<script>alert('This password already has been used.');</script>";
+                echo "<script>window.location.href='reset_password.php';</script>";
+            } else {
+                if ($confirmPassword != $newPassword) {
+                    echo "<script>alert('The new password and the confirmed password do not match.')</script>";
+                    echo "<script>window.location.href='reset_password.php';</script>";
+                } else {
                     $update_stud_password = "UPDATE tblstudent SET stud_pwd = '$newPassword', reset_token = NULL WHERE reset_token = '$token'";
                     if (mysqli_query($con, $update_stud_password)) {
-                        echo "Password has been updated successfully.";
+                        echo "<script>alert('Password has been updated successfully.')</script>";
                         echo "<script>window.location.href='../login.php';</script>";
                     } else {
-                        echo "Failed to update the password. Please try again later.";
+                        echo "<script>alert('Failed to update the password. Please try again.')</script>";
+                        echo "<script>window.location.href='reset_password.php';</script>";
                     }
-                } else {
-                    echo "The new password and the confirmed password do not match.";
                 }
             }
         }

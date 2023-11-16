@@ -50,3 +50,14 @@ function myFunction() {
     x.type = "password";
   }
 }
+
+function myConfirm(){
+  var y = document.getElementById("myConfirmPWD");
+
+  if (y.type === "password") {
+    y.type = "text";
+  } else {
+    y.type = "password";
+  }
+}
+

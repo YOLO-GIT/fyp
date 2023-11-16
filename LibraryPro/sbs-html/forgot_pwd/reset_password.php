@@ -105,7 +105,8 @@
                     <form name="frmresetpwd" method="post" action="update_password.php" class="main_form_reg" onsubmit="return validated()">
                         <br><br>
                         <div class="col-md-12">
-                            <input class="contactus" type="hidden" name="token" value="<?php echo $_GET['token']; ?>">
+                            <label for="token" class="custom_label_login">Enter Your Forgot Password Token:</label>
+                            <input class="contactus" type="text" name="token" required>
                         </div>
                         <div class="col-md-12">
                             <label for="new_password" class="custom_label_login">Enter a new password:</label>
@@ -116,8 +117,8 @@
                         <div class="col-md-12">
                             <label for="confirm_password" class="custom_label_login">Confirm the new password:</label>
                             <div id="confirmpwd_error" class="form-control">Please confirm your password</div>
-                            <input class="contactus" type="password" name="confirm_password" id="myInputPWD" maxlength="9" pattern=".{9,}" placeholder="Maximum 9 numbers/words">
-                            <input type="checkbox" onclick="myFunction()">&nbsp;&nbsp;<label class="show_style">Show Password</label>
+                            <input class="contactus" type="password" name="confirm_password" id="myConfirmPWD" maxlength="9" pattern=".{9,}" placeholder="Maximum 9 numbers/words">
+                            <input type="checkbox" onclick="myConfirm()">&nbsp;&nbsp;<label class="show_style">Show Password</label>
                         </div>
                         <div class="col-md-12">
                             <button class="btn btn-primary" name="cmdupdate">Reset Password</button>
