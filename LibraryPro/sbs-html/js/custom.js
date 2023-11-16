@@ -154,7 +154,7 @@ function myFunction() {
   }
 }
 
-// Start Validation
+// Start Validation For Register
 var ic = document.forms['frmregisteration']['txtic'];
 var fname = document.forms['frmregisteration']['txtfnama'];
 var lname = document.forms['frmregisteration']['txtlnama'];
@@ -302,7 +302,7 @@ function pwd_Verify() {
     }
 }
 // End Verify
-// End Validation
+// End Validation For Register
 
 // Start Clock
 function startTime() {

@@ -174,7 +174,6 @@ if (isset($_SESSION["IDStud"]) || isset($_SESSION["IDTeachers"])) {
                     <div class="titlepage text_align_left">
                         <h3>Already Register?</h3>
                         <h3>Click <a href="login.php">here for login</a></h3>
-                        <h3>Click <a href="logout.php">here for logout</a></h3>
                         <h3>Click <a href="register.php">here for Student</a></h3>
                     </div>
                 </div>
