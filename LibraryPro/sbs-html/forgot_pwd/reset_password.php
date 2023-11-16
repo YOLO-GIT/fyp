@@ -1,3 +1,16 @@
+<?php
+if (isset($_GET['stud'])) {
+    // Assign the breadcrumbs
+    $user_register = "Reset Password Student";
+} elseif (isset($_GET['teacher'])) {
+    // Assign the breadcrumbs
+    $user_register = "Reset Password Teacher";
+} else {
+    // Assign the breadcrumbs
+    $user_register = "Reset Password";
+}
+?>
+
 <html>
 <!DOCTYPE html>
 <html lang="en">
@@ -90,8 +103,19 @@
             </div>
         </div>
     </div>
-    <!-- end header inner -->
     <!-- end header -->
+
+    <!-- Breadcrumbs Start -->
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="../index.php">Home</a></li>
+            <li class="breadcrumb-item"><a href="../login.php">Login</a></li>
+            <li class="breadcrumb-item"><a href="forgotpwd.php">Forgot Password</a></li>
+            <li class="breadcrumb-item active" aria-current="page"><?= $user_register ?></li>
+        </ol>
+    </nav>
+    <!-- Breadcrumbs Ends -->
+
     <!-- Login -->
     <div class="contact1">
         <div class="col-md-12">

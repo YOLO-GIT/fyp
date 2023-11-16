@@ -12,3 +12,8 @@
 	border: 1px solid #EF9A9A;
 	display: none;
 }
+
+
+.breadcrumb{
+    border: solid 1px black;
+}

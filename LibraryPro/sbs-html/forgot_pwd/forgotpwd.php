@@ -20,6 +20,7 @@
     <link rel="stylesheet" href="../css/style.css">
     <!-- custom style css -->
     <link rel="stylesheet" href="../css/custom_style.css">
+    <link rel="stylesheet" href="forgotpwd_style.css">
     <!-- Responsive-->
     <link rel="stylesheet" href="../css/responsive.css">
     <!-- fevicon -->
@@ -60,22 +61,22 @@
                         <div class="collapse navbar-collapse" id="navbarsExample04">
                             <ul class="navbar-nav mr-auto">
                                 <li class="nav-item">
-                                    <a class="nav-link" href="index.php"><i class="fa fa-home"></i> Home</a>
+                                    <a class="nav-link" href="../index.php"><i class="fa fa-home"></i> Home</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="booking.php"><i class="fa fa-search"></i> Carian</a>
+                                    <a class="nav-link" href="../booking.php"><i class="fa fa-search"></i> Carian</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="advance_booking.php"><i class="fa fa-search-plus"></i> Carian Terperinci</a>
+                                    <a class="nav-link" href="../advance_booking.php"><i class="fa fa-search-plus"></i> Carian Terperinci</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="buku_saya.php"><i class="fa fa-book"></i> Buku Saya</a>
+                                    <a class="nav-link" href="../buku_saya.php"><i class="fa fa-book"></i> Buku Saya</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="#"><i class="fa fa-universal-access"></i> Berkaitan Kami</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="login.php"><i class="fa fa-sign-out"></i> Login</a>
+                                    <a class="nav-link" href="../login.php"><i class="fa fa-sign-out"></i> Login</a>
                                 </li>
                             </ul>
                         </div>
@@ -83,14 +84,24 @@
                 </div>
                 <div class="col-md-2">
                     <ul class="email text_align_right">
-                        <li class="d_none"><a href="profile.php"><i class="fa fa-user" aria-hidden="true"></i></a></li>
+                        <li class="d_none"><a href="../profile.php"><i class="fa fa-user" aria-hidden="true"></i></a></li>
                     </ul>
                 </div>
             </div>
         </div>
     </div>
-    <!-- end header inner -->
     <!-- end header -->
+
+    <!-- Breadcrumbs Start -->
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="../index.php">Home</a></li>
+            <li class="breadcrumb-item"><a href="../login.php">Login</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Forgot Password</li>
+        </ol>
+    </nav>
+    <!-- Breadcrumbs Ends -->
+
     <!-- Login -->
     <div class="contact1">
         <div class="col-md-12">

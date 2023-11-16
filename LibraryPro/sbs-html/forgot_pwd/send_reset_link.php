@@ -19,7 +19,7 @@ if (isset($_POST["cmdreset"])) {
     // Example query (replace with your own database query)
     $check_stud_query = "SELECT * FROM tblstudent WHERE email = '$email'";
     $result = mysqli_query($con, $check_stud_query);
-    $check_teachers_query = "SELECT * FROM tblteachers WHERE teachers_ID = '$user_ID' AND email = '$email'";
+    $check_teachers_query = "SELECT * FROM tblteachers WHERE email = '$email'";
     $result_teachers = mysqli_query($con, $check_teachers_query);
 
     // If the email exists, proceed with the "Forgot Password" process
@@ -62,31 +62,29 @@ if (isset($_POST["cmdreset"])) {
 
                 //Finally send email
                 if ($mail->send()) {
-                    echo "<script>alert('Email Sent..! Please Check your email.')</script>";
-                    echo "<script>window.location.href='reset_password.php';</script>";
+                    echo "<script>alert('Email Sent..! Please Check your email.');</script>";
+                    echo "<script>window.location.href='reset_password.php?stud';</script>";
                 } else {
-                    echo "<script>alert('Message could not be sent. Mailer Error: {$mail->ErrorInfo}')</script>";
+                    echo "<script>alert('Message could not be sent. Mailer Error: {$mail->ErrorInfo}');</script>";
                     echo "<script>window.location.href='forgotpwd.php';</script>";
                 }
                 //Closing smtp connection
                 $mail->smtpClose();
             } catch (Exception $e) {
-                echo "<script>alert('Message could not be sent. Mailer Error: {$mail->ErrorInfo}')</script>";
+                echo "<script>alert('Message could not be sent. Mailer Error: {$mail->ErrorInfo}');</script>";
                 echo "<script>window.location.href='forgotpwd.php';</script>";
             }
         } else {
-            echo "Failed to generate the reset token. Please try again later.";
-            echo "<script>window.location.href='./sbs-html/login.php';</script>";
+            echo "<script>alert('Failed to generate the reset token. Please try again later.');</script>";
+            echo "<script>window.location.href='../login.php';</script>";
         }
     } elseif (mysqli_num_rows($result_teachers) > 0) {
-        // Proceed with the "Forgot Password" process
-        // Inside send_reset_link.php (after verifying the email)
 
         // Generate a random reset token
-        $resetToken = bin2hex(random_bytes(3)); // Generate a 64-character random string (adjust the length as needed)
+        $resetToken = "T" . bin2hex(random_bytes(3)); // Generate a 64-character random string (adjust the length as needed)
 
         // Store the reset token in the database
-        $updateTokenQuery = "UPDATE `tblteachers` SET reset_token = '$resetToken' WHERE teachers_ID = '$user_ID' AND email = '$email'";
+        $updateTokenQuery = "UPDATE `tblteachers` SET reset_token = '$resetToken' WHERE email = '$email'";
         if (mysqli_query($con, $updateTokenQuery)) {
             //Create instance of phpmailer
             $mail = new PHPMailer(true);
@@ -115,25 +113,29 @@ if (isset($_POST["cmdreset"])) {
 
                 // Content
                 $mail->isHTML(true);
-                $mail->Body = "Please click the following link to reset your password: http://localhost:3000/LibraryPro/sbs-html/forgot_pwd/reset_password.php?token=$resetToken;";
+                $mail->Body = "Your New Password token is: $resetToken";
 
                 //Finally send email
                 if ($mail->send()) {
-                    echo "<script>alert('Email Sent..!')</script>";
-                    echo "<script>window.location.href='reset_password.php?token=$resetToken';</script>";
+                    echo "<script>alert('Email Sent..! Please Check your email.');</script>";
+                    echo "<script>window.location.href='reset_password.php?teacher';</script>";
                 } else {
-                    echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+                    echo "<script>alert('Message could not be sent. Mailer Error: {$mail->ErrorInfo}');</script>";
+                    echo "<script>window.location.href='forgotpwd.php';</script>";
                 }
                 //Closing smtp connection
                 $mail->smtpClose();
             } catch (Exception $e) {
-                echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+                echo "<script>alert('Message could not be sent. Mailer Error: {$mail->ErrorInfo}');</script>";
+                echo "<script>window.location.href='forgotpwd.php';</script>";
             }
         } else {
-            echo "Failed to generate the reset token. Please try again later.";
+            echo "<script>alert('Failed to generate the reset token. Please try again later.');</script>";
+            echo "<script>window.location.href='../login.php';</script>";
         }
     } else {
         // Display an error message indicating that the email is not registered
-        echo "The provided ID does not exist.";
+        echo "<script>alert('Failed to generate the reset token. Please try again later.');</script>";
+        echo "<script>window.location.href='../login.php';</script>";
     }
 }
