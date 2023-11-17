@@ -151,11 +151,9 @@ if (isset($_SESSION["IDStud"])) {
     <div class="container_book">
         <?php
         if (isset($_SESSION["IDStud"])) {
-            $query = "SELECT * FROM tblbooking WHERE user_ID = '$stud_ID'";
-        } elseif (isset($_SESSION["IDTeachers"]))
-            $query = "SELECT * FROM tblbooking WHERE user_ID = '$teachers_ID'";
-        else {
-            echo "nOT eXISTED";
+            $query = "SELECT * FROM tbltransaction WHERE user_ID = '$stud_ID'";
+        } elseif (isset($_SESSION["IDTeachers"])) {
+            $query = "SELECT * FROM tbltransaction WHERE user_ID = '$teachers_ID'";
         }
         $result = $con->query($query);
         if ($result->num_rows > 0) {
@@ -172,17 +170,24 @@ if (isset($_SESSION["IDStud"])) {
                                 <div class="alert alert-primary">
                                     <p><?= $row["user_Name"] ?></p>
                                 </div>
-                                <p class="bold-text">Tarikh:&nbsp;&nbsp;</p>
+                                <p class="bold-text">Buku yand dipinjam:&nbsp;&nbsp;</p>
                                 <div class="alert alert-primary">
-                                    <p><?= $row["date_booked"] ?></p>
+                                    <p><?= $row["book_title"] ?></p>
+                                </div>
+                                <p class="bold-text">Tarikh Mula Pinjam:&nbsp;&nbsp;</p>
+                                <div class="alert alert-primary">
+                                    <p><?= $row["start_date"] ?></p>
+                                </div>
+                                <p class="bold-text">Tarikh Akhir Pinjam:&nbsp;&nbsp;</p>
+                                <div class="alert alert-primary">
+                                    <p><?= $row["end_date"] ?></p>
                                 </div>
                                 <p class="bold-text">Masa:&nbsp;&nbsp;</p>
                                 <div class="alert alert-primary">
-                                    <p><?= $row["time_booked"] ?></p>
+                                    <p><?= $row["time"] ?></p>
                                 </div>
                             </div>
                             <br>
-
                         </div>
                     </div>
                     <!-- ... -->

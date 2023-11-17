@@ -259,9 +259,13 @@ if (isset($_GET['book_ID'])) {
                                 <div class="alert alert-primary">
                                     <input class="form-control" type="text" name="masabooking" value="<?php echo date("h:i:s a") ?>">
                                 </div>
-                                <p class="bold-text">Tarikh Booking:&nbsp;&nbsp;</p>
+                                <p class="bold-text">Start Tarikh Booking:&nbsp;&nbsp;</p>
                                 <div class="alert alert-primary">
-                                    <input class="form-control" type="date" name="dtbooking">
+                                    <input class="form-control" type="date" name="dtstartbooking">
+                                </div>
+                                <p class="bold-text">End Tarikh Booking:&nbsp;&nbsp;</p>
+                                <div class="alert alert-primary">
+                                    <input class="form-control" type="date" name="dtendbooking">
                                 </div>
                             </div>
                             <br>

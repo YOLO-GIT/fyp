@@ -262,31 +262,17 @@ if (isset($_SESSION["IDStud"])) {
                                         <td class="bold-text">Penerbit:&nbsp;&nbsp;<?= $row["publisher"] ?></td>
                                     </tr>
                                     <tr>
-                                        <td class="bold-text">No. Dewey:&nbsp;&nbsp;<?= $row["book_dewey"] ?></td>
+                                        <td class="bold-text">No. Panggilan:&nbsp;&nbsp;<?= $row["book_dewey"] ?></td>
                                     </tr>
                                     <tr>
                                         <td class="bold-text">Kategori:&nbsp;&nbsp;<?= $row["book_category"] ?></td>
                                     </tr>
                                     <tr>
-                                        <td class="bold-text">Sinopsis Buku:&nbsp;&nbsp;<?= $row["book_desc"] ?></td>
+                                        <td class="bold-text">Diskripsi Buku:&nbsp;&nbsp;<?= $row["book_desc"] ?></td>
                                     </tr>
-                                    <?php
-                                    $book_title = $row['book_title'];
-                                    $statusQuery = "SELECT bb.status FROM tblbooking bb JOIN tblbook b ON bb.book_title = b.book_title WHERE b.book_title = ?";
-                                    $stmt = $con->prepare($statusQuery);
-                                    $stmt->bind_param("s", $book_title);
-                                    $stmt->execute();
-                                    $statusResult = $stmt->get_result();
-
-                                    if ($statusResult->num_rows > 0) {
-                                        $statusData = $statusResult->fetch_assoc();
-                                        echo "<tr><td class='bold-text'>Status:&nbsp;&nbsp;" . $statusData['status'] . "</td></tr>";
-                                    } else {
-                                        echo null;
-                                    }
-
-                                    $stmt->close();
-                                    ?>
+                                    <tr>
+                                        <td class='bold-text'>Status:&nbsp;&nbsp;<?= $row['status'] ?></td>
+                                    </tr>
                                 </table>
                             </div>
                         </div>

@@ -211,7 +211,7 @@ include_once "../config/dbconnect.php";
                     <input name="txtpublisher" type="text" class="form-control" placeholder="Penerbit" maxlength="25">
                   </div>
                   <div class="form-group">
-                    <label for="dewey">Dewey:*</label>
+                    <label for="dewey">No. Panggilan:*</label>
                     <div id="dewey_error" class="form-control">Tolong Isi Dewey</div>
                     <input type="text" name="txtdewey" class="form-control" placeholder="Dewey Buku" maxlength="12">
                   </div>
@@ -265,8 +265,9 @@ include_once "../config/dbconnect.php";
                     <label for="status">Status Buku:*</label>
                     <select name="cboistatus" class="form-control" required>
                       <option value="">Sila Pilih </option>
-                      <option value="Ada">Ya</option>
-                      <option value="Tiada">Tiada</option>
+                      <option value="Ada">Ada</option>
+                      <option value="Rosak">Rosak</option>
+                      <option value="Lupus">Lupus</option>
                     </select>
                   </div>
                   <div class="form-group">
