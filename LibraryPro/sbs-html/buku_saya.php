@@ -186,6 +186,9 @@ if (isset($_SESSION["IDStud"])) {
                                 <div class="alert alert-primary">
                                     <p><?= $row["time"] ?></p>
                                 </div>
+                                <?php
+                                echo "<a href='cancel_transaction.php?transc_ID=" . $row['transc_ID'] . "' class='btn btn-primary' onclick='return confirm(\"Adakah anda pasti untuk cancel?\");'>Cancel</a>";
+                                ?>
                             </div>
                             <br>
                         </div>

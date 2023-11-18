@@ -46,7 +46,7 @@ $check_user_query = "SELECT * FROM tbltransaction WHERE user_ID='$user_ID'";
 $check_user = mysqli_query($con, $check_user_query);
 // TO CHECK USER ID END
 
-if (mysqli_num_rows($check_user) > 4) {
+if (mysqli_num_rows($check_user) >= 3) {
     // Validation if the content is the same
     echo "<script>alert('Anda hanya boleh pinjam atau booking tiga buku sahaja');</script>";
     // Close the DB to ensure it will not be updated.
