@@ -33,7 +33,7 @@ if (isset($_SESSION["IDStud"])) {
     $stmt->execute();
     $result = $stmt->get_result();
     $user = $result->fetch_assoc();
-    $statement_res = "Welcome Back, Cikgu " . $user['teachers_Name'];
+    $statement_res = "Welcome Back, " . $user['teachers_Name'];
     $stmt->close();
 } else {
     $statement_res = null;
@@ -137,7 +137,7 @@ if (isset($_SESSION["IDStud"])) {
 
     <!-- top -->
     <div class="full_bg">
-        
+
         <div class="slider_main">
             <div class="container-fluid">
                 <div class="row">
@@ -236,7 +236,7 @@ if (isset($_SESSION["IDStud"])) {
         </div>
     </div>
     <!-- end banner -->
-   
+
     <!-- Event Start -->
     <div class="full_bg">
         <div class="slider_main">

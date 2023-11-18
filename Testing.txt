@@ -1,5 +1,6 @@
 Register Testing:
 
+(Student)
 IC: 031022140525
 First Name: Ahmad
 Last Name: Sufi
@@ -7,6 +8,7 @@ username: user123
 email: alexandriad431@gmail.com
 password: Sufi12345
 
+(Teachers)
 IC: 031022140445
 First Name: Danial
 Last Name: Sufi

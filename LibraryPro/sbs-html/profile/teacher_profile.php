@@ -63,6 +63,10 @@ if (!$_SESSION["IDTeachers"]) {
                                                 <input type="text" class="form-control" name="txtTname" value="<?= $row['teachers_Name'] ?>">
                                             </div>
                                             <div class="form-group">
+                                                <label class="form-label">Role</label>
+                                                <input type="text" class="form-control" name="txtTname" value="<?= $row['teacher_roles'] ?>" readonly>
+                                            </div>
+                                            <div class="form-group">
                                                 <label class="form-label">Username</label>
                                                 <input type="text" class="form-control mb-1" name="txtTuname" value="<?= $row['teachers_username'] ?>">
                                             </div>

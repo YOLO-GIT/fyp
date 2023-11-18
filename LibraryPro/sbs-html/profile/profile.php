@@ -63,12 +63,16 @@ if (!$_SESSION["IDStud"]) {
                                                 <input type="text" class="form-control" name="txtname" value="<?= $row['stud_Name'] ?>">
                                             </div>
                                             <div class="form-group">
+                                                <label class="form-label">Role</label>
+                                                <input type="text" class="form-control" name="txtname" value="<?= $row['stud_roles'] ?>" readonly>
+                                            </div>
+                                            <div class="form-group">
                                                 <label class="form-label">Kelas</label>
                                                 <input type="text" class="form-control mb-1" name="txtkelas" value="<?= $row['stud_Class'] ?>">
                                             </div>
                                             <div class="form-group">
                                                 <label class="form-label">Username</label>
-                                                <input type="text" class="form-control mb-1" name="txtusername" value="<?= $row['stud_username'] ?>" readonly> 
+                                                <input type="text" class="form-control mb-1" name="txtusername" value="<?= $row['stud_username'] ?>" readonly>
                                             </div>
                                             <div class="form-group">
                                                 <label class="form-label">Tarikh Masuk</label>
