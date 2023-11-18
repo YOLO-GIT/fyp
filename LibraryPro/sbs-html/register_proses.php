@@ -26,6 +26,8 @@ if (isset($_GET["cmdregister"])) {
     $clean_name = $fname . " " . $lname; // Replaced "&nbsp;" with a space
     $clean_name = strip_tags($clean_name); // Remove any remaining tags
 
+    $roles = "Student";
+
     // CHeck if the content already exist:
     // CHECKING START
 
@@ -67,8 +69,8 @@ if (isset($_GET["cmdregister"])) {
         $verificationCode = "S" . bin2hex(random_bytes(3));
 
         // Store the verification code in the database
-        $sql_register = "INSERT INTO `tblstudent`(`stud_ID`, `stud_Name`, `stud_username`, `stud_Class`, `email`, `stud_pwd`, `date`, `verification_code`) 
-        VALUES ('$ic','$clean_name','$uname','$kelas','$email','$password',NOW(), '$verificationCode')";
+        $sql_register = "INSERT INTO `tblstudent`(`stud_ID`, `stud_roles`, `stud_Name`, `stud_username`, `stud_Class`, `email`, `stud_pwd`, `date`, `verification_code`) 
+        VALUES ('$ic','$roles','$clean_name','$uname','$kelas','$email','$password',NOW(), '$verificationCode')";
 
         //Execute SQL Login Statement
         mysqli_query($con, $sql_register);
@@ -135,6 +137,8 @@ if (isset($_GET["cmdregister"])) {
     $clean_name = $fname . " " . $lname; // Replaced "&nbsp;" with a space
     $teachers_clean_name = strip_tags($clean_name); // Remove any remaining tags
 
+    $roles = "Teacher";
+
     // Check if the content already exist:
     // CHECKING START
 
@@ -183,8 +187,8 @@ if (isset($_GET["cmdregister"])) {
         $verificationCode = "T" . bin2hex(random_bytes(3));
 
         // Store the verification code in the database
-        $sql_register_teachers = "INSERT INTO `tblteachers`(`teachers_ID`, `teachers_Name`, `teachers_username`, `teachers_Password`, `email`, `date_teachers`, `verification_code`) 
-        VALUES ('$Tic','$teachers_clean_name','$uname','$password','$email',NOW(),'$verificationCode')";
+        $sql_register_teachers = "INSERT INTO `tblteachers`(`teachers_ID`, `teacher_roles`, `teachers_Name`, `teachers_username`, `teachers_Password`, `email`, `date_teachers`, `verification_code`) 
+        VALUES ('$Tic','$roles','$teachers_clean_name','$uname','$password','$email',NOW(),'$verificationCode')";
 
         //Execute SQL Login Statement
         mysqli_query($con, $sql_register_teachers);
