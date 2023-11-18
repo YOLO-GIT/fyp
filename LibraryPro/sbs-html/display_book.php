@@ -241,13 +241,12 @@ if (isset($_GET['book_ID'])) {
                                 if ($statusResult->num_rows > 0) {
                                     $statusData = $statusResult->fetch_assoc();
                                     if ($statusData['transc_name'] == "Borrowing") {
-                                        echo "<a href='display_book.php?book_ID=<?= $row[book_ID] ?>&<?= $statement_sent ?>' class='btn btn-primary'>Booking</a>";
-                                    } elseif ($statusData['transc_name'] == "Borrowing" && $statusData['transc_name'] == "Booking") {
-                                        echo "<a href='display_book.php?book_ID=<?= $row[book_ID] ?>&<?= $statement_sent ?>' class='btn btn-primary'>Available</a>";
-                                    } else {
-                                        echo "<a href='booking_choosed.php?book_ID=<?= $row[book_ID] ?>&<?= $statement_sent ?>' class='btn btn-primary'>Borrowing</a>";
+                                        echo "<a href='booking_choosed.php?book_ID=" . $row['book_ID'] . "&" . $statement_sent . "' class='btn btn-warning'>Booking</a>";
                                     }
+                                } else {
+                                    echo "<a href='borrowing_choosed.php?book_ID=" . $row['book_ID'] . "&" . $statement_sent . "' class='btn btn-primary'>Borrowing</a>";
                                 }
+
 
                                 $stmt->close();
                                 ?>

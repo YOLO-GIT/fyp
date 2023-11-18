@@ -271,7 +271,7 @@ if (isset($_SESSION["IDStud"])) {
                                         <td class="bold-text">Diskripsi Buku:&nbsp;&nbsp;<?= $row["book_desc"] ?></td>
                                     </tr>
                                     <tr>
-                                        <td class='bold-text'>Status:&nbsp;&nbsp;<?= $row['status'] ?></td>
+                                        <td class='bold-text'>Status:&nbsp;&nbsp;<?= $row['book_status'] ?></td>
                                     </tr>
                                 </table>
                             </div>

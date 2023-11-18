@@ -169,7 +169,7 @@ if (isset($_GET['book_ID'])) {
 
     <!-- Pilihan Buku Start -->
     <div class="container_book">
-        <form method="get" action="booking_sent.php">
+        <form method="get" action="borrowing_sent.php">
             <div id="clock" class="form-control bold-text text_align_center"></div>
             <?php
             // Retrieve the book_ID from the URL parameters
@@ -251,17 +251,21 @@ if (isset($_GET['book_ID'])) {
                                 <div class="alert alert-primary">
                                     <p><?= $book["publisher"] ?></p>
                                 </div>
-                                <p class="bold-text">Masa Booking:&nbsp;&nbsp;</p>
-                                <div class="alert alert-primary">
-                                    <input class="form-control" type="text" name="masabooking" value="<?php echo date("h:i:s a"); ?>" readonly>
-                                </div>
-                                <p class="bold-text">Start Tarikh Booking:&nbsp;&nbsp;</p>
-                                <div class="alert alert-primary">
-                                    <input class="form-control" type="date" name="dtstartbooking" value="<?php echo date("Y-m-d"); ?>" required>
-                                </div>
                                 <p class="bold-text">Status:&nbsp;&nbsp;</p>
                                 <div class="alert alert-primary">
                                     <p><?= $book["book_status"] ?></p>
+                                </div>
+                                <p class="bold-text">Masa Booking:&nbsp;&nbsp;</p>
+                                <div class="alert alert-primary">
+                                    <input class="form-control" type="text" name="masabooking" value="<?php echo date("h:i:s a") ?>" readonly>
+                                </div>
+                                <p class="bold-text">Start Tarikh Booking:&nbsp;&nbsp;</p>
+                                <div class="alert alert-primary">
+                                    <input class="form-control" type="date" name="dtstartbooking" required>
+                                </div>
+                                <p class="bold-text">End Tarikh Booking:&nbsp;&nbsp;</p>
+                                <div class="alert alert-primary">
+                                    <input class="form-control" type="date" name="dtendbooking" required>
                                 </div>
                             </div>
                             <br>
@@ -279,6 +283,7 @@ if (isset($_GET['book_ID'])) {
                 echo "No book found.";
             }
             ?>
+
         </form>
     </div>
     <!-- Pilihan Buku End -->
