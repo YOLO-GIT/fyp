@@ -26,7 +26,7 @@ if (isset($_POST["cmdreset"])) {
     if (mysqli_num_rows($result) > 0) {
 
         // Generate a random reset token
-        $resetToken = "S" . bin2hex(random_bytes(3)); // Generate a 64-character random string (adjust the length as needed)
+        $resetToken = "S" . bin2hex(random_bytes(3)); // Generate a 6-character random string (adjust the length as needed)
 
         // Store the reset token in the database
         $updateTokenQuery = "UPDATE `tblstudent` SET reset_token = '$resetToken' WHERE email = '$email'";
