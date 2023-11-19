@@ -232,23 +232,22 @@ if (isset($_GET['book_ID'])) {
                             <div class="text-right mr-3 mb-3">
                                 <?php
                                 $book_title = $row['book_title'];
-                                $statusQuery = "SELECT t.transc_name FROM tbltransaction t JOIN tblbook b ON t.book_title = b.book_title WHERE b.book_title = ?";
-                                $stmt = $con->prepare($statusQuery);
-                                $stmt->bind_param("s", $book_title);
-                                $stmt->execute();
-                                $statusResult = $stmt->get_result();
+                                $statusBooking = "SELECT t.transc_name, t.isBooked FROM tbltransaction t JOIN tblbook b ON t.book_title = b.book_title WHERE b.book_title = '$book_title' AND t.isBooked = 1";
+                                $check_Booking = mysqli_query($con, $statusBooking);
 
-                                if ($statusResult->num_rows > 0) {
-                                    $statusData = $statusResult->fetch_assoc();
-                                    if ($statusData['transc_name'] == "Borrowing") {
-                                        echo "<a href='booking_choosed.php?book_ID=" . $row['book_ID'] . "&" . $statement_sent . "' class='btn btn-warning'>Booking</a>";
-                                    }
+                                $statusBorrowing = "SELECT t.transc_name, t.isBooked FROM tbltransaction t JOIN tblbook b ON t.book_title = b.book_title WHERE b.book_title = '$book_title' AND t.isBooked = 0";
+                                $check_Borrowing = mysqli_query($con, $statusBorrowing);
+
+                                if (mysqli_num_rows($check_Booking) > 0) {
+                                    echo "<a href='book_alert.php' class='btn btn-danger'>Not Available</a>";
+                                } elseif (mysqli_num_rows($check_Borrowing) > 0) {
+                                    echo "<a href='booking_choosed.php?book_ID=" . $row['book_ID'] . "&" . $statement_sent . "' class='btn btn-warning'>Booking</a>";
                                 } else {
                                     echo "<a href='borrowing_choosed.php?book_ID=" . $row['book_ID'] . "&" . $statement_sent . "' class='btn btn-primary'>Borrowing</a>";
                                 }
 
 
-                                $stmt->close();
+                                mysqli_close($con);
                                 ?>
                                 &nbsp;
                                 <a href="booking.php" class="btn btn-primary">Kembali Semula</a>
