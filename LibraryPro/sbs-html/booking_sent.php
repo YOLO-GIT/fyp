@@ -63,7 +63,7 @@ if (mysqli_num_rows($check_id) > 0) {
     echo "<script>window.location.href='booking.php';</script>";
 } elseif (mysqli_num_rows($check_user) >= 3) {
 
-    echo "<script>alert('Anda hanya boleh pinjam atau booking tiga buku sahaja');</script>";
+    echo "<script>alert('Anda hanya boleh booking tiga buku sahaja');</script>";
 
     mysqli_close($con);
 

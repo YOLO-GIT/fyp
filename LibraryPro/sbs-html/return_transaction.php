@@ -1,14 +1,61 @@
 <?php
-include 'conn.php';
 
 session_start();
+
+// Set the timezone to match your database
+date_default_timezone_set("Asia/Kuala_Lumpur");
+
+if (isset($_GET['transc_ID'])) {
+    $transc_ID = $_GET['transc_ID'];
+} else {
+    echo "No book selected.";
+    exit();
+}
+
+include_once "conn.php";
+
+// // Retrieve the timestamp of the record
+// $timestampQuery = "SELECT time FROM tbltransaction WHERE transc_ID='$transc_ID'";
+// $result = mysqli_query($con, $timestampQuery);
+
+// if ($result) {
+//     $row = mysqli_fetch_assoc($result);
+//     $recordTimestamp = strtotime($row['time']);
+
+//     // Debugging statements
+//     echo "Record Timestamp: " . date('Y-m-d H:i:s', $recordTimestamp) . "<br>";
+//     echo "Current Time: " . date('Y-m-d H:i:s', time()) . "<br>";
+//     echo "Time Difference: " . (time() - $recordTimestamp) . "<br>";
+
+//     if (time() - $recordTimestamp >= 86400) {
+//         // Delete the record
+//         $deleteQuery = "DELETE FROM tbltransaction WHERE transc_ID='$transc_ID'";
+//         if (mysqli_query($con, $deleteQuery)) {
+//             // Record deleted successfully
+//             echo "<script>alert('Return Success');</script>";
+//             // echo "<script>window.location.href='buku_saya.php';</script>";
+//         } else {
+//             // Error deleting record
+//             echo "<script>alert('Error Returning');</script>";
+//             echo "<script>window.location.href='buku_saya.php';</script>";
+//         }
+//     } else {
+//         echo "<script>alert('Cannot return record. It is not past 1 day.');</script>";
+//         // echo "<script>window.location.href='buku_saya.php';</script>";
+//     }
+// } else {
+//     // Error fetching timestamp
+//     echo "<script>alert('Error return');</script>";
+// }
+
+// // Close the database connection
+// mysqli_close($con);
 
 // Check if session "idcust" dah wujud atau belum
 if (isset($_SESSION["IDStud"])) {
     $log = "Logout";
     $func_todo = "logout.php";
     $profile = "profile/profile.php";
-
     $stud_ID = $_SESSION["IDStud"];
 
     $studentQuery = "SELECT * FROM tblstudent WHERE stud_ID = ?";
@@ -38,11 +85,8 @@ if (isset($_SESSION["IDStud"])) {
     $statement_res = null;
     $log = "Login";
     $func_todo = "login.php";
-    echo "<script>alert('Sila Login Dahulu.');</script>";
-    echo "<script>window.location.href='login.php';</script>";
 }
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -55,7 +99,7 @@ if (isset($_SESSION["IDStud"])) {
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1">
     <!-- site metas -->
-    <title>Library Pro | Buku Saya</title>
+    <title>Library Pro | Buku</title>
     <meta name="keywords" content="">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -116,13 +160,13 @@ if (isset($_SESSION["IDStud"])) {
                                     <a class="nav-link" href="advance_booking.php"><i class="fa fa-search-plus"></i> Carian Terperinci</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="#"><i class="fa fa-universal-access"></i> Berkaitan Kami</a>
-                                </li>
-                                <li class="nav-item active">
                                     <a class="nav-link" href="buku_saya.php"><i class="fa fa-book"></i> Buku Saya</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="<?= $func_todo ?>"><i class="fa fa-sign-out"></i><?= $log ?></a>
+                                    <a class="nav-link" href="#"><i class="fa fa-universal-access"></i> Berkaitan Kami</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="<?= $func_todo ?>"><i class="fa fa-sign-out"></i> <?= $log ?></a>
                                 </li>
                             </ul>
                         </div>
@@ -140,83 +184,23 @@ if (isset($_SESSION["IDStud"])) {
 
     <!-- Breadcrumbs Start -->
     <nav aria-label="breadcrumb">
+        <?php
+        $query = "SELECT * FROM tbltransaction WHERE transc_ID = $transc_ID";
+        $result = $con->query($query);
+        $book = $result->fetch_assoc()
+        ?>
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="index.php">Home</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Buku Saya</li>
+            <li class="breadcrumb-item"><a href="buku_saya.php">Buku Saya</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Pilihan Buku: <?= $book["book_title"] ?></li>
         </ol>
     </nav>
     <!-- Breadcrumbs Ends -->
 
-    <!-- Display Buku yang dibooking -->
-    <div class="container_book">
-        <?php
-        if (isset($_SESSION["IDStud"])) {
-            $query = "SELECT * FROM tbltransaction WHERE user_ID = '$stud_ID'";
-        } elseif (isset($_SESSION["IDTeachers"])) {
-            $query = "SELECT * FROM tbltransaction WHERE user_ID = '$teachers_ID'";
-        }
-        $result = $con->query($query);
-        if ($result->num_rows > 0) {
-            while ($row = $result->fetch_assoc()) {
-        ?>
-                <!-- Pilihan Buku Start -->
-                <div class="card_book_display mb-3">
-                    <!-- rest of the code remains unchanged -->
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="card-body">
-                                <h2 class="card-title"><?= $row["book_title"] ?></h2>
-                                <p class="bold-text">Nama:&nbsp;&nbsp;</p>
-                                <div class="alert alert-primary">
-                                    <p><?= $row["user_Name"] ?></p>
-                                </div>
-                                <p class="bold-text">Buku yand dipinjam:&nbsp;&nbsp;</p>
-                                <div class="alert alert-primary">
-                                    <p><?= $row["book_title"] ?></p>
-                                </div>
-                                <p class="bold-text">Tarikh Mula Pinjam:&nbsp;&nbsp;</p>
-                                <div class="alert alert-primary">
-                                    <p><?= $row["start_date"] ?></p>
-                                </div>
-                                <p class="bold-text">Tarikh Akhir Pinjam:&nbsp;&nbsp;</p>
-                                <div class="alert alert-primary">
-                                    <p><?= $row["end_date"] ?></p>
-                                </div>
-                                <p class="bold-text">Masa:&nbsp;&nbsp;</p>
-                                <div class="alert alert-primary">
-                                    <p><?= $row["time"] ?></p>
-                                </div>
-                                <?php
-                                echo "<div class='text_align_right'>";
-                                echo "<a href='cancel_transaction.php?transc_ID=" . $row['transc_ID'] . "' class='btn btn-primary' onclick='return confirm(\"Adakah anda pasti untuk cancel?\");'>Cancel</a>";
-                                echo "<a href='return_transaction.php?transc_ID=" . $row['transc_ID'] . "' class='btn btn-primary ml-3' onclick='return confirm(\"Adakah anda pasti untuk menghantar buku ini?\");'>Return</a>";
-                                echo "</div>";
-                                ?>
-                            </div>
-                            <br>
-                        </div>
-                    </div>
-                    <!-- ... -->
-                </div>
-            <?php
-            }
-        } else {
-            ?>
-            <tr>
-                <td>Record Tidak Wujud</td>
-            </tr>
-        <?php
-        }
-        ?>
-        <div class="text-right mr-3 mb-3">
-            <a href="booking.php" class="btn btn-primary">Kembali Semula</a>
-        </div>
-    </div>
-    <!-- Display Buku yang dibooking tamat -->
+    <!-- Return Input Section Start -->
+    
+    <!-- Return Input Section Ends -->
 
-    <?php
-    mysqli_close($con);
-    ?>
     <!--  footer -->
     <footer>
         <div class="footer">

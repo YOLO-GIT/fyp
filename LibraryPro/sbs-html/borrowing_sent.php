@@ -36,11 +36,6 @@ $new_status = "Borrowing";
 
 $idtransc = $tahun . $total;
 
-// TO CHECK BOOK ID START
-$check_id_query = "SELECT * FROM tbltransaction WHERE book_title='$book_ID'";
-$check_id = mysqli_query($con, $check_id_query);
-// TO CHECK BOOK ID END
-
 // TO CHECK USER ID START
 $check_user_query = "SELECT * FROM tbltransaction WHERE user_ID='$user_ID'";
 $check_user = mysqli_query($con, $check_user_query);
@@ -48,7 +43,7 @@ $check_user = mysqli_query($con, $check_user_query);
 
 if (mysqli_num_rows($check_user) >= 3) {
     // Validation if the content is the same
-    echo "<script>alert('Anda hanya boleh pinjam atau booking tiga buku sahaja');</script>";
+    echo "<script>alert('Anda hanya boleh pinjam tiga buku sahaja');</script>";
     // Close the DB to ensure it will not be updated.
     mysqli_close($con);
 
