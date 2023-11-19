@@ -32,50 +32,84 @@ $total = sprintf("%04s", ++$total);
 
 $new_status = "Booking";
 
+$isBooked = 1;
+
+$tarikh_booking_end = 0;
+
 $idtransc = $tahun . $total;
 
-// TO CHECK TRANSACTION START
-$check_id_query = "SELECT * FROM tbltransaction WHERE user_ID='$user_ID' AND transc_name='Borrowing'";
-$check_id = mysqli_query($con, $check_id_query);
-
-$check_booking_query = "SELECT * FROM tbltransaction WHERE user_ID='$user_ID' AND transc_name='Booking'";
-$check_booking = mysqli_query($con, $check_booking_query);
-// TO CHECK TRANSACTION ID END
-
 // TO CHECK USER ID START
-$check_user_query = "SELECT * FROM tbltransaction WHERE user_ID='$user_ID'";
+$check_user_query = "SELECT * FROM tbltransaction WHERE user_ID='$user_ID' AND isBooked = 1";
 $check_user = mysqli_query($con, $check_user_query);
 // TO CHECK USER ID END
 
-if (mysqli_num_rows($check_id) > 0) {
-    // Validation if the content is the same
-    echo "<script>alert('Anda telah pinjam buku ini.');</script>";
-    // Close the DB to ensure it will not be updated.
-    mysqli_close($con);
+// TO CHECK TEACHER START
+$check_teacher_query = "SELECT * FROM tblteachers WHERE teachers_ID='$user_ID'";
+$check_teacher = mysqli_query($con, $check_teacher_query);
+// TO CHECK TEACHER END
 
-    echo "<script>window.location.href='booking.php';</script>";
-} elseif (mysqli_num_rows($check_booking) > 0) {
+if (mysqli_num_rows($check_teacher) > 0) {
+    if (mysqli_num_rows($check_user) >= 3) {
+        // Validation if the content is the same
+        echo "<script>alert('Anda hanya boleh booking tiga buku sahaja');</script>";
+        // Close the DB to ensure it will not be updated.
+        mysqli_close($con);
 
-    echo "<script>alert('Anda telah booking buku ini.');</script>";
+        echo "<script>window.location.href='booking.php';</script>";
+    } else {
+        $sql = "INSERT INTO `tbltransaction`(`transc_ID`, `transc_name`, `isBooked`, `book_title`, `user_ID`, `user_Name`, `user_role`, `start_date`, `end_date`, `time`) 
+        VALUES ('$idtransc','$new_status','$isBooked','$book_ID','$user_ID','$user_Name','$tarikh_booking_start','$tarikh_booking_end',NOW())";
 
-    mysqli_close($con);
+        mysqli_query($con, $sql);
 
-    echo "<script>window.location.href='booking.php';</script>";
-} elseif (mysqli_num_rows($check_user) >= 3) {
+        // Fetch the current count from the teachers table
+        $get_count_teachers_sql = "SELECT `book_count` FROM `tblteachers` WHERE `teachers_ID` = '$user_ID'";
+        $result_count_teachers = mysqli_query($con, $get_count_teachers_sql);
 
-    echo "<script>alert('Anda hanya boleh booking tiga buku sahaja');</script>";
+        if ($result_count_teachers) {
+            // Fetch and update count for teachers
+            $row_teachers = $result_count_teachers->fetch_assoc();
+            $count_teachers = $row_teachers['book_count'];
+            $count_teachers++;
 
-    mysqli_close($con);
-
-    echo "<script>window.location.href='booking.php';</script>";
+            $count_sql_teachers = "UPDATE `tblteachers` SET `book_count`='$count_teachers' WHERE `teachers_ID` = '$user_ID'";
+            mysqli_query($con, $count_sql_teachers);
+        }
+    }
 } else {
-    $sql = "INSERT INTO `tbltransaction`(`transc_ID`, `transc_name`, `book_title`, `user_ID`, `user_Name`, `start_date`, `time`) 
-    VALUES ('$idtransc','$new_status','$book_ID','$user_ID','$user_Name','$tarikh_booking_start',NOW())";
+    if (mysqli_num_rows($check_user) > 0) {
+        // Validation if the content is the same
+        echo "<script>alert('Anda hanya boleh booking satu buku sahaja');</script>";
+        // Close the DB to ensure it will not be updated.
+        mysqli_close($con);
 
-    mysqli_query($con, $sql);
+        echo "<script>window.location.href='booking.php';</script>";
+    } else {
 
-    echo "<script>alert('Anda Telah berjaya Booking');</script>";
-    echo "<script>window.location.href='buku_saya.php';</script>";
+        $user_role = "Student";
+
+        $sql = "INSERT INTO `tbltransaction`(`transc_ID`, `transc_name`, `isBooked`, `book_title`, `user_ID`, `user_Name`, `user_role`, `start_date`, `end_date`, `time`) 
+        VALUES ('$idtransc','$new_status','$isBooked','$book_ID','$user_ID','$user_Name','$user_role','$tarikh_booking_start','$tarikh_booking_end',NOW())";
+
+        mysqli_query($con, $sql);
+
+        // Fetch the current count from the student table
+        $get_count_student_sql = "SELECT `book_count` FROM `tblstudent` WHERE `stud_ID` = '$user_ID'";
+        $result_count_student = mysqli_query($con, $get_count_student_sql);
+
+        if ($result_count_student) {
+            // Fetch and update count for students
+            $row_student = $result_count_student->fetch_assoc();
+            $count_student = $row_student['book_count'];
+            $count_student++;
+
+            $count_sql_student = "UPDATE `tblstudent` SET `book_count`='$count_student' WHERE `stud_ID` = '$user_ID'";
+            mysqli_query($con, $count_sql_student);
+        }
+    }
 }
+
+echo "<script>alert('Anda Telah berjaya Booking');</script>";
+echo "<script>window.location.href='buku_saya.php';</script>";
 
 mysqli_close($con);
