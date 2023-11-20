@@ -11,24 +11,17 @@ if (isset($_SESSION["IDStud"]) || isset($_SESSION["IDTeachers"])) {
 
 if (isset($_GET["cmdbooking"])) {
     $user_Name = $_GET["txtuserName"];
+    $book_ID = $_GET["txtbookID"];
+    $book_title = $_GET["txtbookName"];
     $user_ID = $_GET["txtuserID"];
-    $book_ID = $_GET["txtbookName"];
+    $book_title = $_GET["txtbookName"];
     $tarikh_booking_start = $_GET["dtstartbooking"];
 }
 
 include 'conn.php';
 
 // Create ID Transaction
-$tahun = substr($tarikh_booking_start, 2, 2);
-
-$sqlbook = "SELECT COUNT(*) as total FROM tbltransaction WHERE LEFT(transc_ID, 2) = '$tahun'";
-
-$data = mysqli_query($con, $sqlbook);
-$num = mysqli_fetch_assoc($data);
-
-//create id booking (Last 4 Char)
-$total = (int)$num["total"];
-$total = sprintf("%04s", ++$total);
+$tahun = substr($tarikh_booking_start, 0, 4);
 
 $new_status = "Booking";
 
@@ -36,7 +29,9 @@ $isBooked = 1;
 
 $tarikh_booking_end = 0;
 
-$idtransc = $tahun . $total;
+$icnum = substr($user_ID, 8, 4);
+
+$idtransc = $tahun . $icnum;
 
 // TO CHECK USER ID START
 $check_user_query = "SELECT * FROM tbltransaction WHERE user_ID='$user_ID' AND isBooked = 1";
@@ -57,8 +52,10 @@ if (mysqli_num_rows($check_teacher) > 0) {
 
         echo "<script>window.location.href='booking.php';</script>";
     } else {
-        $sql = "INSERT INTO `tbltransaction`(`transc_ID`, `transc_name`, `isBooked`, `book_title`, `user_ID`, `user_Name`, `user_role`, `start_date`, `end_date`, `time`) 
-        VALUES ('$idtransc','$new_status','$isBooked','$book_ID','$user_ID','$user_Name','$tarikh_booking_start','$tarikh_booking_end',NOW())";
+        $user_role = "Teacher";
+
+        $sql = "INSERT INTO `tbltransaction`(`transc_ID`, `transc_name`, `isBooked`, `book_ID`, `book_title`, `user_ID`, `user_Name`, `user_role`, `start_date`, `end_date`, `time`) 
+        VALUES ('$idtransc','$new_status','$isBooked','$book_ID','$book_title','$user_ID','$user_Name','$user_role','$tarikh_booking_start','$tarikh_booking_end',NOW())";
 
         mysqli_query($con, $sql);
 
@@ -85,12 +82,10 @@ if (mysqli_num_rows($check_teacher) > 0) {
 
         echo "<script>window.location.href='booking.php';</script>";
     } else {
-
         $user_role = "Student";
 
-        $sql = "INSERT INTO `tbltransaction`(`transc_ID`, `transc_name`, `isBooked`, `book_title`, `user_ID`, `user_Name`, `user_role`, `start_date`, `end_date`, `time`) 
-        VALUES ('$idtransc','$new_status','$isBooked','$book_ID','$user_ID','$user_Name','$user_role','$tarikh_booking_start','$tarikh_booking_end',NOW())";
-
+        $sql = "INSERT INTO `tbltransaction`(`transc_ID`, `transc_name`, `isBooked`, `book_ID`, `book_title`, `user_ID`, `user_Name`, `user_role`, `start_date`, `end_date`, `time`) 
+        VALUES ('$idtransc','$new_status','$isBooked','$book_ID','$book_title','$user_ID','$user_Name','$user_role','$tarikh_booking_start','$tarikh_booking_end',NOW())";
         mysqli_query($con, $sql);
 
         // Fetch the current count from the student table

@@ -8,7 +8,7 @@ date_default_timezone_set("Asia/Kuala_Lumpur");
 if (isset($_GET['transc_ID'])) {
     $transc_ID = $_GET['transc_ID'];
 } else {
-    echo "No book selected.";
+    echo "No user selected.";
     exit();
 }
 

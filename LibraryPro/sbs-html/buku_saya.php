@@ -200,6 +200,7 @@ if (isset($_SESSION["IDStud"])) {
                                         echo "<a href='return_transaction.php?transc_ID=" . $row['transc_ID'] . "' class='btn btn-primary ml-3' onclick='return confirm(\"Adakah anda pasti untuk menghantar buku ini?\");'>Return</a>";
                                     } else {
                                         echo "<a href='cancel_transaction.php?transc_ID=" . $row['transc_ID'] . "' class='btn btn-primary' onclick='return confirm(\"Adakah anda pasti untuk cancel?\");'>Cancel</a>";
+                                        echo "<a href='check_availability.php?book_ID=" . $row['book_ID'] . "&" ."transc_ID=" . $row['transc_ID'] . "' class='btn btn-primary ml-3' onclick='return confirm(\"Adakah anda pasti untuk meminjam buku ini?\");'>Borrow Now</a>";
                                     }
                                     ?>
                                 </div>
