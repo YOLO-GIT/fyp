@@ -3,7 +3,6 @@ include 'conn.php';
 
 session_start();
 
-// Check if session "idcust" dah wujud atau belum
 if (isset($_SESSION["IDStud"])) {
     $log = "Logout";
     $func_todo = "logout.php";
@@ -147,7 +146,7 @@ if (isset($_SESSION["IDStud"])) {
     </nav>
     <!-- Breadcrumbs Ends -->
 
-    <!-- Display Buku yang dibooking -->
+    <!-- Display Buku yang dipilih -->
     <div class="container_book">
         <?php
         if (isset($_SESSION["IDStud"])) {
@@ -170,15 +169,15 @@ if (isset($_SESSION["IDStud"])) {
                                 <div class="alert alert-primary">
                                     <p><?= $row["user_Name"] ?></p>
                                 </div>
-                                <p class="bold-text">Buku yand dipinjam:&nbsp;&nbsp;</p>
+                                <p class="bold-text">Buku yand dipilih:&nbsp;&nbsp;</p>
                                 <div class="alert alert-primary">
                                     <p><?= $row["book_title"] ?></p>
                                 </div>
-                                <p class="bold-text">Tarikh Mula Pinjam:&nbsp;&nbsp;</p>
+                                <p class="bold-text">Tarikh Mula:&nbsp;&nbsp;</p>
                                 <div class="alert alert-primary">
                                     <p><?= $row["start_date"] ?></p>
                                 </div>
-                                <p class="bold-text">Tarikh Akhir Pinjam:&nbsp;&nbsp;</p>
+                                <p class="bold-text">Tarikh Akhir:&nbsp;&nbsp;</p>
                                 <div class="alert alert-primary">
                                     <p><?= $row["end_date"] ?></p>
                                 </div>
@@ -186,12 +185,24 @@ if (isset($_SESSION["IDStud"])) {
                                 <div class="alert alert-primary">
                                     <p><?= $row["time"] ?></p>
                                 </div>
-                                <?php
-                                echo "<div class='text_align_right'>";
-                                echo "<a href='cancel_transaction.php?transc_ID=" . $row['transc_ID'] . "' class='btn btn-primary' onclick='return confirm(\"Adakah anda pasti untuk cancel?\");'>Cancel</a>";
-                                echo "<a href='return_transaction.php?transc_ID=" . $row['transc_ID'] . "' class='btn btn-primary ml-3' onclick='return confirm(\"Adakah anda pasti untuk menghantar buku ini?\");'>Return</a>";
-                                echo "</div>";
-                                ?>
+                                <p class="bold-text">Status:&nbsp;&nbsp;</p>
+                                <div class="alert alert-primary">
+                                    <p><?= $row["transc_name"] ?></p>
+                                </div>
+                                <div class='text_align_right'>
+                                    <?php
+                                    $transc_ID = $row['transc_ID'];
+                                    $sql_transc = "SELECT * FROM tbltransaction WHERE transc_ID = '$transc_ID' AND transc_name = 'Borrowing'";
+                                    $check_status = mysqli_query($con, $sql_transc);
+
+                                    if (mysqli_num_rows($check_status) > 0) {
+                                        echo "<a href='cancel_transaction.php?transc_ID=" . $row['transc_ID'] . "' class='btn btn-primary' onclick='return confirm(\"Adakah anda pasti untuk cancel?\");'>Cancel</a>";
+                                        echo "<a href='return_transaction.php?transc_ID=" . $row['transc_ID'] . "' class='btn btn-primary ml-3' onclick='return confirm(\"Adakah anda pasti untuk menghantar buku ini?\");'>Return</a>";
+                                    } else {
+                                        echo "<a href='cancel_transaction.php?transc_ID=" . $row['transc_ID'] . "' class='btn btn-primary' onclick='return confirm(\"Adakah anda pasti untuk cancel?\");'>Cancel</a>";
+                                    }
+                                    ?>
+                                </div>
                             </div>
                             <br>
                         </div>

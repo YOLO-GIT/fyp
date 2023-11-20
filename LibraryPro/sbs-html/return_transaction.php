@@ -14,44 +14,62 @@ if (isset($_GET['transc_ID'])) {
 
 include_once "conn.php";
 
-// // Retrieve the timestamp of the record
-// $timestampQuery = "SELECT time FROM tbltransaction WHERE transc_ID='$transc_ID'";
-// $result = mysqli_query($con, $timestampQuery);
+// Retrieve the timestamp of the record
+$timestampQuery = "SELECT time FROM tbltransaction WHERE transc_ID='$transc_ID'";
+$result = mysqli_query($con, $timestampQuery);
 
-// if ($result) {
-//     $row = mysqli_fetch_assoc($result);
-//     $recordTimestamp = strtotime($row['time']);
+if ($result) {
+    $row = mysqli_fetch_assoc($result);
+    $recordTimestamp = strtotime($row['time']);
 
-//     // Debugging statements
-//     echo "Record Timestamp: " . date('Y-m-d H:i:s', $recordTimestamp) . "<br>";
-//     echo "Current Time: " . date('Y-m-d H:i:s', time()) . "<br>";
-//     echo "Time Difference: " . (time() - $recordTimestamp) . "<br>";
+    if (time() - $recordTimestamp >= 86400) {
+        // Delete the record
 
-//     if (time() - $recordTimestamp >= 86400) {
-//         // Delete the record
-//         $deleteQuery = "DELETE FROM tbltransaction WHERE transc_ID='$transc_ID'";
-//         if (mysqli_query($con, $deleteQuery)) {
-//             // Record deleted successfully
-//             echo "<script>alert('Return Success');</script>";
-//             // echo "<script>window.location.href='buku_saya.php';</script>";
-//         } else {
-//             // Error deleting record
-//             echo "<script>alert('Error Returning');</script>";
-//             echo "<script>window.location.href='buku_saya.php';</script>";
-//         }
-//     } else {
-//         echo "<script>alert('Cannot return record. It is not past 1 day.');</script>";
-//         // echo "<script>window.location.href='buku_saya.php';</script>";
-//     }
-// } else {
-//     // Error fetching timestamp
-//     echo "<script>alert('Error return');</script>";
-// }
+        $deleteQuery = "DELETE FROM tbltransaction WHERE transc_ID='$transc_ID'";
+        if (mysqli_query($con, $deleteQuery)) {
+            // Record deleted successfully
+            if (isset($_GET['cmdreturn'])) {
+                $IC = $_GET['txtIC'];
+                $Name = $_GET['txtname'];
+                $book_title = $_GET['txtbook'];
+                $book_condition = $_GET['cbocondition'];
 
-// // Close the database connection
-// mysqli_close($con);
+                // Create ID Transaction
+                $tahun = substr(date("Y"), 2, 2);
 
-// Check if session "idcust" dah wujud atau belum
+                $sqlreturn = "SELECT COUNT(*) as total FROM tblreturning WHERE LEFT(return_ID, 2) = '$tahun'";
+
+                $data = mysqli_query($con, $sqlreturn);
+                $num = mysqli_fetch_assoc($data);
+
+                //create id booking (Last 4 Char)
+                $total = (int)$num["total"];
+                $total = sprintf("%04s", ++$total);
+
+                $idreturn = $tahun . $total;
+
+                $sql = "INSERT INTO `tblreturning`(`return_ID`, `user_IC`, `user_name`, `book_title`, `book_condition`, `date_returned`) 
+                VALUES ('$idreturn','$IC','$Name','$book_title','$book_condition',NOW())";
+
+                mysqli_query($con, $sql);
+
+                echo "<script>alert('Return Success');</script>";
+                echo "<script>window.location.href='buku_saya.php';</script>";
+            }
+        } else {
+            // Error deleting record
+            echo "<script>alert('Error Returning');</script>";
+            echo "<script>window.location.href='buku_saya.php';</script>";
+        }
+    } else {
+        echo "<script>alert('Cannot return record. It is not past 1 day.');</script>";
+        echo "<script>window.location.href='buku_saya.php';</script>";
+    }
+} else {
+    // Error fetching timestamp
+    echo "<script>alert('Error return');</script>";
+}
+
 if (isset($_SESSION["IDStud"])) {
     $log = "Logout";
     $func_todo = "logout.php";
@@ -86,6 +104,9 @@ if (isset($_SESSION["IDStud"])) {
     $log = "Login";
     $func_todo = "login.php";
 }
+
+// Close the database connection
+mysqli_close($con);
 ?>
 
 <!DOCTYPE html>
@@ -198,7 +219,64 @@ if (isset($_SESSION["IDStud"])) {
     <!-- Breadcrumbs Ends -->
 
     <!-- Return Input Section Start -->
-    
+    <div class="container_book">
+        <form method="get" action="">
+            <?php
+            if (isset($_SESSION["IDStud"])) {
+                $query = "SELECT * FROM tbltransaction WHERE user_ID = '$stud_ID'";
+            } elseif (isset($_SESSION["IDTeachers"])) {
+                $query = "SELECT * FROM tbltransaction WHERE user_ID = '$teachers_ID'";
+            }
+            $result = $con->query($query);
+            if ($result->num_rows > 0) {
+                while ($row = $result->fetch_assoc()) {
+            ?>
+                    <div class="card_book_display mb-3">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="card-body">
+                                    <h2 class="card-title"><?= $row["book_title"] ?></h2>
+                                    <div class="form-group">
+                                        <label for="ID" class="bold-text">IC:</label>
+                                        <input type="text" name="txtIC" class="form-control" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="Name" class="bold-text">Nama:</label>
+                                        <input type="text" name="txtname" value="<?= $row['user_Name'] ?>" class="form-control" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="Borrowed" class="bold-text">Buku yand dipinjam:</label>
+                                        <input type="text" name="txtbook" value="<?= $row["book_title"] ?>" class="form-control" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="Condition" class="bold-text">Keadaan Buku yang telah dipinjam:</label>
+                                        <select class="form-control" name="cbocondition" required>
+                                            <option value="Baik">Baik</option>
+                                            <option value="Sederhana">Sederhana</option>
+                                            <option value="Rosak">Rosak</option>
+                                        </select>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary" name="cmdreturn">Submit</button>
+                                </div>
+                            </div>
+                            <!-- ... -->
+                        </div>
+                    </div>
+                <?php
+                }
+            } else {
+                ?>
+                <tr>
+                    <td>Record Tidak Wujud</td>
+                </tr>
+            <?php
+            }
+            ?>
+        </form>
+        <div class="text-right mr-3 mb-3">
+            <a href="booking.php" class="btn btn-primary">Kembali Semula</a>
+        </div>
+    </div>
     <!-- Return Input Section Ends -->
 
     <!--  footer -->

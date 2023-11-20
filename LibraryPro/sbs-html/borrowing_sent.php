@@ -56,7 +56,7 @@ if (mysqli_num_rows($check_teacher) > 0) {
         echo "<script>window.location.href='booking.php';</script>";
     } else {
         $sql = "INSERT INTO `tbltransaction`(`transc_ID`, `transc_name`, `book_title`, `user_ID`, `user_Name`, `start_date`, `end_date`, `time`) 
-    VALUES ('$idtransc','$new_status','$book_ID','$user_ID','$user_Name','$tarikh_booking_start','$tarikh_booking_end',NOW())";
+        VALUES ('$idtransc','$new_status','$book_ID','$user_ID','$user_Name','$tarikh_booking_start','$tarikh_booking_end',NOW())";
 
         mysqli_query($con, $sql);
 
@@ -84,7 +84,7 @@ if (mysqli_num_rows($check_teacher) > 0) {
         echo "<script>window.location.href='booking.php';</script>";
     } else {
         $sql = "INSERT INTO `tbltransaction`(`transc_ID`, `transc_name`, `book_title`, `user_ID`, `user_Name`, `start_date`, `end_date`, `time`) 
-    VALUES ('$idtransc','$new_status','$book_ID','$user_ID','$user_Name','$tarikh_booking_start','$tarikh_booking_end',NOW())";
+        VALUES ('$idtransc','$new_status','$book_ID','$user_ID','$user_Name','$tarikh_booking_start','$tarikh_booking_end',NOW())";
 
         mysqli_query($con, $sql);
 

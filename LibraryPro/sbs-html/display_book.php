@@ -245,8 +245,6 @@ if (isset($_GET['book_ID'])) {
                                 } else {
                                     echo "<a href='borrowing_choosed.php?book_ID=" . $row['book_ID'] . "&" . $statement_sent . "' class='btn btn-primary'>Borrowing</a>";
                                 }
-
-
                                 mysqli_close($con);
                                 ?>
                                 &nbsp;
