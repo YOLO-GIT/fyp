@@ -1,12 +1,14 @@
 <?php
 session_start();
 
+include "conn.php";
+
 if (isset($_GET['cmdreturn'])) {
     // Record deleted successfully
-    $transc_ID = $_GET['transc_ID'];
+    $transc_ID = $_GET['txttID'];
     $IC = $_GET['txtIC'];
     $Name = $_GET['txtname'];
-    $book_title = $_GET['txtbook'];
+    $book_title = $_GET['txtbname'];
     $book_condition = $_GET['cbocondition'];
 
     // Create ID Transaction
