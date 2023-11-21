@@ -102,7 +102,7 @@
     </nav>
     <!-- Breadcrumbs Ends -->
 
-    <!-- Login -->
+    <!-- Forgot Password Start -->
     <div class="contact1">
         <div class="col-md-12">
             <div class="new_title text_align_center">
@@ -126,7 +126,7 @@
             </div>
         </div>
     </div>
-    <!-- End Login -->
+    <!-- Forgot Password End -->
 
     <!--  footer -->
     <div class="copyright-custom">
