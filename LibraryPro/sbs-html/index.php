@@ -11,6 +11,7 @@ if (isset($_SESSION["IDStud"])) {
     $func_todo = "logout.php";
     $profile = "profile/profile.php";
     $stud_ID = $_SESSION["IDStud"];
+    $confirmation_logout = "return confirm(\"Adakah anda ingin $log?\");";
 
     $studentQuery = "SELECT * FROM tblstudent WHERE stud_ID = ?";
     $stmt = $con->prepare($studentQuery);
@@ -24,6 +25,7 @@ if (isset($_SESSION["IDStud"])) {
     $log = "Logout";
     $func_todo = "logout.php";
     $profile = "profile/teacher_profile.php";
+    $confirmation_logout = "onclick='return confirm(\"Adakah anda ingin <?= $log ?>?\");'";
 
     $teachers_ID = $_SESSION["IDTeachers"];
 
@@ -39,6 +41,7 @@ if (isset($_SESSION["IDStud"])) {
     $statement_res = null;
     $log = "Login";
     $func_todo = "login.php";
+    $confirmation_logout = "";
 }
 
 ?>
@@ -127,7 +130,7 @@ if (isset($_SESSION["IDStud"])) {
                 </div>
                 <div class="col-md-2">
                     <ul class="text_align_right">
-                        <li class="nav-item"><a href="<?= $profile ?>"><i class="fa fa-user" aria-hidden="true"></i></a>&nbsp;&nbsp;<?= $statement_res ?></li>
+                        <li class="nav-item"><a href="<?= $profile ?>" onclick=<?= $confirmation_logout ?>><i class="fa fa-user" aria-hidden="true"></i></a>&nbsp;&nbsp;<?= $statement_res ?></li>
                     </ul>
                 </div>
             </div>

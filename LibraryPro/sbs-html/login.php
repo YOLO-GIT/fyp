@@ -3,6 +3,12 @@
 // Start the session
 session_start();
 
+// Check if the user is already logged in
+if (isset($_SESSION["IDStud"]) || isset($_SESSION["IDTeachers"]) || isset($_SESSION["IDAdmin"])) {
+    echo "<script>window.location.href='index.php';</script>";
+    exit;
+}
+
 // isset = is setted to ?
 if (isset($_GET["cmdlogin"])) {
     $username = $_GET["txtname"];
@@ -59,7 +65,6 @@ if (isset($_GET["cmdlogin"])) {
     // Close Connection
     mysqli_close($con);
 }
-
 ?>
 
 <html>
