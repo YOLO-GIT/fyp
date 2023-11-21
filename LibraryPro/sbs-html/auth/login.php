@@ -1,13 +1,69 @@
-<?php
-if (isset($_GET['stud'])) {
-    // Assign the breadcrumbs
-    $user_register = "Reset Password Student";
-} elseif (isset($_GET['teacher'])) {
-    // Assign the breadcrumbs
-    $user_register = "Reset Password Teacher";
-} else {
-    // Assign the breadcrumbs
-    $user_register = "Reset Password";
+<?php // Sekiranya button submit diklik
+
+// Start the session
+session_start();
+
+// Check if the user is already logged in
+if (isset($_SESSION["IDStud"]) || isset($_SESSION["IDTeachers"]) || isset($_SESSION["IDAdmin"])) {
+    echo "<script>window.location.href='../index.php';</script>";
+    exit;
+}
+
+// isset = is setted to ?
+if (isset($_POST["cmdlogin"])) {
+    $username = $_POST["txtname"];
+    $password = hash("sha512", $_POST["txtpwd"]);
+
+    //Create Connection to the database
+    include 'conn.php';
+
+    // Define SQL Statement for comparison
+    $sql = "SELECT * FROM `tblstudent` WHERE stud_username='$username' AND stud_pwd='$password'";
+    // Define SQL Statement for comparison
+    $teacher_sql = "SELECT * FROM `tblteachers` WHERE teachers_username='$username' AND teachers_Password='$password'";
+    // Admin
+    $admin_sql = "SELECT * FROM `tbllibrarians` WHERE librarians_uname='$username' AND librarians_password='$password'";
+
+    // Execute SQL Statement
+    $res = mysqli_query($con, $sql);
+    // Execute SQL Statement
+    $teacher_res = mysqli_query($con, $teacher_sql);
+    // Execute SQL Statement
+    $admin_res = mysqli_query($con, $admin_sql);
+
+    // Check returning value in $res for validation
+    if (mysqli_num_rows($res) > 0) {
+        $student = mysqli_fetch_assoc($res);
+        // Create a session with a name IDStud
+        $_SESSION["IDStud"] = $student["stud_ID"];
+        // Inform to the user
+        echo "<script>alert('Login Success');</script>";
+        // Redirect to index.php
+        echo "<script>window.location.href='../index.php';</script>";
+        exit;
+    } elseif (mysqli_num_rows($teacher_res) > 0) {
+        $teacher = mysqli_fetch_assoc($teacher_res);
+        // Create a session
+        $_SESSION["IDTeachers"] = $teacher["teachers_ID"];
+        // Inform to the user
+        echo "<script>alert('Login Success');</script>";
+        // Redirect to index.php
+        echo "<script>window.location.href='../index.php';</script>";
+        exit;
+    } elseif (mysqli_num_rows($admin_res) > 0) {
+        $validate = mysqli_fetch_assoc($admin_res);
+        // Create a session
+        $_SESSION["IDAdmin"] = $validate["librarians_ID"];
+        // Inform to the user
+        echo "<script>alert('Login Success');</script>";
+        // Redirect to index.php
+        echo "<script>window.location.href='../../../admin/admin_panel/index.php';</script>";
+    } else {
+        echo "<script>alert('Invalid username or password');</script>";
+    }
+
+    // Close Connection
+    mysqli_close($con);
 }
 ?>
 
@@ -23,7 +79,7 @@ if (isset($_GET['stud'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1">
     <!-- site metas -->
-    <title>LibraryPro | Password Reset</title>
+    <title>Login</title>
     <meta name="keywords" content="">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -33,11 +89,10 @@ if (isset($_GET['stud'])) {
     <link rel="stylesheet" href="../css/style.css">
     <!-- custom style css -->
     <link rel="stylesheet" href="../css/custom_style.css">
-    <link rel="stylesheet" href="forgotpwd_style.css">
     <!-- Responsive-->
     <link rel="stylesheet" href="../css/responsive.css">
     <!-- fevicon -->
-    <link rel="icon" href="images/fevicon.png" type="image/gif" />
+    <link rel="icon" href="../images/fevicon.png" type="image/gif" />
     <!-- Tweaks for older IEs-->
     <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
     <!--[if lt IE 9]>
@@ -74,16 +129,16 @@ if (isset($_GET['stud'])) {
                         <div class="collapse navbar-collapse" id="navbarsExample04">
                             <ul class="navbar-nav mr-auto">
                                 <li class="nav-item">
-                                    <a class="nav-link" href="index.php"><i class="fa fa-home"></i> Home</a>
+                                    <a class="nav-link" href="../index.php"><i class="fa fa-home"></i> Home</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="booking.php"><i class="fa fa-search"></i> Carian</a>
+                                    <a class="nav-link" href="../booking.php"><i class="fa fa-search"></i> Carian</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="advance_booking.php"><i class="fa fa-search-plus"></i> Carian Terperinci</a>
+                                    <a class="nav-link" href="../advance_booking.php"><i class="fa fa-search-plus"></i> Carian Terperinci</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="buku_saya.php"><i class="fa fa-book"></i> Buku Saya</a>
+                                    <a class="nav-link" href="../buku_saya.php"><i class="fa fa-book"></i> Buku Saya</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="#"><i class="fa fa-universal-access"></i> Berkaitan Kami</a>
@@ -97,62 +152,64 @@ if (isset($_GET['stud'])) {
                 </div>
                 <div class="col-md-2">
                     <ul class="email text_align_right">
-                        <li class="d_none"><a href="profile.php"><i class="fa fa-user" aria-hidden="true"></i></a></li>
+                        <li class="d_none"><a href="../profile/profile.php"><i class="fa fa-user" aria-hidden="true"></i></a></li>
                     </ul>
                 </div>
             </div>
         </div>
     </div>
-    <!-- end header -->
+    <!-- end header inner -->
 
     <!-- Breadcrumbs Start -->
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="../index.php">Home</a></li>
-            <li class="breadcrumb-item"><a href="../login.php">Login</a></li>
-            <li class="breadcrumb-item"><a href="forgotpwd.php">Forgot Password</a></li>
-            <li class="breadcrumb-item active" aria-current="page"><?= $user_register ?></li>
+            <li class="breadcrumb-item active" aria-current="page">Login</li>
         </ol>
     </nav>
     <!-- Breadcrumbs Ends -->
 
-    <!-- Forgot Password Start -->
+    <!-- Login -->
     <div class="contact1">
         <div class="col-md-12">
             <div class="new_title text_align_center">
-                <h2>New Password Form</h2>
+                <h2>Login Form</h2>
             </div>
         </div>
         <div class="container">
             <div class="row custom-background">
                 <div class="col-md-12">
-                    <form name="frmresetpwd" method="post" action="update_password.php" class="main_form_reg" onsubmit="return validated()">
+                    <form name="frmlogin" class="main_form_login" action="" method="post">
                         <br><br>
-                        <div class="col-md-12">
-                            <label for="token" class="custom_label_login">Enter Your Forgot Password Token:</label>
-                            <input class="contactus" type="text" name="token" required>
+                        <div class=" col-md-12">
+                            <label class="custom_label_login">Username Anda:</label>
+                            <input class="contactus" placeholder="Username*" type="text" name="txtname" maxlength="10" autocomplete="off" required>
                         </div>
                         <div class="col-md-12">
-                            <label for="new_password" class="custom_label_login">Enter a new password:</label>
-                            <div id="newpwd_error" class="form-control">Please enter your new Password first</div>
-                            <input class="contactus" type="password" name="new_password" id="myInputPWD" maxlength="9" pattern=".{9,}" placeholder="Maximum 9 numbers/words">
+                            <label class="custom_label_login">Password Anda:</label>
+                            <input class="contactus" placeholder="Password*" type="password" name="txtpwd" id="myInputPWD" maxlength="9" autocomplete="off" required>
                             <input type="checkbox" onclick="myFunction()">&nbsp;&nbsp;<label class="show_style">Show Password</label>
                         </div>
                         <div class="col-md-12">
-                            <label for="confirm_password" class="custom_label_login">Confirm the new password:</label>
-                            <div id="confirmpwd_error" class="form-control">Please confirm your password</div>
-                            <input class="contactus" type="password" name="confirm_password" id="myConfirmPWD" maxlength="9" pattern=".{9,}" placeholder="Maximum 9 numbers/words">
-                            <input type="checkbox" onclick="myConfirm()">&nbsp;&nbsp;<label class="show_style">Show Password</label>
-                        </div>
-                        <div class="col-md-12">
-                            <button class="btn btn-primary" name="cmdupdate">Reset Password</button>
+                            <input type="submit" class="send_btn1" name="cmdlogin" value="Login">
                         </div>
                     </form>
+                </div>
+                <div class="col-md-12">
+                    <div class="titlepage text_align_left">
+                        <h3>Not Register?</h3>
+                        <h3>Click <a href="register.php">here for registration</a></h3>
+                        <h3>Forgot Password?
+                            <a href="../forgot_pwd/forgotpwd.php" onclick="return confirm('Adakah betul anda tidak ingat katalaluan anda?');">
+                                Click Here
+                            </a>
+                        </h3>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-    <!-- Forgot Password End -->
+    <!-- End Login -->
 
     <!--  footer -->
     <div class="copyright-custom">
@@ -171,7 +228,6 @@ if (isset($_GET['stud'])) {
     <script src="../js/jquery-3.0.0.min.js"></script>
     <!-- sidebar -->
     <script src="../js/custom.js"></script>
-    <script src="custom_script.js"></script>
     <script>
         AOS.init();
     </script>
