@@ -16,4 +16,56 @@ username: abu123
 email: alexandriad431@gmail.com
 password: teacher12
 
+When to use GET and POST:
+One way to get rid of this error message is to make your form use GET instead of POST. Just keep in mind that this is not always an appropriate solution (read below).
+
+Always use POST if you are performing an action that you don't want to be repeated, if sensitive information is being transferred or if your form contains either a file upload or the length of all data sent is longer than ~2000 characters.
+
+Examples of when to use POST would include:
+
+A login form
+A contact form
+A submit payment form
+Something that adds, edits or deletes entries from a database
+An image uploader (note, if using GET with an <input type="file"> field, only the filename will be sent to the server, which 99.73% of the time is not what you want.)
+A form with many fields (which would create a long URL if using GET)
+In any of these cases, you don't want people refreshing the page and re-sending the data. If you are sending sensitive information, using GET would not only be inappropriate, it would be a security issue (even if the form is sent by AJAX) since the sensitive item (e.g. user's password) is sent in the URL and will therefore show up in server access logs.
+
+Use GET for basically anything else. This means, when you don't mind if it is repeated, for anything that you could provide a direct link to, when no sensitive information is being transferred, when you are pretty sure your URL lengths are not going to get out of control and when your forms don't have any file uploads.
+
+Examples would include:
+
+Performing a search in a search engine
+A navigation form for navigating around the website
+Performing one-time actions using a nonce or single use password (such as an "unsubscribe" link in an email).
+In these cases POST would be completely inappropriate. Imagine if search engines used POST for their searches. You would receive this message every time you refreshed the page and you wouldn't be able to just copy and paste the results URL to people, they would have to manually fill out the form themselves.
+
+If you use POST:
+To me, in most cases even having the "Confirm form resubmission" dialog pop up shows that there is a design flaw. By the very nature of POST being used to perform destructive actions, web designers should prevent users from ever performing them more than once by accidentally (or intentionally) refreshing the page. Many users do not even know what this dialog means and will therefore just click on "Continue". What if that was after a "submit payment" request? Does the payment get sent again?
+
+So what do you do? Fortunately we have the Post/Redirect/Get design pattern. The user submits a POST request to the server, the server redirects the user's browser to another page and that page is then retrieved using GET.
+
+Here is a simple example using PHP:
+
+if(!empty($_POST['username'] && !empty($_POST['password'])) {
+    $user = new User;
+    $user->login($_POST['username'], $_POST['password']);
+
+    if ($user->isLoggedIn()) {
+        header("Location: /admin/welcome.php");
+        exit;
+    }
+    else {
+        header("Location: /login.php?invalid_login");
+    }
+}
+Notice how in this example even when the password is incorrect, I am still redirecting back to the login form. To display an invalid login message to the user, just do something like:
+
+if (isset($_GET['invalid_login'])) {
+    echo "Your username and password combination is invalid";
+}
+
+    $confirmation_logout = "onclick='return confirm(\"Adakah anda ingin $log?\");'";
+
+<a class="nav-link" href="<?= $func_todo ?>" <?= $confirmation_logout ?>><i class="fa fa-sign-out"></i> <?= $log ?></a>
 

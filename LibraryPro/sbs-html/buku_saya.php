@@ -3,12 +3,13 @@ include 'conn.php';
 
 session_start();
 
+// Check if session exist
 if (isset($_SESSION["IDStud"])) {
     $log = "Logout";
-    $func_todo = "logout.php";
+    $func_todo = "auth/logout.php";
     $profile = "profile/profile.php";
-
     $stud_ID = $_SESSION["IDStud"];
+    $confirmation_logout = "onclick='return confirm(\"Adakah anda ingin $log?\");'";
 
     $studentQuery = "SELECT * FROM tblstudent WHERE stud_ID = ?";
     $stmt = $con->prepare($studentQuery);
@@ -20,8 +21,9 @@ if (isset($_SESSION["IDStud"])) {
     $stmt->close();
 } elseif (isset($_SESSION["IDTeachers"])) {
     $log = "Logout";
-    $func_todo = "logout.php";
+    $func_todo = "auth/logout.php";
     $profile = "profile/teacher_profile.php";
+    $confirmation_logout = "onclick='return confirm(\"Adakah anda ingin $log?\");'";
 
     $teachers_ID = $_SESSION["IDTeachers"];
 
@@ -36,9 +38,8 @@ if (isset($_SESSION["IDStud"])) {
 } else {
     $statement_res = null;
     $log = "Login";
-    $func_todo = "login.php";
-    echo "<script>alert('Sila Login Dahulu.');</script>";
-    echo "<script>window.location.href='login.php';</script>";
+    $func_todo = "auth/login.php";
+    $confirmation_logout = "";
 }
 ?>
 
@@ -121,7 +122,7 @@ if (isset($_SESSION["IDStud"])) {
                                     <a class="nav-link" href="buku_saya.php"><i class="fa fa-book"></i> Buku Saya</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="<?= $func_todo ?>"><i class="fa fa-sign-out"></i><?= $log ?></a>
+                                    <a class="nav-link" href="<?= $func_todo ?>" <?= $confirmation_logout ?>><i class="fa fa-sign-out"></i> <?= $log ?></a>
                                 </li>
                             </ul>
                         </div>
@@ -200,7 +201,7 @@ if (isset($_SESSION["IDStud"])) {
                                         echo "<a href='return_transaction.php?transc_ID=" . $row['transc_ID'] . "' class='btn btn-primary ml-3' onclick='return confirm(\"Adakah anda pasti untuk menghantar buku ini?\");'>Return</a>";
                                     } else {
                                         echo "<a href='cancel_transaction.php?transc_ID=" . $row['transc_ID'] . "' class='btn btn-primary' onclick='return confirm(\"Adakah anda pasti untuk cancel?\");'>Cancel</a>";
-                                        echo "<a href='check_availability.php?book_ID=" . $row['book_ID'] . "&" ."transc_ID=" . $row['transc_ID'] . "' class='btn btn-primary ml-3' onclick='return confirm(\"Adakah anda pasti untuk meminjam buku ini?\");'>Borrow Now</a>";
+                                        echo "<a href='check_availability.php?book_ID=" . $row['book_ID'] . "&" . "transc_ID=" . $row['transc_ID'] . "' class='btn btn-primary ml-3' onclick='return confirm(\"Adakah anda pasti untuk meminjam buku ini?\");'>Borrow Now</a>";
                                     }
                                     ?>
                                 </div>

@@ -5,12 +5,13 @@ session_start();
 // Call the SQL
 include 'conn.php';
 
-// Check if session "idcust" dah wujud atau belum
+// Check if session exist
 if (isset($_SESSION["IDStud"])) {
     $log = "Logout";
-    $func_todo = "logout.php";
+    $func_todo = "auth/logout.php";
     $profile = "profile/profile.php";
     $stud_ID = $_SESSION["IDStud"];
+    $confirmation_logout = "onclick='return confirm(\"Adakah anda ingin $log?\");'";
 
     $studentQuery = "SELECT * FROM tblstudent WHERE stud_ID = ?";
     $stmt = $con->prepare($studentQuery);
@@ -22,8 +23,9 @@ if (isset($_SESSION["IDStud"])) {
     $stmt->close();
 } elseif (isset($_SESSION["IDTeachers"])) {
     $log = "Logout";
-    $func_todo = "logout.php";
+    $func_todo = "auth/logout.php";
     $profile = "profile/teacher_profile.php";
+    $confirmation_logout = "onclick='return confirm(\"Adakah anda ingin $log?\");'";
 
     $teachers_ID = $_SESSION["IDTeachers"];
 
@@ -38,19 +40,9 @@ if (isset($_SESSION["IDStud"])) {
 } else {
     $statement_res = null;
     $log = "Login";
-    $func_todo = "login.php";
-    echo "<script>alert('Sila Login Dahulu.');</script>";
-    echo "<script>window.location.href='login.php';</script>";
+    $func_todo = "auth/login.php";
+    $confirmation_logout = "";
 }
-
-if (isset($_GET['book_ID'])) {
-    $book_ID = $_GET['book_ID'];
-}
-
-if (isset($_GET['transc_ID'])) {
-    $transc_ID = $_GET['transc_ID'];
-}
-
 ?>
 
 <!DOCTYPE html>
@@ -130,7 +122,7 @@ if (isset($_GET['transc_ID'])) {
                                     <a class="nav-link" href="#"><i class="fa fa-universal-access"></i> Berkaitan Kami</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="<?= $func_todo ?>"><i class="fa fa-sign-out"></i> <?= $log ?></a>
+                                    <a class="nav-link" href="<?= $func_todo ?>" <?= $confirmation_logout ?>><i class="fa fa-sign-out"></i> <?= $log ?></a>
                                 </li>
                             </ul>
                         </div>

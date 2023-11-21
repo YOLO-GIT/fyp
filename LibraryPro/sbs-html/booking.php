@@ -3,12 +3,13 @@ include 'conn.php';
 
 session_start();
 
-// Check if session "idcust" dah wujud atau belum
+// Check if session exist
 if (isset($_SESSION["IDStud"])) {
     $log = "Logout";
-    $func_todo = "logout.php";
+    $func_todo = "auth/logout.php";
     $profile = "profile/profile.php";
     $stud_ID = $_SESSION["IDStud"];
+    $confirmation_logout = "onclick='return confirm(\"Adakah anda ingin $log?\");'";
 
     $studentQuery = "SELECT * FROM tblstudent WHERE stud_ID = ?";
     $stmt = $con->prepare($studentQuery);
@@ -20,8 +21,9 @@ if (isset($_SESSION["IDStud"])) {
     $stmt->close();
 } elseif (isset($_SESSION["IDTeachers"])) {
     $log = "Logout";
-    $func_todo = "logout.php";
+    $func_todo = "auth/logout.php";
     $profile = "profile/teacher_profile.php";
+    $confirmation_logout = "onclick='return confirm(\"Adakah anda ingin $log?\");'";
 
     $teachers_ID = $_SESSION["IDTeachers"];
 
@@ -36,7 +38,8 @@ if (isset($_SESSION["IDStud"])) {
 } else {
     $statement_res = null;
     $log = "Login";
-    $func_todo = "login.php";
+    $func_todo = "auth/login.php";
+    $confirmation_logout = "";
 }
 ?>
 
@@ -118,7 +121,7 @@ if (isset($_SESSION["IDStud"])) {
                                     <a class="nav-link" href="#"><i class="fa fa-universal-access"></i> Berkaitan Kami</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="<?= $func_todo ?>"><i class="fa fa-sign-out"></i> <?= $log ?></a>
+                                    <a class="nav-link" href="<?= $func_todo ?>" <?= $confirmation_logout ?>><i class="fa fa-sign-out"></i> <?= $log ?></a>
                                 </li>
                             </ul>
                         </div>
@@ -273,6 +276,15 @@ if (isset($_SESSION["IDStud"])) {
                                     <tr>
                                         <td class='bold-text'>Status:&nbsp;&nbsp;<?= $row['book_status'] ?></td>
                                     </tr>
+                                    <?php
+                                    // COMING SOON
+                                    // $transc_name = "SELECT * FROM `tbltransaction` WHERE `book_ID` = '$row[book_ID]'";
+                                    // $check_transc = mysqli_query($con, $transc_name);
+                                    // $transc = mysqli_fetch_assoc($check_transc);
+                                    ?>
+                                    <!-- <tr>
+                                        <td class='bold-text'>Availability:&nbsp;&nbsp; < $transc['transc_name'] ></td>
+                                    </tr> -->
                                 </table>
                             </div>
                         </div>

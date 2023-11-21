@@ -4,10 +4,10 @@ session_start();
 
 include_once "conn.php";
 
-// Check if session "idcust" dah wujud atau belum
+// Check if session exist
 if (isset($_SESSION["IDStud"])) {
     $log = "Logout";
-    $func_todo = "logout.php";
+    $func_todo = "auth/logout.php";
     $profile = "profile/profile.php";
     $stud_ID = $_SESSION["IDStud"];
 
@@ -17,13 +17,11 @@ if (isset($_SESSION["IDStud"])) {
     $stmt->execute();
     $result = $stmt->get_result();
     $user = $result->fetch_assoc();
-    $statement_sent = 'stud_ID=' . $user['stud_ID'];
     $statement_res = "Welcome Back, " . $user['stud_Name'];
-
     $stmt->close();
 } elseif (isset($_SESSION["IDTeachers"])) {
     $log = "Logout";
-    $func_todo = "logout.php";
+    $func_todo = "auth/logout.php";
     $profile = "profile/teacher_profile.php";
 
     $teachers_ID = $_SESSION["IDTeachers"];
@@ -34,15 +32,12 @@ if (isset($_SESSION["IDStud"])) {
     $stmt->execute();
     $result = $stmt->get_result();
     $user = $result->fetch_assoc();
-    $statement_sent = 'teachers_ID=' . $user['teachers_ID'];
     $statement_res = "Welcome Back, " . $user['teachers_Name'];
     $stmt->close();
 } else {
     $statement_res = null;
     $log = "Login";
-    $func_todo = "login.php";
-    echo "<script>alert('Sila Login Dahulu.');</script>";
-    echo "<script>window.location.href='login.php';</script>";
+    $func_todo = "auth/login.php";
 }
 
 if (isset($_GET['book_ID'])) {

@@ -6,7 +6,7 @@ if (isset($_SESSION["IDStud"]) || isset($_SESSION["IDTeachers"])) {
     echo "<script>alert('Booking Process...');</script>";
 } else {
     echo "<script>alert('Please Login First');</script>";
-    echo "<script>window.location.href='login.php';</script>";
+    echo "<script>window.location.href='../auth/login.php';</script>";
 }
 
 if (isset($_GET["cmdbooking"])) {
@@ -30,7 +30,7 @@ $isBooked = 0;
 
 $icnum = substr($user_ID, 8, 4);
 
-$idtransc = "BR" . $tahun . $icnum;
+$idtransc = "BR" . $icnum . $book_ID . $tahun;
 
 // TO CHECK USER ID START
 $check_user_query = "SELECT * FROM tbltransaction WHERE user_ID='$user_ID' AND isBooked = 0";
