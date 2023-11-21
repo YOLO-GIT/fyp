@@ -31,7 +31,7 @@ $tarikh_booking_end = 0;
 
 $icnum = substr($user_ID, 8, 4);
 
-$idtransc = $tahun . $icnum;
+$idtransc = "BK" . $tahun . $icnum;
 
 // TO CHECK USER ID START
 $check_user_query = "SELECT * FROM tbltransaction WHERE user_ID='$user_ID' AND isBooked = 1";

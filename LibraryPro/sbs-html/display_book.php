@@ -258,9 +258,9 @@ if (isset($_GET['book_ID'])) {
             }
         } else {
             ?>
-            <tr>
-                <td>Record Tidak Wujud</td>
-            </tr>
+            <div class="form-group">
+                <label class="form-control">Record Tidak Wujud</label>
+            </div>
         <?php
         }
         ?>
