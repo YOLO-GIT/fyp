@@ -17,6 +17,7 @@ if (isset($_SESSION["IDStud"])) {
     $stmt->execute();
     $result = $stmt->get_result();
     $user = $result->fetch_assoc();
+    $statement_sent = 'stud_ID=' . $user['stud_ID'];
     $statement_res = "Welcome Back, " . $user['stud_Name'];
     $stmt->close();
 } elseif (isset($_SESSION["IDTeachers"])) {
@@ -33,6 +34,7 @@ if (isset($_SESSION["IDStud"])) {
     $stmt->execute();
     $result = $stmt->get_result();
     $user = $result->fetch_assoc();
+    $statement_sent = 'teachers_ID=' . $user['teachers_ID'];
     $statement_res = "Welcome Back, " . $user['teachers_Name'];
     $stmt->close();
 } else {
@@ -40,6 +42,12 @@ if (isset($_SESSION["IDStud"])) {
     $log = "Login";
     $func_todo = "auth/login.php";
     $confirmation_logout = "";
+    echo "<script>alert('Sila Login Dahulu.');</script>";
+    echo "<script>window.location.href='login.php';</script>";
+}
+
+if (isset($_GET['book_ID'])) {
+    $book_ID = $_GET['book_ID'];
 }
 ?>
 
@@ -183,7 +191,7 @@ if (isset($_SESSION["IDStud"])) {
                                 <div class="alert alert-primary">
                                     <p><?= $row["publisher"] ?></p>
                                 </div>
-                                <p class="bold-text">No. Dewey:&nbsp;&nbsp;</p>
+                                <p class="bold-text">No. Panggilan:&nbsp;&nbsp;</p>
                                 <div class="alert alert-primary">
                                     <p><?= $row["book_dewey"] ?></p>
                                 </div>
@@ -223,11 +231,11 @@ if (isset($_SESSION["IDStud"])) {
                             <br>
                             <div class="text-right mr-3 mb-3">
                                 <?php
-                                $book_title = $row['book_title'];
-                                $statusBooking = "SELECT t.transc_name, t.isBooked FROM tbltransaction t JOIN tblbook b ON t.book_title = b.book_title WHERE b.book_title = '$book_title' AND t.isBooked = 1";
+                                $book_ID = $row['book_ID'];
+                                $statusBooking = "SELECT * FROM tbltransaction WHERE book_ID = '$book_ID' AND isBooked = 1";
                                 $check_Booking = mysqli_query($con, $statusBooking);
 
-                                $statusBorrowing = "SELECT t.transc_name, t.isBooked FROM tbltransaction t JOIN tblbook b ON t.book_title = b.book_title WHERE b.book_title = '$book_title' AND t.isBooked = 0";
+                                $statusBorrowing = "SELECT * FROM tbltransaction WHERE book_ID = '$book_ID' AND isBooked = 0";
                                 $check_Borrowing = mysqli_query($con, $statusBorrowing);
 
                                 if (mysqli_num_rows($check_Booking) > 0) {

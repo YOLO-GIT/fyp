@@ -271,20 +271,29 @@ if (isset($_SESSION["IDStud"])) {
                                         <td class="bold-text">Kategori:&nbsp;&nbsp;<?= $row["book_category"] ?></td>
                                     </tr>
                                     <tr>
-                                        <td class="bold-text">Diskripsi Buku:&nbsp;&nbsp;<?= $row["book_desc"] ?></td>
+                                        <td class="bold-text">Diskripsi:&nbsp;&nbsp;<?= $row["book_desc"] ?></td>
                                     </tr>
                                     <tr>
                                         <td class='bold-text'>Status:&nbsp;&nbsp;<?= $row['book_status'] ?></td>
                                     </tr>
                                     <?php
-                                    // COMING SOON
-                                    // $transc_name = "SELECT * FROM `tbltransaction` WHERE `book_ID` = '$row[book_ID]'";
-                                    // $check_transc = mysqli_query($con, $transc_name);
-                                    // $transc = mysqli_fetch_assoc($check_transc);
+                                    $transc_name = "SELECT * FROM `tbltransaction` WHERE `book_ID` = '$row[book_ID]'";
+                                    $check_transc = mysqli_query($con, $transc_name);
+                                    $transc = mysqli_fetch_assoc($check_transc);
+                                    if ($transc) {
                                     ?>
-                                    <!-- <tr>
-                                        <td class='bold-text'>Availability:&nbsp;&nbsp; < $transc['transc_name'] ></td>
-                                    </tr> -->
+                                        <tr>
+                                            <td class='bold-text'>Availability:&nbsp;&nbsp; <?= $transc['transc_name'] ?></td>
+                                        </tr>
+                                    <?php
+                                    } else {
+                                    ?>
+                                        <tr>
+                                            <td class='bold-text'>Availability:&nbsp;&nbsp; Available</td>
+                                        </tr>
+                                    <?php
+                                    }
+                                    ?>
                                 </table>
                             </div>
                         </div>

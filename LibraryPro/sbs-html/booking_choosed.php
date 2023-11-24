@@ -42,6 +42,8 @@ if (isset($_SESSION["IDStud"])) {
     $statement_res = null;
     $log = "Login";
     $func_todo = "auth/login.php";
+    echo "<script>alert('Sila Login Dahulu.');</script>";
+    echo "<script>window.location.href='login.php';</script>";
     $confirmation_logout = "";
 }
 
