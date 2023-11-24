@@ -15,7 +15,7 @@ if (isset($_POST["cmdlogin"])) {
     $password = hash("sha512", $_POST["txtpwd"]);
 
     //Create Connection to the database
-    include 'conn.php';
+    include '../conn.php';
 
     // Define SQL Statement for comparison
     $sql = "SELECT * FROM `tblstudent` WHERE stud_username='$username' AND stud_pwd='$password'";

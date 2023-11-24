@@ -1,6 +1,6 @@
 <?php
 // Create Connection to the database
-include 'conn.php';
+ include '../conn.php';
 
 // Process verification form
 if (isset($_POST["cmdverify"])) {
