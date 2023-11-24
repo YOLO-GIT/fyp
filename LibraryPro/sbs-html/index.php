@@ -70,6 +70,8 @@ if (isset($_SESSION["IDStud"])) {
     <link rel="stylesheet" href="css/responsive.css">
     <!-- fevicon -->
     <link rel="icon" href="images/fevicon.png" type="image/gif" />
+    <!-- AOS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <!-- Tweaks for older IEs-->
     <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
     <!--[if lt IE 9]>
@@ -242,7 +244,7 @@ if (isset($_SESSION["IDStud"])) {
     <!-- end banner -->
 
     <!-- Event Start -->
-    <div class="full_bg">
+    <div class="full_bg" data-aos="fade-down" data-aos-delay="300" data-aos-duration="1000">
         <div class="slider_main">
             <div class="container-fluid">
                 <div class="row">
@@ -339,7 +341,7 @@ if (isset($_SESSION["IDStud"])) {
     <!-- Event end -->
 
     <!-- testimonial -->
-    <div class="testimonial">
+    <div class="testimonial" data-aos="fade-down" data-aos-delay="300" data-aos-duration="1000">
         <div class="container">
             <div class="row">
                 <div class="col-sm-12">
@@ -564,6 +566,7 @@ if (isset($_SESSION["IDStud"])) {
     <script src="js/jquery-3.0.0.min.js"></script>
     <!-- sidebar -->
     <script src="js/custom.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
         AOS.init();
     </script>
