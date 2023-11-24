@@ -151,13 +151,44 @@ if (isset($_SESSION["IDStud"])) {
 
     <!-- Display Buku yang dipilih -->
     <div class="container_book">
+        <form action="" method="GET">
+            <!-- Sorting Function -->
+            <div class="input-group mb-3">
+                <select name="sort_alphabet" class="form-control">
+                    <option value="">Show All</option>
+                    <option value="Borrowing" <?php if (isset($_GET['sort_alphabet']) && $_GET['sort_alphabet'] == "Borrowing") {
+                                                    echo "selected";
+                                                } ?>>Borrowing</option>
+                    <option value="Booking" <?php if (isset($_GET['sort_alphabet']) && $_GET['sort_alphabet'] == "Booking") {
+                                                echo "selected";
+                                            } ?>>Booking</option>
+                </select>
+                <button type="submit" class="btn btn-primary ml-2">
+                    Sort
+                </button>
+            </div>
+        </form>
+
         <?php
+        $sort_option = isset($_GET['sort_alphabet']) ? $_GET['sort_alphabet'] : '';
+
         if (isset($_SESSION["IDStud"])) {
             $query = "SELECT * FROM tbltransaction WHERE user_ID = '$stud_ID'";
         } elseif (isset($_SESSION["IDTeachers"])) {
             $query = "SELECT * FROM tbltransaction WHERE user_ID = '$teachers_ID'";
         }
+
+        if (!empty($sort_option)) {
+            $query .= " AND transc_name = '$sort_option' ORDER BY `transc_name`";
+
+            if ($sort_option === "Borrowing") {
+                $query .= " ASC";
+            } elseif ($sort_option === "Booking") {
+                $query .= " DESC";
+            }
+        }
         $result = $con->query($query);
+
         if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
         ?>
