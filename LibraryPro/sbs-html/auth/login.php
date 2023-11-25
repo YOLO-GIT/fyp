@@ -192,7 +192,7 @@ if (isset($_POST["cmdlogin"])) {
                             <input type="checkbox" onclick="myFunction()">&nbsp;&nbsp;<label class="show_style">Show Password</label>
                         </div>
                         <div class="col-md-12">
-                            <input type="submit" class="send_btn1" name="cmdlogin" value="Login">
+                            <input type="submit" class="btn_login" name="cmdlogin" value="Login">
                         </div>
                     </form>
                 </div>

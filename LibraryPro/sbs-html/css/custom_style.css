@@ -42,7 +42,7 @@
      box-shadow: 0px 0px 2px 0 #f34b52d4;
 }
 
-.main_form_login .send_btn1 {
+.main_form_login .btn_login {
      font-size: 18px;
      transition: ease-in all 0.5s;
      text-align: center;
@@ -50,7 +50,6 @@
      text-transform: uppercase;
      color: #fff;
      cursor: pointer;
-     /* max-width: 193px; */
      width: 30%;
      display: block;
      margin-left: 401px;
@@ -62,7 +61,7 @@
      box-shadow: 1px 3px 9px 3px black;
 }
 
-.main_form_login .send_btn1:hover {
+.main_form_login .btn_login:hover {
      background: #8A2BE2;
      color: #fff;
      transition: ease-in all 0.5s;
@@ -84,19 +83,14 @@
 
 /** Start Custom Register CSS **/
 
-.register_body{
-     background: linear-gradient(to top, #7028e4 0%, #e5b2ca 100%);
-     padding-bottom: 467px;
-     padding-top: 88px;
-}
-
 .custom-background-reg{
-     background: linear-gradient(101.8deg, rgb(28, 28, 224) -0.2%, rgb(153, 68, 230) 55.2%, rgb(235, 18, 180) 84.4%);
-     border-radius: 25px;
+     border: solid 2px rgb(203, 195, 227);
+     border-radius: 15px;
+     box-shadow: 0px 20px 13px -5px rgb(203, 195, 227);
 }
 
 .custom-background-reg h3 {
-     color: white;
+     color: black;
 }
 
 .custom-background-reg a:link {
@@ -104,7 +98,7 @@
 }
 
 .custom-background-reg a:visited {
-     color: white;
+     color: black;
 }
 
 .custom-background-reg a:hover {
@@ -124,7 +118,8 @@
      border: inherit;
      box-shadow: 0px 0px 2px 0 #f34b52d4;
 }
-.main_form_reg .send_btn1 {
+
+.main_form_reg .btn_reg {
      font-size: 18px;
      transition: ease-in all 0.5s;
      text-align: center;
@@ -143,7 +138,7 @@
      box-shadow: 1px 3px 9px 3px black;
 }
 
-.main_form_reg .send_btn1:hover {
+.main_form_reg .btn_reg:hover {
      background: #8A2BE2;
      color: #fff;
      transition: ease-in all 0.5s;
@@ -171,7 +166,7 @@
 }
 
 .custom_label_reg{
-     color: #fff;
+     color: black;
      font-weight: bold;
      font-size: large;
 }
@@ -317,7 +312,6 @@
 .main_form_reg #email_error,
 .main_form_reg #pwd_error{
 	margin-top: 5px;
-	/* width: 345px; */
 	font-size: 18px;
 	color: #C62828;
 	background: rgba(255,0,0,0.1);

@@ -117,7 +117,7 @@ if (isset($_SESSION["IDStud"]) || isset($_SESSION["IDTeachers"])) {
     <!-- Registration Form Start -->
     <div class="register_body">
         <div class="col-md-12">
-            <div class="new_title text_align_center">
+            <div class="new_title text_align_center mt-5">
                 <h2>Student Register</h2>
             </div>
         </div>
@@ -172,7 +172,7 @@ if (isset($_SESSION["IDStud"]) || isset($_SESSION["IDTeachers"])) {
                             </div>
                             <!-- SUBMIT -->
                             <div class="col-md-12">
-                                <button type="submit" class="send_btn1" name="cmdregister">Register</button>
+                                <button type="submit" class="btn_reg" name="cmdregister">Register</button>
                             </div>
                         </div>
                     </form>
@@ -190,15 +190,61 @@ if (isset($_SESSION["IDStud"]) || isset($_SESSION["IDTeachers"])) {
     <!-- Registration Form End -->
 
     <!--  footer -->
-    <div class="copyright-custom">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <p>© 2023 Hak Cipta Terpelihara.</a></p>
+    <footer>
+        <div class="footer mt-5">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4 ">
+                        <div class="infoma">
+                            <h3>Contact Us</h3>
+                            <ul class="conta">
+                                <li><i class="fa fa-map-marker" aria-hidden="true"></i>Sekolah Menengah Kebangsaan Tok Dor
+                                    Kg Tok Dor, Jerteh, Malaysia
+                                    Terengganu Darul Iman, Malaysia</li>
+                                <li><i class="fa fa-phone" aria-hidden="true"></i>Call +60 09-694 5011</li>
+                                <li><i class="fa fa-envelope" aria-hidden="true"></i>smktd.ppdbesut@gmail.com</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="row border_left">
+                            <div class="col-md-12 mb-3">
+                                <div class="infoma">
+                                    <h3>Useful Link</h3>
+                                    <ul class="fullink">
+                                        <li><a href="index.html">Home</a></li>
+                                        <li><a href="about.html">Search</a></li>
+                                        <li><a href="skating.html">Advance Search</a></li>
+                                        <li><a href="shop.html">About Us</a></li>
+                                        <li><a href="contact.html">Logout</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="infoma text_align_left">
+                                    <h3>Socials</h3>
+                                    <ul class="social_icon">
+                                        <li><a href="https://www.facebook.com/semted/?locale=ms_MY"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                                        <li><a href="https://www.instagram.com/smktokdor/   "><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <p>© 2023 PERPUSTAKAAN SMK TOK DOR</a>
+                            </p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+    </footer>
     <!-- end footer -->
 
     <!-- Javascript files-->
