@@ -23,9 +23,9 @@ if ($result) {
     $recordTimestamp = strtotime($row['time']);
 
     // Debugging statements
-    echo "Record Timestamp: " . date('Y-m-d H:i:s', $recordTimestamp) . "<br>";
-    echo "Current Time: " . date('Y-m-d H:i:s', time()) . "<br>";
-    echo "Time Difference: " . (time() - $recordTimestamp) . "<br>";
+    // echo "Record Timestamp: " . date('Y-m-d H:i:s', $recordTimestamp) . "<br>";
+    // echo "Current Time: " . date('Y-m-d H:i:s', time()) . "<br>";
+    // echo "Time Difference: " . (time() - $recordTimestamp) . "<br>";
 
     if (time() - $recordTimestamp <= 3600) {
         // Delete the record
@@ -33,7 +33,7 @@ if ($result) {
         if (mysqli_query($con, $deleteQuery)) {
             // Record deleted successfully
             echo "<script>alert('Cancel Success');</script>";
-            // echo "<script>window.location.href='buku_saya.php';</script>";
+            echo "<script>window.location.href='buku_saya.php';</script>";
         } else {
             // Error deleting record
             echo "<script>alert('Error cancel record');</script>";
@@ -41,7 +41,7 @@ if ($result) {
         }
     } else {
         echo "<script>alert('Cannot cancel record. It already past 1 hour.');</script>";
-        // echo "<script>window.location.href='buku_saya.php';</script>";
+        echo "<script>window.location.href='buku_saya.php';</script>";
     }
 } else {
     // Error fetching timestamp

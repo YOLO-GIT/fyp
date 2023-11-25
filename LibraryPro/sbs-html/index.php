@@ -80,14 +80,15 @@ if (isset($_SESSION["IDStud"])) {
 </head>
 <!-- body -->
 
-<body class="main-layout">
+<body class="index_color">
     <!-- loader  -->
     <div class="loader_bg">
         <div class="loader"><img src="images/loading.gif" alt="#" /></div>
     </div>
     <!-- end loader -->
+
     <!-- header -->
-    <div class="header">
+    <div class="header index_color">
         <div class="container-fluid">
             <div class="row d_flex">
                 <div class=" col-md-2 col-sm-2 col logo_section">
@@ -142,7 +143,7 @@ if (isset($_SESSION["IDStud"])) {
     <!-- end header -->
 
     <!-- top -->
-    <div class="full_bg">
+    <div class="full_bg index_color">
 
         <div class="slider_main">
             <div class="container-fluid">
@@ -226,15 +227,6 @@ if (isset($_SESSION["IDStud"])) {
                                     </div>
                                 </div>
                             </div>
-                            <!-- controls -->
-                            <!-- <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-                                <i class="fa fa-arrow-left" aria-hidden="true"></i>
-                                <span class="sr-only">Previous</span>
-                            </a>
-                            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-                                <i class="fa fa-arrow-right" aria-hidden="true"></i>
-                                <span class="sr-only">Next</span>
-                            </a> -->
                         </div>
                     </div>
                 </div>
@@ -243,105 +235,111 @@ if (isset($_SESSION["IDStud"])) {
     </div>
     <!-- end banner -->
 
-    <!-- Event Start -->
-    <div class="full_bg" data-aos="fade-down" data-aos-delay="300" data-aos-duration="1000">
-        <div class="slider_main">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-md-12">
-                        <!-- carousel code -->
-                        <div id="carouselForEvents" class="carousel slide">
-                            <ol class="carousel-indicators">
-                                <li data-target="#carouselForEvents" data-slide-to="0" class="active"></li>
-                                <li data-target="#carouselForEvents" data-slide-to="1"></li>
-                                <li data-target="#carouselForEvents" data-slide-to="2"></li>
-                            </ol>
-                            <div class="carousel-inner">
-                                <!-- first slide -->
-                                <div class="carousel-item active">
-                                    <div class="carousel-caption relative">
-                                        <div class="row d-flex flex-row-reverse mb-3">
-                                            <div class="col-md-5">
-                                                <div class="board">
-                                                    <h3>
-                                                        Library<br> Pro<br> SMK Tok Dor
-                                                    </h3>
-                                                    <div class="link_btn">
-                                                        <a class="read_more" href="Javascript:void(0)">Read More <span></span></a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-7">
-                                                <div class="banner_img">
-                                                    <figure><img class="img_responsive" src="images/new_event1.jpg"></figure>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- second slide -->
-                                <div class="carousel-item">
-                                    <div class="carousel-caption relative">
-                                        <div class="row d-flex flex-row-reverse mb-3">
-                                            <div class="col-md-5">
-                                                <div class="board">
-                                                    <h3>
-                                                        Library<br> Pro<br> SMK Tok Dor
-                                                    </h3>
-                                                    <div class="link_btn">
-                                                        <a class="read_more" href="Javascript:void(0)">Read More <span></span></a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-7">
-                                                <div class="banner_img">
-                                                    <figure><img class="img_responsive" src="images/pic2.jpg"></figure>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- third slide-->
-                                <div class="carousel-item">
-                                    <div class="carousel-caption relative">
-                                        <div class="row d-flex flex-row-reverse mb-3">
-                                            <div class=" col-md-5">
-                                                <div class="board">
-                                                    <h3>
-                                                        Library<br> Pro<br> SMK Tok Dor
-                                                    </h3>
-                                                    <div class="link_btn">
-                                                        <a class="read_more" href="Javascript:void(0)">Read More <span></span></a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-7">
-                                                <div class="banner_img">
-                                                    <figure><img class="img_responsive" src="images/pic3.jpg"></figure>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- controls -->
+    <div data-aos="fade-right" data-aos-delay="300" data-aos-duration="1000" data-aos-anchor-placement="top-bottom">
+        <div class="text_align_center event_title">
+            <h1 class="bold-text event_text">SCHOOL'S EVENT</h1>
+        </div>
 
+        <!-- Event Start -->
+        <div class="index_color">
+            <div class="slider_main">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <!-- carousel code -->
+                            <div id="carouselForEvents" class="carousel slide">
+                                <ol class="carousel-indicators">
+                                    <li data-target="#carouselForEvents" data-slide-to="0" class="active"></li>
+                                    <li data-target="#carouselForEvents" data-slide-to="1"></li>
+                                    <li data-target="#carouselForEvents" data-slide-to="2"></li>
+                                </ol>
+                                <div class="carousel-inner">
+                                    <!-- first slide -->
+                                    <div class="carousel-item active">
+                                        <div class="carousel-caption relative">
+                                            <div class="row d-flex flex-row-reverse mb-3">
+                                                <div class="col-md-5">
+                                                    <div class="board">
+                                                        <h3>
+                                                            Library<br> Pro<br> SMK Tok Dor
+                                                        </h3>
+                                                        <div class="link_btn">
+                                                            <a class="read_more" href="Javascript:void(0)">Read More <span></span></a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-7">
+                                                    <div class="banner_img">
+                                                        <figure><img class="img_responsive" src="images/new_event1.jpg"></figure>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- second slide -->
+                                    <div class="carousel-item">
+                                        <div class="carousel-caption relative">
+                                            <div class="row d-flex flex-row-reverse mb-3">
+                                                <div class="col-md-5">
+                                                    <div class="board">
+                                                        <h3>
+                                                            Library<br> Pro<br> SMK Tok Dor
+                                                        </h3>
+                                                        <div class="link_btn">
+                                                            <a class="read_more" href="Javascript:void(0)">Read More <span></span></a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-7">
+                                                    <div class="banner_img">
+                                                        <figure><img class="img_responsive" src="images/pic2.jpg"></figure>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- third slide-->
+                                    <div class="carousel-item">
+                                        <div class="carousel-caption relative">
+                                            <div class="row d-flex flex-row-reverse mb-3">
+                                                <div class=" col-md-5">
+                                                    <div class="board">
+                                                        <h3>
+                                                            Library<br> Pro<br> SMK Tok Dor
+                                                        </h3>
+                                                        <div class="link_btn">
+                                                            <a class="read_more" href="Javascript:void(0)">Read More <span></span></a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-7">
+                                                    <div class="banner_img">
+                                                        <figure><img class="img_responsive" src="images/pic3.jpg"></figure>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- controls -->
+
+                            </div>
+                            <a class="carousel-control-prev" href="#carouselForEvents" role="button" data-slide="prev">
+                                <i class="fa fa-arrow-left" aria-hidden="true" style="color: black;"></i>
+                            </a>
+                            <a class="carousel-control-next" href="#carouselForEvents" role="button" data-slide="next">
+                                <i class="fa fa-arrow-right" aria-hidden="true" style="color: black;"></i>
+                            </a>
                         </div>
-                        <a class="carousel-control-prev" href="#carouselForEvents" role="button" data-slide="prev">
-                            <i class="fa fa-arrow-left" aria-hidden="true" style="color: black;"></i>
-                        </a>
-                        <a class="carousel-control-next" href="#carouselForEvents" role="button" data-slide="next">
-                            <i class="fa fa-arrow-right" aria-hidden="true" style="color: black;"></i>
-                        </a>
                     </div>
                 </div>
             </div>
         </div>
+        <!-- Event end -->
     </div>
-    <!-- Event end -->
 
     <!-- testimonial -->
-    <div class="testimonial" data-aos="fade-down" data-aos-delay="300" data-aos-duration="1000">
+    <div class="testimonial" data-aos="fade-right" data-aos-delay="300" data-aos-duration="1000" data-aos-anchor-placement="top-bottom">
         <div class="container">
             <div class="row">
                 <div class="col-sm-12">
@@ -480,6 +478,7 @@ if (isset($_SESSION["IDStud"])) {
         </div>
     </div>
     <!-- end testimonial -->
+
     <!--  footer -->
     <footer>
         <div class="footer">
@@ -489,57 +488,34 @@ if (isset($_SESSION["IDStud"])) {
                         <div class="infoma">
                             <h3>Contact Us</h3>
                             <ul class="conta">
-                                <li><i class="fa fa-map-marker" aria-hidden="true"></i>Locations
-                                </li>
-                                <li><i class="fa fa-phone" aria-hidden="true"></i>Call +01 1234567890</li>
-                                <li> <i class="fa fa-envelope" aria-hidden="true"></i><a href="Javascript:void(0)">
-                                        demo@gmail.com</a></li>
+                                <li><i class="fa fa-map-marker" aria-hidden="true"></i>Sekolah Menengah Kebangsaan Tok Dor
+                                    Kg Tok Dor, Jerteh, Malaysia
+                                    Terengganu Darul Iman, Malaysia</li>
+                                <li><i class="fa fa-phone" aria-hidden="true"></i>Call +60 09-694 5011</li>
+                                <li><i class="fa fa-envelope" aria-hidden="true"></i>smktd.ppdbesut@gmail.com</li>
                             </ul>
                         </div>
                     </div>
                     <div class="col-md-8">
                         <div class="row border_left">
-                            <div class="col-md-12">
-                                <div class="infoma">
-                                    <h3>Newsletter</h3>
-                                    <form class="form_subscri">
-                                        <div class="row">
-                                            <div class="col-md-12">
-                                            </div>
-                                            <div class="col-md-4">
-                                                <input class="newsl" placeholder="Enter your email" type="text" name="Enter your email">
-                                            </div>
-                                            <div class="col-md-4">
-                                                <input class="newsl" placeholder="Enter your email" type="text" name="Enter your email">
-                                            </div>
-                                            <div class="col-md-4">
-                                                <button class="subsci_btn">subscribe</button>
-                                            </div>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                            <div class="col-md-9">
+                            <div class="col-md-12 mb-3">
                                 <div class="infoma">
                                     <h3>Useful Link</h3>
                                     <ul class="fullink">
                                         <li><a href="index.html">Home</a></li>
-                                        <li><a href="about.html">About</a></li>
-                                        <li><a href="skating.html">Skating</a></li>
-                                        <li><a href="shop.html">Shop</a></li>
-                                        <li><a href="contact.html">Contact Us</a></li>
+                                        <li><a href="about.html">Search</a></li>
+                                        <li><a href="skating.html">Advance Search</a></li>
+                                        <li><a href="shop.html">About Us</a></li>
+                                        <li><a href="contact.html">Logout</a></li>
                                     </ul>
                                 </div>
                             </div>
                             <div class="col-md-3">
                                 <div class="infoma text_align_left">
+                                    <h3>Socials</h3>
                                     <ul class="social_icon">
-                                        <li><a href="Javascript:void(0)"><i class="fa fa-facebook" aria-hidden="true"></i></a>
-                                        </li>
-                                        <li><a href="Javascript:void(0)"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-                                        <li><a href="Javascript:void(0)"><i class="fa fa-linkedin-square" aria-hidden="true"></i></a></li>
-                                        <li><a href="Javascript:void(0)"><i class="fa fa-instagram" aria-hidden="true"></i></a>
-                                        </li>
+                                        <li><a href="https://www.facebook.com/semted/?locale=ms_MY"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                                        <li><a href="https://www.instagram.com/smktokdor/   "><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -560,6 +536,7 @@ if (isset($_SESSION["IDStud"])) {
         </div>
     </footer>
     <!-- end footer -->
+    
     <!-- Javascript files-->
     <script src="js/jquery.min.js"></script>
     <script src="js/bootstrap.bundle.min.js"></script>

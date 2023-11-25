@@ -5,8 +5,8 @@ session_start();
 if (isset($_SESSION["IDStud"]) || isset($_SESSION["IDTeachers"])) {
     echo "<script>alert('Booking Process...');</script>";
 } else {
-    echo "<script>alert('Please Login First');</script>";
-    echo "<script>window.location.href='../auth/login.php';</script>";
+    echo "<script>alert('Sila Login Dahulu.');</script>";
+    echo "<script>window.location.href='auth/login.php';</script>";
 }
 
 if (isset($_GET["cmdbooking"])) {

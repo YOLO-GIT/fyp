@@ -362,6 +362,7 @@ if (isset($_SESSION["IDStud"])) {
     <?php
     mysqli_close($con);
     ?>
+    
     <!--  footer -->
     <footer>
         <div class="footer">
@@ -371,57 +372,34 @@ if (isset($_SESSION["IDStud"])) {
                         <div class="infoma">
                             <h3>Contact Us</h3>
                             <ul class="conta">
-                                <li><i class="fa fa-map-marker" aria-hidden="true"></i>Locations
-                                </li>
-                                <li><i class="fa fa-phone" aria-hidden="true"></i>Call +01 1234567890</li>
-                                <li> <i class="fa fa-envelope" aria-hidden="true"></i><a href="Javascript:void(0)">
-                                        demo@gmail.com</a></li>
+                                <li><i class="fa fa-map-marker" aria-hidden="true"></i>Sekolah Menengah Kebangsaan Tok Dor
+                                    Kg Tok Dor, Jerteh, Malaysia
+                                    Terengganu Darul Iman, Malaysia</li>
+                                <li><i class="fa fa-phone" aria-hidden="true"></i>Call +60 09-694 5011</li>
+                                <li><i class="fa fa-envelope" aria-hidden="true"></i>smktd.ppdbesut@gmail.com</li>
                             </ul>
                         </div>
                     </div>
                     <div class="col-md-8">
                         <div class="row border_left">
-                            <div class="col-md-12">
-                                <div class="infoma">
-                                    <h3>Newsletter</h3>
-                                    <form class="form_subscri">
-                                        <div class="row">
-                                            <div class="col-md-12">
-                                            </div>
-                                            <div class="col-md-4">
-                                                <input class="newsl" placeholder="Enter your email" type="text" name="Enter your email">
-                                            </div>
-                                            <div class="col-md-4">
-                                                <input class="newsl" placeholder="Enter your email" type="text" name="Enter your email">
-                                            </div>
-                                            <div class="col-md-4">
-                                                <button class="subsci_btn">subscribe</button>
-                                            </div>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                            <div class="col-md-9">
+                            <div class="col-md-12 mb-3">
                                 <div class="infoma">
                                     <h3>Useful Link</h3>
                                     <ul class="fullink">
                                         <li><a href="index.html">Home</a></li>
-                                        <li><a href="about.html">About</a></li>
-                                        <li><a href="skating.html">Skating</a></li>
-                                        <li><a href="shop.html">Shop</a></li>
-                                        <li><a href="contact.html">Contact Us</a></li>
+                                        <li><a href="about.html">Search</a></li>
+                                        <li><a href="skating.html">Advance Search</a></li>
+                                        <li><a href="shop.html">About Us</a></li>
+                                        <li><a href="contact.html">Logout</a></li>
                                     </ul>
                                 </div>
                             </div>
                             <div class="col-md-3">
                                 <div class="infoma text_align_left">
+                                    <h3>Socials</h3>
                                     <ul class="social_icon">
-                                        <li><a href="Javascript:void(0)"><i class="fa fa-facebook" aria-hidden="true"></i></a>
-                                        </li>
-                                        <li><a href="Javascript:void(0)"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-                                        <li><a href="Javascript:void(0)"><i class="fa fa-linkedin-square" aria-hidden="true"></i></a></li>
-                                        <li><a href="Javascript:void(0)"><i class="fa fa-instagram" aria-hidden="true"></i></a>
-                                        </li>
+                                        <li><a href="https://www.facebook.com/semted/?locale=ms_MY"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                                        <li><a href="https://www.instagram.com/smktokdor/   "><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -433,7 +411,7 @@ if (isset($_SESSION["IDStud"])) {
                 <div class="container">
                     <div class="row">
                         <div class="col-md-12">
-                            <p>© 2020 All Rights Reserved. Design by <a href="https://html.design/"> Free html Templates</a>
+                            <p>© 2023 PERPUSTAKAAN SMK TOK DOR</a>
                             </p>
                         </div>
                     </div>
@@ -442,6 +420,7 @@ if (isset($_SESSION["IDStud"])) {
         </div>
     </footer>
     <!-- end footer -->
+
     <!-- Javascript files-->
     <script src="js/jquery.min.js"></script>
     <script src="js/bootstrap.bundle.min.js"></script>
