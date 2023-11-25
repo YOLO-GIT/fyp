@@ -1,6 +1,6 @@
 <?php
 // Create Connection to the database
- include '../conn.php';
+include '../conn.php';
 
 // Process verification form
 if (isset($_POST["cmdverify"])) {
@@ -85,6 +85,7 @@ if (isset($_GET['stud'])) {
     <link rel="stylesheet" href="../css/style.css">
     <!-- custom style css -->
     <link rel="stylesheet" href="../css/custom_style.css">
+    <link rel="stylesheet" href="../css/custom_booking.css">
     <!-- Responsive-->
     <link rel="stylesheet" href="../css/responsive.css">
     <!-- fevicon -->

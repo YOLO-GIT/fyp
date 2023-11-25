@@ -31,6 +31,7 @@ if (isset($_SESSION["IDStud"]) || isset($_SESSION["IDTeachers"])) {
     <link rel="stylesheet" href="../css/style.css">
     <!-- custom style css -->
     <link rel="stylesheet" href="../css/custom_style.css">
+    <link rel="stylesheet" href="../css/custom_booking.css">
     <!-- Responsive-->
     <link rel="stylesheet" href="../css/responsive.css">
     <!-- fevicon -->
