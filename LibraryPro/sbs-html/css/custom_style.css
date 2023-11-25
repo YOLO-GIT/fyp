@@ -3,12 +3,13 @@
 /** Start Custom Login CSS **/
 
 .custom-background {
-     background: linear-gradient(101.8deg, rgb(28, 28, 224) -0.2%, rgb(153, 68, 230) 55.2%, rgb(235, 18, 180) 84.4%);
-     border-radius: 25px;
+     border: solid 2px rgb(203, 195, 227);
+     border-radius: 15px;
+     box-shadow: 0px 20px 13px -5px rgb(203, 195, 227);
 }
 
 .custom-background h3 {
-     color: white;
+     color: black;
 }
 
 .custom-background a:link {
@@ -16,17 +17,11 @@
 }
 
 .custom-background a:visited {
-     color: white;
+     color: black;
 }
 
 .custom-background a:hover {
      color: red;
-}
-
-.contact1 {
-     background: linear-gradient(101.8deg, rgb(28, 28, 224) -0.2%, rgb(153, 68, 230) 55.2%, rgb(235, 18, 180) 84.4%);
-     padding-bottom: 467px;
-     padding-top: 88px;
 }
 
 .main_form_login {
@@ -79,7 +74,7 @@
 
 .new_title h2 {
      font-size: 45px;
-     color: whitesmoke;
+     color: black;
      line-height: 60px;
      font-weight: bold;
      padding: 0;
@@ -171,7 +166,7 @@
 }
 
 .show_style{
-     color: #fff;
+     color: black;
      font-weight: bold;
 }
 
@@ -182,7 +177,7 @@
 }
 
 .custom_label_login{
-     color: #fff;
+     color: black;
      font-weight: bold;
      font-size: large;
 }

@@ -344,7 +344,6 @@ button {
      padding: 27px 30px;
      position: absolute;
      z-index: 999;
-     box-shadow: 0px 0px 8px 0 #f34b52d4;
 }
 
 .navigation.navbar {
@@ -411,10 +410,6 @@ ul.email li i {
 
 
 /** banner section **/
-
-.full_bg {
-     background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-}
 
 .slider_main {
      padding-top: 2%;
@@ -1120,9 +1115,16 @@ ul.social_icon li a:hover {
 
 /** end contact **/
 
+.index_color{
+     background: radial-gradient(328px at 2.9% 15%, rgb(191, 224, 251) 0%, rgb(232, 233, 251) 25.8%, rgb(252, 239, 250) 50.8%, rgb(234, 251, 251) 77.6%, rgb(240, 251, 244) 100.7%);
+}
 
+.event_title{
+     background: radial-gradient(circle at 24.1% 68.8%, rgb(50, 50, 50) 0%, rgb(0, 0, 0) 99.4%);
+     width: 100%;
+}
 
-
-
-
-
+.event_text{
+     font-size: xxx-large;
+     color: white;
+}
