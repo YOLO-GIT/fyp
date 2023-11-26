@@ -41,6 +41,7 @@ if (isset($_SESSION["IDStud"])) {
     $statement_res = null;
     $log = "Login";
     $func_todo = "auth/login.php";
+    $profile = "profile/profile.php";
     $confirmation_logout = "";
 }
 ?>

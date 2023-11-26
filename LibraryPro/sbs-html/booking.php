@@ -39,10 +39,12 @@ if (isset($_SESSION["IDStud"])) {
     $statement_res = null;
     $log = "Login";
     $func_todo = "auth/login.php";
+    $profile = "profile/profile.php";
     $confirmation_logout = "";
 }
 
 if (isset($_GET['simple'])) {
+    $statement = "simple";
     $search = "Carian";
     $search_link = "booking.php";
 }
@@ -173,6 +175,7 @@ if (isset($_GET['simple'])) {
                                     <button type="button" class="btn btn-secondary cancel" onclick="closeForm()">Tutup Carian</button>
                                     <button type="button" class="btn btn-secondary refresh" onclick="resetForm()">Reset Carian</button>
                                 </div>
+                                <input type="hidden" name="simple" value="<?= $statement ?>">
                             </form>
                         </div>
                     </div>
@@ -198,11 +201,10 @@ if (isset($_GET['simple'])) {
             <div class="input-group mb-3">
                 <select name="sort_alphabet" class="form-control" required>
                     <option value="">-- Select Option --</option>
-                    <option value="a-z" <?php isset($_GET['sort_alphabet']) == "a-z"
-                                        ?>>A-Z (Ascending Order)</option>
-                    <option value="z-a" <?php isset($_GET['sort_alphabet']) == "z-a"
-                                        ?>>Z-A (Descending Order)</option>
+                    <option value="a-z">A-Z (Ascending Order)</option>
+                    <option value="z-a">Z-A (Descending Order)</option>
                 </select>
+                <input type="hidden" name="simple" value="<?= $statement ?>">
                 <button type="submit" class="btn btn-primary ml-2">
                     Sort
                 </button>
@@ -215,8 +217,14 @@ if (isset($_GET['simple'])) {
         $filtervalues = isset($_GET['search']) ? $_GET['search'] : '';
         //Paging Results
         $resultsPerPage = isset($_GET['result_count']) ? $_GET['result_count'] : 5;
+        // URL
+        $simple = isset($_GET['simple']);
         //Sorting
         $sort_option = isset($_GET['sort_alphabet']) ? $_GET['sort_alphabet'] : '';
+
+        if ($simple === "simple") {
+            isset($_GET['simple']);
+        }
 
         $query = "SELECT * FROM tblbook ";
 
@@ -224,7 +232,7 @@ if (isset($_GET['simple'])) {
             $query .= "WHERE `book_title` LIKE '%$filtervalues%' ";
         }
 
-        if (!empty($sort_option)) {
+        if (isset($sort_option)) {
             $query .= "ORDER BY `book_title`";
 
             if ($sort_option === "a-z") {

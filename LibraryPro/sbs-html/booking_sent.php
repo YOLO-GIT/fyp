@@ -70,6 +70,7 @@ if (mysqli_num_rows($check_teacher) > 0) {
         $result_count_teachers = mysqli_query($con, $get_count_teachers_sql);
 
         if ($result_count_teachers) {
+
             // Fetch and update count for teachers
             $row_teachers = $result_count_teachers->fetch_assoc();
             $count_teachers = $row_teachers['book_count'];
@@ -77,6 +78,34 @@ if (mysqli_num_rows($check_teacher) > 0) {
 
             $count_sql_teachers = "UPDATE `tblteachers` SET `book_count`='$count_teachers' WHERE `teachers_ID` = '$user_ID'";
             mysqli_query($con, $count_sql_teachers);
+        }
+
+        $get_teachers_sql = "SELECT `teachers_ID` FROM `tblteachers` WHERE `teachers_ID` = '$user_ID'";
+        $result_teachers = mysqli_query($con, $get_teachers_sql);
+
+        if ($result_teachers) {
+            // Create ID Record
+            $tahun = substr($tarikh_booking_start, 2, 2);
+
+            // Define SQL Statement
+            $sqlrecord = "SELECT COUNT(*) as total FROM tblrecord WHERE LEFT(record_ID, 2) = '$tahun'";
+
+            $data = mysqli_query($con, $sqlrecord);
+            $num = mysqli_fetch_assoc($data);
+
+            //create id Record (Last 4 Char)
+            $total = (int)$num["total"];
+            $total = sprintf("%04s", ++$total);
+
+            $idrecord = $tahun . $total;
+
+            $current_time = date('H:i:s');
+
+            // For saving record
+            $save_record = "INSERT INTO `tblrecord`(`record_ID`, `transc_ID`, `transc_name`, `book_ID`, `book_title`, `user_ID`, `user_name`, `record_date`, `record_time`) 
+            VALUES ('$idrecord','$idtransc','$new_status','$book_ID','$book_title','$user_ID','$user_Name',NOW(),'$current_time')";
+
+            mysqli_query($con, $save_record);
         }
     }
 } else {
@@ -99,6 +128,7 @@ if (mysqli_num_rows($check_teacher) > 0) {
         $result_count_student = mysqli_query($con, $get_count_student_sql);
 
         if ($result_count_student) {
+
             // Fetch and update count for students
             $row_student = $result_count_student->fetch_assoc();
             $count_student = $row_student['book_count'];
@@ -106,6 +136,35 @@ if (mysqli_num_rows($check_teacher) > 0) {
 
             $count_sql_student = "UPDATE `tblstudent` SET `book_count`='$count_student' WHERE `stud_ID` = '$user_ID'";
             mysqli_query($con, $count_sql_student);
+        }
+
+        $get_student_sql = "SELECT `stud_ID` FROM `tblstudent` WHERE `stud_ID` = '$user_ID'";
+        $result_student = mysqli_query($con, $get_student_sql);
+
+        if ($result_student) {
+
+            // Create ID Record
+            $tahun = substr($tarikh_booking_start, 2, 2);
+
+            // Define SQL Statement
+            $sqlrecord = "SELECT COUNT(*) as total FROM tblrecord WHERE LEFT(record_ID, 2) = '$tahun'";
+
+            $data = mysqli_query($con, $sqlrecord);
+            $num = mysqli_fetch_assoc($data);
+
+            //create id Record (Last 4 Char)
+            $total = (int)$num["total"];
+            $total = sprintf("%04s", ++$total);
+
+            $idrecord = $tahun . $total;
+
+            $current_time = date('H:i:s');
+
+            // For saving record
+            $save_record = "INSERT INTO `tblrecord`(`record_ID`, `transc_ID`, `transc_name`, `book_ID`, `book_title`, `user_ID`, `user_name`, `record_date`, `record_time`) 
+            VALUES ('$idrecord','$idtransc','$new_status','$book_ID','$book_title','$user_ID','$user_Name',NOW(),'$current_time')";
+
+            mysqli_query($con, $save_record);
         }
     }
 }

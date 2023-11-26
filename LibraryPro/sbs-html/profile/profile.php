@@ -3,7 +3,7 @@ session_start();
 include '../conn.php';
 
 // Check if session dah wujud atau belum
-if (!$_SESSION["IDStud"]) {
+if (!isset($_SESSION["IDStud"])) {
     echo "<script>alert('Please Login First');</script>";
     echo "<script>window.location.href='../auth/login.php';</script>";
 }

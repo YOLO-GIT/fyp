@@ -39,10 +39,12 @@ if (isset($_SESSION["IDStud"])) {
     $statement_res = null;
     $log = "Login";
     $func_todo = "auth/login.php";
+    $profile = "profile/profile.php";
     $confirmation_logout = "";
 }
 
 if (isset($_GET['advance'])) {
+    $statement = "advance";
     $search = "Carian Terperinci";
     $search_link = "advance_booking.php";
 }
@@ -212,6 +214,7 @@ if (isset($_GET['advance'])) {
                                 <button type="button" class="btn btn-secondary cancel" onclick="closeForm()">Tutup Carian</button>
                                 <button type="button" class="btn btn-secondary refresh" onclick="resetForm()">Reset Carian</button>
                             </div>
+                            <input type="hidden" name="advance" value="<?= $statement ?>">
                     </form>
                 </div>
             </div>
@@ -239,6 +242,13 @@ if (isset($_GET['advance'])) {
         $filterisbn = isset($_GET['isbn']) ? $_GET['isbn'] : '';
         $filterlanguage = isset($_GET['language']) ? $_GET['language'] : '';
         $filterilustrasi = isset($_GET['illustration']) ? $_GET['illustration'] : '';
+
+        // URL
+        $advance = isset($_GET['advance']);
+
+        if ($advance === "advance") {
+            isset($_GET['advance']);
+        }
 
         // Base query
         $query = "SELECT * FROM tblbook";
