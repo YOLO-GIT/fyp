@@ -129,10 +129,10 @@ if (isset($_GET['stud'])) {
                                     <a class="nav-link" href="../index.php"><i class="fa fa-home"></i> Home</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="../booking.php"><i class="fa fa-search"></i> Carian</a>
+                                    <a class="nav-link" href="../booking.php?simple"><i class="fa fa-search"></i> Carian</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="../advance_booking.php"><i class="fa fa-search-plus"></i> Carian Terperinci</a>
+                                    <a class="nav-link" href="../advance_booking.php?advance"><i class="fa fa-search-plus"></i> Carian Terperinci</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="#"><i class="fa fa-universal-access"></i> Berkaitan Kami</a>
@@ -182,7 +182,7 @@ if (isset($_GET['stud'])) {
                         <br><br>
                         <div class="col-md-12">
                             <label for="verification_code" class="custom_label_login">Verification Code:</label>
-                            <input class="contactus" type="text" id="verification_code" name="verification_code" autocomplete="off">
+                            <input class="contactus" type="text" id="verification_code" name="verification_code" autocomplete="off" required>
                         </div>
                         <div class="col-md-12">
                             <input class="btn btn-primary" type="submit" name="cmdverify" value="Verify">
