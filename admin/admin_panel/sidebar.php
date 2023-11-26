@@ -26,7 +26,7 @@
     <div class="dropdown-container">
         <a href="../adminView/viewTransaction.php" onclick="showTransaction()"><i class="fa fa-list"></i> Transaction</a>
         <a href="../adminView/viewReturning.php" onclick="showReturning()"><i class="fa fa-list"></i> Returning</a>
-        <a href="#productsizes" onclick="showBorrowed()"><i class="fa fa-th-list"></i> Record</a>
+        <a href="../adminView/viewRecord.php" onclick="showRecord()"><i class="fa fa-th-list"></i> Record</a>
     </div>
     <!-- LIBRARY FUNCTION ENDS -->
 

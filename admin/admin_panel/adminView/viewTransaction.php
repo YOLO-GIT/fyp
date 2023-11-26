@@ -66,6 +66,7 @@ include_once "../config/dbconnect.php";
             <tr>
               <th class="text-center">Transaction ID</th>
               <th class="text-center">Judul Buku</th>
+              <th class="text-center">Transaction Name</th>
               <th class="text-center">ID Pengguna</th>
               <th class="text-center">Nama Pengguna</th>
               <th class="text-center">User's Role</th>
@@ -117,6 +118,7 @@ include_once "../config/dbconnect.php";
               <tr>
                 <td><?= $row["transc_ID"] ?></td>
                 <td class="book-title"><?= $row["book_title"] ?></td>
+                <td><?= $row["transc_name"] ?></td>
                 <td><?= $row["user_ID"] ?></td>
                 <td><?= $row["user_Name"] ?></td>
                 <td><?= $row["user_role"] ?></td>
