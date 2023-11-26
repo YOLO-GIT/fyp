@@ -235,11 +235,11 @@ if (isset($_POST["cmdlogin"])) {
                                 <div class="infoma">
                                     <h3>Useful Link</h3>
                                     <ul class="fullink">
-                                        <li><a href="index.html">Home</a></li>
-                                        <li><a href="about.html">Search</a></li>
-                                        <li><a href="skating.html">Advance Search</a></li>
-                                        <li><a href="shop.html">About Us</a></li>
-                                        <li><a href="contact.html">Logout</a></li>
+                                        <li><a href="index.php">Home</a></li>
+                                        <li><a href="booking.php?simple">Search</a></li>
+                                        <li><a href="advance_booking.php?advance">Advance Search</a></li>
+                                        <li><a href="about_us.php">About Us</a></li>
+                                        <li><a href="auth/logout.php">Logout</a></li>
                                     </ul>
                                 </div>
                             </div>

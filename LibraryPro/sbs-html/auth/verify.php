@@ -168,10 +168,10 @@ if (isset($_GET['stud'])) {
     </nav>
     <!-- Breadcrumbs Ends -->
 
-    <!-- Login -->
-    <div class="contact1">
+    <!-- Verify -->
+    <div class="verify_body">
         <div class="col-md-12">
-            <div class="new_title text_align_center">
+            <div class="new_title text_align_center mt-5">
                 <h2>Verification Form</h2>
             </div>
         </div>
@@ -192,19 +192,25 @@ if (isset($_GET['stud'])) {
             </div>
         </div>
     </div>
-    <!-- End Login -->
+    <!-- End Verify -->
 
     <!--  footer -->
-    <div class="copyright-custom">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <p>© 2023 Hak Cipta Terpelihara.</a></p>
+    <footer>
+        <div class="custom_footer mt-5">
+            <div class="copyright">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <p>© 2023 PERPUSTAKAAN SMK TOK DOR</a>
+                            </p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+    </footer>
     <!-- end footer -->
+
     <!-- Javascript files-->
     <script src="../js/jquery.min.js"></script>
     <script src="../js/bootstrap.bundle.min.js"></script>
