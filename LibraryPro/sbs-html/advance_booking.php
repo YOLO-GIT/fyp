@@ -41,6 +41,11 @@ if (isset($_SESSION["IDStud"])) {
     $func_todo = "auth/login.php";
     $confirmation_logout = "";
 }
+
+if (isset($_GET['advance'])) {
+    $search = "Carian Terperinci";
+    $search_link = "advance_booking.php";
+}
 ?>
 
 <!DOCTYPE html>
@@ -109,10 +114,10 @@ if (isset($_SESSION["IDStud"])) {
                                     <a class="nav-link" href="index.php"><i class="fa fa-home"></i> Home</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="booking.php"><i class="fa fa-search"></i> Carian</a>
+                                    <a class="nav-link" href="booking.php?simple"><i class="fa fa-search"></i> Carian</a>
                                 </li>
-                                <li class="nav-item active">
-                                    <a class="nav-link" href="advance_booking.php"><i class="fa fa-search-plus"></i> Carian Terperinci</a>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="advance_booking.php?advance"><i class="fa fa-search-plus"></i> Carian Terperinci</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="buku_saya.php"><i class="fa fa-book"></i> Buku Saya</a>
@@ -219,7 +224,7 @@ if (isset($_SESSION["IDStud"])) {
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="index.php">Home</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Carian</li>
+            <li class="breadcrumb-item active" aria-current="page"><?= $search ?></li>
         </ol>
     </nav>
     <!-- Breadcrumbs Ends -->
@@ -340,7 +345,7 @@ if (isset($_SESSION["IDStud"])) {
                             </div>
                         </div>
                         <div class="ml-auto mr-5 mb-3">
-                            <a href="display_book.php?book_ID=<?= $row['book_ID'] ?>" class="btn btn-primary">Pilih Buku</a>
+                            <a href="display_book.php?book_ID=<?= $row['book_ID'] ?>&ad_search=<?= $search ?>" class="btn btn-primary">Pilih Buku</a>
                         </div>
                     </div>
                     <!-- ... -->
@@ -362,7 +367,7 @@ if (isset($_SESSION["IDStud"])) {
     <?php
     mysqli_close($con);
     ?>
-    
+
     <!--  footer -->
     <footer>
         <div class="footer">

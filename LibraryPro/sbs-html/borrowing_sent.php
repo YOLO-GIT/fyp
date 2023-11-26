@@ -9,6 +9,12 @@ if (isset($_SESSION["IDStud"]) || isset($_SESSION["IDTeachers"])) {
     echo "<script>window.location.href='auth/login.php';</script>";
 }
 
+if (isset($_GET['search'])) {
+    $search_link = "booking.php?simple";
+} elseif (isset($_GET['ad_search'])) {
+    $search_link = "advance_booking.php?advance";
+}
+
 if (isset($_GET["cmdbooking"])) {
     $user_ID = $_GET["txtuserID"];
     $user_Name = $_GET["txtuserName"];
@@ -49,7 +55,7 @@ if (mysqli_num_rows($check_teacher) > 0) {
         // Close the DB to ensure it will not be updated.
         mysqli_close($con);
 
-        echo "<script>window.location.href='booking.php';</script>";
+        echo "<script>window.location.href=$search_link;</script>";
     } else {
         $user_role = "Teacher";
 
@@ -79,7 +85,7 @@ if (mysqli_num_rows($check_teacher) > 0) {
         // Close the DB to ensure it will not be updated.
         mysqli_close($con);
 
-        echo "<script>window.location.href='booking.php';</script>";
+        echo "<script>window.location.href='$search_link';</script>";
     } else {
         $user_role = "Student";
 

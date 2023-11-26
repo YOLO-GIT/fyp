@@ -59,6 +59,16 @@ if (isset($_GET['book_ID'])) {
 } else {
     echo "No book selected.";
 }
+
+if (isset($_GET['search'])) {
+    $statement_search = 'search';
+    $search = "Carian";
+    $search_link = "booking.php?simple";
+} elseif (isset($_GET['ad_search'])) {
+    $statement_search = 'ad_search';
+    $search = "Carian Terperinci";
+    $search_link = "advance_booking.php?advance";
+}
 ?>
 
 <!DOCTYPE html>
@@ -127,10 +137,10 @@ if (isset($_GET['book_ID'])) {
                                     <a class="nav-link" href="index.php"><i class="fa fa-home"></i> Home</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="booking.php"><i class="fa fa-search"></i> Carian</a>
+                                    <a class="nav-link" href="booking.php?simple"><i class="fa fa-search"></i> Carian</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="advance_booking.php"><i class="fa fa-search-plus"></i> Carian Terperinci</a>
+                                    <a class="nav-link" href="advance_booking.php?advance"><i class="fa fa-search-plus"></i> Carian Terperinci</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="buku_saya.php"><i class="fa fa-book"></i> Buku Saya</a>
@@ -164,8 +174,8 @@ if (isset($_GET['book_ID'])) {
         ?>
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="index.php">Home</a></li>
-            <li class="breadcrumb-item"><a href="booking.php">Carian</a></li>
-            <li class="breadcrumb-item" aria-current="page"><a href="display_book.php?book_ID=<?= $book_ID ?>"><?= $book["book_title"] ?></a></li>
+            <li class="breadcrumb-item"><a href="<?= $search_link ?>"><?= $search ?></a></li>
+            <li class="breadcrumb-item" aria-current="page"><a href="display_book.php?book_ID=<?= $book_ID ?>&<?= $statement_search ?>"><?= $book["book_title"] ?></a></li>
             <li class="breadcrumb-item active" aria-current="page">Pilihan Buku: <?= $book["book_title"] ?></li>
         </ol>
     </nav>
@@ -173,7 +183,7 @@ if (isset($_GET['book_ID'])) {
 
     <!-- Pilihan Buku Start -->
     <div class="container_book">
-        <form method="get" action="borrowing_sent.php">
+        <form method="get" action="borrowing_sent.php?<?= $statement_search ?>">
             <div id="clock" class="form-control bold-text text_align_center"></div>
             <?php
             // Retrieve the book_ID from the URL parameters
@@ -276,7 +286,7 @@ if (isset($_GET['book_ID'])) {
                             <div class="text-right mr-3 mb-3">
                                 <button type="submit" name="cmdbooking" class="btn btn-primary">Simpan</button>
                                 &nbsp;
-                                <a href="booking.php" class="btn btn-primary">Kembali Semula</a>
+                                <a href="<?= $search_link ?>" class="btn btn-primary">Kembali Semula</a>
                             </div>
                         </div>
                     </div>

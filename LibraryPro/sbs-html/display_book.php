@@ -49,6 +49,16 @@ if (isset($_SESSION["IDStud"])) {
 if (isset($_GET['book_ID'])) {
     $book_ID = $_GET['book_ID'];
 }
+
+if (isset($_GET['search'])) {
+    $statement_search = 'search';
+    $search = "Carian";
+    $search_link = "booking.php?simple";
+} elseif (isset($_GET['ad_search'])) {
+    $statement_search = 'ad_search';
+    $search = "Carian Terperinci";
+    $search_link = "advance_booking.php?advance";
+}
 ?>
 
 
@@ -118,10 +128,10 @@ if (isset($_GET['book_ID'])) {
                                     <a class="nav-link" href="index.php"><i class="fa fa-home"></i> Home</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="booking.php"><i class="fa fa-search"></i> Carian</a>
+                                    <a class="nav-link" href="booking.php?simple"><i class="fa fa-search"></i> Carian</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="advance_booking.php"><i class="fa fa-search-plus"></i> Carian Terperinci</a>
+                                    <a class="nav-link" href="advance_booking.php?advance"><i class="fa fa-search-plus"></i> Carian Terperinci</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="buku_saya.php"><i class="fa fa-book"></i> Buku Saya</a>
@@ -155,7 +165,7 @@ if (isset($_GET['book_ID'])) {
         ?>
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="index.php">Home</a></li>
-            <li class="breadcrumb-item"><a href="booking.php">Carian</a></li>
+            <li class="breadcrumb-item"><a href="<?= $search_link ?>"><?= $search ?></a></li>
             <li class="breadcrumb-item active" aria-current="page"><?= $book["book_title"] ?></li>
         </ol>
     </nav>
@@ -241,14 +251,14 @@ if (isset($_GET['book_ID'])) {
                                 if (mysqli_num_rows($check_Booking) > 0) {
                                     echo "<a href='book_alert.php' class='btn btn-danger'>Not Available</a>";
                                 } elseif (mysqli_num_rows($check_Borrowing) > 0) {
-                                    echo "<a href='booking_choosed.php?book_ID=" . $row['book_ID'] . "&" . $statement_sent . "' class='btn btn-warning'>Booking</a>";
+                                    echo "<a href='booking_choosed.php?book_ID=" . $row['book_ID'] . "&" . $statement_sent .  "&" . $statement_search . "' class='btn btn-warning'>Booking</a>";
                                 } else {
-                                    echo "<a href='borrowing_choosed.php?book_ID=" . $row['book_ID'] . "&" . $statement_sent . "' class='btn btn-primary'>Borrowing</a>";
+                                    echo "<a href='borrowing_choosed.php?book_ID=" . $row['book_ID'] . "&" . $statement_sent .  "&" . $statement_search . "' class='btn btn-primary'>Borrowing</a>";
                                 }
                                 mysqli_close($con);
                                 ?>
                                 &nbsp;
-                                <a href="booking.php" class="btn btn-primary">Kembali Semula</a>
+                                <a href="<?= $search_link ?>" class="btn btn-primary">Kembali Semula</a>
                             </div>
                         </div>
                     </div>
