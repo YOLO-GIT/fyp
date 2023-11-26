@@ -43,6 +43,17 @@ function showTeacher(){
     });
 }
 
+function showRecord(){
+    $.ajax({
+        url:"viewRecord.php",
+        method:"post",
+        data:{record:1},
+        success:function(data){
+            $('.allContent-section').html(data);
+        }
+    });
+}
+
 function studentDelete(id){
     $.ajax({
         url:"../controller/studentDeleteController.php",
@@ -92,6 +103,24 @@ function transcDelete(id) {
                 // Record deleted successfully
                 $('form').trigger('reset');
                 showTransaction();
+            } else {
+                // Display error or informative message
+                alert(data);
+            }
+        }
+    });
+}
+
+function recordDelete(id) {
+    $.ajax({
+        url: "../controller/deleteRecordController.php",
+        method: "post",
+        data: { record: id },
+        success: function (data) {
+            if (data === "success") {
+                // Record deleted successfully
+                $('form').trigger('reset');
+                showRecord();
             } else {
                 // Display error or informative message
                 alert(data);
