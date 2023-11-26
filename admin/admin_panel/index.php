@@ -88,7 +88,7 @@ if (!$_SESSION["IDAdmin"]) {
                     <h5 style="color:white;">
                         <?php
 
-                        $sql = "SELECT * from tblborrowing";
+                        $sql = "SELECT * from tbltransaction WHERE transc_name = 'Borrowing'";
                         $result = $conn->query($sql);
                         $count = 0;
                         if ($result->num_rows > 0) {
@@ -112,7 +112,7 @@ if (!$_SESSION["IDAdmin"]) {
                     <h5 style="color:white;">
                         <?php
 
-                        $sql = "SELECT * from tblbooking";
+                        $sql = "SELECT * from tbltransaction WHERE transc_name = 'Booking'";
                         $result = $conn->query($sql);
                         $count = 0;
                         if ($result->num_rows > 0) {

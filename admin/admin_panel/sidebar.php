@@ -24,7 +24,8 @@
     <!-- LIBRARY FUNCTION START -->
     <a class="dropdown-btn"><i class="fa fa-caret-down"></i> Book Proses</a>
     <div class="dropdown-container">
-        <a href="../adminView/viewBooking.php" onclick="showBooking()"><i class="fa fa-list"></i> Transaction</a>
+        <a href="../adminView/viewTransaction.php" onclick="showTransaction()"><i class="fa fa-list"></i> Transaction</a>
+        <a href="../adminView/viewReturning.php" onclick="showReturning()"><i class="fa fa-list"></i> Returning</a>
         <a href="#productsizes" onclick="showBorrowed()"><i class="fa fa-th-list"></i> Record</a>
     </div>
     <!-- LIBRARY FUNCTION ENDS -->
