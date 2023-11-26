@@ -64,13 +64,13 @@ include_once "../config/dbconnect.php";
         <table class="table table-hover">
           <thead>
             <tr>
-              <th class="text-center">Booking ID.</th>
+              <th class="text-center">Transaction ID</th>
               <th class="text-center">Judul Buku</th>
               <th class="text-center">ID Pengguna</th>
               <th class="text-center">Nama Pengguna</th>
+              <th class="text-center">User's Role</th>
               <th class="text-center">Tarikh Booking</th>
               <th class="text-center">Masa Booking</th>
-              <th class="text-center">Status</th>
               <th class="text-center">Tolak</th>
             </tr>
           </thead>
@@ -85,7 +85,7 @@ include_once "../config/dbconnect.php";
           $resultPage = 5;
 
           // Searching Function PHP
-          $query = "SELECT * FROM tblbooking ";
+          $query = "SELECT * FROM tbltransaction ";
           if (!empty($filtervalues)) {
             $query .= "WHERE `book_title` LIKE '%$filtervalues%' ";
           }
@@ -103,7 +103,7 @@ include_once "../config/dbconnect.php";
           $page = isset($_GET['page']) ? $_GET['page'] : 1;
           $start = ($page - 1) * $resultPage;
 
-          $queryCount = "SELECT COUNT(*) as total FROM tblbooking";
+          $queryCount = "SELECT COUNT(*) as total FROM tbltransaction";
           $totalResult = $conn->query($queryCount)->fetch_assoc()['total'];
           $totalPages = ceil($totalResult / $resultPage);
 
@@ -115,33 +115,15 @@ include_once "../config/dbconnect.php";
           ?>
               <!-- rest of the row code remains unchanged -->
               <tr>
-                <td><?= $row["booking_ID"] ?></td>
+                <td><?= $row["transc_ID"] ?></td>
                 <td class="book-title"><?= $row["book_title"] ?></td>
                 <td><?= $row["user_ID"] ?></td>
                 <td><?= $row["user_Name"] ?></td>
-                <td><?= $row["date_booked"] ?></td>
-                <td><?= $row["time_booked"] ?></td>
-                <!-- ... previous HTML code ... -->
-                <td>
-                  <?php
-                  if ($row["status_ID"] == 0) {
-                  ?>
-                    <button class="btn btn-primary" onclick="ChangeOrderStatus('<?= $row['booking_ID'] ?>')">Booking</button>
-                  <?php
-                  } else {
-                  ?>
-                    <div class="btn-group">
-                      <button class="btn btn-success mr-3" onclick="ChangeOrderStatus('<?= $row['booking_ID'] ?>')">Borrowing</button>
-                      <button class="btn btn-warning">Printing</button>
-                    </div>
-                  <?php
-                  }
-                  ?>
-                </td>
-                <!-- ... rest of the HTML code ... -->
-                <td><button class="btn btn-danger" style="height:40px" onclick="bookingDelete('<?= $row['booking_ID'] ?>')">Delete</button></td>
+                <td><?= $row["user_role"] ?></td>
+                <td><?= $row["start_date"] ?></td>
+                <td><?= $row["time"] ?></td>
+                <td><button class="btn btn-danger" style="height:40px" onclick="transcDelete('<?= $row['transc_ID'] ?>')">Delete</button></td>
               </tr>
-              <!-- ... -->
             <?php
             }
           } else {

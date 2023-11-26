@@ -43,17 +43,6 @@ function showTeacher(){
     });
 }
 
-function teacherUpdate(id){
-  $.ajax({
-        url:"../adminView/editTeacherForm.php",
-        method:"post",
-        data:{record:id},
-        success:function(data){
-            $('.allContent-section').html(data);
-        }
-    });
-}
-
 function studentDelete(id){
     $.ajax({
         url:"../controller/studentDeleteController.php",
@@ -64,30 +53,6 @@ function studentDelete(id){
             $('form').trigger('reset');
             showStudent();
         }
-    });
-}
-
-//update variation after submit
-function updateTeacher(){
-    var v_id = $('#v_id').val();
-    var qty = $('#qty').val();
-    var uname = $('#uname').val();
-    var fd = new FormData();
-    fd.append('v_id', v_id);
-    fd.append('qty', qty);
-    fd.append('uname', uname);
-   
-    $.ajax({
-      url:'../controller/updateTeacherController.php',
-      method:'post',
-      data:fd,
-      processData: false,
-      contentType: false,
-      success: function(data){
-        alert('Update Success.');
-        $('form').trigger('reset');
-        showTeacher();
-      }
     });
 }
 
@@ -105,9 +70,9 @@ function teacherDelete(id){
     });
 }
 
-function showBooking(){
+function showTransaction(){
     $.ajax({
-      url:"viewBooking.php",
+      url:"viewTransaction.php",
       method:"post",
       data:{record:1},
       success:function(data){
@@ -117,16 +82,16 @@ function showBooking(){
   }
 
 //delete variation data
-function bookingDelete(id) {
+function transcDelete(id) {
     $.ajax({
-        url: "../controller/deleteBookingController.php",
+        url: "../controller/deleteTransactionController.php",
         method: "post",
         data: { record: id },
         success: function (data) {
             if (data === "success") {
                 // Record deleted successfully
                 $('form').trigger('reset');
-                showBorrowed();
+                showTransaction();
             } else {
                 // Display error or informative message
                 alert(data);
@@ -202,7 +167,7 @@ function ChangeOrderStatus(id){
        success:function(data){
            alert('Status updated successfully');
            $('form').trigger('reset');
-           showBooking();
+           showTransaction();
        }
    });
 }

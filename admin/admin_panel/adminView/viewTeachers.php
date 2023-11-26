@@ -87,7 +87,7 @@ include_once "../config/dbconnect.php";
                                 <td><?= $row["teachers_Name"] ?></td>
                                 <td><?= $row["teachers_username"] ?></td>
                                 <td><?= $row["date_teachers"] ?></td>
-                                <td><button class="btn btn-primary" style="height:40px" onclick="teacherUpdate('<?= $row['teachers_ID'] ?>')">Edit</button>
+                                <td>
                                     <button class="btn btn-danger" style="height:40px" onclick="teacherDelete('<?= $row['teachers_ID'] ?>')">Tolak</button>
                                 </td>
                             </tr>
@@ -120,62 +120,9 @@ include_once "../config/dbconnect.php";
                 }
                 echo '</div>';
                 ?>
-
-                <!-- Trigger the modal with a button -->
-                <button type="button" class="btn btn-secondary custom_btn" style="height:40px" data-toggle="modal" data-target="#myModal">
-                    Add Teachers
-                </button>
                 <!-- PHP Ends -->
             </div>
 
-            <!-- Add Teachers Starts -->
-            <div class="modal fade" id="myModal" role="dialog">
-                <div class="modal-dialog">
-
-                    <!-- Modal content-->
-                    <div class="modal-content">
-                        <div class="modal-header" style="background-color: bisque;">
-                            <h4 class="modal-title">Teacher Details</h4>
-                            <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        </div>
-                        <div class="modal-body">
-                            <form enctype='multipart/form-data' class="login_form" name="frmaddteacher" action="../controller/addTeacherController.php" method="get" onsubmit="return validated()">
-
-                                <div class="form-group">
-                                    <label for="IC">IC:</label>
-                                    <div id="ic_error" class="form-control">Tolong Isi IC anda</div>
-                                    <input type="number" name="txtIC" class="form-control" placeholder="Enter IC" maxlength="12">
-                                </div>
-                                <div class="form-group">
-                                    <label for="First Name">Nama Depan:</label>
-                                    <div id="fname_error" class="form-control">Tolong Isi Bahagian ini</div>
-                                    <input type="text" name="txtfname" class="form-control" placeholder="Masukkan Nama Depan: Mohd" maxlength="10">
-                                </div>
-                                <div class="form-group">
-                                    <label for="Last Name">Nama Belakang:</label>
-                                    <div id="lname_error" class="form-control">Tolong Isi Bahagian ini</div>
-                                    <input type="text" name="txtlname" class="form-control" placeholder="Masukkan Nama Belakang Selepas 'bin': Yahya" maxlength="10">
-                                </div>
-                                <div class="form-group">
-                                    <label for="Username">Username:</label>
-                                    <div id="uname_error" class="form-control">Tolong Isi Username anda</div>
-                                    <input type="text" name="txtuname" class="form-control" placeholder="user123" maxlength="10">
-                                </div>
-                                <div class="form-group">
-                                    <label for="Password">Passwords:</label>
-                                    <div id="pwd_error" class="form-control">Tolong Isi Password anda</div>
-                                    <input type="password" name="txtpwd" class="form-control" id="myInputPWD" placeholder="Masukkan katalaluan anda: Maksima 9 nombor/perkataan sahaja" pattern=".{9,}" maxlength="9">
-                                </div>
-                                <input type="checkbox" onclick="myFunction()">&nbsp;&nbsp;Show Password
-                                <div class="modal-footer">
-                                    <button type="submit" name="cmdadd" class="btn btn-primary">Add Teacher</button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Add Teachers Ends -->
             <script type="text/javascript" src="../assets/js/custom_script_Teacher.js"></script>
             <script type="text/javascript" src="../assets/js/ajaxWork.js"></script>
             <script type="text/javascript" src="../assets/js/script.js"></script>
