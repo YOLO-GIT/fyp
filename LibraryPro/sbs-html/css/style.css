@@ -28,7 +28,6 @@
 @import url(nice-select.css);
 
 /*--------------------------------------------------------------------- skeleton ---------------------------------------------------------------------*/
-
 * {
     box-sizing: border-box !important;
 }
@@ -302,8 +301,6 @@ button {
 .img_responsive {
      max-width: 100%;
 }
-
-
 /**-- heading section --**/
 
 
@@ -336,7 +333,6 @@ button {
 
 
 /*-- header --*/
-
 .header {
      width: 100%;
      background:#fff;
@@ -380,7 +376,7 @@ button {
      display: none;
 }
 
-ul.email {
+/* ul.email {
      padding-top: 1px;
      display: flex;
      align-items: center;
@@ -403,14 +399,11 @@ ul.email li a {
 ul.email li i {
      color: #5e5d5e;
      font-size: 19px;
-}
-
-
+} */
 /** end header **/
 
 
 /** banner section **/
-
 .slider_main {
      padding-top: 2%;
 }
@@ -502,70 +495,9 @@ ul.email li i {
 .banner_img figure {
      margin: 0;
 }
-
-
 /** end banner section **/
 
-
-/** our class **/
-
-.class {
-     padding: 140px 0px 60px 0px;
-}
-
-.class .titlepage p {
-     font-size: 17px;
-     padding-top: 15px;
-     color: #2b2b2b;
-}
-
-.class_box {
-     border-radius: 10px;
-     background: #8A2BE2;
-     margin-bottom: 58px;
-     transition: ease-in all 0.5s;
-     padding: 40px 50px 75px 50px;
-}
-
-.class_box h3 {
-     color: #fff;
-     font-size: 25px;
-     transition: ease-in all 0.5s;
-     font-weight: bold;
-     line-height: 22px;
-     padding: 30px 0;
-}
-
-.class_box p {
-     color: #fff;
-     font-size: 16px;
-     line-height: 28px;
-     transition: ease-in all 0.5s;
-}
-
-.blue {
-     background: #3e0bce;
-}
-
-.margi_bottom {
-     margin-bottom: 30px;
-}
-
-
-/** end our class **/
-
-
 /** about section **/
-
-.about {
-     background: url(../images/about_bg.jpg);
-     background-size: cover;
-     background-position: center center;
-     background-repeat: no-repeat;
-     background-attachment: fixed;
-     padding-top: 90px;
-}
-
 .about .titlepage {
      padding-bottom: 0;
      max-width: 554px;
@@ -603,85 +535,9 @@ ul.email li i {
      color: #8A2BE2;
      background: #3e0bce;
 }
-
-
 /** end about section **/
 
-
-/** skating **/
-
-.skating {
-     background: #fff;
-     padding: 90px 30px 90px 30px;
-}
-
-.skating .titlepage p {
-     padding-top: 15px !important;
-     line-height: 30px;
-     font-size: 17px;
-     color: #262626;
-}
-
-.skating-box figure {
-     margin: 0;
-}
-
-.skating-box figure img {
-     max-width: 100%;
-     margin-bottom: 35px;
-}
-
-.skating .read_more::before {
-     left: 89px;
-}
-
-
-/** end skating **/
-
-
-/** shop section **/
-
-.shop {
-     background: #fff;
-}
-
-.shop .titlepage {
-     padding-bottom: 0;
-     max-width: 458px;
-     float: left;
-}
-
-.shop .titlepage h2 {
-     padding-bottom: 30px;
-     color: #2d2c2c;
-}
-
-.shop .titlepage p {
-     font-weight: 400;
-     font-size: 17px;
-     line-height: 30px;
-     color: #282828;
-     padding-bottom: 29px;
-}
-
-.shop_img {
-     padding-left: 40px;
-}
-
-.shop_img figure {
-     margin: 0;
-}
-
-.shop .titlepage .read_more::before {
-     left: 89px;
-}
-
-
-/** end shop section **/
-
-
 /** testimonial **/
-
 .testimonial {
      background: #3e0bce;
      padding: 90px 0;
@@ -812,13 +668,9 @@ ul.email li i {
 .white_bg p {
      color: #2b2b2b;
 }
-
-
 /** end testimonial **/
 
-
 /** footer **/
-
 .footer {
      padding-top: 120px;
      background: #fff;
@@ -884,50 +736,7 @@ ul.conta li a {
      color: #434342;
 }
 
-
-/*newsletter*/
-
-.form_subscri {
-     margin-top: 10px;
-}
-
-.newsl {
-     margin-bottom: 20px;
-     width: 100%;
-     height: 48px;
-     background: #fff;
-     color: #9e9c9c;
-     font-size: 16px;
-     font-weight: normal;
-     border: inherit;
-     box-shadow: 0 0 5px 0px #dddddd4d;
-     padding: 0 15px;
-}
-
-.subsci_btn {
-     font-size: 17px;
-     transition: ease-in all 0.5s;
-     background-color: #8A2BE2;
-     text-transform: uppercase;
-     color: #fff;
-     max-width: 220px;
-     width: 100%;
-     display: block;
-     font-weight: 500;
-     height: 48px;
-     float: right;
-     line-height: 48px;
-     border-radius: 10px;
-}
-
-.subsci_btn:hover {
-     background-color: #3e0bce;
-     transition: ease-in all 0.5s;
-     color: #fff;
-}
-
-
-/* end newsletter*/
+/* Useful Link */
 
 ul.fullink li {
      float: left;
@@ -950,6 +759,10 @@ ul.fullink li:nth-child(1) {
 ul.fullink li:nth-child(5) {
      padding-right: 0;
 }
+
+/* Useful Link End */
+
+/* Socials */
 
 ul.social_icon {
      float: left;
@@ -983,6 +796,10 @@ ul.social_icon li a:hover {
      transition: ease-in all 0.5s;
 }
 
+/* Socials End */
+
+/* Copyright */
+
 .copyright {
      margin-top: 90px;
      padding-bottom: 25px;
@@ -1007,113 +824,15 @@ ul.social_icon li a:hover {
      color: #3e0bce;
 }
 
-
+/* Copyright End */
 /** end footer **/
 
-
 /**  inner page css **/
-
 .inner_page .header {
      box-shadow: 0 0 10px rgb(138,43,226);
      margin-bottom:10px;
      position: inherit;
 }
-
-.inner_page .about {
-     margin-top: 80px;
-}
-
-.inner_page .class {
-     padding-top: 80px;
-     padding-bottom: 0;
-}
-
-
-/** contact **/
-
-.contact {
-     background: #fcfcfc;
-     padding-bottom: 90px;
-     padding-top: 88px;
-}
-
-.main_form {
-     width: 100%;
-}
-
-.main_form .contactus {
-     padding: 0px 10px;
-     margin-bottom: 20px;
-     width: 100%;
-     height: 50px;
-     background: #fff;
-     color: #501f14;
-     font-size: 17px;
-     font-weight: normal;
-     border-radius: 11px;
-     border: inherit;
-     box-shadow: 0px 0px 2px 0 #f34b52d4;
-}
-
-.custom-select {
-     padding: 0px 10px;
-     color: #501f14;
-     font-size: 17px;
-     height: 50px;
-     border: inherit;
-     box-shadow: 0px 0px 2px 0 #f34b52d4;
-     margin-bottom: 20px;
-     border-radius: 11px;
-}
-
-.custom-select:focus {
-     border: inherit;
-     box-shadow: 0px 0px 2px 0 #f34b52d4;
-}
-
-.main_form .textarea {
-     margin-bottom: 20px;
-     width: 100%;
-     background: #fff;
-     color: #501f14;
-     font-size: 17px;
-     font-weight: normal;
-     padding: 12px 15px 10px 15px;
-     height: 155px;
-     border-radius: 11px;
-     border: inherit;
-     box-shadow: 0px 0px 2px 0#f34b52d4;
-}
-
-.main_form .send_btn {
-     font-size: 18px;
-     transition: ease-in all 0.5s;
-     background-color: #8A2BE2;
-     text-transform: uppercase;
-     color: #fff;
-     max-width: 193px;
-     width: 100%;
-     display: block;
-     margin-top: 10px !important;
-     font-weight: 600;
-     height: 53px;
-     border-radius: 10px;
-     padding: 13px 0;
-     box-shadow: 1px 3px 9px 3px black;
-}
-
-.main_form .send_btn:hover {
-     background: #3e0bce;
-     color: #fff;
-     transition: ease-in all 0.5s;
-}
-
-#request *::placeholder {
-     color: #501f14;
-     opacity: 1;
-}
-
-/** end contact **/
 
 .index_color{
      background: radial-gradient(328px at 2.9% 15%, rgb(191, 224, 251) 0%, rgb(232, 233, 251) 25.8%, rgb(252, 239, 250) 50.8%, rgb(234, 251, 251) 77.6%, rgb(240, 251, 244) 100.7%);
