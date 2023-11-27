@@ -164,7 +164,6 @@ if (isset($_SESSION["IDStud"])) {
                                         <div class="row d_flex mb-3">
                                             <div class="col-md-5">
                                                 <div class="board">
-                                                    <i><img src="images/top_icon.png" alt="#" /></i>
                                                     <h3>
                                                         Library<br> Pro<br> SMK Tok Dor
                                                     </h3>
@@ -175,7 +174,7 @@ if (isset($_SESSION["IDStud"])) {
                                             </div>
                                             <div class="col-md-7">
                                                 <div class="banner_img">
-                                                    <figure><img class="img_responsive" src="images/pic1.jpg"></figure>
+                                                    <figure><img class="img_responsive" src="images/new_pic2.JPG"></figure>
                                                 </div>
                                             </div>
                                         </div>
@@ -187,7 +186,6 @@ if (isset($_SESSION["IDStud"])) {
                                         <div class="row d_flex">
                                             <div class="col-md-5">
                                                 <div class="board">
-                                                    <i><img src="images/top_icon.png" alt="#" /></i>
                                                     <h3>
                                                         Library<br> Pro<br> SMK Tok Dor
                                                     </h3>
@@ -198,7 +196,7 @@ if (isset($_SESSION["IDStud"])) {
                                             </div>
                                             <div class="col-md-7">
                                                 <div class="banner_img">
-                                                    <figure><img class="img_responsive" src="images/pic2.jpg"></figure>
+                                                    <figure><img class="img_responsive" src="images/new_pic1.JPG"></figure>
                                                 </div>
                                             </div>
                                         </div>
@@ -210,7 +208,6 @@ if (isset($_SESSION["IDStud"])) {
                                         <div class="row d_flex">
                                             <div class="col-md-5">
                                                 <div class="board">
-                                                    <i><img src="images/top_icon.png" alt="#" /></i>
                                                     <h3>
                                                         Library<br> Pro<br> SMK Tok Dor
                                                     </h3>
@@ -221,7 +218,7 @@ if (isset($_SESSION["IDStud"])) {
                                             </div>
                                             <div class="col-md-7">
                                                 <div class="banner_img">
-                                                    <figure><img class="img_responsive" src="images/pic3.jpg"></figure>
+                                                    <figure><img class="img_responsive" src="images/new_pic3.JPG"></figure>
                                                 </div>
                                             </div>
                                         </div>
@@ -537,7 +534,7 @@ if (isset($_SESSION["IDStud"])) {
         </div>
     </footer>
     <!-- end footer -->
-    
+
     <!-- Javascript files-->
     <script src="js/jquery.min.js"></script>
     <script src="js/bootstrap.bundle.min.js"></script>
