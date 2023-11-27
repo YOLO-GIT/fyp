@@ -31,7 +31,7 @@
     <!-- LIBRARY FUNCTION ENDS -->
 
     <!-- OTHERS -->
-    <a href="../adminView/viewBooking.php" onclick=""><i class="fa fa-list"></i> Event</a>
+    <a href="../adminView/viewEvent.php" onclick="showEvent()"><i class="fa fa-list"></i> Event</a>
     <a href="../adminView/viewBooking.php" onclick=""><i class="fa fa-list"></i> Add Staff</a>
     <a href="../adminView/viewBooking.php" onclick=""><i class="fa fa-list"></i> Report</a>
 </div>

@@ -129,7 +129,7 @@ if (!isset($_SESSION["IDAdmin"])) {
             <!-- Ends Booking -->
 
             <!-- Starts Teacher -->
-            <div class="col-sm-7">
+            <div class="col-sm-4">
                 <div class="card">
                     <i class="fa fa-users  mb-2" style="font-size: 70px;"></i>
                     <h4 style="color:white;">Total Teachers</h4>
@@ -149,6 +149,28 @@ if (!isset($_SESSION["IDAdmin"])) {
                 </div>
             </div>
             <!-- Ends Teacher -->
+
+            <!-- Starts Event -->
+            <div class="col-sm-3">
+                <div class="card">
+                    <i class="fa fa-calendar  mb-2" style="font-size: 70px;"></i>
+                    <h4 style="color:white;">Total Event</h4>
+                    <h5 style="color:white;">
+                        <?php
+                        $sql = "SELECT * from tblevents";
+                        $result = $conn->query($sql);
+                        $count = 0;
+                        if ($result->num_rows > 0) {
+                            while ($row = $result->fetch_assoc()) {
+
+                                $count = $count + 1;
+                            }
+                        }
+                        echo $count;
+                        ?></h5>
+                </div>
+            </div>
+            <!-- Ends Event -->
 
         </div>
 

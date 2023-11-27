@@ -76,6 +76,17 @@ function showReturn(){
     });
 }
 
+function showEvent(){
+    $.ajax({
+        url:"viewEvent.php",
+        method:"post",
+        data:{record:1},
+        success:function(data){
+            $('.allContent-section').html(data);
+        }
+    });
+}
+
 function studentDelete(id){
     $.ajax({
         url:"../controller/studentDeleteController.php",
@@ -110,15 +121,10 @@ function transcDelete(id) {
         method: "post",
         data: { record: id },
         success: function (data) {
-            if (data === "success") {
-                // Record deleted successfully
-                alert('Transaction Deleted');
-                $('form').trigger('reset');
-                showTransaction();
-            } else {
-                // Display error or informative message
-                alert(data);
-            }
+            // Record deleted successfully
+            alert('Transaction Deleted');
+            $('form').trigger('reset');
+            showTransaction();
         }
     });
 }
@@ -129,15 +135,10 @@ function returnDelete(id) {
         method: "post",
         data: { record: id },
         success: function (data) {
-            if (data === "success") {
-                alert('Return Deleted');
-                // Record deleted successfully
-                $('form').trigger('reset');
-                showReturn();
-            } else {
-                // Display error or informative message
-                alert(data);
-            }
+            alert('Return Deleted');
+            // Record deleted successfully
+            $('form').trigger('reset');
+            showReturn();
         }
     });
 }
@@ -148,15 +149,24 @@ function recordDelete(id) {
         method: "post",
         data: { record: id },
         success: function (data) {
-            if (data === "success") {
-                alert('Record Deleted');
-                // Record deleted successfully
-                $('form').trigger('reset');
-                showRecord();
-            } else {
-                // Display error or informative message
-                alert(data);
-            }
+            alert('Record Deleted');
+            // Record deleted successfully
+            $('form').trigger('reset');
+            showRecord();
+        }
+    });
+}
+
+function eventDelete(id) {
+    $.ajax({
+        url: "../controller/deleteEventController.php",
+        method: "post",
+        data: { record: id },
+        success: function (data) {
+            alert('Event Deleted');
+            // Record deleted successfully
+            $('form').trigger('reset');
+            showEvent();
         }
     });
 }
