@@ -173,7 +173,6 @@ if (isset($_GET['simple'])) {
                                 <div class="col-md-12 text_align_center">
                                     <button type="submit" class="btn btn-primary">Buat Carian</button>
                                     <button type="button" class="btn btn-secondary cancel" onclick="closeForm()">Tutup Carian</button>
-                                    <button type="button" class="btn btn-secondary refresh" onclick="resetForm()">Reset Carian</button>
                                 </div>
                                 <input type="hidden" name="simple" value="<?= $statement ?>">
                             </form>
@@ -189,7 +188,7 @@ if (isset($_GET['simple'])) {
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="index.php">Home</a></li>
-            <li class="breadcrumb-item active" aria-current="page"><?= $search ?></li>
+            <li class="breadcrumb-item active" aria-current="page">Carian</li>
         </ol>
     </nav>
     <!-- Breadcrumbs Ends -->
@@ -217,14 +216,8 @@ if (isset($_GET['simple'])) {
         $filtervalues = isset($_GET['search']) ? $_GET['search'] : '';
         //Paging Results
         $resultsPerPage = isset($_GET['result_count']) ? $_GET['result_count'] : 5;
-        // URL
-        $simple = isset($_GET['simple']);
         //Sorting
         $sort_option = isset($_GET['sort_alphabet']) ? $_GET['sort_alphabet'] : '';
-
-        if ($simple === "simple") {
-            isset($_GET['simple']);
-        }
 
         $query = "SELECT * FROM tblbook ";
 
@@ -332,15 +325,9 @@ if (isset($_GET['simple'])) {
             <div class="input-group mb-3">
                 <select name="result_count" class="form-control">
                     <option value="">-- Select Result Count --</option>
-                    <option value="5" <?php if (isset($_GET['result_count']) && $_GET['result_count'] == "5") {
-                                            echo "selected";
-                                        } ?>>5</option>
-                    <option value="10" <?php if (isset($_GET['result_count']) && $_GET['result_count'] == "10") {
-                                            echo "selected";
-                                        } ?>>10</option>
-                    <option value="15" <?php if (isset($_GET['result_count']) && $_GET['result_count'] == "15") {
-                                            echo "selected";
-                                        } ?>>15</option>
+                    <option value="5">5</option>
+                    <option value="10">10</option>
+                    <option value="15">15</option>
                 </select>
                 <button type="submit" class="btn btn-primary ml-2">
                     Show Results

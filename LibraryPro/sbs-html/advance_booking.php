@@ -164,21 +164,15 @@ if (isset($_GET['advance'])) {
                         <div class="row">
                             <!-- CARI JUDUL -->
                             <div class="col-md-6 mb-3">
-                                <input type="text" name="search" value="<?php if (isset($_GET['search'])) {
-                                                                            echo $_GET['search'];
-                                                                        } ?>" class="form-control" placeholder="Cari Judul">
+                                <input type="text" name="search" class="form-control" placeholder="Cari Judul">
                             </div>
                             <!-- CARI PENERBIT -->
                             <div class="col-md-6 mb-3">
-                                <input type="text" name="penerbit" value="<?php if (isset($_GET['penerbit'])) {
-                                                                                echo $_GET['penerbit'];
-                                                                            } ?>" class="form-control" placeholder="Cari Penerbit">
+                                <input type="text" name="penerbit" class="form-control" placeholder="Cari Penerbit">
                             </div>
                             <!-- CARI ISBN -->
                             <div class="col-md-12 mb-3">
-                                <input type="text" name="isbn" value="<?php if (isset($_GET['isbn'])) {
-                                                                            echo $_GET['isbn'];
-                                                                        } ?>" class="form-control" placeholder="Cari ISBN">
+                                <input type="text" name="isbn" class="form-control" placeholder="Cari ISBN">
                             </div>
                             <!-- CARI KATEGORI -->
                             <div class="col-md-6 mb-3">
@@ -212,7 +206,6 @@ if (isset($_GET['advance'])) {
                             <div class="col-md-12 text_align_center">
                                 <button type="submit" class="btn btn-primary">Buat Carian</button>
                                 <button type="button" class="btn btn-secondary cancel" onclick="closeForm()">Tutup Carian</button>
-                                <button type="button" class="btn btn-secondary refresh" onclick="resetForm()">Reset Carian</button>
                             </div>
                             <input type="hidden" name="advance" value="<?= $statement ?>">
                     </form>
@@ -227,13 +220,31 @@ if (isset($_GET['advance'])) {
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="index.php">Home</a></li>
-            <li class="breadcrumb-item active" aria-current="page"><?= $search ?></li>
+            <li class="breadcrumb-item active" aria-current="page">Advance Search</li>
         </ol>
     </nav>
     <!-- Breadcrumbs Ends -->
 
     <!-- Booking -->
     <div class="container_book">
+        <form action="" method="GET">
+            <!-- Sorting Function -->
+            <div class="input-group mb-3">
+                <select name="sort_alphabet" class="form-control" required>
+                    <option value="">-- Select Option --</option>
+                    <option value="a-z">A-Z (Ascending Order)</option>
+                    <option value="z-a">Z-A (Descending Order)</option>
+                    <option value="penerbit">Penerbit</option>
+                    <option value="genre">Genre</option>
+                    <option value="illustration">Illustration</option>
+                </select>
+                <input type="hidden" name="advance" value="<?= $statement ?>">
+                <button type="submit" class="btn btn-primary ml-2">
+                    Sort
+                </button>
+            </div>
+        </form>
+
         <?php
         // Search
         $filtertitle = isset($_GET['search']) ? $_GET['search'] : '';
@@ -243,12 +254,8 @@ if (isset($_GET['advance'])) {
         $filterlanguage = isset($_GET['language']) ? $_GET['language'] : '';
         $filterilustrasi = isset($_GET['illustration']) ? $_GET['illustration'] : '';
 
-        // URL
-        $advance = isset($_GET['advance']);
-
-        if ($advance === "advance") {
-            isset($_GET['advance']);
-        }
+        // Sorting
+        $sort_option = isset($_GET['sort_alphabet']) ? $_GET['sort_alphabet'] : '';
 
         // Base query
         $query = "SELECT * FROM tblbook";
@@ -295,6 +302,37 @@ if (isset($_GET['advance'])) {
                 }
                 $query .= " `book_illustration` = '$filterilustrasi'";
             }
+        }
+
+        // Apply sorting
+        if (isset($sort_option)) {
+            switch ($sort_option) {
+                case "a-z":
+                    $order_column = "book_title";
+                    $order_direction = "ASC";
+                    break;
+                case "z-a":
+                    $order_column = "book_title";
+                    $order_direction = "DESC";
+                    break;
+                case "penerbit":
+                    $order_column = "publisher";
+                    $order_direction = "ASC";
+                    break;
+                case "genre":
+                    $order_column = "book_category";
+                    $order_direction = "ASC";
+                    break;
+                case "illustration":
+                    $order_column = "book_illustration";
+                    $order_direction = "ASC";
+                    break;
+                default:
+                    $order_column = "book_title";
+                    $order_direction = "ASC";
+            }
+
+            $query .= " ORDER BY `$order_column` $order_direction";
         }
 
         $result = $con->query($query);

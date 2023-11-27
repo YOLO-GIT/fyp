@@ -184,7 +184,7 @@ if (isset($_GET['search'])) {
 
     <!-- Pilihan Buku Start -->
     <div class="container_book">
-        <form method="get" action="booking_sent.php<?= $statement_search ?>">
+        <form method="get" action="booking_sent.php?<?= $statement_search ?>">
             <div id="clock" class="form-control bold-text text_align_center"></div>
             <?php
             // Retrieve the book_ID from the URL parameters
