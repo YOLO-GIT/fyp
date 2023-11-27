@@ -45,12 +45,10 @@ include_once "../config/dbconnect.php";
             <div class="input-group mb-3">
               <select name="sort_alphabet" class="form-control custom-form-control">
                 <option value="">-- Pilih Jenis Susunan --</option>
-                <option value="a-z" <?php if (isset($_GET['sort_alphabet']) && $_GET['sort_alphabet'] == "a-z") {
-                                      echo "selected";
-                                    } ?>>A-Z (Ascending Order)</option>
-                <option value="z-a" <?php if (isset($_GET['sort_alphabet']) && $_GET['sort_alphabet'] == "z-a") {
-                                      echo "selected";
-                                    } ?>>Z-A (Descending Order)</option>
+                <option value="a-z">A-Z (Ascending Order)</option>
+                <option value="z-a">Z-A (Descending Order)</option>
+                <option value="borrowing">Borrowing</option>
+                <option value="booking">Booking</option>
               </select>
               <button type="submit" class="btn btn-primary ml-2">
                 Sort
@@ -97,6 +95,10 @@ include_once "../config/dbconnect.php";
               $query .= "ORDER BY book_title ASC";
             } elseif ($sort_option === "z-a") {
               $query .= "ORDER BY book_title DESC";
+            } elseif ($sort_option === "borrowing") {
+              $query .= "ORDER BY transc_name DESC";
+            } elseif ($sort_option === "booking") {
+              $query .= "ORDER BY transc_name ASC";
             }
           }
 
