@@ -19,16 +19,13 @@ if (isset($_POST["cmdlogin"])) {
 
     // Define SQL Statement for comparison
     $sql = "SELECT * FROM `tblstudent` WHERE stud_username='$username' AND stud_pwd='$password'";
-    // Define SQL Statement for comparison
     $teacher_sql = "SELECT * FROM `tblteachers` WHERE teachers_username='$username' AND teachers_Password='$password'";
     // Admin
     $admin_sql = "SELECT * FROM `tbllibrarians` WHERE librarians_uname='$username' AND librarians_password='$password'";
 
     // Execute SQL Statement
     $res = mysqli_query($con, $sql);
-    // Execute SQL Statement
     $teacher_res = mysqli_query($con, $teacher_sql);
-    // Execute SQL Statement
     $admin_res = mysqli_query($con, $admin_sql);
 
     // Check returning value in $res for validation

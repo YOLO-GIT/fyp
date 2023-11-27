@@ -91,9 +91,9 @@ include_once "../config/dbconnect.php";
                     // Sorting Function PHP
                     if (!empty($sort_option)) {
                         if ($sort_option === "a-z") {
-                            $query .= "ORDER BY book_title ASC";
+                            $query .= "ORDER BY user_name ASC";
                         } elseif ($sort_option === "z-a") {
-                            $query .= "ORDER BY book_title DESC";
+                            $query .= "ORDER BY user_name DESC";
                         }
                     }
 
@@ -115,10 +115,9 @@ include_once "../config/dbconnect.php";
                             <tr>
                                 <td><?= $row["record_ID"] ?></td>
                                 <td><?= $row["transc_ID"] ?></td>
-                                <td class="book-title"><?= $row["book_title"] ?></td>
                                 <td><?= $row["transc_name"] ?></td>
                                 <td><?= $row["user_ID"] ?></td>
-                                <td><?= $row["user_Name"] ?></td>
+                                <td><?= $row["user_name"] ?></td>
                                 <td><?= $row["record_date"] ?></td>
                                 <td><?= $row["record_time"] ?></td>
                                 <td><button class="btn btn-danger" style="height:40px" onclick="recordDelete('<?= $row['record_ID'] ?>')">Delete</button></td>

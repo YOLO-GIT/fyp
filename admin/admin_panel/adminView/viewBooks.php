@@ -45,12 +45,8 @@ include_once "../config/dbconnect.php";
           <div class="input-group mb-3">
             <select name="sort_alphabet" class="form-control custom-form-control">
               <option value="">-- Pilih Jenis Susunan --</option>
-              <option value="a-z" <?php if (isset($_GET['sort_alphabet']) && $_GET['sort_alphabet'] == "a-z") {
-                                    echo "selected";
-                                  } ?>>A-Z (Ascending Order)</option>
-              <option value="z-a" <?php if (isset($_GET['sort_alphabet']) && $_GET['sort_alphabet'] == "z-a") {
-                                    echo "selected";
-                                  } ?>>Z-A (Descending Order)</option>
+              <option value="a-z">A-Z (Ascending Order)</option>
+              <option value="z-a">Z-A (Descending Order)</option>
             </select>
             <button type="submit" class="btn btn-primary ml-2">
               Sort
@@ -170,7 +166,7 @@ include_once "../config/dbconnect.php";
         ?>
 
         <!-- Trigger the modal with a button -->
-        <button type="button" class="btn btn-secondary custom_btn" style="height:40px;" data-toggle="modal" data-target="#myModal">
+        <button type="button" class="btn btn-secondary ml-auto" style="height:40px;" data-toggle="modal" data-target="#myModal">
           Tambahan Buku
         </button>
 

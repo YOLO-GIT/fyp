@@ -1,8 +1,8 @@
 <?php
 session_start();
 
-if (!$_SESSION["IDAdmin"]) {
-    echo "<script>window.location.href='../../LibraryPro/sbs-html/login.php';</script>";
+if (!isset($_SESSION["IDAdmin"])) {
+    echo "<script>window.location.href='../../LibraryPro/sbs-html/auth/login.php';</script>";
 }
 ?>
 
