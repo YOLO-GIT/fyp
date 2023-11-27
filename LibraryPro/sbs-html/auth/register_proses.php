@@ -1,8 +1,8 @@
 <?php
 // Include required PHPMailer files
-require_once '../../includes/Exception.php';
-require_once '../../includes/SMTP.php';
-require_once '../../includes/PHPMailer.php';
+require_once '../../../includes/Exception.php';
+require_once '../../../includes/SMTP.php';
+require_once '../../../includes/PHPMailer.php';
 
 // Define namespaces
 use PHPMailer\PHPMailer\PHPMailer;

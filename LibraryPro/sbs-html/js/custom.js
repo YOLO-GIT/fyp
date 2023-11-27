@@ -138,12 +138,6 @@ function closeForm() {
     document.getElementById("myForm").style.display = "none";
 }
 
-function resetForm() {
-    // Assuming your form has an id attribute set to 'myForm'
-    history.replaceState(null, '', window.location.pathname);
-    window.location.reload();
-}
-
 // View Password
 function myFunction() {
   var x = document.getElementById("myInputPWD");

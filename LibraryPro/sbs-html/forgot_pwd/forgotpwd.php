@@ -96,14 +96,14 @@
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="../index.php">Home</a></li>
-            <li class="breadcrumb-item"><a href="../login.php">Login</a></li>
+            <li class="breadcrumb-item"><a href="../auth/login.php">Login</a></li>
             <li class="breadcrumb-item active" aria-current="page">Forgot Password</li>
         </ol>
     </nav>
     <!-- Breadcrumbs Ends -->
 
     <!-- Forgot Password Start -->
-    <div class="contact1">
+    <div class="forgotpwd mt-5">
         <div class="col-md-12">
             <div class="new_title text_align_center">
                 <h2>Password Forgot Form</h2>
@@ -129,16 +129,19 @@
     <!-- Forgot Password End -->
 
     <!--  footer -->
-    <div class="copyright-custom">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <p>© 2023 Hak Cipta Terpelihara.</a></p>
+    <div class="custom_footer">
+        <div class="copyright-custom">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <p>© 2023 Hak Cipta Terpelihara.</a></p>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
     <!-- end footer -->
+
     <!-- Javascript files-->
     <script src="../js/jquery.min.js"></script>
     <script src="../js/bootstrap.bundle.min.js"></script>

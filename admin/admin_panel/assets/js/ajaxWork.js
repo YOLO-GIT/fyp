@@ -60,7 +60,7 @@ function studentDelete(id){
         method:"post",
         data:{record:id},
         success:function(data){
-            alert('Teacher deleted');
+            alert('Student deleted');
             $('form').trigger('reset');
             showStudent();
         }
