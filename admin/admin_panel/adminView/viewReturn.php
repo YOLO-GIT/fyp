@@ -47,8 +47,6 @@ include_once "../config/dbconnect.php";
                                 <option value="">-- Pilih Jenis Susunan --</option>
                                 <option value="a-z">A-Z (Ascending Order)</option>
                                 <option value="z-a">Z-A (Descending Order)</option>
-                                <option value="borrowing">Borrowing</option>
-                                <option value="booking">Booking</option>
                             </select>
                             <button type="submit" class="btn btn-primary ml-2">
                                 Sort
@@ -62,15 +60,14 @@ include_once "../config/dbconnect.php";
                 <table class="table table-hover">
                     <thead>
                         <tr>
-                            <th class="text-center">Transaction ID</th>
-                            <th class="text-center">Judul Buku</th>
-                            <th class="text-center">Transaction Name</th>
-                            <th class="text-center">ID Pengguna</th>
-                            <th class="text-center">Nama Pengguna</th>
-                            <th class="text-center">User's Role</th>
-                            <th class="text-center">Tarikh Booking</th>
-                            <th class="text-center">Masa Booking</th>
+                            <th class="text-center">Return ID</th>
+                            <th class="text-center">User's ID</th>
+                            <th class="text-center">User's Name</th>
+                            <th class="text-center">Book's Title</th>
+                            <th class="text-center">Book's Condition</th>
+                            <th class="text-center">Date Returned</th>
                             <th class="text-center">Tolak</th>
+                            <th class="text-center">Return Approval</th>
                         </tr>
                     </thead>
                     <!-- PHP Starts -->
@@ -84,7 +81,7 @@ include_once "../config/dbconnect.php";
                     $resultPage = 5;
 
                     // Searching Function PHP
-                    $query = "SELECT * FROM tbltransaction ";
+                    $query = "SELECT * FROM tblreturning ";
                     if (!empty($filtervalues)) {
                         $query .= "WHERE `book_title` LIKE '%$filtervalues%' ";
                     }
@@ -92,13 +89,9 @@ include_once "../config/dbconnect.php";
                     // Sorting Function PHP
                     if (!empty($sort_option)) {
                         if ($sort_option === "a-z") {
-                            $query .= "ORDER BY book_title ASC";
+                            $query .= "ORDER BY user_name ASC";
                         } elseif ($sort_option === "z-a") {
-                            $query .= "ORDER BY book_title DESC";
-                        } elseif ($sort_option === "borrowing") {
-                            $query .= "ORDER BY transc_name ASC";
-                        } elseif ($sort_option === "booking") {
-                            $query .= "ORDER BY transc_name DESC";
+                            $query .= "ORDER BY user_name DESC";
                         }
                     }
 
@@ -106,7 +99,7 @@ include_once "../config/dbconnect.php";
                     $page = isset($_GET['page']) ? $_GET['page'] : 1;
                     $start = ($page - 1) * $resultPage;
 
-                    $queryCount = "SELECT COUNT(*) as total FROM tbltransaction";
+                    $queryCount = "SELECT COUNT(*) as total FROM tblreturning";
                     $totalResult = $conn->query($queryCount)->fetch_assoc()['total'];
                     $totalPages = ceil($totalResult / $resultPage);
 
@@ -118,15 +111,24 @@ include_once "../config/dbconnect.php";
                     ?>
                             <!-- rest of the row code remains unchanged -->
                             <tr>
-                                <td><?= $row["transc_ID"] ?></td>
+                                <td><?= $row["return_ID"] ?></td>
+                                <td><?= $row["user_IC"] ?></td>
+                                <td><?= $row["user_name"] ?></td>
                                 <td class="book-title"><?= $row["book_title"] ?></td>
-                                <td><?= $row["transc_name"] ?></td>
-                                <td><?= $row["user_ID"] ?></td>
-                                <td><?= $row["user_Name"] ?></td>
-                                <td><?= $row["user_role"] ?></td>
-                                <td><?= $row["start_date"] ?></td>
-                                <td><?= $row["time"] ?></td>
-                                <td><button class="btn btn-danger" style="height:40px" onclick="transcDelete('<?= $row['transc_ID'] ?>')">Delete</button></td>
+                                <td><?= $row["book_condition"] ?></td>
+                                <td><?= $row["date_returned"] ?></td>
+                                <td><button class="btn btn-danger" style="height:40px" onclick="returnDelete('<?= $row['return_ID'] ?>')">Delete</button></td>
+                                <?php
+                                if ($row["return_approval"] == 0) {
+                                ?>
+                                    <td><button class="btn btn-danger" onclick="ChangeReturnStatus('<?= $row['return_ID'] ?>')">Not Approved </button></td>
+                                <?php
+                                } else {
+                                ?>
+                                    <td><button class="btn btn-success" onclick="ChangeReturnStatus('<?= $row['return_ID'] ?>')">Approved</button></td>
+                                <?php
+                                }
+                                ?>
                             </tr>
                         <?php
                         }

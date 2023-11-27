@@ -43,9 +43,31 @@ function showTeacher(){
     });
 }
 
+function showTransaction(){
+    $.ajax({
+      url:"viewTransaction.php",
+      method:"post",
+      data:{record:1},
+      success:function(data){
+        $('.allContent-section').html(data);
+      }
+    });
+}
+
 function showRecord(){
     $.ajax({
         url:"viewRecord.php",
+        method:"post",
+        data:{record:1},
+        success:function(data){
+            $('.allContent-section').html(data);
+        }
+    });
+}
+
+function showReturn(){
+    $.ajax({
+        url:"viewReturn.php",
         method:"post",
         data:{record:1},
         success:function(data){
@@ -81,17 +103,6 @@ function teacherDelete(id){
     });
 }
 
-function showTransaction(){
-    $.ajax({
-      url:"viewTransaction.php",
-      method:"post",
-      data:{record:1},
-      success:function(data){
-        $('.allContent-section').html(data);
-      }
-    });
-  }
-
 //delete variation data
 function transcDelete(id) {
     $.ajax({
@@ -101,8 +112,28 @@ function transcDelete(id) {
         success: function (data) {
             if (data === "success") {
                 // Record deleted successfully
+                alert('Transaction Deleted');
                 $('form').trigger('reset');
                 showTransaction();
+            } else {
+                // Display error or informative message
+                alert(data);
+            }
+        }
+    });
+}
+
+function returnDelete(id) {
+    $.ajax({
+        url: "../controller/deleteReturnController.php",
+        method: "post",
+        data: { record: id },
+        success: function (data) {
+            if (data === "success") {
+                alert('Return Deleted');
+                // Record deleted successfully
+                $('form').trigger('reset');
+                showReturn();
             } else {
                 // Display error or informative message
                 alert(data);
@@ -118,6 +149,7 @@ function recordDelete(id) {
         data: { record: id },
         success: function (data) {
             if (data === "success") {
+                alert('Record Deleted');
                 // Record deleted successfully
                 $('form').trigger('reset');
                 showRecord();
@@ -188,7 +220,7 @@ function bookDelete(id){
     });
 }
 
-function ChangeOrderStatus(id){
+function ChangeReturnStatus(id){
     $.ajax({
        url:"../controller/updateBookStatus.php",
        method:"post",
@@ -196,7 +228,7 @@ function ChangeOrderStatus(id){
        success:function(data){
            alert('Status updated successfully');
            $('form').trigger('reset');
-           showTransaction();
+           showReturn();
        }
    });
 }
