@@ -64,7 +64,7 @@ if (!isset($_SESSION["IDStud"])) {
                                             </div>
                                             <div class="form-group">
                                                 <label class="form-label">Role</label>
-                                                <input type="text" class="form-control" name="txtname" value="<?= $row['stud_roles'] ?>" readonly>
+                                                <input type="text" class="form-control" name="txtrole" value="<?= $row['stud_roles'] ?>" readonly>
                                             </div>
                                             <div class="form-group">
                                                 <label class="form-label">Kelas</label>
