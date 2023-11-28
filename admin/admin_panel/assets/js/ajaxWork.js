@@ -98,6 +98,17 @@ function showReport(){
     });
 }
 
+function showStaff(){
+    $.ajax({
+        url:"viewStaff.php",
+        method:"post",
+        data:{record:1},
+        success:function(data){
+            $('.allContent-section').html(data);
+        }
+    });
+}
+
 function studentDelete(id){
     $.ajax({
         url:"../controller/studentDeleteController.php",
@@ -178,6 +189,20 @@ function reportDelete(id) {
             // Record deleted successfully
             $('form').trigger('reset');
             showReport();
+        }
+    });
+}
+
+function staffDelete(id) {
+    $.ajax({
+        url: "../controller/deleteStaffController.php",
+        method: "post",
+        data: { record: id },
+        success: function (data) {
+            alert('Staff Deleted');
+            // Record deleted successfully
+            $('form').trigger('reset');
+            showStaff();
         }
     });
 }
@@ -322,13 +347,24 @@ isbn.addEventListener('paste', function(e) {
 
 //Validtion Code For Inputs
 
- function showInput(select) {
-        var selectedValue = select.value;
-        var otherCategoryInput = document.getElementById("otherCategoryInput");
-        if (selectedValue === "Other") {
-            otherCategoryInput.style.display = "block";
-        } else {
-            otherCategoryInput.style.display = "none";
-        }
+function showInput(select) {
+    var selectedValue = select.value;
+    var otherCategoryInput = document.getElementById("otherCategoryInput");
+    if (selectedValue === "Other") {
+        otherCategoryInput.style.display = "block";
+    } else {
+        otherCategoryInput.style.display = "none";
     }
+}
+
+// Show Password
+function myFunction() {
+  var x = document.getElementById("myInputPWD");
+  if (x.type === "password") {
+    x.type = "text";
+  } else {
+    x.type = "password";
+  }
+}
+
 // End Custom JScript
