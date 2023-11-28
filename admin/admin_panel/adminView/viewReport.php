@@ -27,7 +27,7 @@ include_once "../config/dbconnect.php";
             <div class="row">
 
                 <!-- Start Search -->
-                <div class="col-md-6 mb-3 mt-3">
+                <div class="col-md-12 mb-3 mt-3">
                     <form action="" method="GET">
                         <div class="input-group mb-3">
                             <input type="text" name="search" class="form-control custom-form-control" placeholder=" Cari Judul Buku">
@@ -37,32 +37,14 @@ include_once "../config/dbconnect.php";
                 </div>
                 <!-- End Search -->
 
-                <!-- Sorting Start -->
-                <div class="col-md-6 mb-3 mt-3">
-                    <form action="" method="GET">
-                        <div class="input-group mb-3">
-                            <select name="sort_alphabet" class="form-control custom-form-control">
-                                <option value="">-- Pilih Jenis Susunan --</option>
-                                <option value="a-z">
-                                    A-Z (Ascending Order)</option>
-                                <option value="z-a">
-                                    Z-A (Descending Order)</option>
-                            </select>
-                            <button type="submit" class="btn btn-primary ml-2">
-                                Sort
-                            </button>
-                        </div>
-                    </form>
-                </div>
-                <!-- Sorting End -->
-
-                <!-- Books -->
+                <!-- Report -->
                 <table class="table table-hover">
                     <thead>
                         <tr>
                             <th class="text-center">User's ID</th>
                             <th class="text-center">User's Name</th>
-                            <th class="text-center">User's Report</th>
+                            <th class="text-center" colspan="2">User's Report</th>
+                            <th class="text-center">Report's Date</th>
                             <th class="text-center">Remove</th>
                         </tr>
                     </thead>
@@ -71,31 +53,20 @@ include_once "../config/dbconnect.php";
 
                     // Search
                     $filtervalues = isset($_GET['search']) ? $_GET['search'] : '';
-                    // Sorting
-                    $sort_option = isset($_GET['sort_alphabet']) ? $_GET['sort_alphabet'] : '';
                     //Result Page
                     $resultPage = 5;
 
                     // Searching Function PHP
-                    $query = "SELECT * FROM tblrecord ";
+                    $query = "SELECT * FROM tblreport ";
                     if (!empty($filtervalues)) {
                         $query .= "WHERE `book_title` LIKE '%$filtervalues%' ";
-                    }
-
-                    // Sorting Function PHP
-                    if (!empty($sort_option)) {
-                        if ($sort_option === "a-z") {
-                            $query .= "ORDER BY user_name ASC";
-                        } elseif ($sort_option === "z-a") {
-                            $query .= "ORDER BY user_name DESC";
-                        }
                     }
 
                     // Pagination logic
                     $page = isset($_GET['page']) ? $_GET['page'] : 1;
                     $start = ($page - 1) * $resultPage;
 
-                    $queryCount = "SELECT COUNT(*) as total FROM tblrecord";
+                    $queryCount = "SELECT COUNT(*) as total FROM tblreport";
                     $totalResult = $conn->query($queryCount)->fetch_assoc()['total'];
                     $totalPages = ceil($totalResult / $resultPage);
 
@@ -107,21 +78,18 @@ include_once "../config/dbconnect.php";
                     ?>
                             <!-- rest of the row code remains unchanged -->
                             <tr>
-                                <td><?= $row["record_ID"] ?></td>
-                                <td><?= $row["transc_ID"] ?></td>
-                                <td><?= $row["transc_name"] ?></td>
-                                <td><?= $row["user_ID"] ?></td>
-                                <td><?= $row["user_name"] ?></td>
-                                <td><?= $row["record_date"] ?></td>
-                                <td><?= $row["record_time"] ?></td>
-                                <td><button class="btn btn-danger" style="height:40px" onclick="recordDelete('<?= $row['record_ID'] ?>')">Delete</button></td>
+                                <td><?= $row["report_ID"] ?></td>
+                                <td><?= $row["users_ID"] ?></td>
+                                <td colspan="2"><?= $row["report_desc"] ?></td>
+                                <td><?= $row["report_date"] ?></td>
+                                <td><button class="btn btn-danger" style="height:40px" onclick="reportDelete('<?= $row['report_ID'] ?>')">Delete</button></td>
                             </tr>
                         <?php
                         }
                     } else {
                         ?>
                         <tr>
-                            <td colspan="5">No Record Found</td>
+                            <td colspan="5">No Report Found</td>
                         </tr>
                     <?php
                     }

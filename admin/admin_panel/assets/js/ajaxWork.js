@@ -168,6 +168,20 @@ function recordDelete(id) {
     });
 }
 
+function reportDelete(id) {
+    $.ajax({
+        url: "../controller/deleteReportController.php",
+        method: "post",
+        data: { record: id },
+        success: function (data) {
+            alert('Record Deleted');
+            // Record deleted successfully
+            $('form').trigger('reset');
+            showReport();
+        }
+    });
+}
+
 function eventDelete(id) {
     $.ajax({
         url: "../controller/deleteEventController.php",
