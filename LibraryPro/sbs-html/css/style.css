@@ -446,6 +446,15 @@ ul.email li i {
      padding-bottom: 60px;
 }
 
+.custom-relative p {
+     padding-top: 60px;
+     font-size: 70px;
+     line-height: 85px;
+     color: #2b2b2b;
+     font-weight: bold;
+     padding-bottom: 60px;
+}
+
 .carousel .icon-container {
      display: inline-block;
      font-size: 25px;

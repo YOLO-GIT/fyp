@@ -247,80 +247,58 @@ if (isset($_SESSION["IDStud"])) {
                             <!-- carousel code -->
                             <div id="carouselForEvents" class="carousel slide">
                                 <ol class="carousel-indicators">
-                                    <li data-target="#carouselForEvents" data-slide-to="0" class="active"></li>
-                                    <li data-target="#carouselForEvents" data-slide-to="1"></li>
-                                    <li data-target="#carouselForEvents" data-slide-to="2"></li>
+                                    <?php
+                                    $Eventquery = "SELECT * FROM `tblevents`";
+                                    $resultEvent = $con->query($Eventquery);
+                                    $activeClass = "active";
+
+                                    if ($resultEvent->num_rows > 0) {
+                                        for ($i = 0; $i < $resultEvent->num_rows; $i++) {
+                                    ?>
+                                            <li data-target="#carouselForEvents" data-slide-to="<?= $i ?>" class="<?= $activeClass ?>"></li>
+                                    <?php
+                                            $activeClass = "";
+                                        }
+                                    }
+                                    ?>
                                 </ol>
                                 <div class="carousel-inner">
-                                    <!-- first slide -->
-                                    <div class="carousel-item active">
-                                        <div class="carousel-caption relative">
-                                            <div class="row d-flex flex-row-reverse mb-3">
-                                                <div class="col-md-5">
-                                                    <div class="board">
-                                                        <h3>
-                                                            Library<br> Pro<br> SMK Tok Dor
-                                                        </h3>
-                                                        <div class="link_btn">
-                                                            <a class="read_more" href="Javascript:void(0)">Read More <span></span></a>
+                                    <?php
+                                    $resultEvent = $con->query($Eventquery);
+                                    $activeClass = "active";
+
+                                    if ($resultEvent->num_rows > 0) {
+                                        while ($showEvent = $resultEvent->fetch_assoc()) {
+                                    ?>
+                                            <!-- slide -->
+                                            <div class="carousel-item <?= $activeClass ?>">
+                                                <div class="carousel-caption relative">
+                                                    <div class="row d-flex flex-row-reverse mb-3">
+                                                        <div class="col-md-5">
+                                                            <div class="board">
+                                                                <h3>
+                                                                    <?= $showEvent['event_name'] ?>
+                                                                </h3>
+                                                                <div>
+                                                                    <p class="custom-relative"><?= $showEvent['event_desc'] ?><span></span></p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-7">
+                                                            <div class="banner_img">
+                                                                <figure><img class="img_responsive" src="../../admin/admin_panel/controller/<?= $showEvent['event_pic'] ?>"></figure>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="col-md-7">
-                                                    <div class="banner_img">
-                                                        <figure><img class="img_responsive" src="images/new_event1.jpg"></figure>
-                                                    </div>
-                                                </div>
                                             </div>
-                                        </div>
-                                    </div>
-                                    <!-- second slide -->
-                                    <div class="carousel-item">
-                                        <div class="carousel-caption relative">
-                                            <div class="row d-flex flex-row-reverse mb-3">
-                                                <div class="col-md-5">
-                                                    <div class="board">
-                                                        <h3>
-                                                            Library<br> Pro<br> SMK Tok Dor
-                                                        </h3>
-                                                        <div class="link_btn">
-                                                            <a class="read_more" href="Javascript:void(0)">Read More <span></span></a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-7">
-                                                    <div class="banner_img">
-                                                        <figure><img class="img_responsive" src="images/pic2.jpg"></figure>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- third slide-->
-                                    <div class="carousel-item">
-                                        <div class="carousel-caption relative">
-                                            <div class="row d-flex flex-row-reverse mb-3">
-                                                <div class=" col-md-5">
-                                                    <div class="board">
-                                                        <h3>
-                                                            Library<br> Pro<br> SMK Tok Dor
-                                                        </h3>
-                                                        <div class="link_btn">
-                                                            <a class="read_more" href="Javascript:void(0)">Read More <span></span></a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-7">
-                                                    <div class="banner_img">
-                                                        <figure><img class="img_responsive" src="images/pic3.jpg"></figure>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    <?php
+                                            $activeClass = "";
+                                        }
+                                    }
+                                    ?>
                                 </div>
                                 <!-- controls -->
-
                             </div>
                             <a class="carousel-control-prev" href="#carouselForEvents" role="button" data-slide="prev">
                                 <i class="fa fa-arrow-left" aria-hidden="true" style="color: black;"></i>
