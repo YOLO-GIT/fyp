@@ -5,7 +5,7 @@ include_once "../config/dbconnect.php";
 <html>
 
 <head>
-  <title>Admin | Buku</title>
+  <title>Admin | Book</title>
 
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -26,32 +26,31 @@ include_once "../config/dbconnect.php";
     ?>
     <div class="container">
 
-      <h2>Senarai Buku</h2>
+      <h2>Book List</h2>
       <div class="row">
         <!-- Book Search -->
         <div class="col-md-6 mb-3 mt-3">
           <form action="" method="GET">
             <div class="input-group mb-3">
-              <input type="text" name="search" value="<?php if (isset($_GET['search'])) {
-                                                        echo $_GET['search'];
-                                                      } ?>" class="form-control custom-form-control" placeholder="Carian Buku">
-              <button type="submit" class="btn btn-primary ml-2" style="color: white;">Cari</button>
+              <input type="text" name="search" class="form-control custom-form-control" placeholder="Search Book's Title">
+              <button type="submit" class="btn btn-primary ml-2" style="color: white;">Search</button>
             </div>
         </div>
         <!-- End Book Search -->
 
         <!-- Sorting Start -->
         <div class="col-md-6 mb-3 mt-3">
-          <div class="input-group mb-3">
-            <select name="sort_alphabet" class="form-control custom-form-control">
-              <option value="">-- Pilih Jenis Susunan --</option>
-              <option value="a-z">A-Z (Ascending Order)</option>
-              <option value="z-a">Z-A (Descending Order)</option>
-            </select>
-            <button type="submit" class="btn btn-primary ml-2">
-              Sort
-            </button>
-          </div>
+          <form method="get">
+            <div class="input-group mb-3">
+              <select name="sort_alphabet" class="form-control custom-form-control">
+                <option value="">-- Sorting --</option>
+                <option value="a-z">Book (Ascending Order)</option>
+                <option value="z-a">Book (Descending Order)</option>
+              </select>
+              <button type="submit" class="btn btn-primary ml-2">
+                Sort
+              </button>
+            </div>
           </form>
         </div>
         <!-- Sorting End -->
@@ -120,7 +119,7 @@ include_once "../config/dbconnect.php";
                 <td><?= $row["book_dewey"] ?></td>
                 <td><?= $row["book_added"] ?></td>
                 <td><button class="btn btn-primary" style="height:40px" onclick="bookUpdate('<?= $row['book_ID'] ?>')">Edit</button></td>
-                <td><button class="btn btn-danger" style="height:40px" onclick="bookDelete('<?= $row['book_ID'] ?>')">Delete</button></td>
+                <td><button class="btn btn-danger" style="height:40px" onclick="bookDelete('<?= $row['book_ID'] ?>')">Remove</button></td>
               </tr>
               <!-- ... -->
             <?php
@@ -167,7 +166,7 @@ include_once "../config/dbconnect.php";
 
         <!-- Trigger the modal with a button -->
         <button type="button" class="btn btn-secondary ml-auto" style="height:40px;" data-toggle="modal" data-target="#myModal">
-          Tambahan Buku
+          Add Book
         </button>
 
         <!-- Add Book Starts -->

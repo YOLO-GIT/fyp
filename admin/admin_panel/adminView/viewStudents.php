@@ -5,7 +5,7 @@ include_once "../config/dbconnect.php";
 <html>
 
 <head>
-  <title>Admin</title>
+  <title>Admin | Student</title>
 
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -24,16 +24,14 @@ include_once "../config/dbconnect.php";
     ?>
     <div class="container">
       <!-- Students -->
-      <h2>Student</h2>
+      <h2>Student List</h2>
       <div class="row">
 
         <!-- SEARCHING -->
         <div class="col-md-12 mb-3 mt-3">
           <form action="" method="GET">
             <div class="input-group mb-3">
-              <input type="text" name="search" required value="<?php if (isset($_GET['search'])) {
-                                                                  echo $_GET['search'];
-                                                                } ?>" class="form-control custom-form-control" placeholder="Cari Pelajar">
+              <input type="text" name="search" required class="form-control custom-form-control" placeholder="Search Student">
               <button type="submit" class="btn btn-primary ml-2" style="color: white;">Search</button>
             </div>
           </form>
@@ -44,14 +42,14 @@ include_once "../config/dbconnect.php";
           <thead>
             <tr>
               <th class="text-center">ID</th>
-              <th class="text-center">Nama</th>
-              <th class="text-center">Kelas</th>
-              <th class="text-center">Tarikh Daftar</th>
-              <th class="text-center">Aksi</th>
+              <th class="text-center">Name</th>
+              <th class="text-center">Class</th>
+              <th class="text-center">Date Joined</th>
+              <th class="text-center">Action</th>
             </tr>
           </thead>
+          <!-- PHP -->
           <?php
-
           // Search
           $filtervalues = isset($_GET['search']) ? $_GET['search'] : '';
           //Result Page
@@ -84,7 +82,7 @@ include_once "../config/dbconnect.php";
                 <td><?= $row["stud_Class"] ?></td>
                 <td><?= $row["date"] ?></td>
                 <td>
-                  <button class="btn btn-danger" style="height:40px" onclick="studentDelete('<?= $row['stud_ID'] ?>')">Tolak</button>
+                  <button class="btn btn-danger" style="height:40px" onclick="studentDelete('<?= $row['stud_ID'] ?>')">Remove</button>
                 </td>
               </tr>
             <?php

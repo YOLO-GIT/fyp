@@ -5,7 +5,7 @@ include_once "../config/dbconnect.php";
 <html>
 
 <head>
-    <title>Admin | Buku</title>
+    <title>Admin | Event</title>
 
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -26,25 +26,26 @@ include_once "../config/dbconnect.php";
         ?>
         <div class="container">
 
-            <h2>Event's List</h2>
+            <h2>Event List</h2>
             <div class="row">
-                <!-- Book Search -->
+                <!-- Event Search -->
                 <div class="col-md-6 mb-3 mt-3">
                     <form action="" method="GET">
                         <div class="input-group mb-3">
-                            <input type="text" name="search" class="form-control custom-form-control" placeholder="Carian Buku">
-                            <button type="submit" class="btn btn-primary ml-2" style="color: white;">Cari</button>
+                            <input type="text" name="search" class="form-control custom-form-control" placeholder="Search Event">
+                            <button type="submit" class="btn btn-primary ml-2" style="color: white;">Search</button>
                         </div>
+                    </form>
                 </div>
-                <!-- End Book Search -->
 
                 <!-- Sorting Start -->
                 <div class="col-md-6 mb-3 mt-3">
-                    <div class="input-group mb-3">
+                    <form method="get">
+                         <div class="input-group mb-3">
                         <select name="sort_alphabet" class="form-control custom-form-control">
-                            <option value="">-- Pilih Jenis Susunan --</option>
-                            <option value="a-z">A-Z (Ascending Order)</option>
-                            <option value="z-a">Z-A (Descending Order)</option>
+                            <option value="">-- Sorting --</option>
+                            <option value="a-z">Event (Ascending Order)</option>
+                            <option value="z-a">Event (Descending Order)</option>
                         </select>
                         <button type="submit" class="btn btn-primary ml-2">
                             Sort
@@ -62,7 +63,7 @@ include_once "../config/dbconnect.php";
                             <th class="text-center">Event Name</th>
                             <th class="text-center">Event Description</th>
                             <th class="text-center">Event Picture</th>
-                            <th class="text-center">Remove</th>
+                            <th class="text-center">Action</th>
                         </tr>
                     </thead>
                     <!-- PHP Starts -->
@@ -101,7 +102,7 @@ include_once "../config/dbconnect.php";
                                 <td><?= $row["event_name"] ?></td>
                                 <td class="book-title"><?= $row["event_desc"] ?></td>
                                 <td><?= $row["event_pic"] ?></td>
-                                <td><button class="btn btn-danger" style="height:40px" onclick="eventDelete('<?= $row['event_id'] ?>')">Delete</button></td>
+                                <td><button class="btn btn-danger" style="height:40px" onclick="eventDelete('<?= $row['event_id'] ?>')">Remove</button></td>
                             </tr>
                             <!-- ... -->
                         <?php

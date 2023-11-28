@@ -5,7 +5,8 @@ include_once "../config/dbconnect.php";
 <html>
 
 <head>
-    <title>Admin | Buku</title>
+    <title>Admin | Return</title>
+
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -23,17 +24,15 @@ include_once "../config/dbconnect.php";
         ?>
         <div class="container">
 
-            <h2>Senarai Tempahan</h2>
+            <h2>Return List</h2>
             <div class="row">
 
                 <!-- Start Search -->
                 <div class="col-md-6 mb-3 mt-3">
                     <form action="" method="GET">
                         <div class="input-group mb-3">
-                            <input type="text" name="search" value="<?php if (isset($_GET['search'])) {
-                                                                        echo $_GET['search'];
-                                                                    } ?>" class="form-control custom-form-control" placeholder=" Cari Judul Buku">
-                            <button type="submit" class="btn btn-primary ml-2" style="color: white;">Cari</button>
+                            <input type="text" name="search" class="form-control custom-form-control" placeholder="Search User's Name">
+                            <button type="submit" class="btn btn-primary ml-2" style="color: white;">Search</button>
                         </div>
                     </form>
                 </div>
@@ -44,9 +43,9 @@ include_once "../config/dbconnect.php";
                     <form action="" method="GET">
                         <div class="input-group mb-3">
                             <select name="sort_alphabet" class="form-control custom-form-control">
-                                <option value="">-- Pilih Jenis Susunan --</option>
-                                <option value="a-z">A-Z (Ascending Order)</option>
-                                <option value="z-a">Z-A (Descending Order)</option>
+                                <option value="">-- Sorting --</option>
+                                <option value="a-z">Book (Ascending Order)</option>
+                                <option value="z-a">Book (Descending Order)</option>
                             </select>
                             <button type="submit" class="btn btn-primary ml-2">
                                 Sort
@@ -56,7 +55,7 @@ include_once "../config/dbconnect.php";
                 </div>
                 <!-- Sorting End -->
 
-                <!-- Books -->
+                <!-- Returns -->
                 <table class="table table-hover">
                     <thead>
                         <tr>
@@ -66,7 +65,7 @@ include_once "../config/dbconnect.php";
                             <th class="text-center">Book's Title</th>
                             <th class="text-center">Book's Condition</th>
                             <th class="text-center">Date Returned</th>
-                            <th class="text-center">Tolak</th>
+                            <th class="text-center">Action</th>
                             <th class="text-center">Return Approval</th>
                         </tr>
                     </thead>
@@ -83,15 +82,15 @@ include_once "../config/dbconnect.php";
                     // Searching Function PHP
                     $query = "SELECT * FROM tblreturning ";
                     if (!empty($filtervalues)) {
-                        $query .= "WHERE `book_title` LIKE '%$filtervalues%' ";
+                        $query .= "WHERE `user_name` LIKE '%$filtervalues%' ";
                     }
 
                     // Sorting Function PHP
                     if (!empty($sort_option)) {
                         if ($sort_option === "a-z") {
-                            $query .= "ORDER BY user_name ASC";
+                            $query .= "ORDER BY book_title ASC";
                         } elseif ($sort_option === "z-a") {
-                            $query .= "ORDER BY user_name DESC";
+                            $query .= "ORDER BY book_title DESC";
                         }
                     }
 
@@ -117,7 +116,7 @@ include_once "../config/dbconnect.php";
                                 <td class="book-title"><?= $row["book_title"] ?></td>
                                 <td><?= $row["book_condition"] ?></td>
                                 <td><?= $row["date_returned"] ?></td>
-                                <td><button class="btn btn-danger" style="height:40px" onclick="returnDelete('<?= $row['return_ID'] ?>')">Delete</button></td>
+                                <td><button class="btn btn-danger" style="height:40px" onclick="returnDelete('<?= $row['return_ID'] ?>')">Remove</button></td>
                                 <?php
                                 if ($row["return_approval"] == 0) {
                                 ?>

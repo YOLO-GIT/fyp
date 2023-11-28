@@ -5,7 +5,7 @@ include_once "../config/dbconnect.php";
 <html>
 
 <head>
-    <title>Admin</title>
+    <title>Admin | Teacher</title>
 
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -25,17 +25,15 @@ include_once "../config/dbconnect.php";
         include "../sidebar.php";
         ?>
         <div class="container">
-            <h2>Teachers</h2>
+            <h2>Teachers List</h2>
             <div class="row">
 
                 <!-- Start Teacher Search -->
                 <div class="col-md-12 mb-3 mt-3">
                     <form action="" method="GET">
                         <div class="input-group mb-3">
-                            <input type="text" name="search" required value="<?php if (isset($_GET['search'])) {
-                                                                                    echo $_GET['search'];
-                                                                                } ?>" class="form-control custom-form-control" placeholder="Cari guru">
-                            <button type="submit" class="btn btn-primary ml-2" style="color: white;">Cari</button>
+                            <input type="text" name="search" required class="form-control custom-form-control" placeholder="Search Teacher">
+                            <button type="submit" class="btn btn-primary ml-2" style="color: white;">Search</button>
                         </div>
                     </form>
                 </div>
@@ -46,10 +44,10 @@ include_once "../config/dbconnect.php";
                     <thead>
                         <tr>
                             <th class="text-center">ID</th>
-                            <th class="text-center">Nama</th>
+                            <th class="text-center">Name</th>
                             <th class="text-center">Username</th>
-                            <th class="text-center">Tarikh daftar</th>
-                            <th class="text-center">Aksi</th>
+                            <th class="text-center">Date Joined</th>
+                            <th class="text-center">Action</th>
                         </tr>
                     </thead>
                     <!-- PHP -->
@@ -88,7 +86,7 @@ include_once "../config/dbconnect.php";
                                 <td><?= $row["teachers_username"] ?></td>
                                 <td><?= $row["date_teachers"] ?></td>
                                 <td>
-                                    <button class="btn btn-danger" style="height:40px" onclick="teacherDelete('<?= $row['teachers_ID'] ?>')">Tolak</button>
+                                    <button class="btn btn-danger" style="height:40px" onclick="teacherDelete('<?= $row['teachers_ID'] ?>')">Remove</button>
                                 </td>
                             </tr>
                         <?php

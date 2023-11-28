@@ -32,7 +32,7 @@
 
     <!-- OTHERS -->
     <a href="./adminView/viewEvent.php" onclick="showEvent()"><i class="fa fa-list"></i> Event</a>
-    <a href="./adminView/viewBooking.php" onclick=""><i class="fa fa-list"></i> Add Staff</a>
+    <a href="./adminView/viewStaff.php" onclick=""><i class="fa fa-list"></i> Add Staff</a>
     <a href="./adminView/viewReport.php" onclick="showReport()"><i class="fa fa-list"></i> Report</a>
 </div>
 </div>
