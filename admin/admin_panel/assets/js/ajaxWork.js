@@ -87,6 +87,17 @@ function showEvent(){
     });
 }
 
+function showReport(){
+    $.ajax({
+        url:"viewReport.php",
+        method:"post",
+        data:{record:1},
+        success:function(data){
+            $('.allContent-section').html(data);
+        }
+    });
+}
+
 function studentDelete(id){
     $.ajax({
         url:"../controller/studentDeleteController.php",
