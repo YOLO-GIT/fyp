@@ -130,19 +130,19 @@ if (isset($_SESSION["IDStud"]) || isset($_SESSION["IDTeachers"])) {
                             <!-- IC -->
                             <div class="col-md-12">
                                 <label class="custom_label_reg">Nombor IC*: IC Anda tanpa "-"</label>
-                                <div id="ic_error" class="form-control">Tolong Isi IC Anda Dengan Betul</div>
-                                <input class="contactus" placeholder="IC Number*" type="number" name="txtic" maxlength="12" pattern=".{12,}" autocomplete="off">
+                                <div id="ic_error" class="form-control">Tolong Isi IC Anda Dengan Betul (Letak Nombor Sahaja)</div>
+                                <input class="contactus" placeholder="IC Number*" type="text" name="txtic" maxlength="12" pattern=".{12,}" autocomplete="off">
                             </div>
                             <!-- NAMA PERTAMA -->
                             <div class=" col-md-6">
                                 <label class="custom_label_reg">Nama Depan Anda*, E.g.: Ahmad</label>
-                                <div id="fname_error" class="form-control">Tolong Isi Nama Depan Anda Dengan Betul</div>
+                                <div id="fname_error" class="form-control">Tolong Isi Nama Depan Anda Dengan Betul (Letak Huruf Sahaja)</div>
                                 <input class="contactus" placeholder="Nama Depan Anda: Ahmad (Maksimum 10 Perkataan)" type="text" name="txtfnama" maxlength="10" autocomplete="off">
                             </div>
                             <!-- NAMA KEDUA -->
                             <div class="col-md-6">
                                 <label class="custom_label_reg">Nama Belakang Anda*, E.g.: Sufi</label>
-                                <div id="lname_error" class="form-control">Tolong Isi Nama Belakang Anda Dengan Betul</div>
+                                <div id="lname_error" class="form-control">Tolong Isi Nama Belakang Anda Dengan Betul (Letak Huruf Sahaja)</div>
                                 <input class="contactus" placeholder="Nama Belakang Anda: Aziz (Maksimum 10 Perkataan)" type="text" name="txtlnama" maxlength="10" autocomplete="off">
                             </div>
                             <!-- NAMA SAMARAN -->
@@ -155,18 +155,18 @@ if (isset($_SESSION["IDStud"]) || isset($_SESSION["IDTeachers"])) {
                             <div class="col-md-6">
                                 <label class="custom_label_reg">Kelas Anda*, E.g.: 5 AB</label>
                                 <div id="kelas_error" class="form-control">Tolong Isi Kelas Anda Dengan Betul</div>
-                                <input class="contactus" placeholder="Kelas*" type="text" name="txtkelas" autocomplete="off">
+                                <input class="contactus" placeholder="Kelas*" type="text" name="txtkelas" autocomplete="off" maxlength=10>
                             </div>
                             <!-- EMAIL -->
                             <div class="col-md-12">
                                 <label class="custom_label_reg">Email Anda*, E.g.: user-moe123@gmail.com</label>
                                 <div id="email_error" class="form-control">Tolong Isi Email Anda Dengan Betul</div>
-                                <input class="contactus" placeholder="Email*" type="text" name="txtEmail" autocomplete="off">
+                                <input class="contactus" placeholder="Email*" type="text" name="txtEmail" autocomplete="off" maxlength="25">
                             </div>
                             <!-- PASSWORD -->
                             <div class="col-md-12">
                                 <label class="custom_label_reg">Password Anda*:</label>
-                                <div id="pwd_error" class="form-control">Tolong Isi Password Anda Dengan Betul</div>
+                                <div id="pwd_error" class="form-control">Tolong Isi Password Anda Dengan Betul (Hanya Huruf Atau/Dan Nombor Sahaja)</div>
                                 <input class="contactus" placeholder="Password (Maksimum 9 nombor/perkataan)*" type="password" name="txtpwd" id="myInputPWD" maxlength="9" pattern=".{9,}" autocomplete="off">
                                 <input type="checkbox" onclick="myFunction()">&nbsp;&nbsp;<label class="show_style">Show Password</label>
                             </div>

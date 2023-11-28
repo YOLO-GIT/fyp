@@ -23,18 +23,23 @@ kelas.addEventListener('input', kelas_Verify);
 email.addEventListener('input', email_Verify);
 pwd.addEventListener('input', pwd_Verify);
 
+var icRegex = /^[0-9]+$/;
+var nameRegex = /^[A-Za-z]+$/;
+var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+var passwordRegex = /^[a-zA-Z0-9]{9}$/;
+
 function validated() {
   // Start IC Detection
-  if (ic.value.length < 12) {
-      ic.style.border = "1px solid red";
-      ic_error.style.display = "block";
-      ic.focus();
-      return false;
+  if (ic.value.length < 12 || !icRegex.test(ic.value)) {
+    ic.style.border = "1px solid red";
+    ic_error.style.display = "block";
+    ic.focus();
+    return false;
   }
   // End IC Detection
 
   // Start Fname Detection
-  if (fname.value.length == "" || fname.value.length == null) {
+  if (fname.value.length == "" || fname.value.length == null || !nameRegex.test(fname.value)) {
       fname.style.border = "1px solid red";
       fname_error.style.display = "block";
       fname.focus();
@@ -43,7 +48,7 @@ function validated() {
   // End Fname Detection
 
   // Start Lname Detection
-  if (lname.value.length == "" || lname.value.length == null) {
+  if (lname.value.length == "" || lname.value.length == null || !nameRegex.test(lname.value)) {
       lname.style.border = "1px solid red";
       lname_error.style.display = "block";
       lname.focus();
@@ -70,20 +75,20 @@ function validated() {
   // End Kelas Detection
 
   // Start Email Detection
-  if (email.value.length == "" || email.value.length == null) {
-      email.style.border = "1px solid red";
-      email_error.style.display = "block";
-      email.focus();
-      return false;
+  if (email.value.length === 0 || !emailRegex.test(email.value)) {
+    email.style.border = "1px solid red";
+    email_error.style.display = "block";
+    email.focus();
+    return false;
   }
   // End Email Detection
 
-  // Start Password Detection
-  if (pwd.value.length < 8) {
-      pwd.style.border = "1px solid red";
-      pwd_error.style.display = "block";
-      pwd.focus();
-      return false;
+  // Start Password Detection 
+  if (pwd.value.length < 8 || !passwordRegex.test(pwd.value)) {
+    pwd.style.border = "1px solid red";
+    pwd_error.style.display = "block";
+    pwd.focus();
+    return false;
   }
   // End Password Detection
 }
@@ -91,7 +96,7 @@ function validated() {
 
 // Start Verify
 function ic_Verify() {
-    if (ic.value.length > 11) {
+    if (ic.value.length > 11 || icRegex.test(ic.value)) {
         ic.style.border = "1px solid silver";
         ic_error.style.display = "none";
         return true;
@@ -99,7 +104,7 @@ function ic_Verify() {
 }
 
 function fname_Verify() {
-    if (fname.value.length > 1) {
+    if (fname.value.length > 1 || nameRegex.test(fname.value)) {
         fname.style.border = "1px solid silver";
         fname_error.style.display = "none";
         return true;
@@ -107,7 +112,7 @@ function fname_Verify() {
 }
 
 function lname_Verify() {
-    if (lname.value.length > 1) {
+    if (lname.value.length > 1 || nameRegex.test(lname.value)) {
         lname.style.border = "1px solid silver";
         lname_error.style.display = "none";
         return true;
@@ -131,7 +136,7 @@ function kelas_Verify() {
 }
 
 function email_Verify() {
-    if (email.value.length > 1) {
+    if (email.value.length > 1 || emailRegex.test(email.value)) {
         email.style.border = "1px solid silver";
         email_error.style.display = "none";
         return true;
@@ -139,11 +144,12 @@ function email_Verify() {
 }
 
 function pwd_Verify() {
-    if (pwd.value.length > 7) {
+    if (pwd.value.length > 7 || passwordRegex.test(pwd.value)) {
         pwd.style.border = "1px solid silver";
         pwd_error.style.display = "none";
         return true;
     }
 }
+
 // End Verify
 // End Validation For Register
