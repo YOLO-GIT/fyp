@@ -3,16 +3,10 @@
 session_start();
 
 if (isset($_SESSION["IDStud"]) || isset($_SESSION["IDTeachers"])) {
-    echo "<script>alert('Booking Process...');</script>";
+    echo "<script>alert('Borrowing Process...');</script>";
 } else {
     echo "<script>alert('Sila Login Dahulu.');</script>";
     echo "<script>window.location.href='auth/login.php';</script>";
-}
-
-if (isset($_GET['search'])) {
-    $search_link = "booking.php?simple";
-} elseif (isset($_GET['ad_search'])) {
-    $search_link = "advance_booking.php?advance";
 }
 
 if (isset($_GET["cmdbooking"])) {
@@ -55,7 +49,7 @@ if (mysqli_num_rows($check_teacher) > 0) {
         // Close the DB to ensure it will not be updated.
         mysqli_close($con);
 
-        echo "<script>window.location.href=$search_link;</script>";
+        echo "<script>window.location.href='booking.php?simple';</script>";
     } else {
         $user_role = "Teacher";
 
@@ -105,6 +99,8 @@ if (mysqli_num_rows($check_teacher) > 0) {
 
             mysqli_query($con, $save_record);
         }
+
+        mysqli_close($con);
     }
 } else {
     if (mysqli_num_rows($check_user) > 0) {
@@ -113,7 +109,7 @@ if (mysqli_num_rows($check_teacher) > 0) {
         // Close the DB to ensure it will not be updated.
         mysqli_close($con);
 
-        echo "<script>window.location.href='$search_link';</script>";
+        echo "<script>window.location.href='booking.php?simple';</script>";
     } else {
         $user_role = "Student";
 
@@ -164,10 +160,12 @@ if (mysqli_num_rows($check_teacher) > 0) {
 
             mysqli_query($con, $save_record);
         }
+
+        echo "<script>alert('Anda Telah berjaya Borrowing');</script>";
+        echo "<script>window.location.href='buku_saya.php';</script>";
+
+        mysqli_close($con);
     }
 }
 
-echo "<script>alert('Anda Telah berjaya Borrowing');</script>";
-echo "<script>window.location.href='buku_saya.php';</script>";
 
-mysqli_close($con);
