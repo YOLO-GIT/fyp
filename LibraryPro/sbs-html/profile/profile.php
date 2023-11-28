@@ -79,7 +79,7 @@ if (!isset($_SESSION["IDStud"])) {
                                                 <input type="text" class="form-control mb-1" value="<?= $row['date'] ?>" readonly>
                                             </div>
                                             <div class="form-group">
-                                                <label class="form-label">Booking Count:</label>
+                                                <label class="form-label">Borrowing Count:</label>
                                                 <input type="text" class="form-control mb-1" value="<?= $row['book_count'] ?>" readonly>
                                             </div>
                                             <div class="alert alert-success mt-3">
@@ -158,26 +158,19 @@ if (!isset($_SESSION["IDStud"])) {
                             <div class="tab-pane fade" id="account-report">
                                 <div class="card-body pb-2">
                                     <?php
-                                    $stud_ID = $_SESSION["IDStud"]; // Fetch the ID of the logged-in student
-                                    $query = "SELECT * FROM tblstudent WHERE stud_ID = '$stud_ID'"; // Fetch data only for the logged-in student
-                                    $result = $con->query($query);
-                                    if ($result && $result->num_rows > 0) {
-                                        $row = $result->fetch_assoc();
+                                    $stud_ID = $_SESSION["IDStud"];
                                     ?>
-                                        <form method="get" action="user_profile.php">
-                                            <div class="form-group" hidden>
-                                                <label class="form-label">ID</label>
-                                                <input type="text" class="form-control" name="report_id" value="<?= $stud_ID ?>">
-                                            </div>
-                                            <div class="form-group">
-                                                <label class="form-label">Apakah yang anda ingin laporkan?</label>
-                                                <textarea class="form-control" rows="5" name="txtreport" placeholder="Sila tulis masalah yang anda hadapi." required></textarea>
-                                            </div>
-                                            <button class="btn btn-primary" name="cmdreport">Simpan</button>
-                                        </form>
-                                    <?php
-                                    }
-                                    ?>
+                                    <form method="get" action="user_profile.php">
+                                        <div class="form-group" hidden>
+                                            <label class="form-label">ID</label>
+                                            <input type="text" class="form-control" name="report_id" value="<?= $stud_ID ?>">
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="form-label">Apakah yang anda ingin laporkan?</label>
+                                            <textarea class="form-control" rows="5" name="txtreport" placeholder="Sila tulis masalah yang anda hadapi." required></textarea>
+                                        </div>
+                                        <button class="btn btn-primary" name="cmdreport">Simpan</button>
+                                    </form>
                                 </div>
                             </div>
                             <!-- TERMS & CONDITION -->

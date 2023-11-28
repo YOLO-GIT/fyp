@@ -4,7 +4,7 @@
 session_start();
 
 // Check if the user is already logged in
-if (isset($_SESSION["IDStud"]) || isset($_SESSION["IDTeachers"]) || isset($_SESSION["IDAdmin"])) {
+if (isset($_SESSION["IDStud"]) || isset($_SESSION["IDTeachers"])) {
     echo "<script>window.location.href='../index.php';</script>";
     exit;
 }

@@ -26,6 +26,7 @@ if (isset($_GET['cmdprofile'])) {
         echo "<script>window.location.href='./profile.php';</script>";
     }
 }
+
 // MENGEMASKINI PROFIL CIKGU
 elseif (isset($_GET['Tcmdprofile'])) {
     $teachers_ID = $_GET['Tprofile_id'];
@@ -50,17 +51,24 @@ if (isset($_GET['cmdreport'])) {
     $stud_ID = $_GET['report_id'];
     $report = $_GET['txtreport'];
 
-    $sql_report = "UPDATE `tblstudent` 
-    SET `report`='$report' WHERE `stud_ID` = '$stud_ID'";
+    $icnum = substr($stud_ID, 8, 4);
+
+    $year = date("y");
+
+    $report_ID = "R" . $icnum . $year;
+
+    $sql_report = "INSERT INTO `tblreport`(`report_ID`, `users_ID`, `report_desc`, `report_date`) 
+    VALUES ('$report_ID','$stud_ID','$report',NOW())";
 
     if (mysqli_query($con, $sql_report)) {
         echo "<script>alert('Laporan anda sudah dihantar.')</script>";
-        echo "<script>window.location.href='./profile.php';</script>";
+        echo "<script>window.location.href='profile.php';</script>";
     } else {
         echo "<script>alert('Ada masalah semasa menghantar laporan anda.')</script>";
-        echo "<script>window.location.href='./profile.php';</script>";
+        echo "<script>window.location.href='profile.php';</script>";
     }
 }
+
 // LAPORAN CIKGU
 elseif (isset($_GET['Tcmdreport'])) {
     $teachers_ID = $_GET['Treport_id'];
