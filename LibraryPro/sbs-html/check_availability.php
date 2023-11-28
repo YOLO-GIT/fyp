@@ -61,7 +61,7 @@ if (!$result_availability || mysqli_num_rows($result_availability) == 0) {
     $deleteQuery = "DELETE FROM tbltransaction WHERE transc_ID='$transc_ID'";
     if (mysqli_query($con, $deleteQuery)) {
         echo "<script>alert('You can borrow this book. Redirecting you to the borrowing Page.');</script>";
-        echo "<script>window.location.href='display_book.php?book_ID=" . $book_ID . "';</script>";
+        echo "<script>window.location.href='display_book.php?book_ID=" . $book_ID . "&search';</script>";
     } else {
         echo "<script>alert('There is something wrong with the page. Please try again.');</script>";
         mysqli_close($con);

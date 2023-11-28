@@ -165,9 +165,7 @@ if (isset($_GET['simple'])) {
                             <form action="" method="GET">
                                 <!-- Search Bar -->
                                 <div class="col-md-12 mb-3">
-                                    <input type="text" name="search" required value="<?php if (isset($_GET['search'])) {
-                                                                                            echo $_GET['search'];
-                                                                                        } ?>" class="form-control" placeholder="Search data">
+                                    <input type="text" name="search" required class="form-control" placeholder="Search data">
                                 </div>
                                 <!-- Button -->
                                 <div class="col-md-12 text_align_center">
@@ -302,7 +300,7 @@ if (isset($_GET['simple'])) {
                             </div>
                         </div>
                         <div class="ml-auto mr-5 mb-3">
-                            <a href="display_book.php?book_ID=<?= $row['book_ID'] ?>&search=<?= $search ?>" class="btn btn-primary">Pilih Buku</a>
+                            <a href="display_book.php?book_ID=<?= $row['book_ID'] ?>&search" class="btn btn-primary">Pilih Buku</a>
                         </div>
                     </div>
                     <!-- ... -->

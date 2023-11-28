@@ -30,9 +30,7 @@ include_once "../config/dbconnect.php";
                 <div class="col-md-6 mb-3 mt-3">
                     <form action="" method="GET">
                         <div class="input-group mb-3">
-                            <input type="text" name="search" value="<?php if (isset($_GET['search'])) {
-                                                                        echo $_GET['search'];
-                                                                    } ?>" class="form-control custom-form-control" placeholder=" Cari Judul Buku">
+                            <input type="text" name="search" class="form-control custom-form-control" placeholder=" Cari Judul Buku">
                             <button type="submit" class="btn btn-primary ml-2" style="color: white;">Cari</button>
                         </div>
                     </form>
