@@ -153,7 +153,7 @@ if (isset($_SESSION["IDStud"]) || isset($_SESSION["IDTeachers"])) {
                             </div>
                             <!-- EMAIL -->
                             <div class="col-md-6">
-                                <label class="custom_label_reg">Email Anda*, E.g.: user123@gmail.com:</label>
+                                <label class="custom_label_reg">Email Anda*, E.g.: g-12345678@moe-dl.edu.my:</label>
                                 <div id="email_error" class="form-control">Tolong Isi Email Anda Dengan Betul</div>
                                 <input class="contactus" placeholder="Email*" type="text" name="txtEmail" autocomplete="off" maxlength="25">
                             </div>

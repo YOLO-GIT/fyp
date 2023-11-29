@@ -376,10 +376,9 @@ if (isset($_SESSION["IDStud"])) {
                                             <div class="col-md-3">
                                                 <div class="test_box text_align_center">
                                                     <span><img src="images/test2.png" alt="#" /></span>
-                                                    <h4>Michale</h4>
+                                                    <h4>Maizalina</h4>
                                                     <img class="img_responsive" src="images/te.png" alt="#" />
-                                                    <p>humour, or randomised words which don't look even slightly believable. If you
-                                                        are</p>
+                                                    <p>A very good app that can be used with any device, anywhere.</p>
                                                 </div>
                                             </div>
                                             <div class="col-md-6">

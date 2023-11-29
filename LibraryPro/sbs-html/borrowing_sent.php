@@ -100,6 +100,9 @@ if (mysqli_num_rows($check_teacher) > 0) {
             mysqli_query($con, $save_record);
         }
 
+        echo "<script>alert('Anda Telah berjaya Borrowing');</script>";
+        echo "<script>window.location.href='buku_saya.php';</script>";
+
         mysqli_close($con);
     }
 } else {
