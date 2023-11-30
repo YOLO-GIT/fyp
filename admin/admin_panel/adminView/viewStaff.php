@@ -152,7 +152,7 @@ include_once "../config/dbconnect.php";
                                 </div>
                                 <div class="form-group">
                                     <label for="title">Password:*</label>
-                                    <input type="password" name="txtpwd" class="form-control" placeholder="Your password (Max 9 words)" maxlength="9" pattern=".{9,}" id="myInputPWD" required autocomplete="off">
+                                    <input type="password" name="txtpwd" class="form-control" placeholder="Your password (Max 6 words)" maxlength="6" pattern=".{6,}" id="myInputPWD" required autocomplete="off">
                                     <input type="checkbox" onclick="myFunction()">&nbsp;&nbsp;<label class="show_style mt-3">Show Password</label>
                                 </div>
                                 <div class="modal-footer">
