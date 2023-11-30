@@ -1,0 +1,16 @@
+.login_form #pwd_error,
+.login_form #ic_error,
+.login_form #fname_error,
+.login_form #lname_error,
+.login_form #uname_error{
+	margin-top: 5px;
+	/* width: 345px; */
+	font-size: 18px;
+	color: #C62828;
+	background: rgba(255,0,0,0.1);
+	text-align: center;
+	padding: 5px 8px;
+	border-radius: 3px;
+	border: 1px solid #EF9A9A;
+	display: none;
+}
