@@ -280,7 +280,7 @@ if (isset($_SESSION["IDStud"])) {
                                                                     <?= $showEvent['event_name'] ?>
                                                                 </h3>
                                                                 <div>
-                                                                    <p class="custom-relative"><?= $showEvent['event_desc'] ?><span></span></p>
+                                                                    <p class="custom-relative event_desc"><?= $showEvent['event_desc'] ?><span></span></p>
                                                                 </div>
                                                             </div>
                                                         </div>

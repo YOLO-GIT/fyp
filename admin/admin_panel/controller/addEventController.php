@@ -17,17 +17,7 @@ if (isset($_POST["cmdadd"])) {
     // Create ID Record
     $year = date("Y");
 
-    // Define SQL Statement
-    $sqlevent = "SELECT COUNT(*) as total FROM tblevents WHERE LEFT(event_id, 2) = '$year'";
-
-    $data = mysqli_query($conn, $sqlevent);
-    $num = mysqli_fetch_assoc($data);
-
-    //create id Record (Last 4 Char)
-    $total = (int)$num["total"];
-    $total = sprintf("%04s", ++$total);
-
-    $id = $year . $total;
+    $id = $year . bin2hex(random_bytes(3));
 
     move_uploaded_file($temp, $finalImage);
     //Timezone
