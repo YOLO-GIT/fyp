@@ -41,20 +41,8 @@ if (isset($_SESSION["IDStud"])) {
     $statement_res = null;
     $log = "Login";
     $func_todo = "auth/login.php";
-    echo "<script>alert('Sila Login Dahulu.');</script>";
-    echo "<script>window.location.href='auth/login.php';</script>";
+    $profile = "profile/profile.php";
     $confirmation_logout = "";
-}
-
-if (isset($_GET['book_ID'])) {
-    $book_ID = $_GET['book_ID'];
-    $query = "SELECT * FROM tblbook WHERE book_ID = $book_ID";
-    $result = $con->query($query);
-    $row = $result->fetch_assoc();
-}
-
-if (isset($_GET['transc_ID'])) {
-    $transc_ID = $_GET['transc_ID'];
 }
 ?>
 
@@ -69,7 +57,7 @@ if (isset($_GET['transc_ID'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1">
     <!-- site metas -->
-    <title>LibraryPro | Returning Book</title>
+    <title>sbs</title>
     <meta name="keywords" content="">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -79,7 +67,6 @@ if (isset($_GET['transc_ID'])) {
     <link rel="stylesheet" href="css/style.css">
     <!-- custom css -->
     <link rel="stylesheet" href="css/custom_style.css">
-    <link rel="stylesheet" href="css/display_book.css">
     <!-- Responsive-->
     <link rel="stylesheet" href="css/responsive.css">
     <!-- fevicon -->
@@ -98,6 +85,7 @@ if (isset($_GET['transc_ID'])) {
         <div class="loader"><img src="images/loading.gif" alt="#" /></div>
     </div>
     <!-- end loader -->
+
     <!-- header -->
     <div class="header">
         <div class="container-fluid">
@@ -131,7 +119,7 @@ if (isset($_GET['transc_ID'])) {
                                 <li class="nav-item">
                                     <a class="nav-link" href="buku_saya.php"><i class="fa fa-book"></i> Buku Saya</a>
                                 </li>
-                                <li class="nav-item">
+                                <li class="nav-item active">
                                     <a class="nav-link" href="about.php"><i class="fa fa-universal-access"></i> Berkaitan Kami</a>
                                 </li>
                                 <li class="nav-item">
@@ -143,7 +131,9 @@ if (isset($_GET['transc_ID'])) {
                 </div>
                 <div class="col-md-2">
                     <ul class="text_align_right">
-                        <li class="nav-item"><a href="<?= $profile ?>"><i class="fa fa-user" aria-hidden="true"></i></a>&nbsp;&nbsp;<?= $statement_res ?></li>
+                        <li class="nav-item">
+                            <a href="<?= $profile ?>"><i class="fa fa-user" aria-hidden="true"></i></a>&nbsp;&nbsp;<?= $statement_res ?>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -155,75 +145,13 @@ if (isset($_GET['transc_ID'])) {
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="index.php">Home</a></li>
-            <li class="breadcrumb-item"><a href="buku_saya.php">My Book</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Book Returning Process</li>
+            <li class="breadcrumb-item active" aria-current="page">About Us</li>
         </ol>
     </nav>
     <!-- Breadcrumbs Ends -->
 
-    <!-- Returning Book Start -->
-    <div class="container_book">
-        <form method="GET" action="return_process.php">
-            <?php
-            $query = "SELECT * FROM tbltransaction WHERE transc_ID = '$transc_ID'";
-            $result = $con->query($query);
-            if ($result->num_rows > 0) {
-                while ($returnRow = $result->fetch_assoc()) {
-            ?>
-                    <!-- Pilihan Buku Start -->
-                    <div class="card_book_display mb-3">
-                        <div class="row">
-                            <div class="col-md-4">
-                                <img src="../../admin/admin_panel/controller/<?= $row['book_image'] ?>">
-                            </div>
-                            <div class="col-md-8">
-                                <div class="card-body">
-                                    <h2 class="card-title"><?= $returnRow["book_title"] ?></h2>
-                                    <p class="bold-text">IC*:&nbsp;&nbsp;</p>
-                                    <input type="text" name="txttID" class="form-control" value="<?= $transc_ID ?>" hidden>
-                                    <div class="form-group">
-                                        <input type="number" name="txtIC" class="form-control" value="<?= $returnRow['user_ID'] ?>" readonly>
-                                    </div>
-                                    <p class="bold-text">Nama*:&nbsp;&nbsp;</p>
-                                    <div class="form-group">
-                                        <input type="text" name="txtname" class="form-control" value="<?= $returnRow['user_Name'] ?>" readonly>
-                                    </div>
-                                    <p class="bold-text">Nama Buku*:&nbsp;&nbsp;</p>
-                                    <div class="form-group">
-                                        <input type="text" name="txtbname" class="form-control" value="<?= $returnRow['book_title'] ?>" readonly>
-                                    </div>
-                                    <p class="bold-text">Keadaan Buku Tersebut*:&nbsp;&nbsp;</p>
-                                    <div class="form-group">
-                                        <select class="form-control" name="cbocondition" required>
-                                            <option value="">Sila Pilih Kondisi Buku Tersebut*:</option>
-                                            <option value="Terbaik">Terbaik</option>
-                                            <option value="Sederhana">Sederhana</option>
-                                            <option value="Rosak">Rosak</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <br>
-                                <div class="text-right mr-3 mb-3">
-                                    <button type="submit" class="btn btn-primary" name="cmdreturn">Hantar</button>
-                                    <a href="buku_saya.php" class="btn btn-primary">Kembali Semula</a>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- ... -->
-                    </div>
-                <?php
-                }
-            } else {
-                ?>
-                <div class="form-group">
-                    <label class="form-control">Record Tidak Wujud</label>
-                </div>
-            <?php
-            }
-            ?>
-        </form>
-    </div>
-    <!-- Returning Book End -->
+    <!-- About Us Start -->
+    <!-- About Us End -->
 
     <!--  footer -->
     <footer>
@@ -289,6 +217,7 @@ if (isset($_GET['transc_ID'])) {
     <script src="js/jquery-3.0.0.min.js"></script>
     <!-- sidebar -->
     <script src="js/custom.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
         AOS.init();
     </script>

@@ -147,7 +147,7 @@ if (isset($_GET['search'])) {
                                     <a class="nav-link" href="buku_saya.php"><i class="fa fa-book"></i> Buku Saya</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="#"><i class="fa fa-universal-access"></i> Berkaitan Kami</a>
+                                    <a class="nav-link" href="about.php"><i class="fa fa-universal-access"></i> Berkaitan Kami</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="<?= $func_todo ?>" <?= $confirmation_logout ?>><i class="fa fa-sign-out"></i> <?= $log ?></a>
@@ -325,11 +325,11 @@ if (isset($_GET['search'])) {
                                 <div class="infoma">
                                     <h3>Useful Link</h3>
                                     <ul class="fullink">
-                                        <li><a href="index.html">Home</a></li>
-                                        <li><a href="about.html">Search</a></li>
-                                        <li><a href="skating.html">Advance Search</a></li>
-                                        <li><a href="shop.html">About Us</a></li>
-                                        <li><a href="contact.html">Logout</a></li>
+                                        <li><a href="index.php">Home</a></li>
+                                        <li><a href="booking.php?simple">Search</a></li>
+                                        <li><a href="advance_booking.php?advance">Advance Search</a></li>
+                                        <li><a href="about.php">About Us</a></li>
+                                        <li><a href="auth/logout.php">Logout</a></li>
                                     </ul>
                                 </div>
                             </div>

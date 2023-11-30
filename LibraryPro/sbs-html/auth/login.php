@@ -22,11 +22,14 @@ if (isset($_POST["cmdlogin"])) {
     $teacher_sql = "SELECT * FROM `tblteachers` WHERE teachers_username='$username' AND teachers_Password='$password'";
     // Admin
     $admin_sql = "SELECT * FROM `tbllibrarians` WHERE librarians_uname='$username' AND librarians_password='$password'";
+    // Staff
+    $staff_sql = "SELECT * FROM `tblstaff` WHERE staff_uname='$username' AND staff_pwd='$password'";
 
     // Execute SQL Statement
     $res = mysqli_query($con, $sql);
     $teacher_res = mysqli_query($con, $teacher_sql);
     $admin_res = mysqli_query($con, $admin_sql);
+    $staff_res = mysqli_query($con, $staff_sql);
 
     // Check returning value in $res for validation
     if (mysqli_num_rows($res) > 0) {
@@ -47,6 +50,14 @@ if (isset($_POST["cmdlogin"])) {
         // Redirect to index.php
         echo "<script>window.location.href='../index.php';</script>";
         exit;
+    } elseif (mysqli_num_rows($staff_res) > 0) {
+        $validate = mysqli_fetch_assoc($staff_res);
+        // Create a session
+        $_SESSION["IDStaff"] = $validate["staff_ID"];
+        // Inform to the user
+        echo "<script>alert('Login Success');</script>";
+        // Redirect to index.php
+        echo "<script>window.location.href='../../../staff/staff_panel/index.php';</script>";
     } elseif (mysqli_num_rows($admin_res) > 0) {
         $validate = mysqli_fetch_assoc($admin_res);
         // Create a session
@@ -232,11 +243,11 @@ if (isset($_POST["cmdlogin"])) {
                                 <div class="infoma">
                                     <h3>Useful Link</h3>
                                     <ul class="fullink">
-                                        <li><a href="index.php">Home</a></li>
-                                        <li><a href="booking.php?simple">Search</a></li>
-                                        <li><a href="advance_booking.php?advance">Advance Search</a></li>
-                                        <li><a href="about_us.php">About Us</a></li>
-                                        <li><a href="auth/logout.php">Logout</a></li>
+                                        <li><a href="../index.php">Home</a></li>
+                                        <li><a href="../booking.php?simple">Search</a></li>
+                                        <li><a href="../advance_booking.php?advance">Advance Search</a></li>
+                                        <li><a href="../about.php">About Us</a></li>
+                                        <li><a href="logout.php">Logout</a></li>
                                     </ul>
                                 </div>
                             </div>
