@@ -48,6 +48,9 @@ if (isset($_SESSION["IDStud"])) {
 
 if (isset($_GET['book_ID'])) {
     $book_ID = $_GET['book_ID'];
+    $query = "SELECT * FROM tblbook WHERE book_ID = $book_ID";
+    $result = $con->query($query);
+    $row = $result->fetch_assoc();
 }
 
 if (isset($_GET['transc_ID'])) {
@@ -116,7 +119,7 @@ if (isset($_GET['transc_ID'])) {
                         </button>
                         <div class="collapse navbar-collapse" id="navbarsExample04">
                             <ul class="navbar-nav mr-auto">
-                                <li class="nav-item active">
+                                <li class="nav-item">
                                     <a class="nav-link" href="index.php"><i class="fa fa-home"></i> Home</a>
                                 </li>
                                 <li class="nav-item">
@@ -148,14 +151,24 @@ if (isset($_GET['transc_ID'])) {
     </div>
     <!-- end header -->
 
+    <!-- Breadcrumbs Start -->
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="index.php">Home</a></li>
+            <li class="breadcrumb-item"><a href="buku_saya.php">My Book</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Book Returning Process</li>
+        </ol>
+    </nav>
+    <!-- Breadcrumbs Ends -->
+
     <!-- Returning Book Start -->
     <div class="container_book">
         <form method="GET" action="return_process.php">
             <?php
-            $query = "SELECT * FROM tblbook WHERE book_ID = $book_ID";
+            $query = "SELECT * FROM tbltransaction WHERE transc_ID = '$transc_ID'";
             $result = $con->query($query);
             if ($result->num_rows > 0) {
-                while ($row = $result->fetch_assoc()) {
+                while ($returnRow = $result->fetch_assoc()) {
             ?>
                     <!-- Pilihan Buku Start -->
                     <div class="card_book_display mb-3">
@@ -165,19 +178,19 @@ if (isset($_GET['transc_ID'])) {
                             </div>
                             <div class="col-md-8">
                                 <div class="card-body">
-                                    <h2 class="card-title"><?= $row["book_title"] ?></h2>
+                                    <h2 class="card-title"><?= $returnRow["book_title"] ?></h2>
                                     <p class="bold-text">IC*:&nbsp;&nbsp;</p>
                                     <input type="text" name="txttID" class="form-control" value="<?= $transc_ID ?>" hidden>
                                     <div class="form-group">
-                                        <input type="number" name="txtIC" class="form-control" maxlength="12" pattern=".{12,}" placeholder="Nombor IC Anda" required>
+                                        <input type="number" name="txtIC" class="form-control" value="<?= $returnRow['user_ID'] ?>" readonly>
                                     </div>
                                     <p class="bold-text">Nama*:&nbsp;&nbsp;</p>
                                     <div class="form-group">
-                                        <input type="text" name="txtname" class="form-control" placeholder="Nama Anda" required>
+                                        <input type="text" name="txtname" class="form-control" value="<?= $returnRow['user_Name'] ?>" readonly>
                                     </div>
                                     <p class="bold-text">Nama Buku*:&nbsp;&nbsp;</p>
                                     <div class="form-group">
-                                        <input type="text" name="txtbname" class="form-control" placeholder="Judul Buku yang Anda Ingin Hantar" required>
+                                        <input type="text" name="txtbname" class="form-control" value="<?= $returnRow['book_title'] ?>" readonly>
                                     </div>
                                     <p class="bold-text">Keadaan Buku Tersebut*:&nbsp;&nbsp;</p>
                                     <div class="form-group">

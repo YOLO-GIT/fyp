@@ -115,7 +115,7 @@ if (isset($_GET['simple'])) {
                                 <li class="nav-item">
                                     <a class="nav-link" href="index.php"><i class="fa fa-home"></i> Home</a>
                                 </li>
-                                <li class="nav-item">
+                                <li class="nav-item active">
                                     <a class="nav-link" href="booking.php?simple"><i class="fa fa-search"></i> Carian</a>
                                 </li>
                                 <li class="nav-item">
@@ -276,7 +276,7 @@ if (isset($_GET['simple'])) {
                                         <td class="bold-text">Diskripsi:&nbsp;&nbsp;<?= $row["book_desc"] ?></td>
                                     </tr>
                                     <tr>
-                                        <td class='bold-text'>Status:&nbsp;&nbsp;<?= $row['book_status'] ?></td>
+                                        <td class='bold-text'>Book Condition:&nbsp;&nbsp;<?= $row['book_status'] ?></td>
                                     </tr>
                                     <?php
                                     $transc_name = "SELECT * FROM `tbltransaction` WHERE `book_ID` = '$row[book_ID]'";
@@ -316,24 +316,6 @@ if (isset($_GET['simple'])) {
         }
         ?>
         <!-- PHP Ends -->
-
-        <!-- Result Start -->
-        <form action="" method="GET" class="mt-5">
-            <!-- Result Show Start -->
-            <div class="input-group mb-3">
-                <select name="result_count" class="form-control">
-                    <option value="">-- Select Result Count --</option>
-                    <option value="5">5</option>
-                    <option value="10">10</option>
-                    <option value="15">15</option>
-                </select>
-                <button type="submit" class="btn btn-primary ml-2">
-                    Show Results
-                </button>
-            </div>
-            <!-- Result Show End -->
-        </form>
-        <!-- Result End -->
 
         <!-- Pagination Start -->
         <?php

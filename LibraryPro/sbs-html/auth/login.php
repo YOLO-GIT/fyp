@@ -195,10 +195,10 @@ if (isset($_POST["cmdlogin"])) {
                 </div>
                 <div class="col-md-12">
                     <div class="titlepage text_align_left">
-                        <h3>Not Register?</h3>
-                        <h3>Click <a href="register.php">here for registration</a></h3>
-                        <h3>Forgot Password?
-                            <a href="../forgot_pwd/forgotpwd.php" onclick="return confirm('Adakah betul anda tidak ingat katalaluan anda?');">
+                        <h3 style="color:black;">Not Register?</h3>
+                        <h3 style="color:black;">Click&nbsp;&nbsp;<a href="register.php" class="btn btn-primary">here for registration</a></h3>
+                        <h3 style="color:black;">Forgot Password?
+                            <a href="../forgot_pwd/forgotpwd.php" onclick="return confirm('Adakah betul anda tidak ingat katalaluan anda?');" class="btn btn-primary">
                                 Click Here
                             </a>
                         </h3>

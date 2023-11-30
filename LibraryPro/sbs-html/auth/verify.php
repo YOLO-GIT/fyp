@@ -160,9 +160,9 @@ if (isset($_GET['stud'])) {
     <!-- Breadcrumbs Start -->
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="index.php">Home</a></li>
-            <li class="breadcrumb-item"><a href="login.php">Login</a></li>
-            <li class="breadcrumb-item"><a href="<?= $link_register ?>"><?= $user_register ?></a></li>
+            <li class="breadcrumb-item">Home</li>
+            <li class="breadcrumb-item">Login</li>
+            <li class="breadcrumb-item"><?= $user_register ?></li>
             <li class="breadcrumb-item active" aria-current="page">Verification</li>
         </ol>
     </nav>

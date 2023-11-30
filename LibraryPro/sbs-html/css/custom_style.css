@@ -9,15 +9,11 @@
 }
 
 .custom-background h3 {
-     color: black;
-}
-
-.custom-background a:link {
-     color: green;
+     color: #fff;
 }
 
 .custom-background a:visited {
-     color: black;
+     color: #fff;
 }
 
 .custom-background a:hover {
@@ -90,15 +86,11 @@
 }
 
 .custom-background-reg h3 {
-     color: black;
-}
-
-.custom-background-reg a:link {
-     color: green;
+     color: #fff;
 }
 
 .custom-background-reg a:visited {
-     color: black;
+     color: #fff;
 }
 
 .custom-background-reg a:hover {
@@ -139,6 +131,31 @@
 }
 
 .main_form_reg .btn_reg:hover {
+     background: #8A2BE2;
+     color: #fff;
+     transition: ease-in all 0.5s;
+}
+
+.main_form_reg .btn_user {
+    font-size: 18px;
+    transition: ease-in all 0.5s;
+    text-align: center;
+    color: #fff;
+    background-color: #3e0bce;
+    text-transform: uppercase;
+    color: #fff;
+    width: 500px;
+    display: block;
+    margin-top: 10px !important;
+    margin-left: 50px;
+    font-weight: 600;
+    height: 53px;
+    border-radius: 10px;
+    padding: 13px 0;
+    box-shadow: 1px 3px 9px 3px black;
+}
+
+.main_form_reg .btn_user:hover {
      background: #8A2BE2;
      color: #fff;
      transition: ease-in all 0.5s;

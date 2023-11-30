@@ -123,6 +123,14 @@ if (isset($_SESSION["IDStud"]) || isset($_SESSION["IDTeachers"])) {
         </div>
         <div class="container">
             <div class="row custom-background-reg">
+                <div class="row">
+                    <div class="main_form_reg col-md-6">
+                        <a href="register.php"><button type="submit" class="btn btn_user">Student</button></a>
+                    </div>
+                    <div class="main_form_reg col-md-6">
+                        <a href="teacher_register.php"><button type="submit" class="btn btn_user">Teacher</button></a>
+                    </div>
+                </div>
                 <div class="col-md-12">
                     <form name="frmregisteration" class="main_form_reg" action="register_proses.php" method="get" onsubmit="return validated()">
                         <br><br>
@@ -171,17 +179,16 @@ if (isset($_SESSION["IDStud"]) || isset($_SESSION["IDTeachers"])) {
                                 <input type="checkbox" onclick="myFunction()">&nbsp;&nbsp;<label class="show_style">Show Password</label>
                             </div>
                             <!-- SUBMIT -->
-                            <div class="col-md-12">
+                            <div class="col-md-12 mt-5 mb-5">
                                 <button type="submit" class="btn_reg" name="cmdregister">Register</button>
                             </div>
                         </div>
                     </form>
-                </div>
-                <div class="col-md-12">
-                    <div class="titlepage text_align_left">
-                        <h3>Already Register?</h3>
-                        <h3>Click <a href="login.php">here for login</a></h3>
-                        <h3>Click <a href="teacher_register.php">here for Teacher</a></h3>
+                    <div class="col-md-12">
+                        <div class="titlepage text_align_left">
+                            <h3 style="color:black;">Already Login?</h3>
+                            <h3 style="color:black;">Click&nbsp;&nbsp;<a href="login.php" class="btn btn-primary">here for login</a></h3>
+                        </div>
                     </div>
                 </div>
             </div>

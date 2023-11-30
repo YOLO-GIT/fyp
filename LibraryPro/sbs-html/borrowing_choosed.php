@@ -275,11 +275,12 @@ if (isset($_GET['search'])) {
                                 </div>
                                 <p class="bold-text">Start Tarikh Pinjam:&nbsp;&nbsp;</p>
                                 <div class="alert alert-primary">
-                                    <input class="form-control" type="date" name="dtstartbooking" required>
+                                    <input class="form-control" type="date" name="dtstartbooking" value="<?php echo date('Y-m-d'); ?>" readonly>
                                 </div>
                                 <p class="bold-text">End Tarikh Pinjam:&nbsp;&nbsp;</p>
                                 <div class="alert alert-primary">
-                                    <input class="form-control" type="date" name="dtendbooking" required>
+                                    <input class="form-control" type="date" name="dtendbooking" value="<?php echo date('Y-m-d', strtotime('+7 days')); ?>" readonly>
+                                    <small class="form-text text-muted">You should return the book after a week has passed.</small>
                                 </div>
                             </div>
                             <br>

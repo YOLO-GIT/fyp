@@ -118,7 +118,7 @@ if (isset($_GET['advance'])) {
                                 <li class="nav-item">
                                     <a class="nav-link" href="booking.php?simple"><i class="fa fa-search"></i> Carian</a>
                                 </li>
-                                <li class="nav-item">
+                                <li class="nav-item active">
                                     <a class="nav-link" href="advance_booking.php?advance"><i class="fa fa-search-plus"></i> Carian Terperinci</a>
                                 </li>
                                 <li class="nav-item">
@@ -254,6 +254,8 @@ if (isset($_GET['advance'])) {
         $filterlanguage = isset($_GET['language']) ? $_GET['language'] : '';
         $filterilustrasi = isset($_GET['illustration']) ? $_GET['illustration'] : '';
 
+        $resultsPerPage = isset($_GET['result_count']) ? $_GET['result_count'] : 5;
+
         // Sorting
         $sort_option = isset($_GET['sort_alphabet']) ? $_GET['sort_alphabet'] : '';
 
@@ -335,6 +337,15 @@ if (isset($_GET['advance'])) {
             $query .= " ORDER BY `$order_column` $order_direction";
         }
 
+        // Pagination logic
+        $page = isset($_GET['page']) ? $_GET['page'] : 1;
+        $start = ($page - 1) * $resultsPerPage;
+
+        $queryCount = "SELECT COUNT(*) as total FROM tblbook";
+        $totalResult = $con->query($queryCount)->fetch_assoc()['total'];
+        $totalPages = ceil($totalResult / $resultsPerPage);
+
+        $query .= " LIMIT $start, $resultsPerPage";
         $result = $con->query($query);
 
         if ($result->num_rows > 0) {
@@ -369,7 +380,7 @@ if (isset($_GET['advance'])) {
                                         <td class="bold-text">Diskripsi:&nbsp;&nbsp;<?= $row["book_desc"] ?></td>
                                     </tr>
                                     <tr>
-                                        <td class='bold-text'>Status:&nbsp;&nbsp;<?= $row['book_status'] ?></td>
+                                        <td class='bold-text'>Book Condition:&nbsp;&nbsp;<?= $row['book_status'] ?></td>
                                     </tr>
                                     <?php
                                     $transc_name = "SELECT * FROM `tbltransaction` WHERE `book_ID` = '$row[book_ID]'";
@@ -409,6 +420,32 @@ if (isset($_GET['advance'])) {
         }
         ?>
         <!-- PHP Ends -->
+
+        <!-- Pagination Start -->
+        <?php
+        echo '<div class="pagination">';
+        for ($i = 1; $i <= $totalPages; $i++) {
+            if ($i == $page) {
+                echo "<span>$i</span>";
+            } else {
+                $params = array('page' => $i);
+
+                if (isset($_GET['result_count'])) {
+                    $params['result_count'] = $_GET['result_count'];
+                }
+
+                if (isset($_GET['sort_alphabet'])) {
+                    $params['sort_alphabet'] = $_GET['sort_alphabet'];
+                }
+
+                $url = '?' . http_build_query($params);
+
+                echo "<a href='$url'>$i</a>";
+            }
+        }
+        echo '</div>';
+        ?>
+        <!-- Pagination End -->
     </div>
     <!-- Booking End -->
 

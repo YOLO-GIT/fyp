@@ -156,12 +156,8 @@ if (isset($_SESSION["IDStud"])) {
             <div class="input-group mb-3">
                 <select name="sort_alphabet" class="form-control">
                     <option value="">Show All</option>
-                    <option value="Borrowing" <?php if (isset($_GET['sort_alphabet']) && $_GET['sort_alphabet'] == "Borrowing") {
-                                                    echo "selected";
-                                                } ?>>Borrowing</option>
-                    <option value="Booking" <?php if (isset($_GET['sort_alphabet']) && $_GET['sort_alphabet'] == "Booking") {
-                                                echo "selected";
-                                            } ?>>Booking</option>
+                    <option value="Borrowing">Borrowing</option>
+                    <option value="Booking">Booking</option>
                 </select>
                 <button type="submit" class="btn btn-primary ml-2">
                     Sort

@@ -340,42 +340,7 @@ if (isset($_SESSION["IDStud"])) {
                                         <div class="row d_flex">
                                             <div class="col-md-3">
                                                 <div class="test_box text_align_center">
-                                                    <span><img src="images/test1.png" alt="#" /></span>
-                                                    <h4>Jone Lo</h4>
-                                                    <img class="img_responsive" src="images/te.png" alt="#" />
-                                                    <p>humour, or randomised words which don't look even slightly believable. If you
-                                                        are</p>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="test_box white_bg text_align_center">
-                                                    <span><img src="images/test2.png" alt="#" /></span>
-                                                    <h4>Michale</h4>
-                                                    <img class="img_responsive" src="images/te2.png" alt="#" />
-                                                    <p>humour, or randomised words which don't look even slightly believable. If you
-                                                        are going to use a passage of Lorem Ipsum, you need to be sure</p>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-3">
-                                                <div class="test_box text_align_center">
-                                                    <span><img src="images/test3.png" alt="#" /></span>
-                                                    <h4>Disol</h4>
-                                                    <img class="img_responsive" src="images/te.png" alt="#" />
-                                                    <p>humour, or randomised words which don't look even slightly believable. If you
-                                                        are</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="carousel-item">
-                                <div class="container-fluid">
-                                    <div class="carousel-caption relative">
-                                        <div class="row d_flex">
-                                            <div class="col-md-3">
-                                                <div class="test_box text_align_center">
-                                                    <span><img src="images/test2.png" alt="#" /></span>
+                                                    <span><img src="images/gmbr_client.jpeg" alt="#" /></span>
                                                     <h4>Maizalina</h4>
                                                     <img class="img_responsive" src="images/te.png" alt="#" />
                                                     <p>A very good app that can be used with any device, anywhere.</p>
@@ -383,20 +348,18 @@ if (isset($_SESSION["IDStud"])) {
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="test_box white_bg text_align_center">
-                                                    <span><img src="images/test3.png" alt="#" /></span>
-                                                    <h4>Disol</h4>
+                                                    <span><img src="images/gmbr_client.jpeg" alt="#" /></span>
+                                                    <h4>Maizalina</h4>
                                                     <img class="img_responsive" src="images/te2.png" alt="#" />
-                                                    <p> humour, or randomised words which don't look even slightly believable. If you
-                                                        are going to use a passage of Lorem Ipsum, you need to be sure</p>
+                                                    <p>A very good app that can be used with any device, anywhere.</p>
                                                 </div>
                                             </div>
                                             <div class="col-md-3">
                                                 <div class="test_box text_align_center">
-                                                    <span><img src="images/test1.png" alt="#" /></span>
-                                                    <h4>Jone Lo</h4>
+                                                    <span><img src="images/gmbr_client.jpeg" alt="#" /></span>
+                                                    <h4>Maizalina</h4>
                                                     <img class="img_responsive" src="images/te.png" alt="#" />
-                                                    <p>humour, or randomised words which don't look even slightly believable. If you
-                                                        are</p>
+                                                    <p>A very good app that can be used with any device, anywhere.</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -409,29 +372,58 @@ if (isset($_SESSION["IDStud"])) {
                                         <div class="row d_flex">
                                             <div class="col-md-3">
                                                 <div class="test_box text_align_center">
-                                                    <span><img src="images/test3.png" alt="#" /></span>
-                                                    <h4>Disol</h4>
+                                                    <span><img src="images/gmbr_client.jpeg" alt="#" /></span>
+                                                    <h4>Maizalina</h4>
                                                     <img class="img_responsive" src="images/te.png" alt="#" />
-                                                    <p>humour, or randomised words which don't look even slightly believable. If you
-                                                        are</p>
+                                                    <p>A very good app that can be used with any device, anywhere.</p>
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
-                                                <div class="test_box  white_bg text_align_center">
-                                                    <span><img src="images/test1.png" alt="#" /></span>
-                                                    <h4>Jone Lo</h4>
+                                                <div class="test_box white_bg text_align_center">
+                                                    <span><img src="images/gmbr_client.jpeg" alt="#" /></span>
+                                                    <h4>Maizalina</h4>
                                                     <img class="img_responsive" src="images/te2.png" alt="#" />
-                                                    <p> humour, or randomised words which don't look even slightly believable. If you
-                                                        are going to use a passage of Lorem Ipsum, you need to be sure</p>
+                                                    <p> A very good app that can be used with any device, anywhere.</p>
                                                 </div>
                                             </div>
                                             <div class="col-md-3">
                                                 <div class="test_box text_align_center">
-                                                    <span><img src="images/test2.png" alt="#" /></span>
-                                                    <h4>Michale</h4>
+                                                    <span><img src="images/gmbr_client.jpeg" alt="#" /></span>
+                                                    <h4>Maizalina Lo</h4>
                                                     <img class="img_responsive" src="images/te.png" alt="#" />
-                                                    <p>humour, or randomised words which don't look even slightly believable. If you
-                                                        are</p>
+                                                    <p>A very good app that can be used with any device, anywhere.e</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="carousel-item">
+                                <div class="container-fluid">
+                                    <div class="carousel-caption relative">
+                                        <div class="row d_flex">
+                                            <div class="col-md-3">
+                                                <div class="test_box text_align_center">
+                                                    <span><img src="images/gmbr_client.jpeg" alt="#" /></span>
+                                                    <h4>Maizalina</h4>
+                                                    <img class="img_responsive" src="images/te.png" alt="#" />
+                                                    <p>A very good app that can be used with any device, anywhere.</p>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="test_box  white_bg text_align_center">
+                                                    <span><img src="images/gmbr_client.jpeg" alt="#" /></span>
+                                                    <h4>Maizalina</h4>
+                                                    <img class="img_responsive" src="images/te2.png" alt="#" />
+                                                    <p> A very good app that can be used with any device, anywhere.</p>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="test_box text_align_center">
+                                                    <span><img src="images/gmbr_client.jpeg" alt="#" /></span>
+                                                    <h4>Maizalina</h4>
+                                                    <img class="img_responsive" src="images/te.png" alt="#" />
+                                                    <p>A very good app that can be used with any device, anywhere.</p>
                                                 </div>
                                             </div>
                                         </div>

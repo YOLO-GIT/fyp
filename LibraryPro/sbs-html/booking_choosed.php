@@ -272,7 +272,7 @@ if (isset($_GET['search'])) {
                                 </div>
                                 <p class="bold-text">Start Tarikh Booking:&nbsp;&nbsp;</p>
                                 <div class="alert alert-primary">
-                                    <input class="form-control" type="date" name="dtstartbooking" value="<?php echo date("Y-m-d"); ?>" required>
+                                    <input class="form-control" type="date" name="dtstartbooking" value="<?php echo date('Y-m-d'); ?>" readonly>
                                 </div>
                                 <p class="bold-text">Status:&nbsp;&nbsp;</p>
                                 <div class="alert alert-primary">
