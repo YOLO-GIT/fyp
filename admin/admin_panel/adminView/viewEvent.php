@@ -137,7 +137,7 @@ include_once "../config/dbconnect.php";
                                 <form enctype='multipart/form-data' name="frmAddBooks" class="adding_section" action="../controller/addEventController.php" method="post">
                                     <div class="form-group">
                                         <label for="title">Event's Name:*</label>
-                                        <input type="text" name="txttitle" class="form-control" placeholder="Event's Name" maxlength="50" required>
+                                        <input type="text" name="txttitle" class="form-control" placeholder="Event's Name (Max 50 Word)" maxlength="50" required>
                                     </div>
                                     <div class="form-group">
                                         <label for="author">Event's Description:*</label>
