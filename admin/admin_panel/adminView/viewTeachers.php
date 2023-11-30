@@ -45,7 +45,6 @@ include_once "../config/dbconnect.php";
                         <tr>
                             <th class="text-center">ID</th>
                             <th class="text-center">Name</th>
-                            <th class="text-center">Role</th>
                             <th class="text-center">Username</th>
                             <th class="text-center">Date Joined</th>
                             <th class="text-center">Action</th>

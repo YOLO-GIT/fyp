@@ -63,7 +63,7 @@ include_once "../config/dbconnect.php";
               <th class="text-center">Judul Buku</th>
               <th class="text-center">Pengarang</th>
               <th class="text-center">Nama Penerbit</th>
-              <th class="text-center">ISBN/ISSN</th>
+              <th class="text-center">ISBN</th>
               <th class="text-center">Dewey Buku</th>
               <th class="text-center">Tarikh</th>
               <th class="text-center">Mengemaskini</th>
@@ -257,12 +257,12 @@ include_once "../config/dbconnect.php";
                     <input type="text" name="txtmatter3" class="form-control" placeholder="Tajuk Perkara 3">
                   </div>
                   <div class="form-group">
-                    <label for="status">Status Buku:*</label>
+                    <label for="status">Book Condition:*</label>
                     <select name="cboistatus" class="form-control" required>
                       <option value="">Sila Pilih </option>
-                      <option value="Ada">Ada</option>
-                      <option value="Rosak">Rosak</option>
-                      <option value="Lupus">Lupus</option>
+                      <option value="Good">Good</option>
+                      <option value="Normal">Normal</option>
+                      <option value="Broken">Broken</option>
                     </select>
                   </div>
                   <div class="form-group">
