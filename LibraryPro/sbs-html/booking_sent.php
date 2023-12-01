@@ -38,6 +38,11 @@ $check_user_query = "SELECT * FROM tbltransaction WHERE user_ID='$user_ID' AND i
 $check_user = mysqli_query($con, $check_user_query);
 // TO CHECK USER ID END
 
+// NIH JIM UPDATE
+$check_borrow_query = "SELECT * FROM tbltransaction WHERE user_ID='$user_ID' AND isBooked = 0";
+$check_borrow = mysqli_query($con, $check_borrow_query);
+// NIH JIM UPDATE
+
 // TO CHECK TEACHER START
 $check_teacher_query = "SELECT * FROM tblteachers WHERE teachers_ID='$user_ID'";
 $check_teacher = mysqli_query($con, $check_teacher_query);
@@ -47,6 +52,14 @@ if (mysqli_num_rows($check_teacher) > 0) {
     if (mysqli_num_rows($check_user) >= 3) {
         // Validation if the content is the same
         echo "<script>alert('Anda hanya boleh booking tiga buku sahaja');</script>";
+        // Close the DB to ensure it will not be updated.
+        mysqli_close($con);
+
+        echo "<script>window.location.href='booking.php?simple';</script>";
+    } elseif (mysqli_num_rows($check_borrow) > 0) {
+        // NIH JIM
+        // Validation if the content is the same
+        echo "<script>alert('You have already borrowing this book.');</script>";
         // Close the DB to ensure it will not be updated.
         mysqli_close($con);
 
@@ -108,6 +121,14 @@ if (mysqli_num_rows($check_teacher) > 0) {
     if (mysqli_num_rows($check_user) > 0) {
         // Validation if the content is the same
         echo "<script>alert('Anda hanya boleh booking satu buku sahaja');</script>";
+        // Close the DB to ensure it will not be updated.
+        mysqli_close($con);
+
+        echo "<script>window.location.href='booking.php?simple';</script>";
+    } elseif (mysqli_num_rows($check_borrow) > 0) {
+        // NIH JIM
+        // Validation if the content is the same
+        echo "<script>alert('You have already borrowing this book.');</script>";
         // Close the DB to ensure it will not be updated.
         mysqli_close($con);
 
