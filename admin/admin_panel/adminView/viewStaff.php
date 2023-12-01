@@ -119,46 +119,46 @@ include_once "../config/dbconnect.php";
                 echo '</div>';
                 ?>
                 <!-- PHP Ends -->
-            </div>
-            <!-- Staffs End -->
+                <!-- Staffs End -->
 
-            <!-- Trigger the modal with a button -->
-            <button type="button" class="btn btn-secondary ml-auto" style="height:40px;" data-toggle="modal" data-target="#myModal">
-                Add Staff
-            </button>
+                <!-- Trigger the modal with a button -->
+                <button type="button" class="btn btn-secondary ml-auto" style="height:40px;" data-toggle="modal" data-target="#myModal">
+                    Add Staff
+                </button>
 
-            <!-- Add Staff Starts -->
-            <div class="modal fade" id="myModal" role="dialog">
-                <div class="modal-dialog">
-                    <!-- Modal content-->
-                    <div class="modal-content">
-                        <div class="modal-header" style="background-color: antiquewhite;">
-                            <h4 class="modal-title">Staff Baru</h4>
-                            <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        </div>
-                        <div class="modal-body">
-                            <form enctype='multipart/form-data' name="frmAddStaff" class="adding_section" action="../controller/addStaffController.php" method="post">
-                                <div class=" form-group">
-                                    <label for="id">Staff IC:*</label>
-                                    <input type="text" name="txtic" class="form-control" placeholder="Your IC" maxlength="12" pattern=".{12,}" required autocomplete="off">
-                                </div>
-                                <div class="form-group">
-                                    <label for="title">Staff Name:*</label>
-                                    <input type="text" name="txtname" class="form-control" placeholder="Your name (Max 25 words)" maxlength="25" required autocomplete="off">
-                                </div>
-                                <div class="form-group">
-                                    <label for="author">Staff Username:*</label>
-                                    <input type="username" name="txtuname" class="form-control" placeholder="Your username (Max 10 word)" maxlength="10" required autocomplete="off">
-                                </div>
-                                <div class="form-group">
-                                    <label for="title">Password:*</label>
-                                    <input type="password" name="txtpwd" class="form-control" placeholder="Your password (Max 6 words)" maxlength="6" pattern=".{6,}" id="myInputPWD" required autocomplete="off">
-                                    <input type="checkbox" onclick="myFunction()">&nbsp;&nbsp;<label class="show_style mt-3">Show Password</label>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="submit" name="cmdadd" class="btn btn-primary">Save</button>
-                                </div>
-                            </form>
+                <!-- Add Staff Starts -->
+                <div class="modal fade" id="myModal" role="dialog">
+                    <div class="modal-dialog">
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <div class="modal-header" style="background-color: antiquewhite;">
+                                <h4 class="modal-title">Staff Baru</h4>
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            </div>
+                            <div class="modal-body">
+                                <form enctype='multipart/form-data' name="frmAddStaff" class="adding_section" action="../controller/addStaffController.php" method="post">
+                                    <div class=" form-group">
+                                        <label for="id">Staff IC:*</label>
+                                        <input type="text" name="txtic" class="form-control" placeholder="Your IC" maxlength="12" pattern=".{12,}" required autocomplete="off">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="title">Staff Name:*</label>
+                                        <input type="text" name="txtname" class="form-control" placeholder="Your name (Max 25 words)" maxlength="25" required autocomplete="off">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="author">Staff Username:*</label>
+                                        <input type="username" name="txtuname" class="form-control" placeholder="Your username (Max 10 word)" maxlength="10" required autocomplete="off">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="title">Password:*</label>
+                                        <input type="password" name="txtpwd" class="form-control" placeholder="Your password (Max 6 words)" maxlength="6" pattern=".{6,}" id="myInputPWD" required autocomplete="off">
+                                        <input type="checkbox" onclick="myFunction()">&nbsp;&nbsp;<label class="show_style mt-3">Show Password</label>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="submit" name="cmdadd" class="btn btn-primary">Save</button>
+                                    </div>
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>
