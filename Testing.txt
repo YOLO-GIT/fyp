@@ -8,6 +8,22 @@ username: user123
 email: alexandriad431@gmail.com
 password: Sufi12345
 
+(Student)
+IC: 021112145679
+First Name: Ali
+Last Name: Abu
+username: user456
+email: alexandriad431@gmail.com
+password: ali345678
+
+(Student)
+IC: 040425037891
+First Name: Danial
+Last Name: Ali
+username: user789
+email: alexandriad431@gmail.com
+password: D2345ali9
+
 (Teachers)
 IC: 031022140445
 First Name: Danial
@@ -15,6 +31,8 @@ Last Name: Sufi
 username: abu123
 email: alexandriad431@gmail.com
 password: teacher12
+
+----------------------------------------------------------
 
 When to use GET and POST:
 One way to get rid of this error message is to make your form use GET instead of POST. Just keep in mind that this is not always an appropriate solution (read below).
@@ -68,4 +86,17 @@ if (isset($_GET['invalid_login'])) {
     $confirmation_logout = "onclick='return confirm(\"Adakah anda ingin $log?\");'";
 
 <a class="nav-link" href="<?= $func_todo ?>" <?= $confirmation_logout ?>><i class="fa fa-sign-out"></i> <?= $log ?></a>
+
+FB: https://www.facebook.com/semted/?locale=ms_MY
+IG: https://www.instagram.com/smktokdor/
+Gmail: smktd.ppdbesut@gmail.com
+No. Phone: 09-694 5011
+Map: SEK MEN KEB TOK DOR, Kampung Tok DOR, Jerteh
+Kampung Tok DOR, Jerteh
+
+--------------------------------------------------
+
+id21576521_root
+LibraryPro1234+5
+id21576521_dbopac
 
