@@ -65,8 +65,8 @@ if (isset($_GET["cmdregister"])) {
         $verificationCode = "S" . bin2hex(random_bytes(3));
 
         // Store the verification code in the database
-        $sql_register = "INSERT INTO `tblstudent`(`stud_ID`, `stud_roles`, `stud_Name`, `stud_username`, `stud_Class`, `email`, `stud_pwd`, `date`, `verification_code`) 
-        VALUES ('$ic','$roles','$clean_name','$uname','$kelas','$email','$password',NOW(), '$verificationCode')";
+        $sql_register = "INSERT INTO `tblstudent`(`stud_ID`, `stud_roles`, `stud_Name`, `stud_username`, `stud_Class`, `email`, `stud_pwd`, `date`, `verification_code`, `is_verified`, `reset_token`, `book_count`, `bio`, `birthday`, `negeri`, `report`) 
+        VALUES ('$ic','$roles','$clean_name','$uname','$kelas','$email','$password',NOW(), '$verificationCode',0,'xxxxxx',0,'xxxxxx',NOW(),'xxxxx','xxxxxx')";
 
         //Execute SQL Login Statement
         mysqli_query($con, $sql_register);

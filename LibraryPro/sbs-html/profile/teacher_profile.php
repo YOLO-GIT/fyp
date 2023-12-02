@@ -59,7 +59,7 @@ if (!isset($_SESSION["IDTeachers"])) {
                                                 <input type="text" class="form-control mb-1" name="txtTid" value="<?= $row['teachers_ID'] ?>" readonly>
                                             </div>
                                             <div class="form-group">
-                                                <label class="form-label">Nama</label>
+                                                <label class="form-label">Name</label>
                                                 <input type="text" class="form-control" name="txtTname" value="<?= $row['teachers_Name'] ?>">
                                             </div>
                                             <div class="form-group">
@@ -71,11 +71,11 @@ if (!isset($_SESSION["IDTeachers"])) {
                                                 <input type="text" class="form-control mb-1" name="txtTuname" value="<?= $row['teachers_username'] ?>">
                                             </div>
                                             <div class="form-group">
-                                                <label class="form-label">Tarikh Masuk</label>
+                                                <label class="form-label">Date Joined</label>
                                                 <input type="text" class="form-control mb-1" value="<?= $row['date_teachers'] ?>" readonly>
                                             </div>
                                             <div class="form-group">
-                                                <label class="form-label">Booking Count:</label>
+                                                <label class="form-label">Borrowing Count:</label>
                                                 <input type="text" class="form-control mb-1" value="<?= $row['book_count'] ?>" readonly>
                                             </div>
                                             <div class="alert alert-success mt-3">
@@ -86,7 +86,7 @@ if (!isset($_SESSION["IDTeachers"])) {
                                             echo "No data found for this teacher.";
                                         }
                                         ?>
-                                        <button class="btn btn-primary" name="cmdTsave" onclick="return confirm('Adakah anda pasti untuk mengemaskini info anda?');">Simpan</button>
+                                        <button class="btn btn-primary" name="cmdTsave" onclick="return confirm('Are you sure you want to update your profile?');">Submit</button>
                                     </div>
                                 </form>
                             </div>
@@ -96,17 +96,17 @@ if (!isset($_SESSION["IDTeachers"])) {
                                     <form method="get" action="change_pwd.php">
                                         <div class="form-group">
                                             <label class="form-label">Katalaluan Kini</label>
-                                            <input type="password" class="form-control" name="current_passwordT" required maxlength="9" placeholder="Sila letak katalaluan anda.">
+                                            <input type="password" class="form-control" name="current_passwordT" required maxlength="9" placeholder="Please input your current password.">
                                         </div>
                                         <div class="form-group">
                                             <label class="form-label">Katalaluan Baharu</label>
-                                            <input type="password" class="form-control" name="new_passwordT" required maxlength="9" placeholder="Sila letak katalaluan baru anda.">
+                                            <input type="password" class="form-control" name="new_passwordT" required maxlength="9" placeholder="Please input your new password.">
                                         </div>
                                         <div class="form-group">
                                             <label class="form-label">Ulang Katalaluan Baharu</label>
-                                            <input type="password" class="form-control" name="repeat_new_passwordT" required maxlength="9" placeholder="Sila letak semula katalaluan baru anda.">
+                                            <input type="password" class="form-control" name="repeat_new_passwordT" required maxlength="9" placeholder="Please confirm your password.">
                                         </div>
-                                        <button class="btn btn-primary" name="cmdchangeT" onclick="return confirm('Adakah anda pasti untuk mengemaskini katalaluan anda?');">Simpan</button>
+                                        <button class="btn btn-primary" name="cmdchangeT" onclick="return confirm('Are you sure you want to update your password?');">Submit</button>
                                     </form>
                                 </div>
                             </div>
@@ -127,14 +127,14 @@ if (!isset($_SESSION["IDTeachers"])) {
                                             </div>
                                             <div class="form-group">
                                                 <label class="form-label">Bio</label>
-                                                <textarea class="form-control" rows="5" name="Tprofile_bio" placeholder="Sila tulis bio anda. (50 patah perkataan sahaja)" maxlength="50"><?= $row['bio'] ?></textarea>
+                                                <textarea class="form-control" rows="5" name="Tprofile_bio" maxlength="50"><?= $row['bio'] ?></textarea>
                                             </div>
                                             <div class="form-group">
-                                                <label class="form-label">Tarikh Lahir</label>
+                                                <label class="form-label">Date of Birth</label>
                                                 <input type="date" class="form-control" name="Tprofile_bday" value="<?= $row['birthday'] ?>">
                                             </div>
                                             <div class="form-group">
-                                                <label class="form-label">Negeri</label>
+                                                <label class="form-label">State</label>
                                                 <select class="custom-select" name="Tcbonegeri" value="<?= $row['negeri'] ?>">
                                                     <option value="Kelantan">Kelantan</option>
                                                     <option value="Terengganu" selected>Terengganu</option>
@@ -143,7 +143,7 @@ if (!isset($_SESSION["IDTeachers"])) {
                                                     <option value="Johor">Johor</option>
                                                 </select>
                                             </div>
-                                            <button class="btn btn-primary" name="Tcmdprofile" onclick="return confirm('Adakah anda pasti untuk mengemaskini profil anda?');">Simpan</button>
+                                            <button class="btn btn-primary" name="Tcmdprofile" onclick="return confirm('Are you sure you want to update your info?');">Submit</button>
                                         </form>
                                     <?php
                                     }
@@ -166,10 +166,10 @@ if (!isset($_SESSION["IDTeachers"])) {
                                                 <input type="text" class="form-control" name="Treport_id" value="<?= $teachers_ID ?>">
                                             </div>
                                             <div class="form-group">
-                                                <label class="form-label">Apakah yang anda ingin laporkan?</label>
-                                                <textarea class="form-control" rows="5" name="Ttxtreport" placeholder="Sila tulis masalah yang anda hadapi." required></textarea>
+                                                <label class="form-label">What kind of report that you want to make?</label>
+                                                <textarea class="form-control" rows="5" name="Ttxtreport" placeholder="Please inform any report that you want to apply." required></textarea>
                                             </div>
-                                            <button class="btn btn-primary" name="Tcmdreport">Simpan</button>
+                                            <button class="btn btn-primary" name="Tcmdreport">Submit</button>
                                         </form>
                                     <?php
                                     }
@@ -180,16 +180,10 @@ if (!isset($_SESSION["IDTeachers"])) {
                             <div class="tab-pane fade" id="account-terms">
                                 <div class="card-body pb-2">
                                     <div class="form-control">
-                                        <label class="alert alert-primary bold-text">Terma dan kondisi</label>
+                                        <label class="alert alert-primary bold-text">Terms and Condition</label>
                                     </div>
                                     <label class="form-control">
-                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia,
-                                        molestiae quas vel sint commodi repudiandae consequuntur voluptatum laborum
-                                        numquam blanditiis harum quisquam eius sed odit fugiat iusto fuga praesentium
-                                        optio, eaque rerum! Provident similique accusantium nemo autem. Veritatis
-                                        obcaecati tenetur iure eius earum ut molestias architecto voluptate aliquam
-                                        nihil, eveniet aliquid culpa officia aut! Impedit sit sunt quaerat, odit,
-                                        tenetur error, harum nesciunt ipsum debitis quas aliquid. Reprehenderit,
+                                        Coming Soon.
                                     </label>
                                 </div>
                             </div>

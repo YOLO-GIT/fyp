@@ -61,24 +61,24 @@ if (isset($_GET['cmdsave'])) {
         // Close the DB to ensure it will not updated.
         mysqli_close($con);
         // Sending back to the Profile Panel.
-        echo "<script>window.location.href='./profile.php';</script>";
+        echo "<script>window.location.href='teacher_profile.php';</script>";
     } elseif ($Tuname == "" || $Tuname == null) {
         // Validation if the content is same
         echo "<script>alert('Sila jangan biar kosong pada username anda.');</script>";
         // Close the DB to ensure it will not updated.
         mysqli_close($con);
         // Sending back to the Profile Panel.
-        echo "<script>window.location.href='./profile.php';</script>";
+        echo "<script>window.location.href='teacher_profile.php';</script>";
     } else {
         // Assuming you have a users table, replace 'users' with your table name
         $sql = "UPDATE tblteachers SET teachers_Name = '$Tname', teachers_username = '$Tuname' WHERE teachers_ID = '$Tid'";
 
         if ($con->query($sql) === TRUE) {
             echo "<script>alert('Info anda berjaya diubah.')</script>";
-            echo "<script>window.location.href='./profile.php';</script>";
+            echo "<script>window.location.href='teacher_profile.php';</script>";
         } else {
             echo "<script>alert('Info anda tidak berjaya diubah.')</script>" . $con->error;
-            echo "<script>window.location.href='./profile.php';</script>";
+            echo "<script>window.location.href='teacher_profile.php';</script>";
         }
     }
 }

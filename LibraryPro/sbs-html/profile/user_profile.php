@@ -39,10 +39,10 @@ elseif (isset($_GET['Tcmdprofile'])) {
 
     if (mysqli_query($con, $sql_profile)) {
         echo "<script>alert('Profil anda sudah dikemaskini.')</script>";
-        echo "<script>window.location.href='./profile.php';</script>";
+        echo "<script>window.location.href='teacher_profile.php';</script>";
     } else {
         echo "<script>alert('Ada masalah semasa mengemaskini data anda.')</script>";
-        echo "<script>window.location.href='./profile.php';</script>";
+        echo "<script>window.location.href='teacher_profile.php';</script>";
     }
 }
 
@@ -74,15 +74,15 @@ elseif (isset($_GET['Tcmdreport'])) {
     $teachers_ID = $_GET['Treport_id'];
     $Treport = $_GET['Ttxtreport'];
 
-    $sql_report = "UPDATE `tblteachers` 
-    SET `report`='$Treport' WHERE `teachers_ID` = '$teachers_ID'";
+    $sql_report = "INSERT INTO `tblreport`(`report_ID`, `users_ID`, `report_desc`, `report_date`) 
+    VALUES ('$report_ID','$stud_ID','$report',NOW())";
 
     if (mysqli_query($con, $sql_report)) {
         echo "<script>alert('Laporan anda sudah dihantar.')</script>";
-        echo "<script>window.location.href='./profile.php';</script>";
+        echo "<script>window.location.href='teacher_profile.php';</script>";
     } else {
         echo "<script>alert('Ada masalah semasa menghantar laporan anda.')</script>";
-        echo "<script>window.location.href='./profile.php';</script>";
+        echo "<script>window.location.href='teacher_profile.php';</script>";
     }
 }
 

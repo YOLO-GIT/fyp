@@ -59,7 +59,7 @@ if (!isset($_SESSION["IDStud"])) {
                                                 <input type="text" class="form-control mb-1" name="txtID" value="<?= $row['stud_ID'] ?>" readonly>
                                             </div>
                                             <div class="form-group">
-                                                <label class="form-label">Nama</label>
+                                                <label class="form-label">Name</label>
                                                 <input type="text" class="form-control" name="txtname" value="<?= $row['stud_Name'] ?>">
                                             </div>
                                             <div class="form-group">
@@ -67,7 +67,7 @@ if (!isset($_SESSION["IDStud"])) {
                                                 <input type="text" class="form-control" name="txtrole" value="<?= $row['stud_roles'] ?>" readonly>
                                             </div>
                                             <div class="form-group">
-                                                <label class="form-label">Kelas</label>
+                                                <label class="form-label">Class</label>
                                                 <input type="text" class="form-control mb-1" name="txtkelas" value="<?= $row['stud_Class'] ?>">
                                             </div>
                                             <div class="form-group">
@@ -75,7 +75,7 @@ if (!isset($_SESSION["IDStud"])) {
                                                 <input type="text" class="form-control mb-1" name="txtusername" value="<?= $row['stud_username'] ?>" readonly>
                                             </div>
                                             <div class="form-group">
-                                                <label class="form-label">Tarikh Masuk</label>
+                                                <label class="form-label">Date Joined</label>
                                                 <input type="text" class="form-control mb-1" value="<?= $row['date'] ?>" readonly>
                                             </div>
                                             <div class="form-group">
@@ -90,7 +90,7 @@ if (!isset($_SESSION["IDStud"])) {
                                             echo "No data found for this student.";
                                         }
                                         ?>
-                                        <button class="btn btn-primary" name="cmdsave" onclick="return confirm('Adakah anda pasti untuk mengemaskini info anda?');">Simpan</button>
+                                        <button class="btn btn-primary" name="cmdsave" onclick="return confirm('Are you sure you want to update your profile?');">Submit</button>
                                     </div>
                                 </form>
                             </div>
@@ -99,18 +99,18 @@ if (!isset($_SESSION["IDStud"])) {
                                 <div class="card-body pb-2">
                                     <form method="get" action="change_pwd.php">
                                         <div class="form-group">
-                                            <label class="form-label">Katalaluan Kini</label>
-                                            <input type="password" class="form-control" name="current_password" required maxlength="9" placeholder="Sila letak katalaluan anda.">
+                                            <label class="form-label">Current Password</label>
+                                            <input type="password" class="form-control" name="current_password" required maxlength="9" placeholder="Please input your current password.">
                                         </div>
                                         <div class="form-group">
-                                            <label class="form-label">Katalaluan Baharu</label>
-                                            <input type="password" class="form-control" name="new_password" required maxlength="9" placeholder="Sila letak katalaluan baru anda.">
+                                            <label class="form-label">New Password</label>
+                                            <input type="password" class="form-control" name="new_password" required maxlength="9" placeholder="Please input your new password.">
                                         </div>
                                         <div class="form-group">
-                                            <label class="form-label">Ulang Katalaluan Baharu</label>
-                                            <input type="password" class="form-control" name="repeat_new_password" required maxlength="9" placeholder="Sila letak semula katalaluan baru anda.">
+                                            <label class="form-label">Confirm Password</label>
+                                            <input type="password" class="form-control" name="repeat_new_password" required maxlength="9" placeholder="Please confirm your password.">
                                         </div>
-                                        <button class="btn btn-primary" name="cmdchange" onclick="return confirm('Adakah anda pasti untuk mengemaskini katalaluan anda?');">Simpan</button>
+                                        <button class="btn btn-primary" name="cmdchange" onclick="return confirm('Are you sure you want to update your password?');">Submit</button>
                                     </form>
                                 </div>
                             </div>
@@ -131,14 +131,14 @@ if (!isset($_SESSION["IDStud"])) {
                                             </div>
                                             <div class="form-group">
                                                 <label class="form-label">Bio</label>
-                                                <textarea class="form-control" rows="5" name="profile_bio" placeholder="Sila tulis bio anda. (50 patah perkataan sahaja)" maxlength="50"><?= $row['bio'] ?></textarea>
+                                                <textarea class="form-control" rows="5" name="profile_bio" maxlength="50"><?= $row['bio'] ?></textarea>
                                             </div>
                                             <div class="form-group">
-                                                <label class="form-label">Tarikh Lahir</label>
+                                                <label class="form-label">Date of Birth</label>
                                                 <input type="date" class="form-control" name="profile_bday" value="<?= $row['birthday'] ?>">
                                             </div>
                                             <div class="form-group">
-                                                <label class="form-label">Negeri</label>
+                                                <label class="form-label">State</label>
                                                 <select class="custom-select" name="cbonegeri" value="<?= $row['negeri'] ?>">
                                                     <option value="Kelantan">Kelantan</option>
                                                     <option value="Terengganu" selected>Terengganu</option>
@@ -147,7 +147,7 @@ if (!isset($_SESSION["IDStud"])) {
                                                     <option value="Johor">Johor</option>
                                                 </select>
                                             </div>
-                                            <button class="btn btn-primary" name="cmdprofile" onclick="return confirm('Adakah anda pasti untuk mengemaskini profil anda?');">Simpan</button>
+                                            <button class="btn btn-primary" name="cmdprofile" onclick="return confirm('Are you sure you want to update your info?');">Submit</button>
                                         </form>
                                     <?php
                                     }
@@ -166,10 +166,10 @@ if (!isset($_SESSION["IDStud"])) {
                                             <input type="text" class="form-control" name="report_id" value="<?= $stud_ID ?>">
                                         </div>
                                         <div class="form-group">
-                                            <label class="form-label">Apakah yang anda ingin laporkan?</label>
-                                            <textarea class="form-control" rows="5" name="txtreport" placeholder="Sila tulis masalah yang anda hadapi." required></textarea>
+                                            <label class="form-label">What kind of report that you want to make?</label>
+                                            <textarea class="form-control" rows="5" name="txtreport" placeholder="Please inform any report that you want to apply." required></textarea>
                                         </div>
-                                        <button class="btn btn-primary" name="cmdreport">Simpan</button>
+                                        <button class="btn btn-primary" name="cmdreport">Submit</button>
                                     </form>
                                 </div>
                             </div>
@@ -177,16 +177,10 @@ if (!isset($_SESSION["IDStud"])) {
                             <div class="tab-pane fade" id="account-terms">
                                 <div class="card-body pb-2">
                                     <div class="form-control">
-                                        <label class="alert alert-primary bold-text">Terma dan kondisi</label>
+                                        <label class="alert alert-primary bold-text">Terms and Condition</label>
                                     </div>
                                     <label class="form-control">
-                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia,
-                                        molestiae quas vel sint commodi repudiandae consequuntur voluptatum laborum
-                                        numquam blanditiis harum quisquam eius sed odit fugiat iusto fuga praesentium
-                                        optio, eaque rerum! Provident similique accusantium nemo autem. Veritatis
-                                        obcaecati tenetur iure eius earum ut molestias architecto voluptate aliquam
-                                        nihil, eveniet aliquid culpa officia aut! Impedit sit sunt quaerat, odit,
-                                        tenetur error, harum nesciunt ipsum debitis quas aliquid. Reprehenderit,
+                                        Coming Soon.
                                     </label>
                                 </div>
                             </div>

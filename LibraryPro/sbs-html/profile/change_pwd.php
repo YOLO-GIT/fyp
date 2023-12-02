@@ -19,12 +19,12 @@ if (isset($_GET['cmdchange'])) {
 
     // Perform necessary validation here
     if ($newPassword !== $repeatNewPassword) {
-        echo "<script>alert('Katalaluan baharu dan kata laluan baharu berulang tidak sepadan');</script>";
+        echo "<script>alert('Please make sure the Confirm Password is the same as New Password.');</script>";
         // Sending back to the Profile Panel.
         echo "<script>window.location.href='./profile.php';</script>";
     } elseif (mysqli_num_rows($check_password) > 0) {
         // Validation if the content is same
-        echo "<script>alert('Katalaluan ini telah digunakan.');</script>";
+        echo "<script>alert('This Password is already exist.');</script>";
         // Close the DB to ensure it will not updated.
         mysqli_close($con);
         // Sending back to the Profile Panel.
@@ -34,10 +34,10 @@ if (isset($_GET['cmdchange'])) {
         $sql = "UPDATE tblstudent SET stud_pwd = '$newPassword' WHERE stud_pwd = '$currentPassword'";
 
         if ($con->query($sql) === TRUE) {
-            echo "<script>alert('Katalaluan anda berjaya diubah.')</script>";
+            echo "<script>alert('Your password is successfully changed.')</script>";
             echo "<script>window.location.href='./profile.php';</script>";
         } else {
-            echo "<script>alert('Katalaluan anda tidak berjaya diubah.')</script>" . $con->error;
+            echo "<script>alert('Your password is unsuccessfully changed.')</script>";
             echo "<script>window.location.href='./profile.php';</script>";
         }
     }
@@ -53,26 +53,26 @@ if (isset($_GET['cmdchange'])) {
 
     // Perform necessary validation here
     if ($newPasswordT !== $repeatNewPasswordT) {
-        echo "<script>alert('Katalaluan baharu dan kata laluan baharu berulang tidak sepadan);</script>";
+        echo "<script>alert('Please make sure the Confirm Password is the same as New Password.);</script>";
         // Sending back to the Profile Panel.
-        echo "<script>window.location.href='./profile.php';</script>";
+        echo "<script>window.location.href='teacher_profile.php';</script>";
     } elseif (mysqli_num_rows($check_password) > 0) {
         // Validation if the content is same
-        echo "<script>alert('Katalaluan ini telah digunakan.');</script>";
+        echo "<script>alert('This Password is already exist.');</script>";
         // Close the DB to ensure it will not updated.
         mysqli_close($con);
         // Sending back to the Profile Panel.
-        echo "<script>window.location.href='./profile.php';</script>";
+        echo "<script>window.location.href='teacher_profile.php';</script>";
     } else {
         // Assuming you have a users table, replace 'users' with your table name
         $sql = "UPDATE tblteachers SET teachers_Password = '$newPasswordT' WHERE teachers_Password = '$currentPasswordT'";
 
         if ($con->query($sql) === TRUE) {
-            echo "<script>alert('Katalaluan anda berjaya diubah.')</script>";
-            echo "<script>window.location.href='./profile.php';</script>";
+            echo "<script>alert('Your password is successfully changed.')</script>";
+            echo "<script>window.location.href='teacher_profile.php';</script>";
         } else {
-            echo "<script>alert('Katalaluan anda tidak berjaya diubah.')</script>" . $con->error;
-            echo "<script>window.location.href='./profile.php';</script>";
+            echo "<script>alert('Your password is unsuccessfully changed.')</script>";
+            echo "<script>window.location.href='teacher_profile.php';</script>";
         }
     }
 }
