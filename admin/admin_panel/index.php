@@ -31,7 +31,7 @@ if (!isset($_SESSION["IDAdmin"])) {
     ?>
 
 
-    <div id="main-content" class="container allContent-section py-4">
+    <div id="main-content" class="container allContent-section py-5 col-md-9">
         <div class="row">
 
             <!-- Starts Student -->
@@ -81,7 +81,7 @@ if (!isset($_SESSION["IDAdmin"])) {
             <!-- Ends Books -->
 
             <!-- Starts Borrowed -->
-            <div class="col-sm-3">
+            <div class="col-sm-4">
                 <div class="card">
                     <i class="fa fa-th mb-2" style="font-size: 70px;"></i>
                     <h4 style="color:white;">Total Borrowed</h4>
@@ -105,7 +105,7 @@ if (!isset($_SESSION["IDAdmin"])) {
             <!-- Ends Borrowed -->
 
             <!-- Starts Booking -->
-            <div class="col-sm-3">
+            <div class="col-sm-4">
                 <div class="card">
                     <i class="fa fa-list mb-2" style="font-size: 70px;"></i>
                     <h4 style="color:white;">Total Booking</h4>
