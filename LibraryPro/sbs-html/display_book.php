@@ -9,7 +9,7 @@ if (isset($_SESSION["IDStud"])) {
     $func_todo = "auth/logout.php";
     $profile = "profile/profile.php";
     $stud_ID = $_SESSION["IDStud"];
-    $confirmation_logout = "onclick='return confirm(\"Adakah anda ingin $log?\");'";
+    $confirmation_logout = "onclick='return confirm(\"Are you sure you want to $log?\");'";
 
     $studentQuery = "SELECT * FROM tblstudent WHERE stud_ID = ?";
     $stmt = $con->prepare($studentQuery);
@@ -18,13 +18,13 @@ if (isset($_SESSION["IDStud"])) {
     $result = $stmt->get_result();
     $user = $result->fetch_assoc();
     $statement_sent = 'stud_ID=' . $user['stud_ID'];
-    $statement_res = "Welcome Back, " . $user['stud_Name'];
+    $statement_res = "HI, " . $user['stud_Name'];
     $stmt->close();
 } elseif (isset($_SESSION["IDTeachers"])) {
     $log = "Logout";
     $func_todo = "auth/logout.php";
     $profile = "profile/teacher_profile.php";
-    $confirmation_logout = "onclick='return confirm(\"Adakah anda ingin $log?\");'";
+    $confirmation_logout = "onclick='return confirm(\"Are you sure you want to $log?\");'";
 
     $teachers_ID = $_SESSION["IDTeachers"];
 
@@ -35,29 +35,35 @@ if (isset($_SESSION["IDStud"])) {
     $result = $stmt->get_result();
     $user = $result->fetch_assoc();
     $statement_sent = 'teachers_ID=' . $user['teachers_ID'];
-    $statement_res = "Welcome Back, " . $user['teachers_Name'];
+    $statement_res = "HI, " . $user['teachers_Name'];
     $stmt->close();
 } else {
     $statement_res = null;
     $log = "Login";
     $func_todo = "auth/login.php";
     $confirmation_logout = "";
-    echo "<script>alert('Sila Login Dahulu.');</script>";
+    echo "<script>alert('Please Login First.');</script>";
     echo "<script>window.location.href='auth/login.php';</script>";
 }
 
 if (isset($_GET['book_ID'])) {
     $book_ID = $_GET['book_ID'];
+} else {
+    $book_ID = "";
 }
 
 if (isset($_GET['search'])) {
     $statement_search = 'search';
-    $search = "Carian";
+    $search = "Search";
     $search_link = "booking.php?simple";
 } elseif (isset($_GET['ad_search'])) {
     $statement_search = 'ad_search';
-    $search = "Carian Terperinci";
+    $search = "Advance Search";
     $search_link = "advance_booking.php?advance";
+} else {
+    $statement_search = '';
+    $search = "Default";
+    $search_link = "index.php";
 }
 ?>
 
@@ -73,7 +79,7 @@ if (isset($_GET['search'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1">
     <!-- site metas -->
-    <title>Library Pro | Buku</title>
+    <title>Library Pro | Display Book</title>
     <meta name="keywords" content="">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -87,7 +93,7 @@ if (isset($_GET['search'])) {
     <!-- Responsive-->
     <link rel="stylesheet" href="css/responsive.css">
     <!-- fevicon -->
-    <link rel="icon" href="images/fevicon.png" type="image/gif" />
+    <link rel="icon" href="images/icon.png" type="image/gif" />
     <!-- Tweaks for older IEs-->
     <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
     <!--[if lt IE 9]>
@@ -128,16 +134,16 @@ if (isset($_GET['search'])) {
                                     <a class="nav-link" href="index.php"><i class="fa fa-home"></i> Home</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="booking.php?simple"><i class="fa fa-search"></i> Carian</a>
+                                    <a class="nav-link" href="booking.php?simple"><i class="fa fa-search"></i> Search</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="advance_booking.php?advance"><i class="fa fa-search-plus"></i> Carian Terperinci</a>
+                                    <a class="nav-link" href="advance_booking.php?advance"><i class="fa fa-search-plus"></i> Advance Search</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="buku_saya.php"><i class="fa fa-book"></i> Buku Saya</a>
+                                    <a class="nav-link" href="buku_saya.php"><i class="fa fa-book"></i> My Book</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="about.php"><i class="fa fa-universal-access"></i> Berkaitan Kami</a>
+                                    <a class="nav-link" href="about.php"><i class="fa fa-universal-access"></i> About Us</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="<?= $func_todo ?>" <?= $confirmation_logout ?>><i class="fa fa-sign-out"></i> <?= $log ?></a>
@@ -184,56 +190,56 @@ if (isset($_GET['search'])) {
                     <!-- rest of the code remains unchanged -->
                     <div class="row">
                         <div class="col-md-4">
-                            <img src="../../admin/admin_panel/controller/<?= $row['book_image'] ?>">
+                            <img src="../admin/admin_panel/controller/<?= $row['book_image'] ?>">
                         </div>
                         <div class="col-md-8">
                             <div class="card-body">
                                 <h2 class="card-title"><?= $row["book_title"] ?></h2>
-                                <p class="bold-text">Pengarang:&nbsp;&nbsp;</p>
+                                <p class="bold-text">Author:&nbsp;&nbsp;</p>
                                 <div class="alert alert-primary">
                                     <p><?= $row["book_author"] ?></p>
                                 </div>
-                                <p class="bold-text">No. ISBN:&nbsp;&nbsp;</p>
+                                <p class="bold-text">ISBN Number:&nbsp;&nbsp;</p>
                                 <div class="alert alert-primary">
                                     <p><?= $row["book_ISBN"] ?></p>
                                 </div>
-                                <p class="bold-text">Penerbit:&nbsp;&nbsp;</p>
+                                <p class="bold-text">Publisher:&nbsp;&nbsp;</p>
                                 <div class="alert alert-primary">
                                     <p><?= $row["publisher"] ?></p>
                                 </div>
-                                <p class="bold-text">No. Panggilan:&nbsp;&nbsp;</p>
+                                <p class="bold-text">Calling Number:&nbsp;&nbsp;</p>
                                 <div class="alert alert-primary">
                                     <p><?= $row["book_dewey"] ?></p>
                                 </div>
-                                <p class="bold-text">Kategori:&nbsp;&nbsp;</p>
+                                <p class="bold-text">Category:&nbsp;&nbsp;</p>
                                 <div class="alert alert-primary">
                                     <p><?= $row["book_category"] ?></p>
                                 </div>
-                                <p class="bold-text">Diskripsi:&nbsp;&nbsp;</p>
+                                <p class="bold-text">Description:&nbsp;&nbsp;</p>
                                 <div class="alert alert-primary">
                                     <p><?= $row["book_desc"] ?></p>
                                 </div>
-                                <p class="bold-text">Bahasa Digunakan:&nbsp;&nbsp;</p>
+                                <p class="bold-text">Language Use:&nbsp;&nbsp;</p>
                                 <div class="alert alert-primary">
                                     <p><?= $row["book_language"] ?></p>
                                 </div>
-                                <p class="bold-text">Illustrasi:&nbsp;&nbsp;</p>
+                                <p class="bold-text">Illustration:&nbsp;&nbsp;</p>
                                 <div class="alert alert-primary">
                                     <p><?= $row["book_illustration"] ?></p>
                                 </div>
-                                <p class="bold-text">Tajuk Perkara 1:&nbsp;&nbsp;</p>
+                                <p class="bold-text">Book Matter 1:&nbsp;&nbsp;</p>
                                 <div class="alert alert-primary">
                                     <p><?= $row["book_matter1"] ?></p>
                                 </div>
-                                <p class="bold-text">Tajuk Perkara 2:&nbsp;&nbsp;</p>
+                                <p class="bold-text">Book Matter 2:&nbsp;&nbsp;</p>
                                 <div class="alert alert-primary">
                                     <p><?= $row["book_matter2"] ?></p>
                                 </div>
-                                <p class="bold-text">Tajuk Perkara 3:&nbsp;&nbsp;</p>
+                                <p class="bold-text">Book Matter 3:&nbsp;&nbsp;</p>
                                 <div class="alert alert-primary">
                                     <p><?= $row["book_matter3"] ?></p>
                                 </div>
-                                <p class="bold-text">Status:&nbsp;&nbsp;</p>
+                                <p class="bold-text">Book Condition:&nbsp;&nbsp;</p>
                                 <div class='alert alert-primary'>
                                     <p><?= $row['book_status'] ?></p>
                                 </div>
@@ -258,7 +264,7 @@ if (isset($_GET['search'])) {
                                 mysqli_close($con);
                                 ?>
                                 &nbsp;
-                                <a href="<?= $search_link ?>" class="btn btn-primary">Kembali Semula</a>
+                                <a href="<?= $search_link ?>" class="btn btn-primary">Return Back</a>
                             </div>
                         </div>
                     </div>
@@ -269,7 +275,7 @@ if (isset($_GET['search'])) {
         } else {
             ?>
             <div class="form-group">
-                <label class="form-control">Record Tidak Wujud</label>
+                <label class="form-control">Record Not Existed</label>
             </div>
         <?php
         }

@@ -1,15 +1,3 @@
-<?php // Sekiranya button submit diklik
-
-// Check if session "idcust" dah wujud atau belum
-if (isset($_SESSION["IDStud"]) || isset($_SESSION["IDTeachers"])) {
-    $log = "Logout";
-    $func_todo = "logout.php";
-} else {
-    $log = "Login";
-    $func_todo = "login.php";
-}
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -36,6 +24,8 @@ if (isset($_SESSION["IDStud"]) || isset($_SESSION["IDTeachers"])) {
     <link rel="stylesheet" href="../css/responsive.css">
     <!-- fevicon -->
     <link rel="icon" href="../images/fevicon.png" type="image/gif" />
+    <!-- Icon here -->
+    <link rel="icon" type="image/x-icon" href="../images/icon.png">
     <!-- Tweaks for older IEs-->
     <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
     <!--[if lt IE 9]>
@@ -60,7 +50,7 @@ if (isset($_SESSION["IDStud"]) || isset($_SESSION["IDTeachers"])) {
                         <div class="center-desk">
                             <div class="logo">
                                 <!-- Logo -->
-                                <a href="index.php"><img src="../images/new_logo.png" alt="#" /></a>
+                                <a href="../index.php"><img src="../images/new_logo.png" alt="#" /></a>
                             </div>
                         </div>
                     </div>
@@ -76,19 +66,19 @@ if (isset($_SESSION["IDStud"]) || isset($_SESSION["IDTeachers"])) {
                                     <a class="nav-link" href="../index.php"><i class="fa fa-home"></i> Home</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="../booking.php?simple"><i class="fa fa-search"></i> Carian</a>
+                                    <a class="nav-link" href="../booking.php?simple"><i class="fa fa-search"></i> Search</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="../advance_booking.php?advance"><i class="fa fa-search-plus"></i> Carian Terperinci</a>
+                                    <a class="nav-link" href="../advance_booking.php?advance"><i class="fa fa-search-plus"></i> Advanced Search</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="../buku_saya.php"><i class="fa fa-book"></i> Buku Saya</a>
+                                    <a class="nav-link" href="../buku_saya.php"><i class="fa fa-book"></i> My Book</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="#"><i class="fa fa-universal-access"></i> Berkaitan Kami</a>
+                                    <a class="nav-link" href="../about.php"><i class="fa fa-universal-access"></i> About Us</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="<?= $func_todo ?>"><i class="fa fa-sign-out"></i> <?= $log ?></a>
+                                    <a class="nav-link" href="logout.php"><i class="fa fa-sign-out"></i> Logout</a>
                                 </li>
                             </ul>
                         </div>
@@ -132,50 +122,50 @@ if (isset($_SESSION["IDStud"]) || isset($_SESSION["IDTeachers"])) {
                     </div>
                 </div>
                 <div class="col-md-12">
-                    <form name="frmregisteration" class="main_form_reg" action="register_proses.php" method="get" onsubmit="return validated()">
+                    <form name="frmregisteration" class="main_form_reg" action="register_proses.php" method="post" onsubmit="return validated()">
                         <br><br>
                         <div class="row">
                             <!-- IC -->
                             <div class="col-md-12">
-                                <label class="custom_label_reg">Nombor IC*: IC Anda tanpa "-"</label>
-                                <div id="ic_error" class="form-control">Tolong Isi IC Anda Dengan Betul (Letak Nombor Sahaja)</div>
-                                <input class="contactus" placeholder="IC Number*" type="text" name="txtic" maxlength="12" pattern=".{12,}" autocomplete="off">
+                                <label class="custom_label_reg">IC Number*: Your IC Number without "-"</label>
+                                <div id="ic_error" class="form-control">Please Fill Your IC Correctly (Put Numbers Only)</div>
+                                <input class="contactus" placeholder="IC Number*" type="text" name="txtic" maxlength="12" autocomplete="off">
                             </div>
                             <!-- NAMA PERTAMA -->
                             <div class=" col-md-6">
-                                <label class="custom_label_reg">Nama Depan Anda*, E.g.: Ahmad</label>
-                                <div id="fname_error" class="form-control">Tolong Isi Nama Depan Anda Dengan Betul (Letak Huruf Sahaja)</div>
-                                <input class="contactus" placeholder="Nama Depan Anda: Ahmad (Maksimum 10 Perkataan)" type="text" name="txtfnama" maxlength="10" autocomplete="off">
+                                <label class="custom_label_reg">Your First Name*, E.g.: Ahmad</label>
+                                <div id="fname_error" class="form-control">Please Enter Your First Name Correctly (Letter Only)</div>
+                                <input class="contactus" placeholder="Your First Name: Ahmad (Maximum 10 Words)" type="text" name="txtfnama" maxlength="10" autocomplete="off">
                             </div>
                             <!-- NAMA KEDUA -->
                             <div class="col-md-6">
-                                <label class="custom_label_reg">Nama Belakang Anda*, E.g.: Sufi</label>
-                                <div id="lname_error" class="form-control">Tolong Isi Nama Belakang Anda Dengan Betul (Letak Huruf Sahaja)</div>
-                                <input class="contactus" placeholder="Nama Belakang Anda: Aziz (Maksimum 10 Perkataan)" type="text" name="txtlnama" maxlength="10" autocomplete="off">
+                                <label class="custom_label_reg">Your Last Name*, E.g.: Sufi</label>
+                                <div id="lname_error" class="form-control">Please Enter Your Last Name Correctly (Letter Only)</div>
+                                <input class="contactus" placeholder="Your Last Name: Aziz (Maximum 10 Words)" type="text" name="txtlnama" maxlength="10" autocomplete="off">
                             </div>
                             <!-- NAMA SAMARAN -->
                             <div class="col-md-6">
-                                <label class="custom_label_reg">Username Anda*, E.g.: user123</label>
-                                <div id="uname_error" class="form-control">Tolong Isi Username Anda Dengan Betul</div>
-                                <input class="contactus" placeholder="Username anda (Maksimum 10 Perkataan)" type="text" name="txtunama" maxlength="10" autocomplete="off">
+                                <label class="custom_label_reg">Your username*, E.g.: user123</label>
+                                <div id="uname_error" class="form-control">Please fill in your username</div>
+                                <input class="contactus" placeholder="Your Username (Maximum 10 Words)" type="text" name="txtunama" maxlength="10" autocomplete="off">
                             </div>
                             <!-- KELAS -->
                             <div class="col-md-6">
-                                <label class="custom_label_reg">Kelas Anda*, E.g.: 5 AB</label>
-                                <div id="kelas_error" class="form-control">Tolong Isi Kelas Anda Dengan Betul</div>
-                                <input class="contactus" placeholder="Kelas*" type="text" name="txtkelas" autocomplete="off" maxlength=10>
+                                <label class="custom_label_reg">Your class*, E.g.: 5 AB</label>
+                                <div id="kelas_error" class="form-control">Please fill in your Class</div>
+                                <input class="contactus" placeholder="Class*" type="text" name="txtkelas" autocomplete="off" maxlength=10>
                             </div>
                             <!-- EMAIL -->
                             <div class="col-md-12">
-                                <label class="custom_label_reg">Email Anda*, E.g.: m-12345678@moe-dl.edu.my</label>
-                                <div id="email_error" class="form-control">Tolong Isi Email Anda Dengan Betul</div>
+                                <label class="custom_label_reg">Your Email*, E.g.: m-12345678@moe-dl.edu.my</label>
+                                <div id="email_error" class="form-control">Please Fill Your Email Correctly</div>
                                 <input class="contactus" placeholder="Email*" type="text" name="txtEmail" autocomplete="off" maxlength="25">
                             </div>
                             <!-- PASSWORD -->
                             <div class="col-md-12">
-                                <label class="custom_label_reg">Password Anda*:</label>
-                                <div id="pwd_error" class="form-control">Tolong Isi Password Anda Dengan Betul (Hanya Huruf Atau/Dan Nombor Sahaja)</div>
-                                <input class="contactus" placeholder="Password (Maksimum 9 nombor/perkataan)*" type="password" name="txtpwd" id="myInputPWD" maxlength="9" pattern=".{9,}" autocomplete="off">
+                                <label class="custom_label_reg">Your Password*:</label>
+                                <div id="pwd_error" class="form-control">Please Enter Your Password Correctly (Only Letters And Numbers)</div>
+                                <input class="contactus" placeholder="Password (Maximum 9 numbers/words)*" type="password" name="txtpwd" id="myInputPWD" maxlength="9" autocomplete="off">
                                 <input type="checkbox" onclick="myFunction()">&nbsp;&nbsp;<label class="show_style">Show Password</label>
                             </div>
                             <!-- SUBMIT -->

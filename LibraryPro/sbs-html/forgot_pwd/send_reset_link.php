@@ -1,13 +1,12 @@
 <?php
-// Include required PHPMailer files
-require_once '../../../includes/Exception.php';
-require_once '../../../includes/SMTP.php';
-require_once '../../../includes/PHPMailer.php';
 
-// Define namespaces
 use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
+
+require $_SERVER['DOCUMENT_ROOT'] . '/includes/Exception.php';
+require $_SERVER['DOCUMENT_ROOT'] . '/includes/PHPMailer.php';
+require $_SERVER['DOCUMENT_ROOT'] . '/includes/SMTP.php';
+
 // Inside send_reset_link.php
 include '../conn.php';
 if (isset($_POST["cmdreset"])) {

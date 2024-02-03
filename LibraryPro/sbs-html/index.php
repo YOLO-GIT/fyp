@@ -11,7 +11,7 @@ if (isset($_SESSION["IDStud"])) {
     $func_todo = "auth/logout.php";
     $profile = "profile/profile.php";
     $stud_ID = $_SESSION["IDStud"];
-    $confirmation_logout = "onclick='return confirm(\"Adakah anda ingin $log?\");'";
+    $confirmation_logout = "onclick='return confirm(\"Are you sure you want to $log?\");'";
 
     $studentQuery = "SELECT * FROM tblstudent WHERE stud_ID = ?";
     $stmt = $con->prepare($studentQuery);
@@ -19,13 +19,13 @@ if (isset($_SESSION["IDStud"])) {
     $stmt->execute();
     $result = $stmt->get_result();
     $user = $result->fetch_assoc();
-    $statement_res = "Welcome Back, " . $user['stud_Name'];
+    $statement_res = "HI, " . $user['stud_Name'];
     $stmt->close();
 } elseif (isset($_SESSION["IDTeachers"])) {
     $log = "Logout";
     $func_todo = "auth/logout.php";
     $profile = "profile/teacher_profile.php";
-    $confirmation_logout = "onclick='return confirm(\"Adakah anda ingin $log?\");'";
+    $confirmation_logout = "onclick='return confirm(\"Are you sure you want to $log?\");'";
 
     $teachers_ID = $_SESSION["IDTeachers"];
 
@@ -35,7 +35,7 @@ if (isset($_SESSION["IDStud"])) {
     $stmt->execute();
     $result = $stmt->get_result();
     $user = $result->fetch_assoc();
-    $statement_res = "Welcome Back, " . $user['teachers_Name'];
+    $statement_res = "HI, " . $user['teachers_Name'];
     $stmt->close();
 } else {
     $statement_res = null;
@@ -70,7 +70,22 @@ if (isset($_SESSION["IDStud"])) {
     <!-- Responsive-->
     <link rel="stylesheet" href="css/responsive.css">
     <!-- fevicon -->
-    <link rel="icon" href="images/fevicon.png" type="image/gif" />
+    <link rel="icon" href="images/icon.png" type="image/gif" />
+    <!-- Icon here -->
+    <link rel="icon" type="image/x-icon" href="images/icon.png">
+    <style>
+        .custom_bg{
+     background-color: #fff;
+}
+
+.custom_bg img{
+     border-radius: 15px;
+}
+
+.custom_img img{
+     border-radius: 15px;
+}
+    </style>
     <!-- AOS -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <!-- Tweaks for older IEs-->
@@ -113,16 +128,16 @@ if (isset($_SESSION["IDStud"])) {
                                     <a class="nav-link" href="index.php"><i class="fa fa-home"></i> Home</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="booking.php?simple"><i class="fa fa-search"></i> Carian</a>
+                                    <a class="nav-link" href="booking.php?simple"><i class="fa fa-search"></i> Search</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="advance_booking.php?advance"><i class="fa fa-search-plus"></i> Carian Terperinci</a>
+                                    <a class="nav-link" href="advance_booking.php?advance"><i class="fa fa-search-plus"></i> Advanced Search</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="buku_saya.php"><i class="fa fa-book"></i> Buku Saya</a>
+                                    <a class="nav-link" href="buku_saya.php"><i class="fa fa-book"></i> My Book</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="about.php"><i class="fa fa-universal-access"></i> Berkaitan Kami</a>
+                                    <a class="nav-link" href="about.php"><i class="fa fa-universal-access"></i> About Us</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="<?= $func_todo ?>" <?= $confirmation_logout ?>><i class="fa fa-sign-out"></i> <?= $log ?></a>
@@ -146,7 +161,7 @@ if (isset($_SESSION["IDStud"])) {
     <!-- top -->
     <div class="full_bg index_color">
 
-        <div class="slider_main">
+        <div class="slider_main custom_img">
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-md-12">
@@ -168,7 +183,7 @@ if (isset($_SESSION["IDStud"])) {
                                                         Library<br> Pro<br> SMK Tok Dor
                                                     </h3>
                                                     <div class="link_btn">
-                                                        <a class="read_more" href="Javascript:void(0)">Read More <span></span></a>
+                                                        <a class="read_more" href="about.php">Read More <span></span></a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -190,7 +205,7 @@ if (isset($_SESSION["IDStud"])) {
                                                         Library<br> Pro<br> SMK Tok Dor
                                                     </h3>
                                                     <div class="link_btn">
-                                                        <a class="read_more" href="Javascript:void(0)">Read More <span></span></a>
+                                                        <a class="read_more" href="about.php">Read More <span></span></a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -212,7 +227,7 @@ if (isset($_SESSION["IDStud"])) {
                                                         Library<br> Pro<br> SMK Tok Dor
                                                     </h3>
                                                     <div class="link_btn">
-                                                        <a class="read_more" href="Javascript:void(0)">Read More <span></span></a>
+                                                        <a class="read_more" href="about.php">Read More <span></span></a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -240,7 +255,7 @@ if (isset($_SESSION["IDStud"])) {
 
         <!-- Event Start -->
         <div class="index_color">
-            <div class="slider_main">
+            <div class="slider_main custom_bg">
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-md-12">

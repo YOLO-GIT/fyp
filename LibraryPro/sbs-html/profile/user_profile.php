@@ -19,10 +19,10 @@ if (isset($_GET['cmdprofile'])) {
     SET `bio`='$bio',`birthday`='$birthday',`negeri`='$negeri' WHERE `stud_ID` = '$stud_ID'";
 
     if (mysqli_query($con, $sql_profile)) {
-        echo "<script>alert('Profil anda sudah dikemaskini.')</script>";
+        echo "<script>alert('Your profile has been updated.')</script>";
         echo "<script>window.location.href='./profile.php';</script>";
     } else {
-        echo "<script>alert('Ada masalah semasa mengemaskini data anda.')</script>";
+        echo "<script>alert('There was a problem updating your data.')</script>";
         echo "<script>window.location.href='./profile.php';</script>";
     }
 }
@@ -38,10 +38,10 @@ elseif (isset($_GET['Tcmdprofile'])) {
     SET `bio`='$bio',`birthday`='$birthday',`negeri`='$negeri' WHERE `teachers_ID` = '$stud_ID'";
 
     if (mysqli_query($con, $sql_profile)) {
-        echo "<script>alert('Profil anda sudah dikemaskini.')</script>";
+        echo "<script>alert('Your profile has been updated.')</script>";
         echo "<script>window.location.href='teacher_profile.php';</script>";
     } else {
-        echo "<script>alert('Ada masalah semasa mengemaskini data anda.')</script>";
+        echo "<script>alert('There was a problem updating your data')</script>";
         echo "<script>window.location.href='teacher_profile.php';</script>";
     }
 }
@@ -61,10 +61,10 @@ if (isset($_GET['cmdreport'])) {
     VALUES ('$report_ID','$stud_ID','$report',NOW())";
 
     if (mysqli_query($con, $sql_report)) {
-        echo "<script>alert('Laporan anda sudah dihantar.')</script>";
+        echo "<script>alert('Your report has been sent to the Staff.')</script>";
         echo "<script>window.location.href='profile.php';</script>";
     } else {
-        echo "<script>alert('Ada masalah semasa menghantar laporan anda.')</script>";
+        echo "<script>alert('There was a problem sending your report.')</script>";
         echo "<script>window.location.href='profile.php';</script>";
     }
 }
@@ -78,10 +78,10 @@ elseif (isset($_GET['Tcmdreport'])) {
     VALUES ('$report_ID','$stud_ID','$report',NOW())";
 
     if (mysqli_query($con, $sql_report)) {
-        echo "<script>alert('Laporan anda sudah dihantar.')</script>";
+        echo "<script>alert('Your report has been sent to the Staff.')</script>";
         echo "<script>window.location.href='teacher_profile.php';</script>";
     } else {
-        echo "<script>alert('Ada masalah semasa menghantar laporan anda.')</script>";
+        echo "<script>alert('There was a problem sending your report.')</script>";
         echo "<script>window.location.href='teacher_profile.php';</script>";
     }
 }

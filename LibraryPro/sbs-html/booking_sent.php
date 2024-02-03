@@ -2,10 +2,12 @@
 
 session_start();
 
+date_default_timezone_set("Asia/Kuala_Lumpur");
+
 if (isset($_SESSION["IDStud"]) || isset($_SESSION["IDTeachers"])) {
     echo "<script>alert('Booking Process...');</script>";
 } else {
-    echo "<script>alert('Sila Login Dahulu.');</script>";
+    echo "<script>alert('Please Login First.');</script>";
     echo "<script>window.location.href='auth/login.php';</script>";
 }
 
@@ -27,7 +29,7 @@ $new_status = "Booking";
 
 $isBooked = 1;
 
-$tarikh_booking_end = 0;
+$tarikh_booking_end = $tarikh_booking_start;
 
 $icnum = substr($user_ID, 8, 4);
 
@@ -39,7 +41,7 @@ $check_user = mysqli_query($con, $check_user_query);
 // TO CHECK USER ID END
 
 // NIH JIM UPDATE
-$check_borrow_query = "SELECT * FROM tbltransaction WHERE user_ID='$user_ID' AND isBooked = 0";
+$check_borrow_query = "SELECT * FROM tbltransaction WHERE user_ID='$user_ID' AND book_ID = '$book_ID' AND isBooked = 0";
 $check_borrow = mysqli_query($con, $check_borrow_query);
 // NIH JIM UPDATE
 
@@ -51,7 +53,7 @@ $check_teacher = mysqli_query($con, $check_teacher_query);
 if (mysqli_num_rows($check_teacher) > 0) {
     if (mysqli_num_rows($check_user) >= 3) {
         // Validation if the content is the same
-        echo "<script>alert('Anda hanya boleh booking tiga buku sahaja');</script>";
+        echo "<script>alert('You can only book THREE books');</script>";
         // Close the DB to ensure it will not be updated.
         mysqli_close($con);
 
@@ -67,8 +69,10 @@ if (mysqli_num_rows($check_teacher) > 0) {
     } else {
         $user_role = "Teacher";
 
+        $current_time = date('Y-m-d H:i:s');
+
         $sql = "INSERT INTO `tbltransaction`(`transc_ID`, `transc_name`, `isBooked`, `book_ID`, `book_title`, `user_ID`, `user_Name`, `user_role`, `start_date`, `end_date`, `time`) 
-        VALUES ('$idtransc','$new_status','$isBooked','$book_ID','$book_title','$user_ID','$user_Name','$user_role','$tarikh_booking_start','$tarikh_booking_end',NOW())";
+        VALUES ('$idtransc','$new_status','$isBooked','$book_ID','$book_title','$user_ID','$user_Name','$user_role','$tarikh_booking_start','$tarikh_booking_end','$current_time')";
 
         mysqli_query($con, $sql);
 
@@ -114,13 +118,15 @@ if (mysqli_num_rows($check_teacher) > 0) {
 
             mysqli_query($con, $save_record);
         }
-
+        
+        echo "<script>alert('You have successfully booked this book.');</script>";
+        echo "<script>window.location.href='buku_saya.php';</script>";
         mysqli_close($con);
     }
 } else {
     if (mysqli_num_rows($check_user) > 0) {
         // Validation if the content is the same
-        echo "<script>alert('Anda hanya boleh booking satu buku sahaja');</script>";
+        echo "<script>alert('You can only book ONE book');</script>";
         // Close the DB to ensure it will not be updated.
         mysqli_close($con);
 
@@ -136,8 +142,10 @@ if (mysqli_num_rows($check_teacher) > 0) {
     } else {
         $user_role = "Student";
 
+        $current_time = date('Y-m-d H:i:s');
+
         $sql = "INSERT INTO `tbltransaction`(`transc_ID`, `transc_name`, `isBooked`, `book_ID`, `book_title`, `user_ID`, `user_Name`, `user_role`, `start_date`, `end_date`, `time`) 
-        VALUES ('$idtransc','$new_status','$isBooked','$book_ID','$book_title','$user_ID','$user_Name','$user_role','$tarikh_booking_start','$tarikh_booking_end',NOW())";
+        VALUES ('$idtransc','$new_status','$isBooked','$book_ID','$book_title','$user_ID','$user_Name','$user_role','$tarikh_booking_start','$tarikh_booking_end','$current_time')";
         mysqli_query($con, $sql);
 
         // Fetch the current count from the student table
@@ -184,9 +192,8 @@ if (mysqli_num_rows($check_teacher) > 0) {
             mysqli_query($con, $save_record);
         }
 
+        echo "<script>alert('You have successfully booked this book.');</script>";
+        echo "<script>window.location.href='buku_saya.php';</script>";
         mysqli_close($con);
     }
 }
-
-echo "<script>alert('Anda Telah berjaya Booking');</script>";
-echo "<script>window.location.href='buku_saya.php';</script>";

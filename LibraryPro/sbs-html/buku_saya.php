@@ -3,13 +3,16 @@ include 'conn.php';
 
 session_start();
 
+// Set the timezone to match your database
+date_default_timezone_set("Asia/Kuala_Lumpur");
+
 // Check if session exist
 if (isset($_SESSION["IDStud"])) {
     $log = "Logout";
     $func_todo = "auth/logout.php";
     $profile = "profile/profile.php";
     $stud_ID = $_SESSION["IDStud"];
-    $confirmation_logout = "onclick='return confirm(\"Adakah anda ingin $log?\");'";
+    $confirmation_logout = "onclick='return confirm(\"Are you sure you want to $log?\");'";
 
     $studentQuery = "SELECT * FROM tblstudent WHERE stud_ID = ?";
     $stmt = $con->prepare($studentQuery);
@@ -17,13 +20,13 @@ if (isset($_SESSION["IDStud"])) {
     $stmt->execute();
     $result = $stmt->get_result();
     $user = $result->fetch_assoc();
-    $statement_res = "Welcome Back, " . $user['stud_Name'];
+    $statement_res = "HI, " . $user['stud_Name'];
     $stmt->close();
 } elseif (isset($_SESSION["IDTeachers"])) {
     $log = "Logout";
     $func_todo = "auth/logout.php";
     $profile = "profile/teacher_profile.php";
-    $confirmation_logout = "onclick='return confirm(\"Adakah anda ingin $log?\");'";
+    $confirmation_logout = "onclick='return confirm(\"Are you sure you want to $log?\");'";
 
     $teachers_ID = $_SESSION["IDTeachers"];
 
@@ -33,13 +36,13 @@ if (isset($_SESSION["IDStud"])) {
     $stmt->execute();
     $result = $stmt->get_result();
     $user = $result->fetch_assoc();
-    $statement_res = "Welcome Back, " . $user['teachers_Name'];
+    $statement_res = "HI, " . $user['teachers_Name'];
     $stmt->close();
 } else {
     $statement_res = null;
     $log = "Login";
     $func_todo = "auth/login.php";
-    echo "<script>alert('Sila Login Dahulu.');</script>";
+    echo "<script>alert('Please Login First.');</script>";
     echo "<script>window.location.href='auth/login.php';</script>";
     $confirmation_logout = "";
 }
@@ -57,7 +60,7 @@ if (isset($_SESSION["IDStud"])) {
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1">
     <!-- site metas -->
-    <title>Library Pro | Buku Saya</title>
+    <title>Library Pro | My Book</title>
     <meta name="keywords" content="">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -112,16 +115,16 @@ if (isset($_SESSION["IDStud"])) {
                                     <a class="nav-link" href="index.php"><i class="fa fa-home"></i> Home</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="booking.php?simple"><i class="fa fa-search"></i> Carian</a>
+                                    <a class="nav-link" href="booking.php?simple"><i class="fa fa-search"></i> Search</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="advance_booking.php?advance"><i class="fa fa-search-plus"></i> Carian Terperinci</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="about.php"><i class="fa fa-universal-access"></i> Berkaitan Kami</a>
+                                    <a class="nav-link" href="advance_booking.php?advance"><i class="fa fa-search-plus"></i> Advanced Search</a>
                                 </li>
                                 <li class="nav-item active">
-                                    <a class="nav-link" href="buku_saya.php"><i class="fa fa-book"></i> Buku Saya</a>
+                                    <a class="nav-link" href="buku_saya.php"><i class="fa fa-book"></i> My Book</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="about.php"><i class="fa fa-universal-access"></i> About Us</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="<?= $func_todo ?>" <?= $confirmation_logout ?>><i class="fa fa-sign-out"></i> <?= $log ?></a>
@@ -144,7 +147,7 @@ if (isset($_SESSION["IDStud"])) {
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="index.php">Home</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Buku Saya</li>
+            <li class="breadcrumb-item active" aria-current="page">My Book</li>
         </ol>
     </nav>
     <!-- Breadcrumbs Ends -->
@@ -195,23 +198,23 @@ if (isset($_SESSION["IDStud"])) {
                         <div class="col-md-12">
                             <div class="card-body">
                                 <h2 class="card-title"><?= $row["book_title"] ?></h2>
-                                <p class="bold-text">Nama:&nbsp;&nbsp;</p>
+                                <p class="bold-text">Your name:&nbsp;&nbsp;</p>
                                 <div class="alert alert-primary">
                                     <p><?= $row["user_Name"] ?></p>
                                 </div>
-                                <p class="bold-text">Buku yand dipilih:&nbsp;&nbsp;</p>
+                                <p class="bold-text">Chosen Book:&nbsp;&nbsp;</p>
                                 <div class="alert alert-primary">
                                     <p><?= $row["book_title"] ?></p>
                                 </div>
-                                <p class="bold-text">Tarikh Mula:&nbsp;&nbsp;</p>
+                                <p class="bold-text">Start Date:&nbsp;&nbsp;</p>
                                 <div class="alert alert-primary">
                                     <p><?= $row["start_date"] ?></p>
                                 </div>
-                                <p class="bold-text">Tarikh Akhir:&nbsp;&nbsp;</p>
+                                <p class="bold-text">End Date:&nbsp;&nbsp;</p>
                                 <div class="alert alert-primary">
                                     <p><?= $row["end_date"] ?></p>
                                 </div>
-                                <p class="bold-text">Masa:&nbsp;&nbsp;</p>
+                                <p class="bold-text">Time Picked:&nbsp;&nbsp;</p>
                                 <div class="alert alert-primary">
                                     <p><?= $row["time"] ?></p>
                                 </div>
@@ -225,12 +228,42 @@ if (isset($_SESSION["IDStud"])) {
                                     $sql_transc = "SELECT * FROM tbltransaction WHERE transc_ID = '$transc_ID' AND transc_name = 'Borrowing'";
                                     $check_status = mysqli_query($con, $sql_transc);
 
+                                    // Retrieve the timestamp of the record
+                                    $timestampQuery = "SELECT transc_ID, book_ID, time FROM tbltransaction WHERE transc_ID='$transc_ID'";
+                                    $timeResult = mysqli_query($con, $timestampQuery);
+
                                     if (mysqli_num_rows($check_status) > 0) {
-                                        echo "<a href='cancel_transaction.php?transc_ID=" . $row['transc_ID'] . "' class='btn btn-primary' onclick='return confirm(\"Adakah anda pasti untuk cancel?\");'>Cancel</a>";
-                                        echo "<a href='return_transaction.php?transc_ID=" . $row['transc_ID'] . "' class='btn btn-primary ml-3' onclick='return confirm(\"Adakah anda pasti untuk menghantar buku ini?\");'>Return</a>";
+                                        if ($timeResult) {
+                                            $row = mysqli_fetch_assoc($timeResult);
+                                            $recordTimestamp = strtotime($row['time']);
+
+                                            if (time() - $recordTimestamp <= 3600) {
+                                                // Cancellation
+                                                echo "<a href='cancel_transaction.php?transc_ID=" . $row['transc_ID'] . "' class='btn btn-primary' onclick='return confirm(\"Are you sure you want to cancel this book?\");'>Cancel</a>";
+                                                echo "<a href='return_transaction.php?transc_ID=" . $row['transc_ID'] . "' class='btn btn-danger ml-3' onclick='return confirm(\"Are you sure you want to Return this book?\");'>Return</a>";
+                                            } else {
+                                                if (time() - $recordTimestamp >= 86400) {
+                                                    echo "<a href='cancel_transaction.php?transc_ID=" . $row['transc_ID'] . "' class='btn btn-danger' onclick='return confirm(\"Are you sure you want to cancel this book?\");'>Cancel</a>";
+                                                    echo "<a href='return_transaction.php?transc_ID=" . $row['transc_ID'] . "' class='btn btn-primary ml-3' onclick='return confirm(\"Are you sure you want to Return this book?\");'>Return</a>";
+                                                } else {
+                                                    echo "<a href='cancel_transaction.php?transc_ID=" . $row['transc_ID'] . "' class='btn btn-danger' onclick='return confirm(\"Are you sure you want to cancel this book?\");'>Cancel</a>";
+                                                    echo "<a href='return_transaction.php?transc_ID=" . $row['transc_ID'] . "' class='btn btn-danger ml-3' onclick='return confirm(\"Are you sure you want to Return this book?\");'>Return</a>";
+                                                }
+                                            }
+                                        }
                                     } else {
-                                        echo "<a href='cancel_transaction.php?transc_ID=" . $row['transc_ID'] . "' class='btn btn-primary' onclick='return confirm(\"Adakah anda pasti untuk cancel?\");'>Cancel</a>";
-                                        echo "<a href='check_availability.php?book_ID=" . $row['book_ID'] . "&" . "transc_ID=" . $row['transc_ID'] . "' class='btn btn-primary ml-3' onclick='return confirm(\"Adakah anda pasti untuk meminjam buku ini?\");'>Borrow Now</a>";
+                                        if ($timeResult) {
+                                            $row = mysqli_fetch_assoc($timeResult);
+                                            $recordTimestamp = strtotime($row['time']);
+
+                                            if (time() - $recordTimestamp <= 3600) {
+                                                echo "<a href='cancel_transaction.php?transc_ID=" . $row['transc_ID'] . "' class='btn btn-primary' onclick='return confirm(\"Are you sure you want to cancel this book?\");'>Cancel</a>";
+                                                echo "<a href='check_availability.php?book_ID=" . $row['book_ID'] . "&" . "transc_ID=" . $row['transc_ID'] . "' class='btn btn-primary ml-3' onclick='return confirm(\"Are you sure you want to Borrow this book?\");'>Borrow Now</a>";
+                                            } else {
+                                                echo "<a href='cancel_transaction.php?transc_ID=" . $row['transc_ID'] . "' class='btn btn-danger' onclick='return confirm(\"Are you sure you want to cancel this book?\");'>Cancel</a>";
+                                                echo "<a href='check_availability.php?book_ID=" . $row['book_ID'] . "&" . "transc_ID=" . $row['transc_ID'] . "' class='btn btn-primary ml-3' onclick='return confirm(\"Are you sure you want to Borrow this book?\");'>Borrow Now</a>";
+                                            }
+                                        }
                                     }
                                     ?>
                                 </div>
@@ -245,13 +278,13 @@ if (isset($_SESSION["IDStud"])) {
         } else {
             ?>
             <tr>
-                <td>Record Tidak Wujud</td>
+                <td>Record Not Existed</td>
             </tr>
         <?php
         }
         ?>
         <div class="text-right mr-3 mb-3">
-            <a href="booking.php" class="btn btn-primary">Kembali Semula</a>
+            <a href="booking.php" class="btn btn-primary">Return to Search</a>
         </div>
     </div>
     <!-- Display Buku yang dibooking tamat -->

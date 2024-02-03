@@ -16,6 +16,7 @@ if (!isset($_SESSION["IDTeachers"])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User | Teacher Profile</title>
     <link rel="stylesheet" href="profile_style.css">
+    <link rel="icon" type="image/x-icon" href="../images/icon.png">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 
@@ -167,7 +168,7 @@ if (!isset($_SESSION["IDTeachers"])) {
                                             </div>
                                             <div class="form-group">
                                                 <label class="form-label">What kind of report that you want to make?</label>
-                                                <textarea class="form-control" rows="5" name="Ttxtreport" placeholder="Please inform any report that you want to apply." required></textarea>
+                                                <textarea class="form-control" rows="4" name="Ttxtreport" placeholder="Please inform any report that you want to apply. (Max 50 words)" required maxlength="50"></textarea>
                                             </div>
                                             <button class="btn btn-primary" name="Tcmdreport">Submit</button>
                                         </form>
@@ -180,11 +181,71 @@ if (!isset($_SESSION["IDTeachers"])) {
                             <div class="tab-pane fade" id="account-terms">
                                 <div class="card-body pb-2">
                                     <div class="form-control">
-                                        <label class="alert alert-primary bold-text">Terms and Condition</label>
+                                        <div class="form-group">
+                                            <h4 class="text-center font-weight-bold">Terms and Conditions</h4>
+                                        </div>
+                                        <div class="form-group">
+                                            <p class="font-weight-bold">1. Return Problem:</p>
+                                            <ul>
+                                                <li>Users are responsible for returning borrowed books on or before the specified due date.</li>
+                                                <li>Late returns may result in fines or other penalties, as outlined in the library's policies.</li>
+                                            </ul>
+                                        </div>
+                                        <div class="form-group">
+                                            <p class="font-weight-bold">2. Book Lost:</p>
+                                            <ul>
+                                                <li>In the event of a lost book, the user is required to report the loss immediately to the library staff.</li>
+                                                <li>The user will be responsible for replacing the lost book or reimbursing the library for the cost of the book.</li>
+                                            </ul>
+                                        </div>
+                                        <div class="form-group">
+                                            <p class="font-weight-bold">3. Misunderstood Registration:</p>
+                                            <ul>
+                                                <li>Users are responsible for providing accurate and complete registration information.</li>
+                                                <li>Any misunderstanding or misinformation provided during the registration process is the user's responsibility to rectify.</li>
+                                            </ul>
+                                        </div>
+                                        <!-- 4 to 8 -->
+                                        <div class="form-group">
+                                            <p class="font-weight-bold">4. Book Ruined:</p>
+                                            <ul>
+                                                <li>Users must handle library materials with care to prevent damage.</li>
+                                                <li>In the case of damaged books, the user may be held responsible for repair or replacement costs.</li>
+                                            </ul>
+                                        </div>
+                                        <div class="form-group">
+                                            <p class="font-weight-bold">5. Book Stolen:</p>
+                                            <ul>
+                                                <li>Users are responsible for the security of borrowed materials.</li>
+                                                <li>In the event of a stolen book, the user must report the incident promptly to the library staff.</li>
+                                                <li>Users may be held responsible for the replacement cost of the stolen book.</li>
+                                            </ul>
+                                        </div>
+                                        <div class="form-group">
+                                            <p class="font-weight-bold">6. General Responsibilities:</p>
+                                            <ul>
+                                                <li>Users are expected to adhere to all library policies and guidelines.</li>
+                                                <li>The library reserves the right to take appropriate action in the event of non-compliance with these terms and conditions.</li>
+                                            </ul>
+                                        </div>
+                                        <div class="form-group">
+                                            <p class="font-weight-bold">7. Human Error:</p>
+                                            <ul>
+                                                <li>The library acknowledges that certain situations, including but not limited to those resulting from human error, may occur.</li>
+                                                <li>The library will work with users to address issues arising from such errors, and resolutions will be determined on a case-by-case basis.</li>
+                                            </ul>
+                                        </div>
+                                        <div class="form-group">
+                                            <p class="font-weight-bold">8. Liability:</p>
+                                            <ul>
+                                                <li>The school, including its staff and administration, shall not be held liable for circumstances arising from user actions, including those outlined above.</li>
+                                                <li>Users accept responsibility for their interactions with the library and the consequences of any actions or omissions.</li>
+                                            </ul>
+                                        </div>
+                                        <div class="form-group">
+                                            <p class="font-weight-bold">By using the library services, users agree to abide by these terms and conditions. The library reserves the right to modify these terms as needed and will communicate any changes to users.</p>
+                                        </div>
                                     </div>
-                                    <label class="form-control">
-                                        Coming Soon.
-                                    </label>
                                 </div>
                             </div>
                         </div>

@@ -1,5 +1,17 @@
 /** start custom CSS **/
 
+.custom_bg{
+     background-color: #fff;
+}
+
+.custom_bg img{
+     border-radius: 15px;
+}
+
+.custom_img img{
+     border-radius: 15px;
+}
+
 /** Start Custom Login CSS **/
 
 .custom-background {
@@ -350,4 +362,47 @@
      padding-top: 200px;
      background: linear-gradient(109.6deg, rgb(245, 239, 249) 30.1%, rgb(207, 211, 236) 100.2%);
      text-align: center;
+}
+
+/* ABOUT US */
+/* About Us Section Styles */
+.about_us {
+    background: linear-gradient(109.6deg, rgb(245, 239, 249) 30.1%, rgb(207, 211, 236) 100.2%);
+    padding: 40px 0; /* Adjust the padding as needed */
+}
+
+.about_us .title {
+    text-align: center;
+    color: #007bff; /* Set text color to blue */
+    font-size: 36px;
+    font-weight: 600;
+    margin-bottom: 30px;
+}
+
+.about_us .form-control {
+    background-color: #ffffff; /* Set background color to white */
+    border: 1px solid #007bff; /* Set border color to blue */
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.about_us h3 {
+    color: #007bff; /* Set heading color to blue */
+}
+
+.about_us p {
+    color: #343a40; /* Set paragraph text color to a dark color for better readability */
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+/* Responsive Styles (Adjust as needed) */
+@media (max-width: 767px) {
+    .about_us .title {
+        font-size: 28px;
+    }
+
+    .about_us p {
+        font-size: 14px;
+    }
 }

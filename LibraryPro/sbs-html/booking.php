@@ -9,7 +9,7 @@ if (isset($_SESSION["IDStud"])) {
     $func_todo = "auth/logout.php";
     $profile = "profile/profile.php";
     $stud_ID = $_SESSION["IDStud"];
-    $confirmation_logout = "onclick='return confirm(\"Adakah anda ingin $log?\");'";
+    $confirmation_logout = "onclick='return confirm(\"Are you sure you want to $log?\");'";
 
     $studentQuery = "SELECT * FROM tblstudent WHERE stud_ID = ?";
     $stmt = $con->prepare($studentQuery);
@@ -17,13 +17,13 @@ if (isset($_SESSION["IDStud"])) {
     $stmt->execute();
     $result = $stmt->get_result();
     $user = $result->fetch_assoc();
-    $statement_res = "Welcome Back, " . $user['stud_Name'];
+    $statement_res = "HI, " . $user['stud_Name'];
     $stmt->close();
 } elseif (isset($_SESSION["IDTeachers"])) {
     $log = "Logout";
     $func_todo = "auth/logout.php";
     $profile = "profile/teacher_profile.php";
-    $confirmation_logout = "onclick='return confirm(\"Adakah anda ingin $log?\");'";
+    $confirmation_logout = "onclick='return confirm(\"Are you sure you want to $log?\");'";
 
     $teachers_ID = $_SESSION["IDTeachers"];
 
@@ -33,7 +33,7 @@ if (isset($_SESSION["IDStud"])) {
     $stmt->execute();
     $result = $stmt->get_result();
     $user = $result->fetch_assoc();
-    $statement_res = "Welcome Back, " . $user['teachers_Name'];
+    $statement_res = "HI, " . $user['teachers_Name'];
     $stmt->close();
 } else {
     $statement_res = null;
@@ -45,8 +45,12 @@ if (isset($_SESSION["IDStud"])) {
 
 if (isset($_GET['simple'])) {
     $statement = "simple";
-    $search = "Carian";
+    $search = "Search";
     $search_link = "booking.php";
+} else {
+    $statement = "";
+    $search = "Default";
+    $search_link = "index.php";
 }
 ?>
 
@@ -61,7 +65,7 @@ if (isset($_GET['simple'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1">
     <!-- site metas -->
-    <title>Library Pro | Buku</title>
+    <title>Library Pro | Search</title>
     <meta name="keywords" content="">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -77,6 +81,8 @@ if (isset($_GET['simple'])) {
     <link rel="stylesheet" href="css/responsive.css">
     <!-- fevicon -->
     <link rel="icon" href="images/fevicon.png" type="image/gif" />
+    <!-- Icon here -->
+    <link rel="icon" type="image/x-icon" href="images/icon.png">
     <!-- Tweaks for older IEs-->
     <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
     <!--[if lt IE 9]>
@@ -116,16 +122,16 @@ if (isset($_GET['simple'])) {
                                     <a class="nav-link" href="index.php"><i class="fa fa-home"></i> Home</a>
                                 </li>
                                 <li class="nav-item active">
-                                    <a class="nav-link" href="booking.php?simple"><i class="fa fa-search"></i> Carian</a>
+                                    <a class="nav-link" href="booking.php?simple"><i class="fa fa-search"></i> Search</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="advance_booking.php?advance"><i class="fa fa-search-plus"></i> Carian Terperinci</a>
+                                    <a class="nav-link" href="advance_booking.php?advance"><i class="fa fa-search-plus"></i> Advanced Search</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="buku_saya.php"><i class="fa fa-book"></i> Buku Saya</a>
+                                    <a class="nav-link" href="buku_saya.php"><i class="fa fa-book"></i> My Book</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="about.php"><i class="fa fa-universal-access"></i> Berkaitan Kami</a>
+                                    <a class="nav-link" href="about.php"><i class="fa fa-universal-access"></i> About Us</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="<?= $func_todo ?>" <?= $confirmation_logout ?>><i class="fa fa-sign-out"></i> <?= $log ?></a>
@@ -146,10 +152,10 @@ if (isset($_GET['simple'])) {
 
     <!-- Booking Start -->
     <header id="header_book">
-        <h1>Buku-Buku</h1>
+        <h1>Books</h1>
         <br>
         <!-- Button Search -->
-        <button class="open-button-popup" onclick="openForm()">Carian Judul Buku</button>
+        <button class="open-button-popup" onclick="openForm()">Search Book Title</button>
     </header>
 
     <!-- Start Book Search -->
@@ -157,7 +163,7 @@ if (isset($_GET['simple'])) {
         <div class="col-md-12">
             <div class="card mt-4">
                 <div class="card-header style_card">
-                    <h4>Judul Buku</h4>
+                    <h4>Book Title</h4>
                 </div>
                 <div class="card-body">
                     <div class="row">
@@ -169,8 +175,8 @@ if (isset($_GET['simple'])) {
                                 </div>
                                 <!-- Button -->
                                 <div class="col-md-12 text_align_center">
-                                    <button type="submit" class="btn btn-primary">Buat Carian</button>
-                                    <button type="button" class="btn btn-secondary cancel" onclick="closeForm()">Tutup Carian</button>
+                                    <button type="submit" class="btn btn-primary">Create a Search</button>
+                                    <button type="button" class="btn btn-secondary cancel" onclick="closeForm()">Close Search</button>
                                 </div>
                                 <input type="hidden" name="simple" value="<?= $statement ?>">
                             </form>
@@ -186,7 +192,7 @@ if (isset($_GET['simple'])) {
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="index.php">Home</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Carian</li>
+            <li class="breadcrumb-item active" aria-current="page">Search</li>
         </ol>
     </nav>
     <!-- Breadcrumbs Ends -->
@@ -251,29 +257,29 @@ if (isset($_GET['simple'])) {
                     <!-- rest of the code remains unchanged -->
                     <div class="row g-0">
                         <div class="col-md-3 mb-3">
-                            <img src="../../admin/admin_panel/controller/<?= $row['book_image'] ?>">
+                            <img src="../admin/admin_panel/controller/<?= $row['book_image'] ?>">
                         </div>
                         <div class="col-md-8">
                             <div class="card-body">
                                 <h2 class="card-title"><?= $row["book_title"] ?></h2>
                                 <table>
                                     <tr>
-                                        <td class="bold-text">Pengarang:&nbsp;&nbsp;<?= $row["book_author"] ?></td>
+                                        <td class="bold-text">Author:&nbsp;&nbsp;<?= $row["book_author"] ?></td>
                                     </tr>
                                     <tr>
-                                        <td class="bold-text">No. ISBN:&nbsp;&nbsp;<?= $row["book_ISBN"] ?></td>
+                                        <td class="bold-text">ISBN Number:&nbsp;&nbsp;<?= $row["book_ISBN"] ?></td>
                                     </tr>
                                     <tr>
-                                        <td class="bold-text">Penerbit:&nbsp;&nbsp;<?= $row["publisher"] ?></td>
+                                        <td class="bold-text">Publisher:&nbsp;&nbsp;<?= $row["publisher"] ?></td>
                                     </tr>
                                     <tr>
-                                        <td class="bold-text">No. Panggilan:&nbsp;&nbsp;<?= $row["book_dewey"] ?></td>
+                                        <td class="bold-text">Calling Number:&nbsp;&nbsp;<?= $row["book_dewey"] ?></td>
                                     </tr>
                                     <tr>
-                                        <td class="bold-text">Kategori:&nbsp;&nbsp;<?= $row["book_category"] ?></td>
+                                        <td class="bold-text">Category:&nbsp;&nbsp;<?= $row["book_category"] ?></td>
                                     </tr>
                                     <tr>
-                                        <td class="bold-text">Diskripsi:&nbsp;&nbsp;<?= $row["book_desc"] ?></td>
+                                        <td class="bold-text">Description:&nbsp;&nbsp;<?= $row["book_desc"] ?></td>
                                     </tr>
                                     <tr>
                                         <td class='bold-text'>Book Condition:&nbsp;&nbsp;<?= $row['book_status'] ?></td>
@@ -299,9 +305,33 @@ if (isset($_GET['simple'])) {
                                 </table>
                             </div>
                         </div>
-                        <div class="ml-auto mr-5 mb-3">
-                            <a href="display_book.php?book_ID=<?= $row['book_ID'] ?>&search" class="btn btn-primary">Pilih Buku</a>
-                        </div>
+                        <?php
+                        $bookCondition = "SELECT `book_status` FROM tblbook WHERE `book_ID` = '$row[book_ID]' AND `book_status` = 'Broken'";
+                        $checkCondition = mysqli_query($con, $bookCondition);
+
+                        $returnCondition = "SELECT `return_approval` FROM tblreturning WHERE `book_ID` = '$row[book_ID]' AND `return_approval` = 0";
+                        $checkReturn = mysqli_query($con, $returnCondition);
+
+                        if (mysqli_num_rows($checkCondition) > 0) {
+                        ?>
+                            <div class="ml-auto mr-5 mb-3">
+                                <a class="btn btn-danger" style="color: #fff;">Cannot Be Selected (This Book is not in Good Condition)</a>
+                            </div>
+                        <?php
+                        } elseif (mysqli_num_rows($checkReturn) > 0) {
+                        ?>
+                            <div class="ml-auto mr-5 mb-3">
+                                <a class="btn btn-warning" style="color: black;">Cannot Be Selected (This Book is still not Returned yet)</a>
+                            </div>
+                        <?php
+                        } else {
+                        ?>
+                            <div class="ml-auto mr-5 mb-3">
+                                <a href="display_book.php?book_ID=<?= $row['book_ID'] ?>&search" class="btn btn-primary">Select Book</a>
+                            </div>
+                        <?php
+                        }
+                        ?>
                     </div>
                     <!-- ... -->
                 </div>
@@ -310,7 +340,7 @@ if (isset($_GET['simple'])) {
         } else {
             ?>
             <tr>
-                <td>Record Tidak Wujud</td>
+                <td>Book not existed.</td>
             </tr>
         <?php
         }

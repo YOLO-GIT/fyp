@@ -11,7 +11,7 @@ if (isset($_SESSION["IDStud"])) {
     $func_todo = "auth/logout.php";
     $profile = "profile/profile.php";
     $stud_ID = $_SESSION["IDStud"];
-    $confirmation_logout = "onclick='return confirm(\"Adakah anda ingin $log?\");'";
+    $confirmation_logout = "onclick='return confirm(\"Are you sure you want to $log?\");'";
 
     $studentQuery = "SELECT * FROM tblstudent WHERE stud_ID = ?";
     $stmt = $con->prepare($studentQuery);
@@ -19,13 +19,13 @@ if (isset($_SESSION["IDStud"])) {
     $stmt->execute();
     $result = $stmt->get_result();
     $user = $result->fetch_assoc();
-    $statement_res = "Welcome Back, " . $user['stud_Name'];
+    $statement_res = "HI, " . $user['stud_Name'];
     $stmt->close();
 } elseif (isset($_SESSION["IDTeachers"])) {
     $log = "Logout";
     $func_todo = "auth/logout.php";
     $profile = "profile/teacher_profile.php";
-    $confirmation_logout = "onclick='return confirm(\"Adakah anda ingin $log?\");'";
+    $confirmation_logout = "onclick='return confirm(\"Are you sure you want to $log?\");'";
 
     $teachers_ID = $_SESSION["IDTeachers"];
 
@@ -35,13 +35,13 @@ if (isset($_SESSION["IDStud"])) {
     $stmt->execute();
     $result = $stmt->get_result();
     $user = $result->fetch_assoc();
-    $statement_res = "Welcome Back, " . $user['teachers_Name'];
+    $statement_res = "HI, " . $user['teachers_Name'];
     $stmt->close();
 } else {
     $statement_res = null;
     $log = "Login";
     $func_todo = "auth/login.php";
-    echo "<script>alert('Sila Login Dahulu.');</script>";
+    echo "<script>alert('Please Login First.');</script>";
     echo "<script>window.location.href='auth/login.php';</script>";
     $confirmation_logout = "";
 }
@@ -55,6 +55,8 @@ if (isset($_GET['book_ID'])) {
 
 if (isset($_GET['transc_ID'])) {
     $transc_ID = $_GET['transc_ID'];
+} else {
+    $transc_ID = "";
 }
 ?>
 
@@ -123,16 +125,16 @@ if (isset($_GET['transc_ID'])) {
                                     <a class="nav-link" href="index.php"><i class="fa fa-home"></i> Home</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="booking.php?simple"><i class="fa fa-search"></i> Carian</a>
+                                    <a class="nav-link" href="booking.php?simple"><i class="fa fa-search"></i> Search</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="advance_booking.php?advance"><i class="fa fa-search-plus"></i> Carian Terperinci</a>
+                                    <a class="nav-link" href="advance_booking.php?advance"><i class="fa fa-search-plus"></i> Advance Search</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="buku_saya.php"><i class="fa fa-book"></i> Buku Saya</a>
+                                    <a class="nav-link" href="buku_saya.php"><i class="fa fa-book"></i> My Book</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="about.php"><i class="fa fa-universal-access"></i> Berkaitan Kami</a>
+                                    <a class="nav-link" href="about.php"><i class="fa fa-universal-access"></i> About Us</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="<?= $func_todo ?>" <?= $confirmation_logout ?>><i class="fa fa-sign-out"></i> <?= $log ?></a>
@@ -174,38 +176,39 @@ if (isset($_GET['transc_ID'])) {
                     <div class="card_book_display mb-3">
                         <div class="row">
                             <div class="col-md-4">
-                                <img src="../../admin/admin_panel/controller/<?= $row['book_image'] ?>">
+                                <img src="../admin/admin_panel/controller/<?= $row['book_image'] ?>">
                             </div>
                             <div class="col-md-8">
                                 <div class="card-body">
                                     <h2 class="card-title"><?= $returnRow["book_title"] ?></h2>
-                                    <p class="bold-text">IC*:&nbsp;&nbsp;</p>
+                                    <p class="bold-text">Your IC*:&nbsp;&nbsp;</p>
                                     <input type="text" name="txttID" class="form-control" value="<?= $transc_ID ?>" hidden>
+                                    <input type="text" name="txtbookID" class="form-control" value="<?= $returnRow['book_ID'] ?>" hidden>
                                     <div class="form-group">
                                         <input type="number" name="txtIC" class="form-control" value="<?= $returnRow['user_ID'] ?>" readonly>
                                     </div>
-                                    <p class="bold-text">Nama*:&nbsp;&nbsp;</p>
+                                    <p class="bold-text">Your Name*:&nbsp;&nbsp;</p>
                                     <div class="form-group">
                                         <input type="text" name="txtname" class="form-control" value="<?= $returnRow['user_Name'] ?>" readonly>
                                     </div>
-                                    <p class="bold-text">Nama Buku*:&nbsp;&nbsp;</p>
+                                    <p class="bold-text">Your Book*:&nbsp;&nbsp;</p>
                                     <div class="form-group">
                                         <input type="text" name="txtbname" class="form-control" value="<?= $returnRow['book_title'] ?>" readonly>
                                     </div>
-                                    <p class="bold-text">Keadaan Buku Tersebut*:&nbsp;&nbsp;</p>
+                                    <p class="bold-text">The book condition*:&nbsp;&nbsp;</p>
                                     <div class="form-group">
                                         <select class="form-control" name="cbocondition" required>
-                                            <option value="">Sila Pilih Kondisi Buku Tersebut*:</option>
-                                            <option value="Terbaik">Terbaik</option>
-                                            <option value="Sederhana">Sederhana</option>
-                                            <option value="Rosak">Rosak</option>
+                                            <option value="">Please choose the book condition*:</option>
+                                            <option value="Great">Great</option>
+                                            <option value="Good">Good</option>
+                                            <option value="Broken">Broken</option>
                                         </select>
                                     </div>
                                 </div>
                                 <br>
                                 <div class="text-right mr-3 mb-3">
-                                    <button type="submit" class="btn btn-primary" name="cmdreturn">Hantar</button>
-                                    <a href="buku_saya.php" class="btn btn-primary">Kembali Semula</a>
+                                    <button type="submit" class="btn btn-primary" name="cmdreturn">Submit</button>
+                                    <a href="buku_saya.php" class="btn btn-secondary">Return to My Book</a>
                                 </div>
                             </div>
                         </div>
@@ -216,7 +219,7 @@ if (isset($_GET['transc_ID'])) {
             } else {
                 ?>
                 <div class="form-group">
-                    <label class="form-control">Record Tidak Wujud</label>
+                    <label class="form-control">Record Not Exist</label>
                 </div>
             <?php
             }

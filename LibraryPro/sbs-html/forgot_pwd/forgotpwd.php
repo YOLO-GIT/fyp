@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1">
     <!-- site metas -->
-    <title>LibraryPro | Password Forgot</title>
+    <title>LibraryPro | Forgot Password</title>
     <meta name="keywords" content="">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -25,6 +25,8 @@
     <link rel="stylesheet" href="../css/responsive.css">
     <!-- fevicon -->
     <link rel="icon" href="images/fevicon.png" type="image/gif" />
+    <!-- Icon here -->
+    <link rel="icon" type="image/x-icon" href="../images/icon.png">
     <!-- Tweaks for older IEs-->
     <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
     <!--[if lt IE 9]>
@@ -48,7 +50,7 @@
                         <div class="center-desk">
                             <div class="logo">
                                 <!-- Logo -->
-                                <a href="index.php"><img src="../images/new_logo.png" alt="#" /></a>
+                                <a href="../index.php"><img src="../images/new_logo.png" alt="#" /></a>
                             </div>
                         </div>
                     </div>
@@ -64,16 +66,16 @@
                                     <a class="nav-link" href="../index.php"><i class="fa fa-home"></i> Home</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="../booking.php"><i class="fa fa-search"></i> Carian</a>
+                                    <a class="nav-link" href="../booking.php"><i class="fa fa-search"></i> Search</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="../advance_booking.php"><i class="fa fa-search-plus"></i> Carian Terperinci</a>
+                                    <a class="nav-link" href="../advance_booking.php"><i class="fa fa-search-plus"></i> Advanced Search</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="../buku_saya.php"><i class="fa fa-book"></i> Buku Saya</a>
+                                    <a class="nav-link" href="../buku_saya.php"><i class="fa fa-book"></i> My Book</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="#"><i class="fa fa-universal-access"></i> Berkaitan Kami</a>
+                                    <a class="nav-link" href="../about.php"><i class="fa fa-universal-access"></i> About Us</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="../login.php"><i class="fa fa-sign-out"></i> Login</a>

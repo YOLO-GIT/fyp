@@ -57,7 +57,7 @@ if (isset($_POST["cmdlogin"])) {
         // Inform to the user
         echo "<script>alert('Login Success');</script>";
         // Redirect to index.php
-        echo "<script>window.location.href='../../../staff/staff_panel/index.php';</script>";
+        echo "<script>window.location.href='../staff/staff_panel/index.php';</script>";
     } elseif (mysqli_num_rows($admin_res) > 0) {
         $validate = mysqli_fetch_assoc($admin_res);
         // Create a session
@@ -65,7 +65,7 @@ if (isset($_POST["cmdlogin"])) {
         // Inform to the user
         echo "<script>alert('Login Success');</script>";
         // Redirect to index.php
-        echo "<script>window.location.href='../../../admin/admin_panel/index.php';</script>";
+        echo "<script>window.location.href='../admin/admin_panel/index.php';</script>";
     } else {
         echo "<script>alert('Invalid username or password');</script>";
     }
@@ -87,7 +87,7 @@ if (isset($_POST["cmdlogin"])) {
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1">
     <!-- site metas -->
-    <title>Login</title>
+    <title>LibraryPro | Login</title>
     <meta name="keywords" content="">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -102,6 +102,8 @@ if (isset($_POST["cmdlogin"])) {
     <link rel="stylesheet" href="../css/responsive.css">
     <!-- fevicon -->
     <link rel="icon" href="../images/fevicon.png" type="image/gif" />
+    <!-- Icon here -->
+    <link rel="icon" type="image/x-icon" href="../images/icon.png">
     <!-- Tweaks for older IEs-->
     <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
     <!--[if lt IE 9]>
@@ -125,7 +127,7 @@ if (isset($_POST["cmdlogin"])) {
                         <div class="center-desk">
                             <div class="logo">
                                 <!-- Logo -->
-                                <a href="index.php"><img src="../images/new_logo.png" alt="#" /></a>
+                                <a href="../index.php"><img src="../images/new_logo.png" alt="#" /></a>
                             </div>
                         </div>
                     </div>
@@ -141,16 +143,16 @@ if (isset($_POST["cmdlogin"])) {
                                     <a class="nav-link" href="../index.php"><i class="fa fa-home"></i> Home</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="../booking.php?simple"><i class="fa fa-search"></i> Carian</a>
+                                    <a class="nav-link" href="../booking.php?simple"><i class="fa fa-search"></i> Search</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="../advance_booking.php?advance"><i class="fa fa-search-plus"></i> Carian Terperinci</a>
+                                    <a class="nav-link" href="../advance_booking.php?advance"><i class="fa fa-search-plus"></i> Advanced Search</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="../buku_saya.php"><i class="fa fa-book"></i> Buku Saya</a>
+                                    <a class="nav-link" href="../buku_saya.php"><i class="fa fa-book"></i> My Book</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="#"><i class="fa fa-universal-access"></i> Berkaitan Kami</a>
+                                    <a class="nav-link" href="../about.php"><i class="fa fa-universal-access"></i> About Us</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="login.php"><i class="fa fa-sign-out"></i> Login</a>
@@ -191,11 +193,11 @@ if (isset($_POST["cmdlogin"])) {
                     <form name="frmlogin" class="main_form_login" action="" method="post">
                         <br><br>
                         <div class=" col-md-12">
-                            <label class="custom_label_login">Username Anda:</label>
-                            <input class="contactus" placeholder="Username*" type="text" name="txtname" maxlength="10" autocomplete="off" required>
+                            <label class="custom_label_login">Your Username:</label>
+                            <input class="contactus" placeholder="Username*" type="text" name="txtname" maxlength="10" autocomplete="off" title="Please input your username correctly" required>
                         </div>
                         <div class="col-md-12">
-                            <label class="custom_label_login">Password Anda:</label>
+                            <label class="custom_label_login">Your Password:</label>
                             <input class="contactus" placeholder="Password*" type="password" name="txtpwd" id="myInputPWD" maxlength="9" autocomplete="off" required>
                             <input type="checkbox" onclick="myFunction()">&nbsp;&nbsp;<label class="show_style">Show Password</label>
                         </div>
@@ -209,7 +211,7 @@ if (isset($_POST["cmdlogin"])) {
                         <h3 style="color:black;">Not Register?</h3>
                         <h3 style="color:black;">Click&nbsp;&nbsp;<a href="register.php" class="btn btn-primary">here for registration</a></h3>
                         <h3 style="color:black;">Forgot Password?
-                            <a href="../forgot_pwd/forgotpwd.php" onclick="return confirm('Adakah betul anda tidak ingat katalaluan anda?');" class="btn btn-primary">
+                            <a href="../forgot_pwd/forgotpwd.php" onclick="return confirm('Is it true that you don`t remember your password?');" class="btn btn-primary">
                                 Click Here
                             </a>
                         </h3>

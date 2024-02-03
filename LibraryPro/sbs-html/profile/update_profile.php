@@ -17,21 +17,21 @@ if (isset($_GET['cmdsave'])) {
     // Perform necessary validation here
     if ($name == "" || $name == null) {
         // Validation if the content is same
-        echo "<script>alert('Sila jangan biar kosong pada nama anda.');</script>";
+        echo "<script>alert('Please do not leave the name empty.');</script>";
         // Close the DB to ensure it will not updated.
         mysqli_close($con);
         // Sending back to the Profile Panel.
         echo "<script>window.location.href='./profile.php';</script>";
     } elseif ($kelas == "" || $kelas == null) {
         // Validation if the content is same
-        echo "<script>alert('Sila jangan biar kosong pada kelas anda.');</script>";
+        echo "<script>alert('Please do not leave the class empty.');</script>";
         // Close the DB to ensure it will not updated.
         mysqli_close($con);
         // Sending back to the Profile Panel.
         echo "<script>window.location.href='./profile.php';</script>";
     } elseif ($uname == "" || $uname == null) {
         // Validation if the content is same
-        echo "<script>alert('Sila jangan biar kosong pada username anda.');</script>";
+        echo "<script>alert('Please do not leave the username empty.');</script>";
         // Close the DB to ensure it will not updated.
         mysqli_close($con);
         // Sending back to the Profile Panel.
@@ -41,10 +41,10 @@ if (isset($_GET['cmdsave'])) {
         $sql = "UPDATE tblstudent SET stud_Name = '$name', stud_username = '$uname', stud_Class = '$kelas' WHERE stud_ID = '$id'";
 
         if ($con->query($sql) === TRUE) {
-            echo "<script>alert('Info anda berjaya diubah.')</script>";
+            echo "<script>alert('Your info successfully changed.')</script>";
             echo "<script>window.location.href='./profile.php';</script>";
         } else {
-            echo "<script>alert('Info anda tidak berjaya diubah.')</script>" . $con->error;
+            echo "<script>alert('Your info unsuccessfully changed.')</script>" . $con->error;
             echo "<script>window.location.href='./profile.php';</script>";
         }
     }
@@ -57,14 +57,14 @@ if (isset($_GET['cmdsave'])) {
     // Perform necessary validation here
     if ($Tname == "" || $Tname == null) {
         // Validation if the content is same
-        echo "<script>alert('Sila jangan biar kosong pada nama anda.');</script>";
+        echo "<script>alert('Please do not leave the name empty.');</script>";
         // Close the DB to ensure it will not updated.
         mysqli_close($con);
         // Sending back to the Profile Panel.
         echo "<script>window.location.href='teacher_profile.php';</script>";
     } elseif ($Tuname == "" || $Tuname == null) {
         // Validation if the content is same
-        echo "<script>alert('Sila jangan biar kosong pada username anda.');</script>";
+        echo "<script>alert('Please do not leave the username empty.');</script>";
         // Close the DB to ensure it will not updated.
         mysqli_close($con);
         // Sending back to the Profile Panel.
@@ -74,10 +74,10 @@ if (isset($_GET['cmdsave'])) {
         $sql = "UPDATE tblteachers SET teachers_Name = '$Tname', teachers_username = '$Tuname' WHERE teachers_ID = '$Tid'";
 
         if ($con->query($sql) === TRUE) {
-            echo "<script>alert('Info anda berjaya diubah.')</script>";
+            echo "<script>alert('Your info successfully changed.')</script>";
             echo "<script>window.location.href='teacher_profile.php';</script>";
         } else {
-            echo "<script>alert('Info anda tidak berjaya diubah.')</script>" . $con->error;
+            echo "<script>alert('Your info unsuccessfully changed.')</script>" . $con->error;
             echo "<script>window.location.href='teacher_profile.php';</script>";
         }
     }

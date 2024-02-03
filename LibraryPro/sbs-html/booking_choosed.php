@@ -12,7 +12,7 @@ if (isset($_SESSION["IDStud"])) {
     $func_todo = "auth/logout.php";
     $profile = "profile/profile.php";
     $stud_ID = $_SESSION["IDStud"];
-    $confirmation_logout = "onclick='return confirm(\"Adakah anda ingin $log?\");'";
+    $confirmation_logout = "onclick='return confirm(\"Are you sure you want to $log?\");'";
 
     $studentQuery = "SELECT * FROM tblstudent WHERE stud_ID = ?";
     $stmt = $con->prepare($studentQuery);
@@ -20,13 +20,13 @@ if (isset($_SESSION["IDStud"])) {
     $stmt->execute();
     $result = $stmt->get_result();
     $user = $result->fetch_assoc();
-    $statement_res = "Welcome Back, " . $user['stud_Name'];
+    $statement_res = "HI, " . $user['stud_Name'];
     $stmt->close();
 } elseif (isset($_SESSION["IDTeachers"])) {
     $log = "Logout";
     $func_todo = "auth/logout.php";
     $profile = "profile/teacher_profile.php";
-    $confirmation_logout = "onclick='return confirm(\"Adakah anda ingin $log?\");'";
+    $confirmation_logout = "onclick='return confirm(\"Are you sure you want to $log?\");'";
 
     $teachers_ID = $_SESSION["IDTeachers"];
 
@@ -36,13 +36,13 @@ if (isset($_SESSION["IDStud"])) {
     $stmt->execute();
     $result = $stmt->get_result();
     $user = $result->fetch_assoc();
-    $statement_res = "Welcome Back, " . $user['teachers_Name'];
+    $statement_res = "HI, " . $user['teachers_Name'];
     $stmt->close();
 } else {
     $statement_res = null;
     $log = "Login";
     $func_todo = "auth/login.php";
-    echo "<script>alert('Sila Login Dahulu.');</script>";
+    echo "<script>alert('Please Login First.');</script>";
     echo "<script>window.location.href='auth/login.php';</script>";
     $confirmation_logout = "";
 }
@@ -52,23 +52,27 @@ if (isset($_GET['stud_ID'])) {
 } elseif (isset($_GET['teachers_ID'])) {
     $teachers_ID = $_GET['teachers_ID'];
 } else {
-    echo "Error";
+    $stud_ID = "";
 }
 
 if (isset($_GET['book_ID'])) {
     $book_ID = $_GET['book_ID'];
 } else {
-    echo "No book selected.";
+    $book_ID = "";
 }
 
 if (isset($_GET['search'])) {
     $statement_search = 'search';
-    $search = "Carian";
+    $search = "Search";
     $search_link = "booking.php?simple";
 } elseif (isset($_GET['ad_search'])) {
     $statement_search = 'ad_search';
-    $search = "Carian Terperinci";
+    $search = "Advance Search";
     $search_link = "advance_booking.php?advance";
+} else {
+    $statement_search = '';
+    $search = "Default";
+    $search_link = "index.php";
 }
 ?>
 
@@ -83,7 +87,7 @@ if (isset($_GET['search'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1">
     <!-- site metas -->
-    <title>Library Pro | Buku</title>
+    <title>Library Pro | Booking Choosed</title>
     <meta name="keywords" content="">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -98,6 +102,8 @@ if (isset($_GET['search'])) {
     <link rel="stylesheet" href="css/responsive.css">
     <!-- fevicon -->
     <link rel="icon" href="images/fevicon.png" type="image/gif" />
+    <!-- Icon here -->
+    <link rel="icon" type="image/x-icon" href="images/icon.png">
     <!-- Tweaks for older IEs-->
     <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
     <!--[if lt IE 9]>
@@ -138,16 +144,16 @@ if (isset($_GET['search'])) {
                                     <a class="nav-link" href="index.php"><i class="fa fa-home"></i> Home</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="booking.php?simple"><i class="fa fa-search"></i> Carian</a>
+                                    <a class="nav-link" href="booking.php?simple"><i class="fa fa-search"></i> Search</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="advance_booking.php?advance"><i class="fa fa-search-plus"></i> Carian Terperinci</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="buku_saya.php"><i class="fa fa-book"></i> Buku Saya</a>
+                                    <a class="nav-link" href="buku_saya.php"><i class="fa fa-book"></i> My Book</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="about.php"><i class="fa fa-universal-access"></i> Berkaitan Kami</a>
+                                    <a class="nav-link" href="about.php"><i class="fa fa-universal-access"></i> About Us</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="<?= $func_todo ?>" <?= $confirmation_logout ?>><i class="fa fa-sign-out"></i> <?= $log ?></a>
@@ -177,7 +183,7 @@ if (isset($_GET['search'])) {
             <li class="breadcrumb-item"><a href="index.php">Home</a></li>
             <li class="breadcrumb-item"><a href="<?= $search_link ?>"><?= $search ?></a></li>
             <li class="breadcrumb-item" aria-current="page"><a href="display_book.php?book_ID=<?= $book_ID ?>&<?= $statement_search ?>"><?= $book["book_title"] ?></a></li>
-            <li class="breadcrumb-item active" aria-current="page">Pilihan Buku: <?= $book["book_title"] ?></li>
+            <li class="breadcrumb-item active" aria-current="page">Chosen Book: <?= $book["book_title"] ?></li>
         </ol>
     </nav>
     <!-- Breadcrumbs Ends -->
@@ -247,43 +253,43 @@ if (isset($_GET['search'])) {
                 <div class="card_book_display mb-3">
                     <div class="row">
                         <div class="col-md-4">
-                            <img src="../../admin/admin_panel/controller/<?= $book['book_image'] ?>">
+                            <img src="../admin/admin_panel/controller/<?= $book['book_image'] ?>">
                         </div>
                         <div class="col-md-8">
                             <div class="card-body">
                                 <input name="txtbookID" value="<?= $book["book_ID"] ?>" hidden>
                                 <input name="txtbookName" value="<?= $book["book_title"] ?>" hidden>
                                 <h2 class="card-title"><?= $book["book_title"] ?></h2>
-                                <p class="bold-text">Pengarang:&nbsp;&nbsp;</p>
+                                <p class="bold-text">Author:&nbsp;&nbsp;</p>
                                 <div class="alert alert-primary">
                                     <p><?= $book["book_author"] ?></p>
                                 </div>
-                                <p class="bold-text">No. ISBN:&nbsp;&nbsp;</p>
+                                <p class="bold-text">ISBN Number:&nbsp;&nbsp;</p>
                                 <div class="alert alert-primary">
                                     <p><?= $book["book_ISBN"] ?></p>
                                 </div>
-                                <p class="bold-text">Penerbit:&nbsp;&nbsp;</p>
+                                <p class="bold-text">Publisher:&nbsp;&nbsp;</p>
                                 <div class="alert alert-primary">
                                     <p><?= $book["publisher"] ?></p>
                                 </div>
-                                <p class="bold-text">Masa Booking:&nbsp;&nbsp;</p>
+                                <p class="bold-text">Book Condition:&nbsp;&nbsp;</p>
+                                <div class="alert alert-primary">
+                                    <p><?= $book["book_status"] ?></p>
+                                </div>
+                                <p class="bold-text">Time Booking:&nbsp;&nbsp;</p>
                                 <div class="alert alert-primary">
                                     <input class="form-control" type="text" name="masabooking" value="<?php echo date("h:i:s a"); ?>" readonly>
                                 </div>
-                                <p class="bold-text">Start Tarikh Booking:&nbsp;&nbsp;</p>
+                                <p class="bold-text">Start Booking:&nbsp;&nbsp;</p>
                                 <div class="alert alert-primary">
                                     <input class="form-control" type="date" name="dtstartbooking" value="<?php echo date('Y-m-d'); ?>" readonly>
-                                </div>
-                                <p class="bold-text">Status:&nbsp;&nbsp;</p>
-                                <div class="alert alert-primary">
-                                    <p><?= $book["book_status"] ?></p>
                                 </div>
                             </div>
                             <br>
                             <div class="text-right mr-3 mb-3">
-                                <button type="submit" name="cmdbooking" class="btn btn-primary">Simpan</button>
+                                <button type="submit" name="cmdbooking" class="btn btn-primary">Save</button>
                                 &nbsp;
-                                <a href="<?= $search_link ?>" class="btn btn-primary">Kembali Semula</a>
+                                <a href="<?= $search_link ?>" class="btn btn-secondary">Return to Search</a>
                             </div>
                         </div>
                     </div>

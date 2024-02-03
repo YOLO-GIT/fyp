@@ -90,6 +90,8 @@ if (isset($_GET['stud'])) {
     <link rel="stylesheet" href="../css/responsive.css">
     <!-- fevicon -->
     <link rel="icon" href="../images/fevicon.png" type="image/gif" />
+    <!-- Icon here -->
+    <link rel="icon" type="image/x-icon" href="../images/icon.png">
     <!-- Tweaks for older IEs-->
     <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
     <!--[if lt IE 9]>
@@ -113,7 +115,7 @@ if (isset($_GET['stud'])) {
                         <div class="center-desk">
                             <div class="logo">
                                 <!-- Logo -->
-                                <a href="index.php"><img src="../images/new_logo.png" alt="#" /></a>
+                                <a href="../index.php"><img src="../images/new_logo.png" alt="#" /></a>
                             </div>
                         </div>
                     </div>
@@ -129,16 +131,16 @@ if (isset($_GET['stud'])) {
                                     <a class="nav-link" href="../index.php"><i class="fa fa-home"></i> Home</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="../booking.php?simple"><i class="fa fa-search"></i> Carian</a>
+                                    <a class="nav-link" href="../booking.php?simple"><i class="fa fa-search"></i> Search</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="../advance_booking.php?advance"><i class="fa fa-search-plus"></i> Carian Terperinci</a>
+                                    <a class="nav-link" href="../advance_booking.php?advance"><i class="fa fa-search-plus"></i> Advanced Search</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="#"><i class="fa fa-universal-access"></i> Berkaitan Kami</a>
+                                    <a class="nav-link" href="../about.php"><i class="fa fa-universal-access"></i> About Us</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="../buku_saya.php"><i class="fa fa-book"></i> Buku Saya</a>
+                                    <a class="nav-link" href="../buku_saya.php"><i class="fa fa-book"></i> My Book</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="login.php"><i class="fa fa-sign-out"></i> Login</a>
@@ -169,7 +171,7 @@ if (isset($_GET['stud'])) {
     <!-- Breadcrumbs Ends -->
 
     <!-- Verify -->
-    <div class="verify_body">
+    <div class="verify_body mt-5">
         <div class="col-md-12">
             <div class="new_title text_align_center mt-5">
                 <h2>Verification Form</h2>

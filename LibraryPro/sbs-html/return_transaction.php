@@ -31,3 +31,5 @@ if ($resultTime) {
     // Error fetching timestamp
     echo "<script>alert('Error return');</script>";
 }
+
+mysqli_close($con);

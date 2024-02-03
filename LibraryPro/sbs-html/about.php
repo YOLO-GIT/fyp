@@ -11,7 +11,7 @@ if (isset($_SESSION["IDStud"])) {
     $func_todo = "auth/logout.php";
     $profile = "profile/profile.php";
     $stud_ID = $_SESSION["IDStud"];
-    $confirmation_logout = "onclick='return confirm(\"Adakah anda ingin $log?\");'";
+    $confirmation_logout = "onclick='return confirm(\"Are you sure you want to $log?\");'";
 
     $studentQuery = "SELECT * FROM tblstudent WHERE stud_ID = ?";
     $stmt = $con->prepare($studentQuery);
@@ -19,13 +19,13 @@ if (isset($_SESSION["IDStud"])) {
     $stmt->execute();
     $result = $stmt->get_result();
     $user = $result->fetch_assoc();
-    $statement_res = "Welcome Back, " . $user['stud_Name'];
+    $statement_res = "HI, " . $user['stud_Name'];
     $stmt->close();
 } elseif (isset($_SESSION["IDTeachers"])) {
     $log = "Logout";
     $func_todo = "auth/logout.php";
     $profile = "profile/teacher_profile.php";
-    $confirmation_logout = "onclick='return confirm(\"Adakah anda ingin $log?\");'";
+    $confirmation_logout = "onclick='return confirm(\"Are you sure you want to $log?\");'";
 
     $teachers_ID = $_SESSION["IDTeachers"];
 
@@ -35,7 +35,7 @@ if (isset($_SESSION["IDStud"])) {
     $stmt->execute();
     $result = $stmt->get_result();
     $user = $result->fetch_assoc();
-    $statement_res = "Welcome Back, " . $user['teachers_Name'];
+    $statement_res = "HI, " . $user['teachers_Name'];
     $stmt->close();
 } else {
     $statement_res = null;
@@ -57,7 +57,7 @@ if (isset($_SESSION["IDStud"])) {
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1">
     <!-- site metas -->
-    <title>sbs</title>
+    <title>Library Pro | About Us</title>
     <meta name="keywords" content="">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -71,6 +71,53 @@ if (isset($_SESSION["IDStud"])) {
     <link rel="stylesheet" href="css/responsive.css">
     <!-- fevicon -->
     <link rel="icon" href="images/fevicon.png" type="image/gif" />
+    <!-- Icon here -->
+    <link rel="icon" type="image/x-icon" href="images/icon.png">
+    <style>
+        /* ABOUT US */
+/* About Us Section Styles */
+.about_us {
+    background: linear-gradient(109.6deg, rgb(245, 239, 249) 30.1%, rgb(207, 211, 236) 100.2%);
+    padding: 40px 0; /* Adjust the padding as needed */
+}
+
+.about_us .title {
+    text-align: center;
+    color: #007bff; /* Set text color to blue */
+    font-size: 36px;
+    font-weight: 600;
+    margin-bottom: 30px;
+}
+
+.about_us .form-control {
+    background-color: #ffffff; /* Set background color to white */
+    border: 1px solid #007bff; /* Set border color to blue */
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.about_us h3 {
+    color: #007bff; /* Set heading color to blue */
+}
+
+.about_us p {
+    color: #343a40; /* Set paragraph text color to a dark color for better readability */
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+/* Responsive Styles (Adjust as needed) */
+@media (max-width: 767px) {
+    .about_us .title {
+        font-size: 28px;
+    }
+
+    .about_us p {
+        font-size: 14px;
+    }
+}
+
+    </style>
     <!-- Tweaks for older IEs-->
     <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
     <!--[if lt IE 9]>
@@ -111,16 +158,16 @@ if (isset($_SESSION["IDStud"])) {
                                     <a class="nav-link" href="index.php"><i class="fa fa-home"></i> Home</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="booking.php?simple"><i class="fa fa-search"></i> Carian</a>
+                                    <a class="nav-link" href="booking.php?simple"><i class="fa fa-search"></i> Search</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="advance_booking.php?advance"><i class="fa fa-search-plus"></i> Carian Terperinci</a>
+                                    <a class="nav-link" href="advance_booking.php?advance"><i class="fa fa-search-plus"></i> Advanced Search</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="buku_saya.php"><i class="fa fa-book"></i> Buku Saya</a>
+                                    <a class="nav-link" href="buku_saya.php"><i class="fa fa-book"></i> My Book</a>
                                 </li>
                                 <li class="nav-item active">
-                                    <a class="nav-link" href="about.php"><i class="fa fa-universal-access"></i> Berkaitan Kami</a>
+                                    <a class="nav-link" href="about.php"><i class="fa fa-universal-access"></i> About Us</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="<?= $func_todo ?>" <?= $confirmation_logout ?>><i class="fa fa-sign-out"></i> <?= $log ?></a>
@@ -151,6 +198,33 @@ if (isset($_SESSION["IDStud"])) {
     <!-- Breadcrumbs Ends -->
 
     <!-- About Us Start -->
+    <div class="about_us mt-6">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h2 class="title">About Us</h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-control">
+                        <div class="vision_block">
+                            <h3>Vision</h3>
+                            <p>Our vision is to ensure that the user will receive the source of knowledge that they need to strive in the new world era.</p>
+                        </div>
+                        <div class="mission_block">
+                            <h3>Mission</h3>
+                            <p>Our mission is to providing a user-centric, comprehensive digital library platform that connects individuals with diverse and curated content. Through innovative technology and a passion for knowledge sharing, we strive to enhance the learning experience, promote inclusivity, and foster a love for reading among our users.</p>
+                        </div>
+                        <div class="purpose_block">
+                            <h3>Purpose</h3>
+                            <p>Library Pro existed for many reasons, to give access to information, promoting literacy, and nurturing a global community of thinkers. We believe in the transformative power of knowledge and seek to provide a platform that transcends boundaries, making learning a universal and enriching experience for all.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <!-- About Us End -->
 
     <!--  footer -->
