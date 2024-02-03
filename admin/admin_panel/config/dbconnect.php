@@ -1,14 +1,14 @@
 <?php
 
-$server = "localhost";
+$host = "localhost";
 $user = "root";
-$password = "";
+$pass = "";
 $db = "dbopac";
 
-$conn = mysqli_connect($server,$user,$password,$db);
+$con = mysqli_connect($host, $user, $pass, $db);
 
-if(!$conn) {
-    die("Connection Failed:".mysqli_connect_error());
+if (!$con) {
+    die("Database failed");
 }
 
-?>
+// Connection mg lah jim

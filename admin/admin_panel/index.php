@@ -24,21 +24,23 @@ if (!isset($_SESSION["IDAdmin"])) {
 <body>
 
     <?php
-    include "./Main_Header.php";
+    include "../admin_panel/Main_Header.php";
     include "./main_sidebar.php";
 
     include_once "./config/dbconnect.php";
     ?>
 
 
-    <div id="main-content" class="container allContent-section py-5 col-md-9">
+    <div id="main-content" class="container allContent-section py-5 col-12 col-md-9 col-sm-6">
         <div class="row">
 
             <!-- Starts Student -->
             <div class="col-sm-4">
                 <div class="card">
                     <i class="fa fa-users  mb-2" style="font-size: 70px;"></i>
-                    <h4 style="color:white;">Total Student</h4>
+                    <a href="../admin_panel/adminView/viewStudents.php">
+                        <h4 style="color:white;">Total Student</h4>
+                    </a>
                     <h5 style="color:white;">
                         <?php
                         $sql = "SELECT * from tblstudent";
@@ -57,10 +59,12 @@ if (!isset($_SESSION["IDAdmin"])) {
             <!-- Ends Student -->
 
             <!-- Starts Books  -->
-            <div class="col-sm-3">
+            <div class="col-sm-4">
                 <div class="card">
                     <i class="fa fa-th-large mb-2" style="font-size: 70px;"></i>
-                    <h4 style="color:white;">Total Books</h4>
+                    <a href="../admin_panel/adminView/viewBooks.php">
+                        <h4 style="color:white;">Total Books</h4>
+                    </a>
                     <h5 style="color:white;">
                         <?php
 
@@ -81,10 +85,12 @@ if (!isset($_SESSION["IDAdmin"])) {
             <!-- Ends Books -->
 
             <!-- Starts Borrowed -->
-            <div class="col-sm-4">
+            <div class="col-sm-3">
                 <div class="card">
                     <i class="fa fa-th mb-2" style="font-size: 70px;"></i>
-                    <h4 style="color:white;">Total Borrowed</h4>
+                    <a href="../admin_panel/adminView/viewTransaction.php">
+                        <h4 style="color:white;">Total Borrowed</h4>
+                    </a>
                     <h5 style="color:white;">
                         <?php
 
@@ -105,10 +111,13 @@ if (!isset($_SESSION["IDAdmin"])) {
             <!-- Ends Borrowed -->
 
             <!-- Starts Booking -->
-            <div class="col-sm-4">
+            <div class="col-sm-3">
                 <div class="card">
                     <i class="fa fa-list mb-2" style="font-size: 70px;"></i>
-                    <h4 style="color:white;">Total Booking</h4>
+                    <a href="../admin_panel/adminView/viewTransaction.php">
+                        <h4 style="color:white;">Total Booking</h4>
+                    </a>
+
                     <h5 style="color:white;">
                         <?php
 
@@ -132,7 +141,9 @@ if (!isset($_SESSION["IDAdmin"])) {
             <div class="col-sm-4">
                 <div class="card">
                     <i class="fa fa-users  mb-2" style="font-size: 70px;"></i>
-                    <h4 style="color:white;">Total Teachers</h4>
+                    <a href="../admin_panel/adminView/viewStaff.php">
+                        <h4 style="color:white;">Total Teachers</h4>
+                    </a>
                     <h5 style="color:white;">
                         <?php
                         $sql = "SELECT * from tblteachers";
@@ -151,10 +162,12 @@ if (!isset($_SESSION["IDAdmin"])) {
             <!-- Ends Teacher -->
 
             <!-- Starts Event -->
-            <div class="col-sm-3">
+            <div class="col-sm-4">
                 <div class="card">
                     <i class="fa fa-calendar  mb-2" style="font-size: 70px;"></i>
-                    <h4 style="color:white;">Total Event</h4>
+                    <a href="../admin_panel/adminView/viewEvent.php">
+                        <h4 style="color:white;">Total Event</h4>
+                    </a>
                     <h5 style="color:white;">
                         <?php
                         $sql = "SELECT * from tblevents";

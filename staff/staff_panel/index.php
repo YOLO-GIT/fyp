@@ -10,7 +10,7 @@ if (!isset($_SESSION["IDStaff"])) {
 <html>
 
 <head>
-    <title>Admin</title>
+    <title>Staff</title>
 
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -31,7 +31,7 @@ if (!isset($_SESSION["IDStaff"])) {
     ?>
 
 
-    <div id="main-content" class="container allContent-section py-4">
+    <div id="main-content" class="container allContent-section py-4 col-12 col-md-9 col-sm-6">
         <div class="row">
 
             <!-- Starts Student -->
@@ -57,7 +57,7 @@ if (!isset($_SESSION["IDStaff"])) {
             <!-- Ends Student -->
 
             <!-- Starts Books  -->
-            <div class="col-sm-3">
+            <div class="col-sm-4">
                 <div class="card">
                     <i class="fa fa-th-large mb-2" style="font-size: 70px;"></i>
                     <h4 style="color:white;">Total Books</h4>
@@ -151,7 +151,7 @@ if (!isset($_SESSION["IDStaff"])) {
             <!-- Ends Teacher -->
 
             <!-- Starts Event -->
-            <div class="col-sm-3">
+            <div class="col-sm-4">
                 <div class="card">
                     <i class="fa fa-calendar  mb-2" style="font-size: 70px;"></i>
                     <h4 style="color:white;">Total Event</h4>
