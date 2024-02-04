@@ -12,6 +12,7 @@ if (isset($_SESSION["IDStud"])) {
     $profile = "profile/profile.php";
     $stud_ID = $_SESSION["IDStud"];
     $confirmation_logout = "onclick='return confirm(\"Are you sure you want to $log?\");'";
+    $userLoggedIn = true; // User is logged in as a student
 
     $studentQuery = "SELECT * FROM tblstudent WHERE stud_ID = ?";
     $stmt = $con->prepare($studentQuery);
@@ -26,6 +27,7 @@ if (isset($_SESSION["IDStud"])) {
     $func_todo = "auth/logout.php";
     $profile = "profile/teacher_profile.php";
     $confirmation_logout = "onclick='return confirm(\"Are you sure you want to $log?\");'";
+    $userLoggedIn = true; // User is logged in as a teacher
 
     $teachers_ID = $_SESSION["IDTeachers"];
 
@@ -43,6 +45,7 @@ if (isset($_SESSION["IDStud"])) {
     $func_todo = "auth/login.php";
     $profile = "profile/profile.php";
     $confirmation_logout = "";
+    $userLoggedIn = false; // User is not logged in
 }
 ?>
 
@@ -73,19 +76,6 @@ if (isset($_SESSION["IDStud"])) {
     <link rel="icon" href="images/icon.png" type="image/gif" />
     <!-- Icon here -->
     <link rel="icon" type="image/x-icon" href="images/icon.png">
-    <style>
-        .custom_bg{
-     background-color: #fff;
-}
-
-.custom_bg img{
-     border-radius: 15px;
-}
-
-.custom_img img{
-     border-radius: 15px;
-}
-    </style>
     <!-- AOS -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <!-- Tweaks for older IEs-->
@@ -98,7 +88,7 @@ if (isset($_SESSION["IDStud"])) {
 
 <body class="index_color">
     <!-- loader  -->
-    <div class="loader_bg">
+    <div class="loader_bg ">
         <div class="loader"><img src="images/loading.gif" alt="#" /></div>
     </div>
     <!-- end loader -->
@@ -107,7 +97,7 @@ if (isset($_SESSION["IDStud"])) {
     <div class="header index_color">
         <div class="container-fluid">
             <div class="row d_flex">
-                <div class=" col-md-2 col-sm-2 col logo_section">
+                <div class="col-md-2 col-sm-2 logo_section">
                     <div class="full">
                         <div class="center-desk">
                             <div class="logo">
@@ -148,9 +138,11 @@ if (isset($_SESSION["IDStud"])) {
                 </div>
                 <div class="col-md-2">
                     <ul class="text_align_right">
-                        <li class="nav-item">
-                            <a href="<?= $profile ?>"><i class="fa fa-user" aria-hidden="true"></i></a>&nbsp;&nbsp;<?= $statement_res ?>
-                        </li>
+                        <?php if ($userLoggedIn) : ?>
+                            <li class="nav-item">
+                                <a href="<?= $profile ?>"><i class="fa fa-user" aria-hidden="true"></i></a>&nbsp;&nbsp;<?= $statement_res ?>
+                            </li>
+                        <?php endif; ?>
                     </ul>
                 </div>
             </div>
@@ -187,7 +179,7 @@ if (isset($_SESSION["IDStud"])) {
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-md-7">
+                                            <div class="col-7 col-sm-7">
                                                 <div class="banner_img">
                                                     <figure><img class="img_responsive" src="images/new_pic2.JPG"></figure>
                                                 </div>
@@ -209,7 +201,7 @@ if (isset($_SESSION["IDStud"])) {
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-md-7">
+                                            <div class="col-7 col-sm-7">
                                                 <div class="banner_img">
                                                     <figure><img class="img_responsive" src="images/new_pic1.JPG"></figure>
                                                 </div>
@@ -231,7 +223,7 @@ if (isset($_SESSION["IDStud"])) {
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-md-7">
+                                            <div class="col-7 col-sm-7">
                                                 <div class="banner_img">
                                                     <figure><img class="img_responsive" src="images/new_pic3.JPG"></figure>
                                                 </div>
@@ -258,7 +250,7 @@ if (isset($_SESSION["IDStud"])) {
             <div class="slider_main custom_bg">
                 <div class="container-fluid">
                     <div class="row">
-                        <div class="col-md-12">
+                        <div class="col-12">
                             <!-- carousel code -->
                             <div id="carouselForEvents" class="carousel slide">
                                 <ol class="carousel-indicators">
@@ -289,9 +281,9 @@ if (isset($_SESSION["IDStud"])) {
                                             <div class="carousel-item <?= $activeClass ?>">
                                                 <div class="carousel-caption relative">
                                                     <div class="row d-flex flex-row-reverse mb-3">
-                                                        <div class="col-md-5">
+                                                        <div class="col-md-6">
                                                             <div class="board">
-                                                                <h3>
+                                                                <h3 class="bg-dark border rounded text-center text-white">
                                                                     <?= $showEvent['event_name'] ?>
                                                                 </h3>
                                                                 <div>
@@ -299,9 +291,9 @@ if (isset($_SESSION["IDStud"])) {
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                        <div class="col-md-7">
+                                                        <div class="col-md-6">
                                                             <div class="banner_img">
-                                                                <figure><img class="img_responsive" src="../../admin/admin_panel/controller/<?= $showEvent['event_pic'] ?>"></figure>
+                                                                <figure><img class="img_responsive" src="../sbs-html/admin/admin_panel/controller/<?= $showEvent['event_pic'] ?>"></figure>
                                                             </div>
                                                         </div>
                                                     </div>
