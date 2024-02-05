@@ -40,7 +40,7 @@ if (!isset($_SESSION["IDAdmin"])) {
             <!-- Starts Student -->
             <div class="col-sm-4">
                 <div class="card">
-                    <i class="fa fa-users  mb-2" style="font-size: 70px;"></i>
+                    <i class="fa fa-users mb-2" style="font-size: 70px;"></i>
                     <a href="../admin_panel/adminView/viewStudents.php">
                         <h4 style="color:white;">Total Student</h4>
                     </a>
@@ -62,7 +62,7 @@ if (!isset($_SESSION["IDAdmin"])) {
             <!-- Ends Student -->
 
             <!-- Starts Books  -->
-            <div class="col-sm-4">
+            <div class="col-sm-3">
                 <div class="card">
                     <i class="fa fa-th-large mb-2" style="font-size: 70px;"></i>
                     <a href="../admin_panel/adminView/viewBooks.php">
@@ -88,7 +88,7 @@ if (!isset($_SESSION["IDAdmin"])) {
             <!-- Ends Books -->
 
             <!-- Starts Borrowed -->
-            <div class="col-sm-3">
+            <div class="col-sm-4">
                 <div class="card">
                     <i class="fa fa-th mb-2" style="font-size: 70px;"></i>
                     <a href="../admin_panel/adminView/viewTransaction.php">
@@ -114,7 +114,7 @@ if (!isset($_SESSION["IDAdmin"])) {
             <!-- Ends Borrowed -->
 
             <!-- Starts Booking -->
-            <div class="col-sm-3">
+            <div class="col-sm-4">
                 <div class="card">
                     <i class="fa fa-list mb-2" style="font-size: 70px;"></i>
                     <a href="../admin_panel/adminView/viewTransaction.php">
@@ -165,7 +165,7 @@ if (!isset($_SESSION["IDAdmin"])) {
             <!-- Ends Teacher -->
 
             <!-- Starts Event -->
-            <div class="col-sm-4">
+            <div class="col-sm-3">
                 <div class="card">
                     <i class="fa fa-calendar  mb-2" style="font-size: 70px;"></i>
                     <a href="../admin_panel/adminView/viewEvent.php">
