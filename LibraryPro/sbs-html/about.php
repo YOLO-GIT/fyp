@@ -12,6 +12,7 @@ if (isset($_SESSION["IDStud"])) {
     $profile = "profile/profile.php";
     $stud_ID = $_SESSION["IDStud"];
     $confirmation_logout = "onclick='return confirm(\"Are you sure you want to $log?\");'";
+    $userLoggedIn = true;
 
     $studentQuery = "SELECT * FROM tblstudent WHERE stud_ID = ?";
     $stmt = $con->prepare($studentQuery);
@@ -26,6 +27,7 @@ if (isset($_SESSION["IDStud"])) {
     $func_todo = "auth/logout.php";
     $profile = "profile/teacher_profile.php";
     $confirmation_logout = "onclick='return confirm(\"Are you sure you want to $log?\");'";
+    $userLoggedIn = true;
 
     $teachers_ID = $_SESSION["IDTeachers"];
 
@@ -43,6 +45,7 @@ if (isset($_SESSION["IDStud"])) {
     $func_todo = "auth/login.php";
     $profile = "profile/profile.php";
     $confirmation_logout = "";
+    $userLoggedIn = false;
 }
 ?>
 
@@ -73,51 +76,6 @@ if (isset($_SESSION["IDStud"])) {
     <link rel="icon" href="images/fevicon.png" type="image/gif" />
     <!-- Icon here -->
     <link rel="icon" type="image/x-icon" href="images/icon.png">
-    <style>
-        /* ABOUT US */
-/* About Us Section Styles */
-.about_us {
-    background: linear-gradient(109.6deg, rgb(245, 239, 249) 30.1%, rgb(207, 211, 236) 100.2%);
-    padding: 40px 0; /* Adjust the padding as needed */
-}
-
-.about_us .title {
-    text-align: center;
-    color: #007bff; /* Set text color to blue */
-    font-size: 36px;
-    font-weight: 600;
-    margin-bottom: 30px;
-}
-
-.about_us .form-control {
-    background-color: #ffffff; /* Set background color to white */
-    border: 1px solid #007bff; /* Set border color to blue */
-    padding: 20px;
-    border-radius: 10px;
-}
-
-.about_us h3 {
-    color: #007bff; /* Set heading color to blue */
-}
-
-.about_us p {
-    color: #343a40; /* Set paragraph text color to a dark color for better readability */
-    font-size: 16px;
-    line-height: 1.6;
-}
-
-/* Responsive Styles (Adjust as needed) */
-@media (max-width: 767px) {
-    .about_us .title {
-        font-size: 28px;
-    }
-
-    .about_us p {
-        font-size: 14px;
-    }
-}
-
-    </style>
     <!-- Tweaks for older IEs-->
     <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
     <!--[if lt IE 9]>
@@ -178,9 +136,11 @@ if (isset($_SESSION["IDStud"])) {
                 </div>
                 <div class="col-md-2">
                     <ul class="text_align_right">
-                        <li class="nav-item">
-                            <a href="<?= $profile ?>"><i class="fa fa-user" aria-hidden="true"></i></a>&nbsp;&nbsp;<?= $statement_res ?>
-                        </li>
+                        <?php if ($userLoggedIn) : ?>
+                            <li class="nav-item">
+                                <a href="<?= $profile ?>"><i class="fa fa-user" aria-hidden="true"></i></a>&nbsp;&nbsp;<?= $statement_res ?>
+                            </li>
+                        <?php endif; ?>
                     </ul>
                 </div>
             </div>

@@ -13,6 +13,7 @@ if (isset($_SESSION["IDStud"])) {
     $profile = "profile/profile.php";
     $stud_ID = $_SESSION["IDStud"];
     $confirmation_logout = "onclick='return confirm(\"Are you sure you want to $log?\");'";
+    $userLoggedIn = true;
 
     $studentQuery = "SELECT * FROM tblstudent WHERE stud_ID = ?";
     $stmt = $con->prepare($studentQuery);
@@ -27,6 +28,7 @@ if (isset($_SESSION["IDStud"])) {
     $func_todo = "auth/logout.php";
     $profile = "profile/teacher_profile.php";
     $confirmation_logout = "onclick='return confirm(\"Are you sure you want to $log?\");'";
+    $userLoggedIn = true;
 
     $teachers_ID = $_SESSION["IDTeachers"];
 
@@ -45,6 +47,7 @@ if (isset($_SESSION["IDStud"])) {
     echo "<script>alert('Please Login First.');</script>";
     echo "<script>window.location.href='auth/login.php';</script>";
     $confirmation_logout = "";
+    $userLoggedIn = false;
 }
 
 if (isset($_GET['stud_ID'])) {
@@ -164,7 +167,11 @@ if (isset($_GET['search'])) {
                 </div>
                 <div class="col-md-2">
                     <ul class="text_align_right">
-                        <li class="nav-item"><a href="<?= $profile ?>"><i class="fa fa-user" aria-hidden="true"></i></a>&nbsp;&nbsp;<?= $statement_res ?></li>
+                        <?php if ($userLoggedIn) : ?>
+                            <li class="nav-item">
+                                <a href="<?= $profile ?>"><i class="fa fa-user" aria-hidden="true"></i></a>&nbsp;&nbsp;<?= $statement_res ?>
+                            </li>
+                        <?php endif; ?>
                     </ul>
                 </div>
             </div>
