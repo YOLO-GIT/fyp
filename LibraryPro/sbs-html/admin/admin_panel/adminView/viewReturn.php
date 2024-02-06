@@ -65,7 +65,7 @@ if (!isset($_SESSION["IDAdmin"])) {
                                     <td><?= $row["user_IC"] ?></td>
                                     <td><?= $row["user_name"] ?></td>
                                     <td><?= $row["book_ID"] ?></td>
-                                    <td class="book-title"><?= $row["book_title"] ?></td>
+                                    <td><?= $row["book_title"] ?></td>
                                     <td><?= $row["book_condition"] ?></td>
                                     <td><?= $row["date_returned"] ?></td>
                                     <td><button class="btn btn-danger" style="height:40px" onclick="returnDelete('<?= $row['return_ID'] ?>')">Remove</button></td>
