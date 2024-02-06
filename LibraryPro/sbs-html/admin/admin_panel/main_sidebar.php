@@ -7,7 +7,7 @@
 
     <hr style="border:1px solid; background-color:#8a7b6d; border-color:#3B3131;">
     <!-- CLOSE SIDEBAR -->
-    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+    <a href="javascript:void(0)" class="closebtn text-center" onclick="closeNav()">×</a>
     <!-- GO BACK HOME -->
     <a href="./index.php" onclick="showDashBoard()"><i class="fa fa-home"></i> Dashboard</a>
     <!-- USER START -->
@@ -32,7 +32,7 @@
 
     <!-- OTHERS -->
     <a href="./adminView/viewEvent.php" onclick="showEvent()"><i class="fa fa-list"></i> Event</a>
-    <a href="./adminView/viewStaff.php" onclick=""><i class="fa fa-list"></i> Add Staff</a>
+    <a href="./adminView/viewStaff.php" onclick="showStaff()"><i class="fa fa-list"></i> Add Staff</a>
     <a href="./adminView/viewReport.php" onclick="showReport()"><i class="fa fa-list"></i> Report</a>
 </div>
 </div>

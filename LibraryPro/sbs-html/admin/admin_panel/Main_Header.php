@@ -7,7 +7,7 @@
     <ul class="navbar-nav mr-auto mt-2 mt-lg-0"></ul>
 
     <div>
-        <a href="./logout.php" style="text-decoration:none;">
+        <a href="./logout.php" style="text-decoration:none;" onclick='return confirm("Are you sure you want to logout?");'>
             <i class="fa fa-sign-out mr-5" style="font-size:30px; color:#fff;" aria-hidden="true"></i>
         </a>
     </div>

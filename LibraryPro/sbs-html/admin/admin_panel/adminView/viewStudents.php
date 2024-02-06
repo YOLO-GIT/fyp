@@ -24,55 +24,62 @@ if (!isset($_SESSION["IDAdmin"])) {
   <link rel="stylesheet" href="//cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css">
   <link rel="icon" type="image/x-icon" href="../icon/icon.png">
 </head>
-  <?php
-  include "../adminHeader.php";
-  include "../sidebar.php";
-  ?>
+<?php
+include "../adminHeader.php";
+include "../sidebar.php";
+?>
+
 <body id="main-content" class="allContent-section">
 
-  <div class="container py-4 col-12 col-md-9 col-xs-6 mb-2">
-    <h2 class="text-center mb-3">Students</h2>
+  <div class="container-fluid py-4">
+    <div class="row">
+      <div class="col">
+        <h2 class="text-center mb-3">Students</h2>
+        <div class="table-responsive">
 
-    <div class="table-responsive">
-      <table class="table" id="myTable">
-        <thead>
-          <tr>
-            <th class="text-center">ID</th>
-            <th class="text-center">Name</th>
-            <th class="text-center">Class</th>
-            <th class="text-center">Date Joined</th>
-            <th class="text-center">Action</th>
-          </tr>
-        </thead>
-        <!-- PHP -->
-        <?php
-        $query = "SELECT * FROM tblstudent ";
+          <div class="table-responsive">
+            <table class="table" id="myTable">
+              <thead>
+                <tr>
+                  <th class="text-center">ID</th>
+                  <th class="text-center">Name</th>
+                  <th class="text-center">Class</th>
+                  <th class="text-center">Date Joined</th>
+                  <th class="text-center">Action</th>
+                </tr>
+              </thead>
+              <!-- PHP -->
+              <?php
+              $query = "SELECT * FROM tblstudent ";
 
-        $result = $conn->query($query);
+              $result = $conn->query($query);
 
-        if ($result->num_rows > 0) {
-          while ($row = $result->fetch_assoc()) {
-        ?>
-            <tr>
-              <td><?= $row["stud_ID"] ?></td>
-              <td><?= $row["stud_Name"] ?></td>
-              <td><?= $row["stud_Class"] ?></td>
-              <td><?= $row["date"] ?></td>
-              <td>
-                <button class="btn btn-danger btn-sm" style="height:40px" onclick="studentDelete('<?= $row['stud_ID'] ?>')">Remove</button>
-              </td>
-            </tr>
-          <?php
-          }
-        } else {
-          ?>
-          <tr>
-            <td colspan="5">No Record Found</td>
-          </tr>
-        <?php
-        }
-        ?>
-      </table>
+              if ($result->num_rows > 0) {
+                while ($row = $result->fetch_assoc()) {
+              ?>
+                  <tr>
+                    <td><?= $row["stud_ID"] ?></td>
+                    <td><?= $row["stud_Name"] ?></td>
+                    <td><?= $row["stud_Class"] ?></td>
+                    <td><?= $row["date"] ?></td>
+                    <td>
+                      <button class="btn btn-danger btn-sm" style="height:40px" onclick="studentDelete('<?= $row['stud_ID'] ?>')">Remove</button>
+                    </td>
+                  </tr>
+                <?php
+                }
+              } else {
+                ?>
+                <tr>
+                  <td colspan="5">No Record Found</td>
+                </tr>
+              <?php
+              }
+              ?>
+            </table>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 

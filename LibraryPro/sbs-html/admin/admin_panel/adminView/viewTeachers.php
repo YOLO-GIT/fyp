@@ -30,53 +30,58 @@ if (!isset($_SESSION["IDAdmin"])) {
     include "../sidebar.php";
     ?>
 
-    <div class="container py-4 col-12 col-md-9 col-xs-6 mb-2">
-        <h2 class="text-center mb-3">Teachers</h2>
+    <div class="container-fluid py-4">
+        <div class="row">
+            <div class="col">
+                <h2 class="text-center mb-3">Teachers</h2>
+                <div class="table-responsive">
+                    <!-- Teachers -->
+                    <div class="table-responsive">
+                        <table class="table" id="myTable">
+                            <thead>
+                                <tr>
+                                    <th class="text-center">ID</th>
+                                    <th class="text-center">Name</th>
+                                    <th class="text-center">Username</th>
+                                    <th class="text-center">Date Joined</th>
+                                    <th class="text-center">Action</th>
+                                </tr>
+                            </thead>
+                            <!-- PHP -->
+                            <?php
+                            include_once "../config/dbconnect.php";
 
-        <!-- Teachers -->
-        <div class="table-responsive">
-            <table class="table" id="myTable">
-                <thead>
-                    <tr>
-                        <th class="text-center">ID</th>
-                        <th class="text-center">Name</th>
-                        <th class="text-center">Username</th>
-                        <th class="text-center">Date Joined</th>
-                        <th class="text-center">Action</th>
-                    </tr>
-                </thead>
-                <!-- PHP -->
-                <?php
-                include_once "../config/dbconnect.php";
+                            // Searching Function PHP
+                            $query = "SELECT * FROM tblteachers ";
 
-                // Searching Function PHP
-                $query = "SELECT * FROM tblteachers ";
+                            $result = $conn->query($query);
 
-                $result = $conn->query($query);
-
-                if ($result->num_rows > 0) {
-                    while ($row = $result->fetch_assoc()) {
-                ?>
-                        <tr>
-                            <td><?= $row["teachers_ID"] ?></td>
-                            <td><?= $row["teachers_Name"] ?></td>
-                            <td><?= $row["teachers_username"] ?></td>
-                            <td><?= $row["date_teachers"] ?></td>
-                            <td>
-                                <button class="btn btn-danger" style="height:40px" onclick="teacherDelete('<?= $row['teachers_ID'] ?>')">Remove</button>
-                            </td>
-                        </tr>
-                    <?php
-                    }
-                } else {
-                    ?>
-                    <tr>
-                        <td colspan="5">No Record Found</td>
-                    </tr>
-                <?php
-                }
-                ?>
-            </table>
+                            if ($result->num_rows > 0) {
+                                while ($row = $result->fetch_assoc()) {
+                            ?>
+                                    <tr>
+                                        <td><?= $row["teachers_ID"] ?></td>
+                                        <td><?= $row["teachers_Name"] ?></td>
+                                        <td><?= $row["teachers_username"] ?></td>
+                                        <td><?= $row["date_teachers"] ?></td>
+                                        <td>
+                                            <button class="btn btn-danger" style="height:40px" onclick="teacherDelete('<?= $row['teachers_ID'] ?>')">Remove</button>
+                                        </td>
+                                    </tr>
+                                <?php
+                                }
+                            } else {
+                                ?>
+                                <tr>
+                                    <td colspan="5">No Record Found</td>
+                                </tr>
+                            <?php
+                            }
+                            ?>
+                        </table>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
