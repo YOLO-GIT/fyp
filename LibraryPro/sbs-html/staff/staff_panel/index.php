@@ -12,16 +12,12 @@ if (!isset($_SESSION["IDStaff"])) {
 
 <head>
     <title>Staff || Home</title>
-
-    <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-        <link rel="stylesheet" href="./assets/css/style.css">
-        </link>
-        <!-- Icon here -->
-        <link rel="icon" type="image/x-icon" href="../../images/icon.png">
-    </head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <!-- Icon here -->
+    <link rel="icon" type="image/x-icon" href="../../images/icon.png">
 </head>
 
 <body>
@@ -29,18 +25,15 @@ if (!isset($_SESSION["IDStaff"])) {
     <?php
     include "./Main_Header.php";
     include "./main_sidebar.php";
-
     include_once "./config/dbconnect.php";
     ?>
 
-
-    <div id="main-content" class="container allContent-section py-4">
+    <div id="main-content" class="container allContent-section py-5 col-12 col-md-9 col-sm-6">
         <div class="row">
-
             <!-- Starts Student -->
             <div class="col-sm-4">
                 <div class="card">
-                    <i class="fa fa-users  mb-2" style="font-size: 70px;"></i>
+                    <i class="fa fa-users mb-2" style="font-size: 70px;"></i>
                     <a href="./adminView/viewStudents.php">
                         <h4 style="color:white;">Total Student</h4>
                     </a>
@@ -88,7 +81,7 @@ if (!isset($_SESSION["IDStaff"])) {
             <!-- Ends Books -->
 
             <!-- Starts Borrowed -->
-            <div class="col-sm-3">
+            <div class="col-sm-4">
                 <div class="card">
                     <i class="fa fa-th mb-2" style="font-size: 70px;"></i>
                     <a href="./adminView/viewTransaction.php">
@@ -114,12 +107,13 @@ if (!isset($_SESSION["IDStaff"])) {
             <!-- Ends Borrowed -->
 
             <!-- Starts Booking -->
-            <div class="col-sm-3">
+            <div class="col-sm-6">
                 <div class="card">
                     <i class="fa fa-list mb-2" style="font-size: 70px;"></i>
                     <a href="./adminView/viewTransaction.php">
                         <h4 style="color:white;">Total Booking</h4>
                     </a>
+
                     <h5 style="color:white;">
                         <?php
 
@@ -140,10 +134,10 @@ if (!isset($_SESSION["IDStaff"])) {
             <!-- Ends Booking -->
 
             <!-- Starts Teacher -->
-            <div class="col-sm-4">
+            <div class="col-sm-5">
                 <div class="card">
                     <i class="fa fa-users  mb-2" style="font-size: 70px;"></i>
-                    <a href="./adminView/viewTeachers.php">
+                    <a href="./adminView/viewStaff.php">
                         <h4 style="color:white;">Total Teachers</h4>
                     </a>
                     <h5 style="color:white;">
@@ -162,31 +156,7 @@ if (!isset($_SESSION["IDStaff"])) {
                 </div>
             </div>
             <!-- Ends Teacher -->
-
-            <!-- Starts Event -->
-            <div class="col-sm-3">
-                <div class="card">
-                    <i class="fa fa-calendar  mb-2" style="font-size: 70px;"></i>
-                    <h4 style="color:white;">Total Event</h4>
-                    <h5 style="color:white;">
-                        <?php
-                        $sql = "SELECT * from tblevents";
-                        $result = $conn->query($sql);
-                        $count = 0;
-                        if ($result->num_rows > 0) {
-                            while ($row = $result->fetch_assoc()) {
-
-                                $count = $count + 1;
-                            }
-                        }
-                        echo $count;
-                        ?></h5>
-                </div>
-            </div>
-            <!-- Ends Event -->
-
         </div>
-
     </div>
 
     <script type="text/javascript" src="./assets/js/ajaxWork.js"></script>
