@@ -41,7 +41,7 @@ if (!isset($_SESSION["IDAdmin"])) {
             <div class="col-sm-4">
                 <div class="card">
                     <i class="fa fa-users mb-2" style="font-size: 70px;"></i>
-                    <a href="../admin_panel/adminView/viewStudents.php">
+                    <a href="./adminView/viewStudents.php">
                         <h4 style="color:white;">Total Student</h4>
                     </a>
                     <h5 style="color:white;">
@@ -65,7 +65,7 @@ if (!isset($_SESSION["IDAdmin"])) {
             <div class="col-sm-3">
                 <div class="card">
                     <i class="fa fa-th-large mb-2" style="font-size: 70px;"></i>
-                    <a href="../admin_panel/adminView/viewBooks.php">
+                    <a href="./adminView/viewBooks.php">
                         <h4 style="color:white;">Total Books</h4>
                     </a>
                     <h5 style="color:white;">
@@ -91,7 +91,7 @@ if (!isset($_SESSION["IDAdmin"])) {
             <div class="col-sm-4">
                 <div class="card">
                     <i class="fa fa-th mb-2" style="font-size: 70px;"></i>
-                    <a href="../admin_panel/adminView/viewTransaction.php">
+                    <a href="./adminView/viewTransaction.php">
                         <h4 style="color:white;">Total Borrowed</h4>
                     </a>
                     <h5 style="color:white;">
@@ -117,7 +117,7 @@ if (!isset($_SESSION["IDAdmin"])) {
             <div class="col-sm-4">
                 <div class="card">
                     <i class="fa fa-list mb-2" style="font-size: 70px;"></i>
-                    <a href="../admin_panel/adminView/viewTransaction.php">
+                    <a href="./adminView/viewTransaction.php">
                         <h4 style="color:white;">Total Booking</h4>
                     </a>
 
@@ -144,7 +144,7 @@ if (!isset($_SESSION["IDAdmin"])) {
             <div class="col-sm-4">
                 <div class="card">
                     <i class="fa fa-users  mb-2" style="font-size: 70px;"></i>
-                    <a href="../admin_panel/adminView/viewStaff.php">
+                    <a href="./adminView/viewStaff.php">
                         <h4 style="color:white;">Total Teachers</h4>
                     </a>
                     <h5 style="color:white;">
@@ -168,7 +168,7 @@ if (!isset($_SESSION["IDAdmin"])) {
             <div class="col-sm-3">
                 <div class="card">
                     <i class="fa fa-calendar  mb-2" style="font-size: 70px;"></i>
-                    <a href="../admin_panel/adminView/viewEvent.php">
+                    <a href="./adminView/viewEvent.php">
                         <h4 style="color:white;">Total Event</h4>
                     </a>
                     <h5 style="color:white;">
@@ -187,11 +187,8 @@ if (!isset($_SESSION["IDAdmin"])) {
                 </div>
             </div>
             <!-- Ends Event -->
-
         </div>
-
     </div>
-
     <script type="text/javascript" src="./assets/js/ajaxWork.js"></script>
     <script type="text/javascript" src="./assets/js/script.js"></script>
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
