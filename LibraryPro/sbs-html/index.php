@@ -86,7 +86,7 @@ if (isset($_SESSION["IDStud"])) {
 </head>
 <!-- body -->
 
-<body class="index_color">
+<body class="index_color inner_page">
     <!-- loader  -->
     <div class="loader_bg ">
         <div class="loader"><img src="images/loading.gif" alt="#" /></div>
