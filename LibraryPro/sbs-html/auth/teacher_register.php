@@ -84,11 +84,6 @@
                         </div>
                     </nav>
                 </div>
-                <div class="col-md-2">
-                    <ul class="email text_align_right">
-                        <li class="d_none"><a href="../profile/profile.php"><i class="fa fa-user" aria-hidden="true"></i></a></li>
-                    </ul>
-                </div>
             </div>
         </div>
     </div>

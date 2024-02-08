@@ -368,7 +368,7 @@ if (isset($_GET['advance'])) {
                     <!-- rest of the code remains unchanged -->
                     <div class="row g-0">
                         <div class="col-md-3 mb-3">
-                            <img src="../admin/admin_panel/controller/<?= $row['book_image'] ?>">
+                            <img src="./admin/admin_panel/controller/<?= $row['book_image'] ?>">
                         </div>
                         <div class="col-md-8">
                             <div class="card-body">

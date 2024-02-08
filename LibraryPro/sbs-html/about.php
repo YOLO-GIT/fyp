@@ -159,7 +159,7 @@ if (isset($_SESSION["IDStud"])) {
 
     <!-- About Us Start -->
     <div class="about_us mt-6">
-        <div class="container">
+        <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12">
                     <h2 class="title">About Us</h2>
