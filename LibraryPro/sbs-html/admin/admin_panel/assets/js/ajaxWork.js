@@ -281,57 +281,57 @@ function bookUpdate(id) {
 }
 
 //update variation after submit
-function updateBook() {
-  var v_id = $("#v_id").val();
-  var qty = $("#qty").val();
-  var isbn = $("#isbn").val();
-  var author = $("#author").val();
-  var publish = $("#publish").val();
-  var dewey = $("#dewey").val();
-  var desc = $("#desc").val();
-  var category = $("#category").val();
-  var language = $("#language").val();
-  var illustration = $("#illustration").val();
-  var info1 = $("#info1").val();
-  var info2 = $("#info2").val();
-  var info3 = $("#info3").val();
-  var condition = $("#condition").val();
-  var gmbr = $("#gmbr")[0].files[0]; // Get the file object
+// function updateBook() {
+//   var v_id = $("#v_id").val();
+//   var qty = $("#qty").val();
+//   var isbn = $("#isbn").val();
+//   var author = $("#author").val();
+//   var publish = $("#publish").val();
+//   var dewey = $("#dewey").val();
+//   var desc = $("#desc").val();
+//   var category = $("#category").val();
+//   var language = $("#language").val();
+//   var illustration = $("#illustration").val();
+//   var info1 = $("#info1").val();
+//   var info2 = $("#info2").val();
+//   var info3 = $("#info3").val();
+//   var condition = $("#condition").val();
+//   var gmbr = $("#gmbr")[0].files[0]; // Get the file object
 
-  var fd = new FormData();
-  fd.append("v_id", v_id);
-  fd.append("qty", qty);
-  fd.append("isbn", isbn);
-  fd.append("author", author);
-  fd.append("publish", publish);
-  fd.append("dewey", dewey);
-  fd.append("desc", desc);
-  fd.append("category", category);
-  fd.append("language", language);
-  fd.append("illustration", illustration);
-  fd.append("info1", info1);
-  fd.append("info2", info2);
-  fd.append("info3", info3);
-  fd.append("condition", condition);
-  fd.append("gmbr", gmbr);
+//   var fd = new FormData();
+//   fd.append("v_id", v_id);
+//   fd.append("qty", qty);
+//   fd.append("isbn", isbn);
+//   fd.append("author", author);
+//   fd.append("publish", publish);
+//   fd.append("dewey", dewey);
+//   fd.append("desc", desc);
+//   fd.append("category", category);
+//   fd.append("language", language);
+//   fd.append("illustration", illustration);
+//   fd.append("info1", info1);
+//   fd.append("info2", info2);
+//   fd.append("info3", info3);
+//   fd.append("condition", condition);
+//   fd.append("gmbr", gmbr);
 
-  $.ajax({
-    url: "../controller/updateBookController.php",
-    method: "post",
-    data: fd,
-    processData: false,
-    contentType: false,
-    success: function (data) {
-      alert("Update Success.");
-      $("form#update-Items").trigger("reset"); // Specify the form ID to reset
-      showBooks();
-    },
-    error: function (xhr, status, error) {
-      console.error(xhr.responseText);
-      alert("Error updating book. Please check the console for details.");
-    },
-  });
-}
+//   $.ajax({
+//     url: "../controller/updateBookController.php",
+//     method: "post",
+//     data: fd,
+//     processData: false,
+//     contentType: false,
+//     success: function (data) {
+//       alert("Update Success.");
+//       $("form#update-Items").trigger("reset"); // Specify the form ID to reset
+//       showBooks();
+//     },
+//     error: function (xhr, status, error) {
+//       console.error(xhr.responseText);
+//       alert("Error updating book. Please check the console for details.");
+//     },
+//   });
+// }
 
 //delete category data
 function bookDelete(id) {
