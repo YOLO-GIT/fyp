@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 01, 2023 at 12:08 AM
+-- Generation Time: Feb 20, 2024 at 01:21 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -38,9 +38,9 @@ CREATE TABLE `tblbook` (
   `book_desc` varchar(255) NOT NULL,
   `book_language` varchar(25) NOT NULL,
   `book_illustration` varchar(15) NOT NULL,
-  `book_matter1` varchar(25) NOT NULL,
-  `book_matter2` varchar(25) NOT NULL,
-  `book_matter3` varchar(25) NOT NULL,
+  `book_matter1` varchar(50) NOT NULL,
+  `book_matter2` varchar(50) NOT NULL,
+  `book_matter3` varchar(50) NOT NULL,
   `book_status` varchar(15) NOT NULL,
   `book_added` datetime DEFAULT NULL,
   `book_image` varchar(255) NOT NULL
@@ -51,18 +51,18 @@ CREATE TABLE `tblbook` (
 --
 
 INSERT INTO `tblbook` (`book_ID`, `book_title`, `book_author`, `book_ISBN`, `publisher`, `book_dewey`, `book_category`, `book_desc`, `book_language`, `book_illustration`, `book_matter1`, `book_matter2`, `book_matter3`, `book_status`, `book_added`, `book_image`) VALUES
-('07578', 'Super Storymorie Certot#2 Sukan', 'Kumpulan Penulis', '978-967-411-759-6', 'PTS Publishing House Sdn ', '899.23 STO', 'Fiction', 'Antologi Cerita Kanak-Kanak', 'Bahasa Melayu', 'Ya', 'Short stories, Malay', '-', '-', 'Good', '2023-10-23 12:49:19', 'uploads/Certot_3-Ayahku_Superhero.jpg'),
+('07578', 'Super Storymorie Certot#2 Sukan', 'Kumpulan Penulisan', '978-967-411-759-6', 'PTS Publishing House Sdn ', '899.23 STO', 'Fiction', 'Antologi Cerita Kanak-Kanak', 'Bahasa Melayu', 'Ya', 'Short stories, Malay', '-', '-', 'Good', '2023-10-23 12:49:19', 'uploads/Certot_3-Ayahku_Superhero.jpg'),
 ('07574', 'Ilmu Keusahawanan Agrikultur', 'Suriatiyah', '978-967-371-054-6', 'Synergy Media Sdn Bhd', '338.1 SUR', 'Science', 'Berkaitan Agrikultur', 'Bahasa Melayu', 'Tidak', 'Agriculture', 'Economy', '-', 'Good', '2023-10-23 12:21:32', 'uploads/Watermark.jpg'),
-('07575', 'Membuat Baja Kompos', 'L. Murbandono HS', '978-967-371-076-8', 'Synergy Media Sdn Bhd', '631.875 MUR', 'Science', 'Siri Agro itu Pertanian', 'Bahasa Melayu', 'Ya', 'Organic Farming', '-', '-', 'Good', '2023-10-23 12:26:11', 'uploads/default_book.jpg'),
-('07576', 'Misteri Disebalik Gerakan Solat 5 Waktu', 'H. Muhammad Nasir, MA', '978-967-048-281-1', 'Pustaka Al-Ehsan', '297.283 MUH', 'History', 'Nikmati Lazatnya Solat', '', '', '', '', '', '', '2023-10-23 12:30:45', 'uploads/default_book.jpg'),
-('07577', 'SAYA , SHERLOCK DAN LUPIN', 'Adler, Irene', '978-967-411-854-9', 'PTS Publishing House Sdn ', '823 IRE', 'Fiction', 'Babak terakhir opera', '', '', '', '', '', '', '2023-10-23 12:35:08', 'uploads/default_book.jpg'),
-('07573', 'Cina Muslim & Hubungannya dengan Alam Melayu', 'Yusuf Liu Baojun', '978-967-163-870-5', 'CM Diverse Sdn Bhd', '305.69 LIU', 'History', 'Buku berkaitan perkembangan islam', '', '', '', '', '', '', '2023-10-23 12:17:08', 'uploads/Cina-Muslim-dan-Hubungan-dengan-Alam-Melayu.jpg'),
-('07579', 'Super Robotik', 'Ahmad Nabil Musyiri', '978-967-411-882-2', 'PTS Publishing House Sdn ', '899.23 AHM', 'Fiction', 'Alumni Tunas Super', '', '', '', '', '', '', '2023-10-23 12:52:55', 'uploads/default_book.jpg'),
-('07580', 'Mr Gamer VS Miss H', 'Azim Hakimi', '978-967-411-806-8', 'PTS Publishing House Sdn ', '899.23 AZI', 'Fiction', 'Penulis Tunas Super', '', '', '', '', '', '', '2023-10-23 12:54:14', 'uploads/default_book.jpg'),
-('07581', 'Clash Of Crowns', 'Farhan Hakimi', '978-967-411-490-9', 'PTS Publishing House Sdn ', '899.23 FAR', 'Action', 'Clash Of Crowns', '', '', '', '', '', '', '2023-10-23 12:55:11', 'uploads/clash_of_the_crown_CO_correction.jpg'),
-('07582', 'Fairies of Carina ', 'Farrah Hana', '978-967-411-481-7', 'PTS Publishing House Sdn ', '899.23 FAR', 'Fiction', 'Penulis Tunas Super', '', '', '', '', '', '', '2023-10-23 12:56:05', 'uploads/default_book.jpg'),
-('07583', 'Pocket Time', 'Nur Erisha', '978-967-411-483-1', 'PTS Publishing House Sdn ', '899.23 NUR', 'Fiction ', 'Penulis Tunas Super', 'BM', 'Ya ', 'Malay fictio', '-', '-', 'Ada', '2023-10-29 23:38:22', 'uploads/default_book.jpg'),
-('07584', 'My Best Buddy', 'Sharina Elisa', '978-967-369-423-5', 'Bookiut', '899.23 SHA', 'Fiction ', '-', 'Bahasa M', 'Ya ', 'Malay fiction, Malay', '-', '-', 'Ada', '2023-10-30 01:30:54', 'uploads/default_book.jpg');
+('07575', 'Membuat Baja Kompos', 'L. Murbandono HS', '978-967-371-076-8', 'Synergy Media Sdn Bhd', '631.875 MUR', 'Science', 'Siri Agro itu Pertanian', 'Bahasa Melayu', 'Ya', 'Organic Farming', '-', '-', 'Good', '2023-10-23 12:26:11', 'uploads/d.jpg'),
+('07576', 'Misteri Disebalik Gerakan Solat 5 Waktu', 'H. Muhammad Nasir, MA', '978-967-048-281-1', 'Pustaka Al-Ehsan', '297.283 MUH', 'History', 'Nikmati Lazatnya Solat', 'Bahasa Melayu', 'Tidak', '-', '-', '-', 'Good', '2023-10-23 12:30:45', 'uploads/d.jpg'),
+('07577', 'SAYA , SHERLOCK DAN LUPIN', 'Adler, Irene', '978-967-411-854-9', 'PTS Publishing House Sdn ', '823 IRE', 'Fiction', 'Babak terakhir opera', 'Bahasa Melayu', 'Ya', '-', '-', '-', 'Good', '2023-10-23 12:35:08', 'uploads/Saya_Sherlock__Lupin_1.png'),
+('07573', 'Cina Muslim & Hubungannya dengan Alam Melayu', 'Yusuf Liu Baojun', '978-967-163-870-5', 'CM Diverse Sdn Bhd', '305.69 LIU', 'History', 'Buku berkaitan perkembangan islam', 'Bahasa Melayu', 'Ya', 'Chinese-- Muslims', '-', '-', 'Good', '2023-10-23 12:17:08', 'uploads/Cina-Muslim-dan-Hubungan-dengan-Alam-Melayu.jpg'),
+('07579', 'Super Robotik', 'Ahmad Nabil Musyiri', '978-967-411-882-2', 'PTS Publishing House Sdn ', '899.23 AHM', 'Fiction', 'Alumni Tunas Super', 'Bahasa Melayu', 'Ya', '-', '-', '-', 'Good', '2023-10-23 12:52:55', 'uploads/d.jpg'),
+('07580', 'Mr Gamer VS Miss H', 'Azim Hakimi', '978-967-411-806-8', 'PTS Publishing House Sdn ', '899.23 AZI', 'Fiction', 'Penulis Tunas Super', 'Bahasa Melayu', 'Ya', '-', '-', '-', 'Good', '2023-10-23 12:54:14', 'uploads/d.jpg'),
+('07581', 'Clash Of Crowns', 'Farhan Hakimi', '978-967-411-490-9', 'PTS Publishing House Sdn ', '899.23 FAR', 'Action', 'Clash Of Crowns', 'Bahasa Melayu', 'Ya', 'Short stories, Malay', '-', '-', 'Broken', '2023-10-23 12:55:11', 'uploads/clash_of_the_crown_CO_correction.jpg'),
+('07582', 'Fairies of Carina ', 'Farrah Hana', '978-967-411-481-7', 'PTS Publishing House Sdn ', '899.23 FAR', 'Fiction', 'Penulis Tunas Super', 'Bahasa Melayu', 'Ya', '-', '-', '-', 'Good', '2023-10-23 12:56:05', 'uploads/d.jpg'),
+('07583', 'Pocket Time', 'Nur Erisha', '978-967-411-483-1', 'PTS Publishing House Sdn ', '899.23 NUR', 'Fiction ', 'Penulis Tunas Super', 'BM', 'Ya ', 'Malay fiction, Malay', '-', '-', 'Ada', '2023-10-29 23:38:22', 'uploads/d.jpg'),
+('07584', 'My Best Buddy', 'Sharina Elisa', '978-967-369-423-5', 'Bookiut', '899.23 SHA', 'Fiction ', '-', 'Bahasa M', 'Ada', 'Malay fiction, Malay', '-', '-', 'Good', '2023-10-30 01:30:54', 'uploads/My_Best.png');
 
 -- --------------------------------------------------------
 
@@ -82,9 +82,8 @@ CREATE TABLE `tblevents` (
 --
 
 INSERT INTO `tblevents` (`event_id`, `event_name`, `event_pic`, `event_desc`) VALUES
-('2023c53592', 'Perkasa Kem SPM DUN Jabi', 'uploads/event1.jpeg', 'Tg Demong Resort, Besut 29-30 Nov 2023'),
-('2023a4d4c8', 'Majlis Aurora Kegemilangan SPM 2023', 'uploads/coming_soon.jpg', 'Bukit Keluang Beach Resort 2 Dis 2023'),
-('202323663f', 'Ujian Amali Sains (UAS) SPM 2023', 'uploads/coming_soon.jpg', '5/12/2023 Fizik 6/12/2023 Kimia 7/12/2023 Biologi');
+('2024a18446', 'coming soon', 'uploads/coming_soon.jpg', 'coming soon'),
+('202418c295', 'coming soon', 'uploads/coming_soon.jpg', 'coming soon');
 
 -- --------------------------------------------------------
 
@@ -136,7 +135,16 @@ INSERT INTO `tblrecord` (`record_ID`, `transc_ID`, `transc_name`, `book_ID`, `bo
 ('230004', 'BK536075812023', 'Booking', '7581', 'Clash Of Crowns', '801221085360', 'MAIZALINA INAN', '2023-11-29', '04:45:02'),
 ('230005', 'BR536075812023', 'Borrowing', '7581', 'Clash Of Crowns', '801221085360', 'MAIZALINA INAN', '2023-11-29', '05:00:10'),
 ('230006', 'BR052575732023', 'Borrowing', '7573', 'Cina Muslim & Hubungannya dengan Alam Melayu', '031022140525', 'Sufi Danial', '2023-12-01', '20:17:28'),
-('230007', 'BR052575732023', 'Borrowing', '7573', 'Cina Muslim & Hubungannya dengan Alam Melayu', '031022140525', 'Sufi Danial', '2023-12-01', '20:17:58');
+('230007', 'BR052575732023', 'Borrowing', '7573', 'Cina Muslim & Hubungannya dengan Alam Melayu', '031022140525', 'Sufi Danial', '2023-12-01', '20:17:58'),
+('230008', 'BR0525075742023', 'Borrowing', '07574', 'Ilmu Keusahawanan Agrikultur', '031022140525', 'Sufi Danial', '2023-12-01', '12:45:30'),
+('230009', 'BK0525075742023', 'Booking', '07574', 'Ilmu Keusahawanan Agrikultur', '031022140525', 'Sufi Danial', '2023-12-01', '12:54:37'),
+('230010', 'BK7891075742023', 'Booking', '07574', 'Ilmu Keusahawanan Agrikultur', '040425037891', 'Danial Ali', '2023-12-01', '14:28:18'),
+('230011', 'BR7891075732023', 'Borrowing', '07573', 'Cina Muslim & Hubungannya dengan Alam Melayu', '040425037891', 'Danial Ali', '2023-12-01', '14:28:39'),
+('230012', 'BK0525075732023', 'Booking', '07573', 'Cina Muslim & Hubungannya dengan Alam Melayu', '031022140525', 'Sufi Danial', '2023-12-02', '18:55:45'),
+('230013', 'BR0525075812023', 'Borrowing', '07581', 'Clash Of Crowns', '031022140525', 'Sufi Danial', '2023-12-02', '18:56:00'),
+('230014', 'BR5210075822023', 'Borrowing', '07582', 'Fairies of Carina ', '780616035210', 'ENI ARYANTI', '2023-12-04', '14:44:39'),
+('230015', 'BR5210075812023', 'Borrowing', '07581', 'Clash Of Crowns', '780616035210', 'ENI ARYANTI', '2023-12-04', '14:45:37'),
+('230016', 'BR5210075742023', 'Borrowing', '07574', 'Ilmu Keusahawanan Agrikultur', '780616035210', 'ENI ARYANTI', '2023-12-04', '14:46:37');
 
 -- --------------------------------------------------------
 
@@ -147,9 +155,17 @@ INSERT INTO `tblrecord` (`record_ID`, `transc_ID`, `transc_name`, `book_ID`, `bo
 CREATE TABLE `tblreport` (
   `report_ID` varchar(25) NOT NULL,
   `users_ID` varchar(35) NOT NULL,
-  `report_desc` varchar(50) NOT NULL,
+  `report_desc` varchar(255) NOT NULL,
   `report_date` date DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `tblreport`
+--
+
+INSERT INTO `tblreport` (`report_ID`, `users_ID`, `report_desc`, `report_date`) VALUES
+('R052523', '031022140525', 'Buku : Clash of Crowns terkoyak', '2023-12-02'),
+('R789123', '040425037891', 'Buku, Cina Muslim & Hubungannya dengan Alam Melayu', '2023-12-02');
 
 -- --------------------------------------------------------
 
@@ -161,7 +177,8 @@ CREATE TABLE `tblreturning` (
   `return_ID` varchar(25) NOT NULL,
   `user_IC` varchar(35) NOT NULL,
   `user_name` varchar(25) NOT NULL,
-  `book_title` varchar(35) NOT NULL,
+  `book_ID` varchar(25) NOT NULL,
+  `book_title` varchar(255) NOT NULL,
   `book_condition` varchar(25) NOT NULL,
   `date_returned` date DEFAULT NULL,
   `return_approval` tinyint(1) NOT NULL
@@ -171,10 +188,15 @@ CREATE TABLE `tblreturning` (
 -- Dumping data for table `tblreturning`
 --
 
-INSERT INTO `tblreturning` (`return_ID`, `user_IC`, `user_name`, `book_title`, `book_condition`, `date_returned`, `return_approval`) VALUES
-('230001', '031022140525', 'Ahmad Sufi', 'Cina Muslim & Hubungannya dengan Al', 'Sederhana', '2023-11-28', 0),
-('230002', '031022140525', 'Sufi', 'Clash Of Crowns', 'Terbaik', '2023-11-29', 0),
-('230003', '031022140525', 'Sufi Danial', 'Cina Muslim & Hubungannya dengan Al', 'Sederhana', '2023-12-01', 0);
+INSERT INTO `tblreturning` (`return_ID`, `user_IC`, `user_name`, `book_ID`, `book_title`, `book_condition`, `date_returned`, `return_approval`) VALUES
+('230001', '031022140525', 'Ahmad Sufi', '', 'Cina Muslim & Hubungannya dengan Al', 'Sederhana', '2023-11-28', 1),
+('230002', '031022140525', 'Sufi', '07581', 'Clash Of Crowns', 'Terbaik', '2023-11-29', 1),
+('230003', '031022140525', 'Sufi Danial', '', 'Cina Muslim & Hubungannya dengan Al', 'Sederhana', '2023-12-01', 0),
+('230004', '031022140525', 'Sufi Danial', '07574', 'Ilmu Keusahawanan Agrikultur', 'Terbaik', '2023-12-01', 0),
+('230005', '031022140525', 'Sufi Danial', '', 'Clash Of Crowns', 'Good', '2023-12-03', 1),
+('230006', '780616035210', 'ENI ARYANTI', '', 'Ilmu Keusahawanan Agrikultur', 'Good', '2023-12-04', 0),
+('230007', '780616035210', 'ENI ARYANTI', '', 'Fairies of Carina ', 'Good', '2023-12-04', 0),
+('230008', '780616035210', 'ENI ARYANTI', '', 'Clash Of Crowns', 'Bad', '2023-12-04', 1);
 
 -- --------------------------------------------------------
 
@@ -227,9 +249,10 @@ CREATE TABLE `tblstudent` (
 --
 
 INSERT INTO `tblstudent` (`stud_ID`, `stud_roles`, `stud_Name`, `stud_username`, `stud_Class`, `email`, `stud_pwd`, `date`, `verification_code`, `is_verified`, `reset_token`, `book_count`, `bio`, `birthday`, `negeri`, `report`) VALUES
-('021112145679', 'Student', 'Ali Abu', 'user456', '2 Ab', 'alexandriad431@gmail.com', '7d364905010687bf068624c682a924e89e268d984bbbc4dd6ded6ec712ea9c84004d7b9fb56fc31a478b5480fa6eeb340a710242e6e82315301b61e0cde79753', '2023-11-27', 'S08786c', 1, '', 0, '', NULL, '', ''),
-('031022140525', 'Student', 'Sufi Danial', 'user123', '5 AB', 'alexandriad431@gmail.com', 'a8615722aa7e084998095873d32d383ec548bd1ba346889ec586c2d60dca32992a376f542a2e6c575f32290c3dedc6a4527d69bd037462e7a56748ce47367dcb', '2023-11-27', 'Seeaaef', 1, '', 4, '', NULL, '', ''),
-('040425037891', 'Student', 'Danial Ali', 'user789', '3 ad', 'alexandriad431@gmail.com', 'ef5dc920981408cd007b05f515364ef9e5e2502a6352a2e907dd22ea3e7106885dd7653c8dafdf69fee8c3c2e201a456baffdd9f36c0977be7c6a6cb7f0d7ea8', '2023-11-27', 'S2346ff', 1, '', 1, '', NULL, '', '');
+('021112145679', 'Student', 'Ali Abu', 'user456', '2 Ab', 'alexandriad431@gmail.com', 'a8615722aa7e084998095873d32d383ec548bd1ba346889ec586c2d60dca32992a376f542a2e6c575f32290c3dedc6a4527d69bd037462e7a56748ce47367dcb', '2023-11-27', 'S08786c', 1, 'xxx', 0, '', NULL, '', ''),
+('031022140525', 'Student', 'Sufi Danial', 'user123', '5 AD', 'alexandriad431@gmail.com', 'a8615722aa7e084998095873d32d383ec548bd1ba346889ec586c2d60dca32992a376f542a2e6c575f32290c3dedc6a4527d69bd037462e7a56748ce47367dcb', '2023-11-27', 'Seeaaef', 1, 'xxx', 11, '', NULL, '', ''),
+('040425037891', 'Student', 'Danial Ali', 'user789', '3 Al - Arabi', 'alexandriad431@gmail.com', 'a8615722aa7e084998095873d32d383ec548bd1ba346889ec586c2d60dca32992a376f542a2e6c575f32290c3dedc6a4527d69bd037462e7a56748ce47367dcb', '2023-11-27', 'S2346ff', 1, 'xxx', 3, '', NULL, '', ''),
+('031122140525', 'Student', 'Ahmad Sufi', 'chin123', '5 ac', 'ahmadsufi345@gmail.com', 'cfed602fe9a0e13f474b1997220ac2fa56aead154fc1ec76d81b0183d2569d6eaf90a1ccfe3a2a936f23c6fde32cde4e4f14baf59282f0b11c5779cbb134dda7', '2023-12-03', 'S7cf37d', 1, 'xxxxxx', 0, 'xxxxxx', '2023-12-03', 'xxxxx', 'xxxxxx');
 
 -- --------------------------------------------------------
 
@@ -261,7 +284,8 @@ CREATE TABLE `tblteachers` (
 
 INSERT INTO `tblteachers` (`teachers_ID`, `teacher_roles`, `teachers_Name`, `teachers_username`, `teachers_Password`, `email`, `date_teachers`, `verification_code`, `is_verified`, `reset_token`, `book_count`, `bio`, `birthday`, `negeri`, `report`) VALUES
 ('031022140445', '', 'Danial Sufi', 'abu123', '3393f30f7162c1beed2a4ea2eb0e7bf5eadeabb6d00b91cbd481b516eecd1ae07750fc917e3ce86c49d2f3774ff6a7d772b08ade6861ce635c5649df84cb6b57', 'alexandriad431@gmail.com', '2023-11-18', 'T6f4c71', 1, '', 13, '', NULL, '', ''),
-('801221085360', 'Teacher', 'MAIZALINA INAN', 'MAIZALINA', 'f841730f3740d7dce065e606cf5c7fc4029ce34afbc1099af29d1b5f0c9f1474c3f3db1799d526ce5cb556eefded12e79824ff819bfd7615b770f29637173371', 'g-60381301@moe-dl.edu.my', '2023-11-29', 'T4f2c21', 1, '', 0, '', NULL, '', '');
+('801221085360', 'Teacher', 'MAIZALINA INAN', 'MAIZALINA', 'f841730f3740d7dce065e606cf5c7fc4029ce34afbc1099af29d1b5f0c9f1474c3f3db1799d526ce5cb556eefded12e79824ff819bfd7615b770f29637173371', 'g-60381301@moe-dl.edu.my', '2023-11-29', 'T4f2c21', 1, '', 0, '', NULL, '', ''),
+('780616035210', 'Teacher', 'ENI ARYANTI', 'ENI2023', 'ba500ec8ce629fb23e732df5de38413f2d94499e0846bf4dfd79724c1c12b814d89dedae5fd8d978070789a4873d92ef3dd73f49d3843eb280b540eb98779657', 'ahmadsufi345@gmail.com', '2023-12-04', 'T9e75b3', 1, 'xxxxxx', 3, 'xxxxxx', '2023-12-04', 'xxxxx', 'xxxxxx');
 
 -- --------------------------------------------------------
 
@@ -282,6 +306,13 @@ CREATE TABLE `tbltransaction` (
   `end_date` date DEFAULT NULL,
   `time` timestamp NULL DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `tbltransaction`
+--
+
+INSERT INTO `tbltransaction` (`transc_ID`, `transc_name`, `isBooked`, `book_ID`, `book_title`, `user_ID`, `user_Name`, `user_role`, `start_date`, `end_date`, `time`) VALUES
+('BR0525075822023', 'Borrowing', 0, '07582', 'Fairies of Carina ', '031022140525', 'Sufi Danial', 'Student', '2023-12-04', '2023-12-11', '2023-12-04 05:16:42');
 
 --
 -- Indexes for dumped tables
